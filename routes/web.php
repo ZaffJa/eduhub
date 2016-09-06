@@ -1,5 +1,6 @@
 <?php
-
+use Yajra\Datatables\Facades\Datatables;
+use App\User;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,3 +19,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index');
+
+Route::get('/dataTables',function(){
+  return Datatables::eloquent(User::query())->make(true);
+})->name('dataTables');
