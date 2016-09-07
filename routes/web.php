@@ -33,8 +33,8 @@ Route::group(['prefix'=>'client-dashboard'],function(){
   Route::post('post-new-course','CourseNameController@postCreateDetails')->name('client.post.course.detail');
 });
 
-Route::get('/faculty/add', 'FacultyController@create');
+Route::get('/faculty/add', 'FacultyController@add');
 Route::post('/faculty/add', 'FacultyController@example')->name('example');
 Route::get('/faculty', 'FacultyController@view');
 Route::get('/faculty/{id}/edit', 'FacultyController@edit');
-
+Route::post('/faculty/{id}', 'FacultyController@update')->name('fac_name');
