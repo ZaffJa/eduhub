@@ -53,4 +53,9 @@ class Institution extends Model
     {
         return $this->belongsTo('App\Models\Institution');
     }
+
+    public function client()
+    {
+        return $this->belongsTo('App\Models\User','client_id');
+    }
 }
