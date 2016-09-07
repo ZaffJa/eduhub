@@ -20,7 +20,7 @@
         ]); ?>
     </script>
 </head>
-<body>
+<body class="hold-transition skin-red sidebar-mini">
     <nav class="navbar navbar-default navbar-static-top">
         <div class="container">
             <div class="navbar-header">
