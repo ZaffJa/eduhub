@@ -11,7 +11,7 @@
             <div class="widget-user-header bg-red-active">
               <i
               <h3 class="widget-user-username">University of Technology, Malaysia</h3><!--University name-->
-              <h5 class="widget-user-desc">Skudai &amp; Johor</h5>
+              <h5 class="widget-user-desc">Skudai Johor</h5>
               <a href="#" style="color:black"><i class="fa fa-pencil-square-o"></i> <span>Edit Info</span></a>
             </div>
             <div class="widget-user-image">
