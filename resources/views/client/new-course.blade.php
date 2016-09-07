@@ -9,7 +9,6 @@
         text-align: right;
     }
 </style>
-
 <form class="" action="{{route('client.post.course.detail')}}" method="post" autocomplete="off">
     <div class='row'>
         @if (count($errors) > 0)
@@ -27,10 +26,10 @@
             Course Name
         </div>
         <div class="col-md-4">
-            <input type="text" name="course-name-eng" placeholder="English Name">
+            <input type="text" name="name_eng" placeholder="English Name">
         </div>
         <div class="col-md-4 col-md-offset-1">
-            <input type="text" name="course-name-ms" placeholder="Malay Name">
+            <input type="text" name="name_ms" placeholder="Malay Name">
         </div>
     </div>
     <div class="row">
@@ -45,7 +44,7 @@
         <div class="col-md-2">
             Level
         </div>
-        <div class="col-md-4">
+        <div class="col-md-2">
             {{ Form::select('level', $levels) }}
         </div>
         <div class="col-md-1">
@@ -57,18 +56,35 @@
     </div>
     <div class="row">
         <div class="col-md-2">
-            Period
-        </div>
-        <div class="col-md-4">
-            <input type="number" name="period" placeholder="Duration of study">
-            {{ Form::select('period_type', $period_type) }}
-
+            Period Min
         </div>
         <div class="col-md-1">
+            <input type="number" name="period_value_min" placeholder="Min credit hour">
+        </div>
+        <div class="col-md-1">
+            Period Max
+        </div>
+        <div class="col-md-2">
+            <input type="number" name="period_value_max" placeholder="Max credit hour">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
             Credit Hour
         </div>
         <div class="col-md-4">
-            <input type="text" name="credit-hour" placeholder="Min credit hour">
+            <input type="text" name="credit_hour" placeholder="Credit hour needed to pass this course">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+            Duration
+        </div>
+        <div class="col-md-2">
+            <input type="number" name="period" placeholder="Duration of study">
+        </div>
+        <div class="col-md-2">
+            {{ Form::select('period_type', $period_type) }}
         </div>
     </div>
     <div class="row">
@@ -117,14 +133,6 @@
         </div>
         <div class="col-md-4">
             <input type="text" name="course-description" placeholder="Detailed description of the course">
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-md-2">
-            Video Link
-        </div>
-        <div class="col-md-4">
-            <input type="text" name="video-link" placeholder="Video link of course description">
         </div>
     </div>
     <div class="row">
