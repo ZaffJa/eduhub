@@ -19,6 +19,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <link rel="stylesheet" href="client/dist/css/AdminLTE.min.css">
 
   <link rel="stylesheet" href="client/dist/css/skins/skin-blue.min.css">
+  <link rel="stylesheet" href="/css/jquery.dataTables.min.css" media="screen" title="no title" charset="utf-8">
+
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
