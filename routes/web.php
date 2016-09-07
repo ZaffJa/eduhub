@@ -28,5 +28,6 @@ Route::get('/dataTables',function(){
 
 
 Route::group(['prefix'=>'client-dashboard'],function(){
-  Route::get('new-course','CourseNameController@index')->name('index.course.name');
+  Route::get('new-course','CourseNameController@getDetails')->name('client.get.course.details');
+  Route::post('post-new-course','CourseNameController@postCreateDetails')->name('client.post.course.detail');
 });

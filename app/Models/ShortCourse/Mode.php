@@ -9,6 +9,5 @@ class StudyMode extends Model
 {
     use SoftDeletes;
 
-    protected $table = 'short_modes';
     protected $fillable = ['name'];
 }
