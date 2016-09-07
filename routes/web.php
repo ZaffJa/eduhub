@@ -30,3 +30,5 @@ Route::get('/dataTables',function(){
 Route::group(['prefix'=>'client-dashboard'],function(){
   Route::get('new-course','CourseNameController@index')->name('index.course.name');
 });
+
+Route::get('/faculty', 'FacultyController@index' );
