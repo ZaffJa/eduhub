@@ -7,41 +7,58 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Requests\FacultyFormRequest;
 use App\Models\Faculty;
+use Auth;
 
 class FacultyController extends Controller
 {
-	public function store(FacultyFormRequest $request)
-	{
-		return $request->all();
-	}
 
-    public function create()
+    public function add()
     {
-    	return view('client.new-facultyCreate');
+    	return view('client.faculty.add');
     }
 
-    public function example(Request $r)
+    public function store(Request $request)
     {
     	$faculty = new Faculty;
 
-    	$faculty->name = $r->test;
+        $faculty->institution_id = Auth::user()->institution->id;
+    	$faculty->name = $request->fac_name;
 
 
-   //  	try{
-			// $faculty->save();
-   //  	}catch(\Illuminate\Database\QueryException $ex)
-    	
+     	try{
+			 $faculty->save();
+     	}catch(\Illuminate\Database\QueryException $ex) {
+            return $ex->errorInfo;
+        }
+
+        return redirect(action('FacultyController@add'))->with('status','The faculty name '. $faculty->name.' has been added.');
     }
 
     public function view()
     {
-    	$faculties = Faculty::all();
-    	return view('client.new-faculty')->with('faculties',$faculties);
+    	$faculties = Faculty::whereInstitution_id(Auth::user()->institution->id)->get();
+    	return view('client.faculty.view')->with('faculties',$faculties);
     }
 
     public function edit($id)
     {
         $faculty = Faculty::whereId($id)->firstOrFail();
-        return view('client.edit-faculty', compact('faculty'));
+        return view('client.faculty.edit', compact('faculty'));
+    }
+
+    public function update( Request $request,$id)
+    {
+        $faculty = Faculty::whereId($id)->firstOrFail();
+        $faculty->name = $request->get('fac_name');
+
+
+        try {
+            $faculty->save();
+                    
+        } catch (\Illuminate\Database\QueryException $ex) {
+            return $ex->errorInfo;
+        } 
+
+        return redirect(action('FacultyController@edit',$faculty->id))->with('status','The faculty name '. $faculty->name.' has been updated.');
     }
 }

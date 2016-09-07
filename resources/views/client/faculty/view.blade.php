@@ -10,6 +10,12 @@
   <p> There is no faculties. </p>
 @else
 
+@if (session('status'))
+  <label>
+    {{session('status')}}
+  </label>
+@endif
+
 <table>
   <thead>
     <tr>
@@ -22,11 +28,13 @@
       <tr>
         <td> {!! $faculty->id !!} </td>
         <td> {!! $faculty->name !!} </td>
-        <td> <a href="{!! action('FacultyController@edit', $faculty->id) !!}">Edit</a> </td>
+        <td> <a href="{!! action('FacultyController@edit', $faculty->id) !!}"><button>Edit</button></a></td>
+        <td> Delete </td>
       </tr>
     @endforeach
   </tbody>
 </table>
+<a href="{!! action('FacultyController@add') !!}"><button>Add</button></a>
 
 @endif
 

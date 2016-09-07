@@ -34,7 +34,7 @@ Route::group(['prefix'=>'client-dashboard'],function(){
 });
 
 Route::get('/faculty/add', 'FacultyController@add');
-Route::post('/faculty/add', 'FacultyController@example')->name('example');
+Route::post('/faculty/add', 'FacultyController@store')->name('fac.name.store');
 Route::get('/faculty', 'FacultyController@view');
 Route::get('/faculty/{id}/edit', 'FacultyController@edit');
-Route::post('/faculty/{id}', 'FacultyController@update')->name('fac_name');
+Route::post('/faculty/{id}/edit', 'FacultyController@update')->name('fac_name');
