@@ -18,6 +18,6 @@ class DashboardController extends Controller
   }
   public function facilities()
   {
-      return view('client.facilitiess');
+      return view('client.facilities');
   }
 }

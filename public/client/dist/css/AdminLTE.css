@@ -1539,12 +1539,16 @@ a:focus {
  */
 .box {
   position: relative;
-  border-radius: 3px;
+  border-radius: 2px;
   background: #ffffff;
   border-top: 3px solid #d2d6de;
   margin-bottom: 20px;
   width: 100%;
-  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+  display: inline-block;
+  margin: 1rem;
+  position: relative;
+  width: 300px;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
 .box.box-primary {
   border-top-color: #3c8dbc;
@@ -1669,7 +1673,7 @@ a:focus {
 }
 .box.box-solid > .box-header > .box-tools .btn {
   border: 0;
-  box-shadow: none;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
 .box.box-solid[class*='bg'] > .box-header {
   color: #fff;
