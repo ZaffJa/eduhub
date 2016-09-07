@@ -21,5 +21,10 @@ Auth::routes();
 Route::get('/home', 'HomeController@index');
 
 Route::get('/dataTables',function(){
-  return Datatables::eloquent(User::query())->make(true);
+    return Datatables::eloquent(User::query())->make(true);
 })->name('dataTables');
+
+
+Route::group(['prefix'=>'client-dashboard'],function(){
+  Route::get('new-course','CourseNameController@index')->name('index.course.name');
+});
