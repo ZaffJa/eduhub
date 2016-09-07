@@ -122,5 +122,4 @@
         <button type='submit' class='btn btn-lg btn-default '>Submit</button>
     </div>
 </form>
-</div>
 @endsection
