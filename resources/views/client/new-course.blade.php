@@ -10,18 +10,18 @@
     }
 </style>
 
-<form class="" action="{{route('client.post.course.detail')}}" method="post">
-  <div class='row'>
-      @if (count($errors) > 0)
-      <div class="alert alert-danger">
-          <ul>
-              @foreach ($errors->all() as $error)
-              <li>{{ $error }}</li>
-              @endforeach
-          </ul>
-      </div>
-      @endif
-  </div>
+<form class="" action="{{route('client.post.course.detail')}}" method="post" autocomplete="off">
+    <div class='row'>
+        @if (count($errors) > 0)
+        <div class="alert alert-danger">
+            <ul>
+                @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+        @endif
+    </div>
     <div class="row">
         <div class="col-md-2">
             Course Name
@@ -29,7 +29,7 @@
         <div class="col-md-4">
             <input type="text" name="course-name-eng" placeholder="English Name">
         </div>
-        <div class="col-md-4">
+        <div class="col-md-4 col-md-offset-1">
             <input type="text" name="course-name-ms" placeholder="Malay Name">
         </div>
     </div>
@@ -48,10 +48,10 @@
         <div class="col-md-4">
             {{ Form::select('level', $levels) }}
         </div>
-        <div class="col-md-2">
+        <div class="col-md-1">
             Mode
         </div>
-        <div class="col-md-4">
+        <div class="col-md-1">
             {{ Form::select('mode', $modes) }}
         </div>
     </div>
@@ -60,9 +60,11 @@
             Period
         </div>
         <div class="col-md-4">
-            <input type="text" name="period" placeholder="Duration of study">
+            <input type="number" name="period" placeholder="Duration of study">
+            {{ Form::select('period_type', $period_type) }}
+
         </div>
-        <div class="col-md-2">
+        <div class="col-md-1">
             Credit Hour
         </div>
         <div class="col-md-4">
@@ -95,6 +97,14 @@
     </div>
     <div class="row">
         <div class="col-md-2">
+            Field
+        </div>
+        <div class="col-md-4">
+            {{ Form::select('nec', $nec) }}
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
             MQA Reference No
         </div>
         <div class="col-md-4">
@@ -118,8 +128,10 @@
         </div>
     </div>
     <div class="row">
-        {{ csrf_field() }}
-        <button type='submit' class='btn btn-lg btn-default '>Submit</button>
+        <div class="col-md-offset-3 col-md-3">
+            {{ csrf_field() }}
+            <button type='submit' class='btn btn-lg btn-default '>Submit</button>
+        </div>
     </div>
 </form>
 @endsection
