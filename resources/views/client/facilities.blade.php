@@ -23,7 +23,7 @@
         </div>
         <div class="row">
             <div class="col-md-6">
-                <div class="box  card card-img ">
+                <div class="box img card card-img ">
                               <!-- /.box-header -->
                   <div class="box-body">
 
@@ -46,7 +46,7 @@
                 <!-- /.box -->
               </div>
             <div class="col-md-6">
-                  <div class="box  card card-img ">
+                  <div class="box img card card-img ">
                                 <!-- /.box-header -->
                     <div class="box-body">
 
@@ -71,7 +71,7 @@
         </div>
         <div class="row">
             <div class="col-md-6">
-                <div class="box  card card-img ">
+                <div class="box  img card card-img" >
                               <!-- /.box-header -->
                   <div class="box-body">
 
@@ -94,7 +94,7 @@
                 <!-- /.box -->
               </div>
             <div class="col-md-6">
-                  <div class="box  card card-img ">
+                  <div class="box img card card-img ">
                                 <!-- /.box-header -->
                     <div class="box-body">
 
