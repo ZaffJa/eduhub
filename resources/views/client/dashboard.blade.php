@@ -1,6 +1,6 @@
-    @extends('client.layout.app')
+@extends('client.layout.app')
 
-    @section('title', 'Dashboard')
+@section('title', 'Dashboard')
 
     @section('content')
     <div class="row">
@@ -8,10 +8,10 @@
           <!-- Widget: user widget style 1 -->
           <div class="box box-widget widget-user">
             <!-- Add the bg color to the header using any of the bg-* classes -->
-            <div class="widget-user-header bg-aqua-active">
+            <div class="widget-user-header bg-red-active">
               <i
-              <h3 class="widget-user-username">Alexander Pierce</h3>
-              <h5 class="widget-user-desc">Founder &amp; CEO</h5>
+              <h3 class="widget-user-username">University of Technology, Malaysia</h3><!--University name-->
+              <h5 class="widget-user-desc">Skudai &amp; Johor</h5>
               <a href="#" style="color:black"><i class="fa fa-pencil-square-o"></i> <span>Edit Info</span></a>
             </div>
             <div class="widget-user-image">
@@ -167,7 +167,7 @@
 
             <div class="box">
               <div class="box-header">
-                <h3 class="box-title">Courses</h3>
+                <h3 class="box-title">Facilities</h3>
               </div>
               <!-- /.box-header -->
               <div class="box-body">
@@ -255,7 +255,7 @@
 
             <div class="box">
               <div class="box-header">
-                <h3 class="box-title">Courses</h3>
+                <h3 class="box-title">Faculties</h3>
               </div>
               <!-- /.box-header -->
               <div class="box-body">
@@ -341,7 +341,7 @@
 
             <div class="box">
               <div class="box-header">
-                <h3 class="box-title">Courses</h3>
+                <h3 class="box-title">Scholarship</h3>
               </div>
               <!-- /.box-header -->
               <div class="box-body">
@@ -439,3 +439,4 @@
     </div>
 
     @endsection
+>>>>>>> 9bf165119b3013570052f7038be2644e43ac8e54
