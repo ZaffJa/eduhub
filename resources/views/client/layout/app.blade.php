@@ -18,15 +18,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <!-- Theme style -->
   <link rel="stylesheet" href="client/dist/css/AdminLTE.min.css">
 
-  <link rel="stylesheet" href="client/dist/css/skins/skin-blue.min.css">
+  <link rel="stylesheet" href="client/dist/css/skins/_all-skins.min.css">
   <link rel="stylesheet" href="/css/jquery.dataTables.min.css" media="screen" title="no title" charset="utf-8">
-
+  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
-  <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+
   <![endif]-->
   @yield('header-css')
 </head>
@@ -50,7 +50,7 @@ desired effect
 |               | sidebar-mini                            |
 |---------------------------------------------------------|
 -->
-<body class="skin-blue sidebar-mini">
+<body class="hold-transition skin-red sidebar-mini">
   <div class="wrapper">
 
     <!-- Main Header -->

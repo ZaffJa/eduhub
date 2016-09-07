@@ -12,4 +12,8 @@ class DashboardController extends Controller
   {
       return view('client.dashboard');
   }
+  public function profile()
+  {
+      return view('client.edit-profile');
+  }
 }

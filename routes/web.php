@@ -22,6 +22,7 @@ Route::get('/home', 'HomeController@index');
 
 Route::get('/dashboard', 'DashboardController@dashboard');
 
+Route::get('/editProfile', 'DashboardController@profile');
 Route::get('/dataTables',function(){
     return Datatables::eloquent(User::query())->make(true);
 })->name('dataTables');
