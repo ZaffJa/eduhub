@@ -34,18 +34,17 @@ class CourseNameController extends Controller
     public function postCreateDetails(Request $r)
     {
       $validator = Validator::make($r->all(), [
-             'course-name-eng' => 'required|max:255',
-             'course-name-ms' => 'required|max:255',
+             'name_eng' => 'required|max:255',
+             'name_ms' => 'required|max:255',
              'faculty' => 'required',
              'level' => 'required',
              'mode' => 'required',
              'period' => 'required',
-             'credit-hour' => 'required',
+             'credit_hour' => 'required',
              'qualification-entry' => 'required',
              'approved' => 'required',
              'accredited' => 'required',
              'mqa' => 'required',
-             'video-link' => 'required',
              'nec' => 'required',
          ]);
 
@@ -61,11 +60,28 @@ class CourseNameController extends Controller
 
            $course->faculty_id = $r->faculty;
            $course->nec_code = $r->nec;
-           $course->nec_code = $r->nec;
+           $course->level_id = $r->level;
+           $course->period_type_id = $r->period_type;
+           $course->mode_id = $r->mode_id;
+           $course->name_en = $r->name_en;
+           $course->name_ms = $r->name_ms;
+           $course->period_value_min = $r->period_value_min;
+           $course->period_value_max = $r->period_value_max;
+           $course->credit_hours = $r->credit_hours;
+           $course->accredited = $r->accredited;
+
+           $course->save();
 
          }catch(\Illuminate\Database\QueryException $e){
-           return $r->all();
-         }
+                return redirect()
+                            ->back()
+                            ->withErrors($ex)
+                            ->withInput();
+            }
 
-    }
+        return  redirect()->back();
+
+     }
+
+
 }
