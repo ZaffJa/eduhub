@@ -208,6 +208,7 @@ desired effect
 
       <main class="mdl-layout__content mdl-color--grey-100">
         <div class="mdl-grid">
+          
             @yield('content')
         </div>
       </main><!-- Your Page Content Here -->
