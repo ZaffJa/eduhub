@@ -85,56 +85,18 @@
 
         <div class="content">
             <div class="title m-b-md">
-                Laravel
+                eduhub.my
             </div>
 
             <div class="links">
-                <a href="https://laravel.com/docs">Documentation</a>
-                <a href="https://laracasts.com">Laracasts</a>
-                <a href="https://laravel-news.com">News</a>
-                <a href="https://forge.laravel.com">Forge</a>
-                <a href="https://github.com/laravel/laravel">GitHub</a>
+                <h4>Malaysia's No.1 education guide</h>
+                <h5>CLIENT DASHBOARD</h5>
             </div>
         </div>
-        <table class="table table-bordered" id="users-table">
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Created At</th>
-                    <th>Updated At</th>
-                </tr>
-            </thead>
-        </table>
-        <script src="/js/jquery.min.js" charset="utf-8"></script>
-        <script src="/js/jquery.dataTables.min.js" charset="utf-8"></script>
 
-        <script type="text/javascript">
-            $(function() {
-                $('#users-table').DataTable({
-                    processing: true,
-                    serverSide: true,
-                    ajax: '{!! route("dataTables") !!}',
-                    columns: [{
-                        data: 'id',
-                        name: 'id'
-                    }, {
-                        data: 'name',
-                        name: 'name'
-                    }, {
-                        data: 'email',
-                        name: 'email'
-                    }, {
-                        data: 'created_at',
-                        name: 'created_at'
-                    }, {
-                        data: 'updated_at',
-                        name: 'updated_at'
-                    }]
-                });
-            });
-        </script>
+
+
+
     </div>
 </body>
 

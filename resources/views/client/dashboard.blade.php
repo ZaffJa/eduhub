@@ -31,6 +31,9 @@
                   <div class="description-block">
                     <h5 class="description-header">13,000</h5>
                     <span class="description-text">FOLLOWERS</span>
+                    <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored">
+                      <i class="material-icons">add</i>
+                    </button>
                   </div>
                   <!-- /.description-block -->
                 </div>

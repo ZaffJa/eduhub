@@ -172,7 +172,7 @@
 
 
                         <div class="img ">
-                          <img src="https://hague6185.files.wordpress.com/2013/08/kazan_mosque_kul_sharif_sky-1920x1440.jpg" alt="First slide">
+                          <img src="http://11858-presscdn-0-95.pagely.netdna-cdn.com/wp-content/uploads/2015/04/Albuquerque_Roosevelt_Park.jpg" alt="First slide">
 
                           <div class="carousel-caption">
                             Others

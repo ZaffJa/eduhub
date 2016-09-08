@@ -8,10 +8,20 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>eduhub.my</title>
 
     <!-- Styles -->
-    <link href="/css/app.css" rel="stylesheet">
+    <!-- Bootstrap 3.3.6 -->
+    <link rel="stylesheet" href="/client/bootstrap/css/bootstrap.min.css">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+    <!-- Ionicons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="/client/dist/css/AdminLTE.min.css">
+
+    <link rel="stylesheet" href="/client/dist/css/skins/_all-skins.min.css">
+    <link rel="stylesheet" href="/css/mdb.min.css">
 
     <!-- Scripts -->
     <script>
@@ -23,7 +33,7 @@
 <body class="hold-transition skin-red sidebar-mini">
     <nav class="navbar navbar-default navbar-static-top">
         <div class="container">
-            <div class="navbar-header">
+            <div class="main-header">
 
                 <!-- Collapsed Hamburger -->
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
@@ -35,7 +45,7 @@
 
                 <!-- Branding Image -->
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
+                    {{ config('app.name', 'eduhub.my') }}
                 </a>
             </div>
 
