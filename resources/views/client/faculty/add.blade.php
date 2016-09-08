@@ -4,6 +4,12 @@
 
 @section('content')
 
+@if (session('status'))
+  <label>
+    {{session('status')}}
+  </label>
+@endif
+
 <h3>Faculty Form</h3>
 <form action="{{route('fac.name.store')}}" method="post">
   <label>Faculty Name</label>
