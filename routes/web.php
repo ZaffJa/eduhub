@@ -40,9 +40,19 @@ Route::get('/dataTables',function(){
 
 Route::group(['prefix'=>'client-dashboard'],function(){
   Route::group(['middleware'=>'auth'],function(){
-    Route::get('/', 'DashboardController@dashboard');
+    Route::get('/', 'DashboardController@dashboard')->name('client.dashboard');
+
+
+
+    Route::get('/new-institution', 'InstitutionController@index');
+    Route::post('/new-institution', 'InstitutionController@create')->name('client.post.institution');
+
+
+
     Route::get('new-course','CourseNameController@getDetails')->name('client.get.course.details');
     Route::post('post-new-course','CourseNameController@postCreateDetails')->name('client.post.course.detail');
+
+
     Route::get('/faculty/add', 'FacultyController@add');
     Route::post('/faculty/add', 'FacultyController@store')->name('fac.name.store');
     Route::get('/faculty', 'FacultyController@view');
