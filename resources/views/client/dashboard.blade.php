@@ -6,7 +6,7 @@
     <div class="row">
       <div class="col-md-12">
           <!-- Widget: user widget style 1 -->
-          <div class="box card box-widget widget-user">
+          <div class="box box-widget widget-user">
             <!-- Add the bg color to the header using any of the bg-* classes -->
             <div class="widget-user-header bg-red-active">
               <i
