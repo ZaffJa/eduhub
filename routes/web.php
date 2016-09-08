@@ -43,12 +43,11 @@ Route::group(['prefix'=>'client-dashboard'],function(){
     Route::get('/', 'DashboardController@dashboard');
     Route::get('new-course','CourseNameController@getDetails')->name('client.get.course.details');
     Route::post('post-new-course','CourseNameController@postCreateDetails')->name('client.post.course.detail');
+    Route::get('/faculty/add', 'FacultyController@add');
+    Route::post('/faculty/add', 'FacultyController@store')->name('fac.name.store');
+    Route::get('/faculty', 'FacultyController@view');
+    Route::get('/faculty/{id}/edit', 'FacultyController@edit');
+    Route::post('/faculty/{id}/edit', 'FacultyController@update')->name('fac_name');
+    Route::post('/faculty/{id}/delete', 'FacultyController@delete');
   });
 });
-
-Route::get('/faculty/add', 'FacultyController@add');
-Route::post('/faculty/add', 'FacultyController@store')->name('fac.name.store');
-Route::get('/faculty', 'FacultyController@view');
-Route::get('/faculty/{id}/edit', 'FacultyController@edit');
-Route::post('/faculty/{id}/edit', 'FacultyController@update')->name('fac_name');
-Route::post('/faculty/{id}/delete', 'FacultyController@delete');
