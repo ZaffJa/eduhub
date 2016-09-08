@@ -85,11 +85,28 @@
 
         <div class="content">
             <div class="title m-b-md">
-                eduhub.my
+              <div class="box img card card-img ">
+                            <!-- /.box-header -->
+                <div class="box-body">
+
+
+
+
+                        <img src="img/logo/logoeduhub.svg" >
+
+
+                    
+
+
+
+
+                </div>
+                <!-- /.box-body -->
+              </div>
             </div>
 
             <div class="links">
-                <h4>Malaysia's No.1 education guide</h>
+
                 <h5>CLIENT DASHBOARD</h5>
             </div>
         </div>
