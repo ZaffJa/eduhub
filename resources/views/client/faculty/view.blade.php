@@ -26,10 +26,14 @@
   <tbody>
     @foreach($faculties as $faculty)
       <tr>
-        <td> {!! $faculty->id !!} </td>
         <td> {!! $faculty->name !!} </td>
         <td> <a href="{!! action('FacultyController@edit', $faculty->id) !!}"><button>Edit</button></a></td>
-        <td> Delete </td>
+        <td>
+        <form method="post" action="{!! action('FacultyController@delete', $faculty->id) !!}">
+          <input type="hidden" name="_token" value="{!! csrf_token() !!}">
+          <button type="submit">Delete</button>
+        </form>
+       </td>
       </tr>
     @endforeach
   </tbody>

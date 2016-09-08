@@ -61,4 +61,17 @@ class FacultyController extends Controller
 
         return redirect(action('FacultyController@edit',$faculty->id))->with('status','The faculty name '. $faculty->name.' has been updated.');
     }
+
+    public function delete($id)
+    {
+        $faculty = Faculty::whereId($id)->firstOrFail();
+        
+        try {
+            $faculty->delete();
+        } catch(\Illuminate\Database\QueryException $ex) {
+
+        }
+
+        return redirect('/faculty')->with('status','The faculty '. $faculty->name .' has been deleted');
+    }
 }

@@ -51,3 +51,4 @@ Route::post('/faculty/add', 'FacultyController@store')->name('fac.name.store');
 Route::get('/faculty', 'FacultyController@view');
 Route::get('/faculty/{id}/edit', 'FacultyController@edit');
 Route::post('/faculty/{id}/edit', 'FacultyController@update')->name('fac_name');
+Route::post('/faculty/{id}/delete', 'FacultyController@delete');

@@ -22,7 +22,7 @@
           </div>
         </div>
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <div class="box img card card-img ">
                               <!-- /.box-header -->
                   <div class="box-body">
@@ -45,7 +45,7 @@
                 </div>
                 <!-- /.box -->
               </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
                   <div class="box img card card-img ">
                                 <!-- /.box-header -->
                     <div class="box-body">
@@ -56,7 +56,7 @@
                             <img src="http://www.greenmachineatms.com/wp-content/uploads/2016/01/atmp.jpg" alt="First slide">
 
                             <div class="carousel-caption">
-                              Cafeteria
+                              Banks
                             </div>
                           </div>
 
@@ -68,9 +68,32 @@
                   </div>
                   <!-- /.box -->
                 </div>
+                <div class="col-md-4">
+                      <div class="box img card card-img ">
+                                    <!-- /.box-header -->
+                        <div class="box-body">
+
+
+
+                              <div class="img ">
+                                <img src="http://skincancer.blob.core.windows.net/assets/uploads/img/general%20content/clinic.jpg" alt="First slide">
+
+                                <div class="carousel-caption">
+                                  Clinics
+                                </div>
+                              </div>
+
+
+
+
+                        </div>
+                        <!-- /.box-body -->
+                      </div>
+                      <!-- /.box -->
+                    </div>
         </div>
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-4">
                 <div class="box  img card card-img" >
                               <!-- /.box-header -->
                   <div class="box-body">
@@ -81,7 +104,7 @@
                           <img src="https://hague6185.files.wordpress.com/2013/08/kazan_mosque_kul_sharif_sky-1920x1440.jpg" alt="First slide">
 
                           <div class="carousel-caption">
-                            Cafeteria
+                            Mosque
                           </div>
                         </div>
 
@@ -93,7 +116,7 @@
                 </div>
                 <!-- /.box -->
               </div>
-            <div class="col-md-6">
+            <div class="col-md-4">
                   <div class="box img card card-img ">
                                 <!-- /.box-header -->
                     <div class="box-body">
@@ -104,7 +127,7 @@
                             <img src="https://upload.wikimedia.org/wikipedia/commons/8/8a/Kuala_Lumpur_Malaysia_Pos-Malaysia-Headquarters-01.jpg" alt="First slide">
 
                             <div class="carousel-caption">
-                              Cafeteria
+                              Postal Service
                             </div>
                           </div>
 
@@ -116,6 +139,55 @@
                   </div>
                   <!-- /.box -->
                 </div>
+                <div class="col-md-4">
+                      <div class="box img card card-img ">
+                                    <!-- /.box-header -->
+                        <div class="box-body">
+
+
+
+                              <div class="img ">
+                                <img src="http://middletonsportsclub.co.uk/wp-content/uploads/2015/06/gym.jpg" alt="First slide">
+
+                                <div class="carousel-caption">
+                                  gymnasium
+                                </div>
+                              </div>
+
+
+
+
+                        </div>
+                        <!-- /.box-body -->
+                      </div>
+                      <!-- /.box -->
+                    </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4">
+                <div class="box  img card card-img" >
+                              <!-- /.box-header -->
+                  <div class="box-body">
+
+
+
+                        <div class="img ">
+                          <img src="https://hague6185.files.wordpress.com/2013/08/kazan_mosque_kul_sharif_sky-1920x1440.jpg" alt="First slide">
+
+                          <div class="carousel-caption">
+                            Others
+                          </div>
+                        </div>
+
+
+
+
+                  </div>
+                  <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
+              </div>
+
         </div>
       </div>
     </div>
