@@ -1,6 +1,9 @@
 <?php
 use Yajra\Datatables\Facades\Datatables;
 use App\User;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\TestSend;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,9 +21,16 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('/email',function(){
+    Mail::to('zafrizulkipli@gmail.com')->send(new TestSend);
+    return 'ok';
+})->name('email');
+
+
+
+
 Route::get('/home', 'HomeController@index');
 
-Route::get('/dashboard', 'DashboardController@dashboard');
 Route::get('/facilities', 'DashboardController@facilities');
 Route::get('/editProfile', 'DashboardController@profile');
 Route::get('/dataTables',function(){
@@ -29,8 +39,11 @@ Route::get('/dataTables',function(){
 
 
 Route::group(['prefix'=>'client-dashboard'],function(){
-  Route::get('new-course','CourseNameController@getDetails')->name('client.get.course.details');
-  Route::post('post-new-course','CourseNameController@postCreateDetails')->name('client.post.course.detail');
+  Route::group(['middleware'=>'auth'],function(){
+    Route::get('/', 'DashboardController@dashboard');
+    Route::get('new-course','CourseNameController@getDetails')->name('client.get.course.details');
+    Route::post('post-new-course','CourseNameController@postCreateDetails')->name('client.post.course.detail');
+  });
 });
 
 Route::get('/faculty/add', 'FacultyController@add');
