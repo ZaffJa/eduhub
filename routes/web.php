@@ -26,12 +26,15 @@ Route::get('/email',function(){
     return 'ok';
 })->name('email');
 
-
-
-
 Route::get('/home', 'HomeController@index');
 
-Route::get('/facilities', 'DashboardController@facilities');
+Route::get('/facilities', 'FacilityController@viewType');
+Route::get('/facilities/{id}', 'FacilityController@view')->name('faci.view');
+Route::get('/facilities/{id}/add', 'FacilityController@add')->name('faci.add');
+Route::post('/facilities/{id}/add', 'FacilityController@store')->name('faci.store');
+Route::get('/facilities/{id}/{fid}/edit', 'FacilityController@edit')->name('faci.edit');
+Route::post('/facilities/{id}/{fid}/edit', 'FacilityController@update')->name('faci.update');
+
 Route::get('/editProfile', 'DashboardController@profile');
 Route::get('/dataTables',function(){
     return Datatables::eloquent(User::query())->make(true);
@@ -43,6 +46,7 @@ Route::group(['prefix'=>'client-dashboard'],function(){
     Route::get('/', 'DashboardController@dashboard');
     Route::get('new-course','CourseNameController@getDetails')->name('client.get.course.details');
     Route::post('post-new-course','CourseNameController@postCreateDetails')->name('client.post.course.detail');
+   
     Route::get('/faculty/add', 'FacultyController@add');
     Route::post('/faculty/add', 'FacultyController@store')->name('fac.name.store');
     Route::get('/faculty', 'FacultyController@view');
