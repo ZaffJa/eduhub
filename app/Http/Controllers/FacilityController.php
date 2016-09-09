@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Models\Facility;
 use App\Models\FacilityType;
 use Auth;
+use View;
 
 class FacilityController extends Controller
 {
@@ -51,6 +52,30 @@ class FacilityController extends Controller
     {
     	$facility =  Facility::whereId($fid)->whereType_id($id)->firstOrFail();
 
-    	return view('client.facility.edit', compact('facility'));
+    	return View::make('client.facility.edit',compact('facility','id','fid'));
+    }
+
+    public function update(Request $r,$id,$fid)
+    {
+    	$facility = Facility::whereId($fid)->whereType_id($id)->firstOrFail();
+    	$facility->name = $r->faci_name;
+    	$facility->capacity = $r->faci_capacity;
+
+    	try {
+    		$facility->save();
+    	}catch(\Illuminate\Database\QueryException $ex){
+    		return $ex->errorInfo;
+    	}
+
+    	$status = 'The facility name '. $facility->name .' has been updated.';
+
+    	return View::make('client.facility.edit',compact('facility','id','fid','status'));
+
+
+    }
+
+     public function delete($id)
+    {
+
     }
 }

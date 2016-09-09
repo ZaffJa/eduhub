@@ -72,6 +72,6 @@ class FacultyController extends Controller
 
         }
 
-        return redirect('/faculty')->with('status','The faculty '. $faculty->name .' has been deleted');
+        return view('client.faculty.view')->with('status','The faculty '. $faculty->name .' has been deleted');
     }
 }
