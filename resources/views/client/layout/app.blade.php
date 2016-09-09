@@ -84,9 +84,6 @@ desired effect
                 <div class="navbar-custom-menu">
 
                     <ul class="nav navbar-nav">
-
-
-
                         <!-- User Account: style can be found in dropdown.less -->
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -133,7 +130,7 @@ desired effect
                             </ul>
                         </li>
                         <!-- Control Sidebar Toggle Button -->
-                      
+
                     </ul>
                 </div>
             </nav>
@@ -172,7 +169,7 @@ desired effect
                     <!-- <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li>
           <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li> -->
                     <li class="treeview">
-                        <a href="#"><i class="fa fa-link"></i> <span>Courses</span>
+                        <a href="#"><i class="fa fa-book"></i> <span>Courses</span>
                           <span class="pull-right-container">
                             <i class="fa fa-angle-left pull-right"></i>
                           </span>
@@ -180,7 +177,7 @@ desired effect
 
                     </li>
                     <li class="treeview">
-                        <a href="/client-dashboard/faculty"><i class="fa fa-link"></i> <span>Faculties</span>
+                        <a href="/client-dashboard/faculty"><i class="fa fa-building"></i> <span>Faculties</span>
                           <span class="pull-right-container">
                             <i class="fa fa-angle-left pull-right"></i>
                           </span>
@@ -188,7 +185,7 @@ desired effect
 
                     </li>
                     <li class="treeview">
-                        <a href="/client-dashboard/facilities"><i class="fa fa-link"></i> <span>Facilities</span>
+                        <a href="/client-dashboard/facilities"><i class="fa fa-building-o"></i> <span>Facilities</span>
                           <span class="pull-right-container">
                             <i class="fa fa-angle-left pull-right"></i>
                           </span>
@@ -196,7 +193,7 @@ desired effect
 
                     </li>
                     <li class="treeview">
-                        <a href="#"><i class="fa fa-link"></i> <span>Scholarship</span>
+                        <a href="#"><i class="fa fa-usd"></i> <span>Scholarship</span>
                           <span class="pull-right-container">
                             <i class="fa fa-angle-left pull-right"></i>
                           </span>
@@ -231,7 +228,6 @@ desired effect
 
                     <main class="mdl-layout__content mdl-color--grey-100">
                         <div class="mdl-grid">
-
                             @yield('content')
                         </div>
                     </main>

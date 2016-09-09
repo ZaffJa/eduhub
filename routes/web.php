@@ -57,7 +57,7 @@ Route::group(['middleware' => ['auth'],'prefix' => 'client-dashboard'],function(
 
     Route::get('/scholarship/add', 'ScholarshipController@add');
 
-    Route::get('/faculty/add', 'FacultyController@add');
+    Route::get('/faculty/add', 'FacultyController@add')->name('client.add.faculty');
     Route::post('/faculty/add', 'FacultyController@store')->name('fac.name.store');
     Route::get('/faculty', 'FacultyController@view');
     Route::get('/faculty/{id}/edit', 'FacultyController@edit');
