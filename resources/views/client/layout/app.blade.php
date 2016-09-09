@@ -96,7 +96,7 @@ desired effect
                             <ul class="dropdown-menu">
                                 <!-- User image -->
                                 <li class="user-header">
-                                    <img src="http://www.iiwas.org/conferences/iiwas2011/img/logos/UTM.jpg" class="img-circle" alt="User Image">
+                                    <img src="/img/logo/logo_uthm.png" class="img-circle" alt="User Image">
                                     <p>
                                         University of Technology, Malaysia
                                         <small>Member since {{Auth::user()->created_at->diffForHumans()}}</small>
