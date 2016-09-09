@@ -27,6 +27,12 @@
         <td>{{$facility->name}}</td>
         <td>{{$facility->capacity}}</td>
         <td><a href="{!! action('FacilityController@edit',array($typeid, $facility->id)) !!}"><button>edit</button></a></td>
+        <td>
+          <form method="post" action="{!! action('FacilityController@delete', array($typeid, $facility->id)) !!}">
+            <input type="hidden" name="_token" value="{!! csrf_token() !!}">
+            <button type="submit" class="btn btn-danger">Delete</button>
+          </form>
+        </td>
       </tr>
       @endforeach
     </tbody>

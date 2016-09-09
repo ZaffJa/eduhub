@@ -18,24 +18,24 @@ class FacilityController extends Controller
     	return view('client.facility.viewType')->with('facility_types',$facility_types);
     }
 
-    public function view($id)
+    public function view($typeid)
     {
-    	$facilities = Facility::whereType_id($id)->whereInstitution_id(Auth::user()->institution->id)->get();
+    	$facilities = Facility::whereType_id($typeid)->whereInstitution_id(Auth::user()->institution->id)->get();
 
-    	return view('client.facility.view')->with('typeid',$id)->with('facilities',$facilities);
+    	return view('client.facility.view')->with('typeid',$typeid)->with('facilities',$facilities);
     }
 
-    public function add($id)
+    public function add($typeid)
     {
-    	return view('client.facility.add')->with('id',$id);
+    	return view('client.facility.add')->with('typeid',$typeid);
     }
 
-    public function store(Request $r, $id)
+    public function store(Request $r, $typeid)
     {
     	$facility = new Facility;
 
     	$facility->institution_id = Auth::user()->institution->id;
-    	$facility->type_id = $id;
+    	$facility->type_id = $typeid;
     	$facility->name = $r->faci_name;
     	$facility->capacity = $r->faci_cap;
 
@@ -45,19 +45,19 @@ class FacilityController extends Controller
             return $ex->errorInfo;
     	}
 
-    	return view('client.facility.add')->with('id',$id)->with('status','The facility name '. $facility->name .' has been updated.');
+    	return view('client.facility.add')->with('id',$typeid)->with('status','The facility name '. $facility->name .' has been updated.');
     }
 
-    public function edit($id, $fid)
+    public function edit($typeid, $fid)
     {
-    	$facility =  Facility::whereId($fid)->whereType_id($id)->firstOrFail();
+    	$facility =  Facility::whereId($fid)->whereType_id($typeid)->firstOrFail();
 
-    	return View::make('client.facility.edit',compact('facility','id','fid'));
+    	return View::make('client.facility.edit',compact('facility','typeid','fid'));
     }
 
-    public function update(Request $r,$id,$fid)
+    public function update(Request $r,$typeid,$fid)
     {
-    	$facility = Facility::whereId($fid)->whereType_id($id)->firstOrFail();
+    	$facility = Facility::whereId($fid)->whereType_id($typeid)->firstOrFail();
     	$facility->name = $r->faci_name;
     	$facility->capacity = $r->faci_capacity;
 
@@ -69,13 +69,24 @@ class FacilityController extends Controller
 
     	$status = 'The facility name '. $facility->name .' has been updated.';
 
-    	return View::make('client.facility.edit',compact('facility','id','fid','status'));
-
+    	return View::make('client.facility.edit',compact('facility','typeid','fid','status'));
 
     }
 
-     public function delete($id)
+     public function delete($typeid,$fid)
     {
+        $facility = Facility::whereId($fid)->whereType_id($typeid)->firstOrFail();
+
+        try{
+            $facility->delete();
+        }catch(\Illuminate\Database\QueryException $ex) {
+
+        }
+
+        $status = 'The facility name '. $facility->name .' has been updated.';
+        $facilities = Facility::whereType_id($typeid)->whereInstitution_id(Auth::user()->institution->id)->get();
+
+        return view('client.facility.view', compact('status','typeid','facilities'));
 
     }
 }
