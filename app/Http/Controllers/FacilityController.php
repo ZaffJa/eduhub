@@ -45,7 +45,7 @@ class FacilityController extends Controller
             return $ex->errorInfo;
     	}
 
-    	return view('client.facility.add')->with('id',$typeid)->with('status','The facility name '. $facility->name .' has been updated.');
+    	return view('client.facility.add')->with('typeid',$typeid)->with('status','The facility name '. $facility->name .' has been updated.');
     }
 
     public function edit($typeid, $fid)
