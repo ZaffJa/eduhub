@@ -57,7 +57,7 @@ return [
 
     'from' => [
         'address' => 'myveri5.team@gmail.com',
-        'name' => 'My Son',
+        'name' => 'Eduhub',
     ],
 
     /*
