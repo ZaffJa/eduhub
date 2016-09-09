@@ -60,5 +60,5 @@ Route::group(['prefix'=>'client-dashboard'],function(){
     Route::get('/faculty/{id}/edit', 'FacultyController@edit');
     Route::post('/faculty/{id}/edit', 'FacultyController@update')->name('fac_name');
     Route::post('/faculty/{id}/delete', 'FacultyController@delete');
-  });
+
 });
