@@ -16,9 +16,11 @@ use Validator;
 use Auth;
 use View;
 
-class CourseNameController extends Controller
+class CourseController extends Controller
 {
-    public function getDetails()
+
+
+    public function add()
     {
       $institution = Institution::whereClientId(Auth::user()->id)->firstOrFail();
 
@@ -28,10 +30,10 @@ class CourseNameController extends Controller
       $nec = Nec::pluck('field','code');
       $period_type = PeriodType::pluck('name','id');
 
-      return View::make('client.new-course',compact('faculties','levels','modes','nec','period_type'));
+      return View::make('client.course.add',compact('faculties','levels','modes','nec','period_type'));
     }
 
-    public function postCreateDetails(Request $r)
+    public function store(Request $r)
     {
       $validator = Validator::make($r->all(), [
              'name_eng' => 'required|max:255',
@@ -83,5 +85,30 @@ class CourseNameController extends Controller
 
      }
 
+     public function view()
+     {
+      $faculty = Faculty::whereInstitution_id(Auth::user()->institution->id)->pluck('id','name');
+      $max_faculty_id = Faculty::whereInstitution_id(Auth::user()->institution->id)->max('id');
 
+      $courses = Course::where('faculty_id','<=', $max_faculty_id)->get();
+      $periodTypes = PeriodType::all();
+
+      return View::make('client.course.view',compact('courses','periodTypes'));
+     }
+
+     public function edit($id)
+     {
+      $faculties = Faculty::pluck('name','id');
+      $levels = StudyLevel::pluck('name','id');
+      $modes = StudyMode::pluck('name','id');
+      $nec = Nec::pluck('field','code');
+      $period_type = PeriodType::pluck('name','id');
+
+      $institution = Institution::whereClientId(Auth::user()->id)->firstOrFail();
+
+      $course = Course::whereId($id)->firstOrFail();
+
+      // return $course->faculty;
+      return View::make('client.course.edit',compact('course','faculties','levels','modes','period_type')); 
+     }
 }

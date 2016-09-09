@@ -20,7 +20,7 @@
               
             <!-- /.box-header -->
             <!-- form start -->
-            <form role="form">
+            <form action="{{route('fac.name.store')}}" role="form">
               <div class="box-body">
                 <div class="form-group">
                   <label>Faculty Name</label>

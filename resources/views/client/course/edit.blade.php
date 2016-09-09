@@ -9,7 +9,7 @@
         text-align: right;
     }
 </style>
-<form class="" action="{{route('client.post.course.detail')}}" method="post" autocomplete="off">
+<form class="" action="{{route('client.course.store')}}" method="post" autocomplete="off">
     <div class='row'>
         @if (count($errors) > 0)
         <div class="alert alert-danger">
@@ -26,10 +26,10 @@
             Course Name
         </div>
         <div class="col-md-4">
-            <input type="text" name="name_eng" placeholder="English Name">
+            <input type="text" value="{!! $course->name_en !!}" name="name_eng" placeholder="English Name">
         </div>
         <div class="col-md-4 col-md-offset-1">
-            <input type="text" name="name_ms" placeholder="Malay Name">
+            <input type="text" value="{!! $course->name_ms !!}" name="name_ms" placeholder="Malay Name">
         </div>
     </div>
     <div class="row">
@@ -37,7 +37,7 @@
             Faculty
         </div>
         <div class="col-md-2">
-            {{ Form::select('faculty', $faculties,['class' => 'col-md-2']) }}
+            {{ Form::select('faculty_id', $faculties,$course->faculty->id) }}
         </div>
     </div>
     <div class="row">
@@ -45,13 +45,13 @@
             Level
         </div>
         <div class="col-md-2">
-            {{ Form::select('level', $levels) }}
+            {{ Form::select('level_id', $levels, $course->level->id) }}
         </div>
         <div class="col-md-1">
             Mode
         </div>
         <div class="col-md-1">
-            {{ Form::select('mode', $modes) }}
+            {{ Form::select('mode_id', $modes, $course->mode->id)}}
         </div>
     </div>
     <div class="row">
@@ -59,13 +59,13 @@
             Period Min
         </div>
         <div class="col-md-1">
-            <input type="number" name="period_value_min" placeholder="Min credit hour">
+            <input type="number" value="{!! $course->period_value_min !!}" name="period_value_min" placeholder="Min credit hour">
         </div>
         <div class="col-md-1">
             Period Max
         </div>
         <div class="col-md-2">
-            <input type="number" name="period_value_max" placeholder="Max credit hour">
+            <input type="number" value="{!! $course->period_value_max !!}" name="period_value_max" placeholder="Max credit hour">
         </div>
     </div>
     <div class="row">
@@ -73,18 +73,18 @@
             Credit Hour
         </div>
         <div class="col-md-4">
-            <input type="text" name="credit_hour" placeholder="Credit hour needed to pass this course">
+            <input type="text" value="{!! $course->credit_hours !!}" name="credit_hour" placeholder="Credit hour needed to pass this course">
         </div>
     </div>
     <div class="row">
         <div class="col-md-2">
             Duration
         </div>
+        <!-- <div class="col-md-2">
+            <input type="number"  name="period" placeholder="Duration of study">
+        </div> -->
         <div class="col-md-2">
-            <input type="number" name="period" placeholder="Duration of study">
-        </div>
-        <div class="col-md-2">
-            {{ Form::select('period_type', $period_type) }}
+            {{ Form::select('period_type_id',$period_type)}}
         </div>
     </div>
     <div class="row">
@@ -92,7 +92,7 @@
             Qualification Entry
         </div>
         <div class="col-md-4">
-            <input type="text" name="qualification-entry" placeholder="Min qualification">
+            <input type="text" value="{!! $course->qualification !!}" name="qualification-entry" placeholder="Min qualification">
         </div>
     </div>
     <div class="row">
@@ -100,7 +100,7 @@
             Approved
         </div>
         <div class="col-md-4">
-            <input type="text" name="approved" placeholder="Approved">
+            <input type="text" value="{!! $course->approved !!}" name="approved" placeholder="Approved">
         </div>
     </div>
     <div class="row">
@@ -108,7 +108,7 @@
             Accredited
         </div>
         <div class="col-md-4">
-            <input type="text" name="accredited" placeholder="Accredit">
+            <input type="text" value="{!! $course->accredited !!}" name="accredited" placeholder="Accredit">
         </div>
     </div>
     <div class="row">
@@ -116,7 +116,6 @@
             Field
         </div>
         <div class="col-md-4">
-            {{ Form::select('nec', $nec) }}
         </div>
     </div>
     <div class="row">
