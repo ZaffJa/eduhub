@@ -8,7 +8,7 @@
 <div class="col-lg-12">
             <div class="box box-primary">
 @if (session('status'))
-  
+
    <div class="box-header with-border">
     <label>
         {{session('status')}}
@@ -16,8 +16,8 @@
   </div>
 @endif
 
-            
-              
+
+
             <!-- /.box-header -->
             <!-- form start -->
             <form role="form">
@@ -28,16 +28,11 @@
                 </div>
                 <div class="form-group">
                   <input type="text" id="fac_name" name="fac_name" placeholder="Faculty Name">
-                  
-                </div>
-                
-                <div class="form-group">
-                  <label for="exampleInputFile">Image</label>
-                  <input type="file" id="exampleInputFile">
 
-                  <p class="help-block">Example block-level help text here.</p>
                 </div>
-                
+
+
+
               </div>
               <!-- /.box-body -->
 

@@ -54,13 +54,18 @@ Route::group(['middleware' => ['auth'],'prefix' => 'client-dashboard'],function(
     Route::post('/faculty/{id}/edit', 'FacultyController@update')->name('fac_name');
     Route::post('/faculty/{id}/delete', 'FacultyController@delete');
 
-    Route::get('/facilities', 'FacilityController@viewType');
+    Route::get('/facilities', 'FacilityController@viewType')->name('faci.viewType');
+    Route::get('/facilities/add-all-type', 'FacilityController@addAllType')->name('faci.addAllType');
+    Route::get('/facilities/add-all-type/store-all', 'FacilityController@storeAllType')->name('faci.storeAll');
+
     Route::get('/facilities/{id}', 'FacilityController@view')->name('faci.view');
     Route::get('/facilities/{id}/add', 'FacilityController@add')->name('faci.add');
+
     Route::post('/facilities/{id}/add', 'FacilityController@store')->name('faci.store');
     Route::get('/facilities/{id}/{fid}/edit', 'FacilityController@edit')->name('faci.edit');
     Route::post('/facilities/{id}/{fid}/edit', 'FacilityController@update')->name('faci.update');
     Route::post('/facilities/{id}/{fid}/delete', 'FacilityController@delete')->name('faci.delete');
+
 
 
 });
