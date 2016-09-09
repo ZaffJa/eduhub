@@ -68,8 +68,12 @@
 </head>
 
 <body>
-    <div class="flex-center position-ref full-height"> @if(Route::has('login'))
-        <div class="top-right links"> <a href="{{ url('/login') }}">Login</a> <a href="{{ url('/register') }}">Register</a></div> @endif
+    <div class="flex-center position-ref full-height">
+        @if(Auth::user() == null)
+          <div class="top-right links"> <a href="{{ url('/login') }}">Login</a> <a href="{{ url('/register') }}">Register</a></div>
+        @else
+          <div class="top-right links"> <a href="{{ route('client.dashboard') }}">Dashboard</a></div>
+        @endif
         <div class="content">
             <div class="title m-b-md">
                 <div class="box img card card-img ">
@@ -77,7 +81,8 @@
                 </div>
             </div>
             <div class="links">
-                <h5>CLIENT DASHBOARD</h5></div>
+                <h5>CLIENT DASHBOARD</h5>
+            </div>
         </div>
     </div>
 </body>

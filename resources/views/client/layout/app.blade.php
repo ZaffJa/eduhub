@@ -89,14 +89,14 @@ desired effect
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <!-- <img src="../../dist/img/user2-160x160.jpg" class="user-image" alt="User Image"> -->
-                                <i class="fa fa-gear"></i> <span class="hidden-xs">{{ Auth::user()->institution->name}}</span>
+                                <span class="hidden-xs">{{ Auth::user()->institution != null ? 'Auth::user()->institution->name' : 'Not Associated with Instititution'}}</span>
                             </a>
                             <ul class="dropdown-menu">
                                 <!-- User image -->
                                 <li class="user-header">
                                     <img src="/img/logo/logo_uthm.png" class="img-circle" alt="User Image">
                                     <p>
-                                        University of Technology, Malaysia
+                                        {{ Auth::user()->institution != null ? 'Auth::user()->institution->name' : 'Not Associated with Instititution'}}
                                         <small>Member since {{Auth::user()->created_at->diffForHumans()}}</small>
                                     </p>
                                 </li>
@@ -169,6 +169,7 @@ desired effect
                     <!-- Optionally, you can add icons to the links -->
                     <!-- <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li>
           <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li> -->
+                    @if(Auth::user()->institution != null)
                     <li class="treeview">
                         <a href="#"><i class="fa fa-book"></i> <span>Courses</span>
                           <span class="pull-right-container">
@@ -204,6 +205,16 @@ desired effect
                             <li><a href="#">Link in level 2</a></li>
                         </ul>
                     </li>
+                    @else
+                    <li class="treeview">
+                        <a href="#"><i class="fa fa-building-o"></i> <span>Request Institution</span>
+                          <span class="pull-right-container">
+                            <i class="fa fa-angle-left pull-right"></i>
+                          </span>
+                        </a>
+
+                    </li>
+                    @endif
                 </ul>
                 <!-- /.sidebar-menu -->
             </section>
