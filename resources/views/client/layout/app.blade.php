@@ -66,7 +66,7 @@ desired effect
 
         <!-- Main Header -->
         <header class="main-header">
-            <a href="index2.html" class="logo">
+            <a href="/client-dashboard" class="logo">
                 <!-- mini logo for sidebar mini 50x50 pixels -->
                 <span class="logo-mini"><b>A</b>LT</span>
                 <!-- logo for regular state and mobile devices -->
