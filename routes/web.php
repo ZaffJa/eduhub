@@ -26,11 +26,15 @@ Route::get('/email',function(){
     return 'ok';
 })->name('email');
 
-
-
-
 Route::get('/home', 'HomeController@index');
 
+Route::get('/facilities', 'FacilityController@viewType');
+Route::get('/facilities/{id}', 'FacilityController@view')->name('faci.view');
+Route::get('/facilities/{id}/add', 'FacilityController@add')->name('faci.add');
+Route::post('/facilities/{id}/add', 'FacilityController@store')->name('faci.store');
+Route::get('/facilities/{id}/{fid}/edit', 'FacilityController@edit')->name('faci.edit');
+Route::post('/facilities/{id}/{fid}/edit', 'FacilityController@update')->name('faci.update');
+Route::post('/facilities/{id}/{fid}/delete', 'FacilityController@delete')->name('faci.delete');
 
 Route::get('/dataTables',function(){
     return Datatables::eloquent(User::query())->make(true);
@@ -46,11 +50,8 @@ Route::group(['middleware' => ['auth'],'prefix' => 'client-dashboard'],function(
     Route::get('/new-institution', 'InstitutionController@index');
     Route::post('/new-institution', 'InstitutionController@create')->name('client.post.institution');
 
-
-
     Route::get('new-course','CourseNameController@getDetails')->name('client.get.course.details');
     Route::post('post-new-course','CourseNameController@postCreateDetails')->name('client.post.course.detail');
-
 
     Route::get('/faculty/add', 'FacultyController@add');
     Route::post('/faculty/add', 'FacultyController@store')->name('fac.name.store');
@@ -58,4 +59,5 @@ Route::group(['middleware' => ['auth'],'prefix' => 'client-dashboard'],function(
     Route::get('/faculty/{id}/edit', 'FacultyController@edit');
     Route::post('/faculty/{id}/edit', 'FacultyController@update')->name('fac_name');
     Route::post('/faculty/{id}/delete', 'FacultyController@delete');
+
 });

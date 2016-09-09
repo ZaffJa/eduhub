@@ -16,8 +16,4 @@ class DashboardController extends Controller
   {
       return view('client.edit-profile');
   }
-  public function facilities()
-  {
-      return view('client.facilities');
-  }
 }
