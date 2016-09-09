@@ -6,8 +6,11 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Http\Requests\FacultyFormRequest;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Faculty;
 use Auth;
+use Validator;
+
 
 class FacultyController extends Controller
 {
@@ -17,22 +20,47 @@ class FacultyController extends Controller
     	return view('client.faculty.add');
     }
 
-    public function store(Request $request)
+    public function store(Request $r)
     {
-    	$faculty = new Faculty;
+      $validator = Validator::make($r->all(), [
+             'fac_name' => 'required|max:255',
+             'fac_file' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:20048',
+         ]);
 
+
+
+      if ($validator->fails()) {
+          return redirect()
+                      ->back()
+                      ->withErrors($validator)
+                      ->withInput();
+      }
+
+
+
+      if($r->hasFile('fac_file') && $r->file('fac_file')->isValid())
+      {
+        $imageName = time().'.'.$r->fac_file->getClientOriginalExtension();
+
+        $faculty = new Faculty;
         $faculty->institution_id = Auth::user()->institution->id;
-    	$faculty->name = $request->fac_name;
+        $faculty->name = $r->fac_name;
+        $faculty->img_url = $imageName;
+        
+        $r->fac_file->move(public_path('img/faculty'),$imageName);
 
-
-     	try{
-			 $faculty->save();
-     	}catch(\Illuminate\Database\QueryException $ex) {
-            return $ex->errorInfo;
-        }
+        try{
+         $faculty->save();
+        }catch(\Illuminate\Database\QueryException $ex) {
+              return $ex->errorInfo;
+          }
+      }
 
         return redirect(action('FacultyController@add'))->with('status','The faculty name '. $faculty->name.' has been added.');
     }
+
+
+
 
     public function view()
     {
@@ -54,10 +82,10 @@ class FacultyController extends Controller
 
         try {
             $faculty->save();
-                    
+
         } catch (\Illuminate\Database\QueryException $ex) {
             return $ex->errorInfo;
-        } 
+        }
 
         return redirect(action('FacultyController@edit',$faculty->id))->with('status','The faculty name '. $faculty->name.' has been updated.');
     }
@@ -65,7 +93,7 @@ class FacultyController extends Controller
     public function delete($id)
     {
         $faculty = Faculty::whereId($id)->firstOrFail();
-        
+
         try {
             $faculty->delete();
         } catch(\Illuminate\Database\QueryException $ex) {

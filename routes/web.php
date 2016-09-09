@@ -26,28 +26,38 @@ Route::get('/email',function(){
     return 'ok';
 })->name('email');
 
+
+
+
 Route::get('/home', 'HomeController@index');
 
-
+Route::get('/facilities', 'DashboardController@facilities');
+Route::get('/editProfile', 'DashboardController@profile');
 Route::get('/dataTables',function(){
     return Datatables::eloquent(User::query())->make(true);
 })->name('dataTables');
 
 
+
 Route::group(['middleware' => ['auth'],'prefix' => 'client-dashboard'],function(){
 
     Route::get('/edit-profile', 'DashboardController@profile');
-
     Route::get('/', 'DashboardController@dashboard')->name('client.dashboard');
+
+
 
     Route::get('/new-institution', 'InstitutionController@index');
     Route::post('/new-institution', 'InstitutionController@create')->name('client.post.institution');
+
+
 
     Route::get('new-course','CourseNameController@getDetails')->name('client.get.course.details');
     Route::post('post-new-course','CourseNameController@postCreateDetails')->name('client.post.course.detail');
     Route::get('get-courses','DashboardController@getCourses')->name('client.get.courses');
 
-    Route::get('/faculty/add', 'FacultyController@add');
+    Route::get('/scholarship/add', 'ScholarshipController@add');
+
+    Route::get('/faculty/add', 'FacultyController@add')->name('client.add.faculty');
     Route::post('/faculty/add', 'FacultyController@store')->name('fac.name.store');
     Route::get('/faculty', 'FacultyController@view');
     Route::get('/faculty/{id}/edit', 'FacultyController@edit');
