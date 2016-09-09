@@ -31,18 +31,17 @@ Route::get('/email',function(){
 
 Route::get('/home', 'HomeController@index');
 
-Route::get('/facilities', 'DashboardController@facilities');
-Route::get('/editProfile', 'DashboardController@profile');
+
 Route::get('/dataTables',function(){
     return Datatables::eloquent(User::query())->make(true);
 })->name('dataTables');
 
 
-Route::group(['prefix'=>'client-dashboard'],function(){
-  Route::group(['middleware'=>'auth'],function(){
+Route::group(['middleware' => ['auth'],'prefix' => 'client-dashboard'],function(){
+    Route::get('/facilities', 'DashboardController@facilities');
+    Route::get('/edit-profile', 'DashboardController@profile');
+
     Route::get('/', 'DashboardController@dashboard')->name('client.dashboard');
-
-
 
     Route::get('/new-institution', 'InstitutionController@index');
     Route::post('/new-institution', 'InstitutionController@create')->name('client.post.institution');
@@ -59,5 +58,4 @@ Route::group(['prefix'=>'client-dashboard'],function(){
     Route::get('/faculty/{id}/edit', 'FacultyController@edit');
     Route::post('/faculty/{id}/edit', 'FacultyController@update')->name('fac_name');
     Route::post('/faculty/{id}/delete', 'FacultyController@delete');
-  });
 });
