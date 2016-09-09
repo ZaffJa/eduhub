@@ -28,13 +28,6 @@ Route::get('/email',function(){
 
 Route::get('/home', 'HomeController@index');
 
-Route::get('/facilities', 'FacilityController@viewType');
-Route::get('/facilities/{id}', 'FacilityController@view')->name('faci.view');
-Route::get('/facilities/{id}/add', 'FacilityController@add')->name('faci.add');
-Route::post('/facilities/{id}/add', 'FacilityController@store')->name('faci.store');
-Route::get('/facilities/{id}/{fid}/edit', 'FacilityController@edit')->name('faci.edit');
-Route::post('/facilities/{id}/{fid}/edit', 'FacilityController@update')->name('faci.update');
-Route::post('/facilities/{id}/{fid}/delete', 'FacilityController@delete')->name('faci.delete');
 
 Route::get('/dataTables',function(){
     return Datatables::eloquent(User::query())->make(true);
@@ -42,7 +35,7 @@ Route::get('/dataTables',function(){
 
 
 Route::group(['middleware' => ['auth'],'prefix' => 'client-dashboard'],function(){
-    Route::get('/facilities', 'DashboardController@facilities');
+
     Route::get('/edit-profile', 'DashboardController@profile');
 
     Route::get('/', 'DashboardController@dashboard')->name('client.dashboard');
@@ -59,5 +52,14 @@ Route::group(['middleware' => ['auth'],'prefix' => 'client-dashboard'],function(
     Route::get('/faculty/{id}/edit', 'FacultyController@edit');
     Route::post('/faculty/{id}/edit', 'FacultyController@update')->name('fac_name');
     Route::post('/faculty/{id}/delete', 'FacultyController@delete');
+
+    Route::get('/facilities', 'FacilityController@viewType');
+    Route::get('/facilities/{id}', 'FacilityController@view')->name('faci.view');
+    Route::get('/facilities/{id}/add', 'FacilityController@add')->name('faci.add');
+    Route::post('/facilities/{id}/add', 'FacilityController@store')->name('faci.store');
+    Route::get('/facilities/{id}/{fid}/edit', 'FacilityController@edit')->name('faci.edit');
+    Route::post('/facilities/{id}/{fid}/edit', 'FacilityController@update')->name('faci.update');
+    Route::post('/facilities/{id}/{fid}/delete', 'FacilityController@delete')->name('faci.delete');
+
 
 });
