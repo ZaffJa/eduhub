@@ -17,7 +17,28 @@ class FacilityController extends Controller
     	$facility_types = FacilityType::all();
     	return view('client.facility.viewType')->with('facility_types',$facility_types);
     }
+    public function addAllType()
+    {
+    	return view('client.facility.addAllType');
+    }
+    public function storeAllType(Request $r)
+    {
+      $facility = new Facility;
 
+      $facility->institution_id = Auth::user()->institution->id;
+      $facility->type_id = $r->id_type;
+      $facility->name = $r->faci_name;
+      $facility->capacity = $r->faci_cap;
+
+
+      try{
+        $facility->save();
+      }catch(\Illuminate\Database\QueryException $ex){
+            return $ex->errorInfo;
+      }
+
+      return view('client.facility.addAllType')->with('status','The facility name '. $facility->name .' has been updated.');
+    }
     public function view($typeid)
     {
     	$facilities = Facility::whereType_id($typeid)->whereInstitution_id(Auth::user()->institution->id)->get();
@@ -29,6 +50,7 @@ class FacilityController extends Controller
     {
     	return view('client.facility.add')->with('typeid',$typeid);
     }
+
 
     public function store(Request $r, $typeid)
     {
@@ -45,7 +67,7 @@ class FacilityController extends Controller
             return $ex->errorInfo;
     	}
 
-    	return view('client.facility.add')->with('id',$typeid)->with('status','The facility name '. $facility->name .' has been updated.');
+    	return view('client.facility.add')->with('typeid',$typeid)->with('status','The facility name '. $facility->name .' has been updated.');
     }
 
     public function edit($typeid, $fid)

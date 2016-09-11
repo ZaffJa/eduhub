@@ -1,4 +1,6 @@
-@extends('client.layout.app') @section('title', 'Dashboard') @section('content')
+@extends('client.layout.app')
+ @section('title', 'Dashboard')
+  @section('content')
 <style media="screen">
     .col-md-2 {
         text-align: center;
