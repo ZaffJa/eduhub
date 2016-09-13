@@ -52,14 +52,14 @@ Route::group(['prefix'=>'client-dashboard'],function(){
     Route::post('/faculty/{id}/edit', 'FacultyController@update')->name('fac_name');
     Route::post('/faculty/{id}/delete', 'FacultyController@delete');
 
-<<<<<<< HEAD
+
     Route::get('/facilities', 'FacilityController@viewType')->name('faci.viewType');
     Route::get('/facilities/add-all-type', 'FacilityController@addAllType')->name('faci.addAllType');
     Route::post('/facilities/add-all-type/store-all', 'FacilityController@storeAllType')->name('faci.storeAll');
 
-=======
-    Route::get('/facilities', 'FacilityController@viewType');
->>>>>>> 24470b398232fccd8f4edf26181fba25aac20e3d
+
+
+
     Route::get('/facilities/{id}', 'FacilityController@view')->name('faci.view');
     Route::get('/facilities/{id}/add', 'FacilityController@add')->name('faci.add');
     Route::post('/facilities/{id}/add', 'FacilityController@store')->name('faci.store');

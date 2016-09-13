@@ -110,8 +110,9 @@ class CourseController extends Controller
 
       $course = Course::whereId($id)->firstOrFail();
 
+
       // return $course;
-      return View::make('client.course.edit',compact('course','faculties','levels','modes','period_type','nec')); 
+      return View::make('client.course.edit',compact('course','faculties','levels','modes','period_type','nec'));
      }
 
      public function update(Request $r,$id)

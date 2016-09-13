@@ -44,8 +44,7 @@
             @endif
           @endforeach
         </td>
-        <td> {{$course->mode->name}}</td>
-        <td> {{$course->name_en}}</td>
+        <td> {{$course->mode != null ? $course->mode->name : 'Not Defined'}}</td>
         <td> {{$course->name_ms}}</td>
         <td> {{$course->period_value_min}}</td>
         <td> {{$course->period_value_max}}</td>
