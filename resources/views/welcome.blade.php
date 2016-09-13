@@ -81,7 +81,7 @@
                 </div>
             </div>
             <div class="links">
-                <h5>CLIENT DASHBOARD</h5>
+                <h5>DASHBOARD</h5>
             </div>
         </div>
     </div>
