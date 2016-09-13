@@ -1,9 +1,4 @@
-@extends('client.layout.headerLayout')
-
-@section('title', 'Course')
-@section('headbar', 'Add new course')
-@section('content2')
-<div class="box box-primary">
+@extends('client.layout.app') @section('title', 'Dashboard') @section('content')
 <style media="screen">
     .col-md-2 {
         text-align: center;
@@ -11,12 +6,11 @@
 
     .row {
         padding-top: 10px;
-
+        text-align: right;
     }
 </style>
-<form class="" action="{{route('client.post.course.detail')}}" method="post" autocomplete="off">
-    <div class='row box-header'>
-
+<form class=""  method="post" autocomplete="off">
+    <div class='row'>
         @if (count($errors) > 0)
         <div class="alert alert-danger">
             <ul>
@@ -26,18 +20,23 @@
             </ul>
         </div>
         @endif
-
+        @if (session('status'))
+        <div class="alert alert-danger">
+            <ul>
+                <li>{{ session('status') }}</li>
+            </ul>
+        </div>
+        @endif
     </div>
-    <div class="row box-body">
-
+    <div class="row">
         <div class="col-md-2">
             Course Name
         </div>
         <div class="col-md-4">
-            <input type="text" name="name_eng" placeholder="English Name">
+            <input type="text" value="{!! $course->name_en !!}" name="name_eng" placeholder="English Name">
         </div>
         <div class="col-md-4 col-md-offset-1">
-            <input type="text" name="name_ms" placeholder="Malay Name">
+            <input type="text" value="{!! $course->name_ms !!}" name="name_ms" placeholder="Malay Name">
         </div>
     </div>
     <div class="row">
@@ -45,7 +44,7 @@
             Faculty
         </div>
         <div class="col-md-2">
-            {{ Form::select('faculty', $faculties,['class' => 'col-md-2']) }}
+            {{ Form::select('faculty_id', $faculties,$course->faculty->id) }}
         </div>
     </div>
     <div class="row">
@@ -53,13 +52,13 @@
             Level
         </div>
         <div class="col-md-2">
-            {{ Form::select('level', $levels) }}
+            {{ Form::select('level_id', $levels, $course->level->id) }}
         </div>
         <div class="col-md-1">
             Mode
         </div>
         <div class="col-md-1">
-            {{ Form::select('mode', $modes) }}
+            {{ Form::select('mode_id', $modes, $course->mode->id)}}
         </div>
     </div>
     <div class="row">
@@ -67,13 +66,13 @@
             Period Min
         </div>
         <div class="col-md-1">
-            <input type="number" name="period_value_min" placeholder="Min credit hour">
+            <input type="number" value="{!! $course->period_value_min !!}" name="period_value_min" placeholder="Min credit hour">
         </div>
         <div class="col-md-1">
             Period Max
         </div>
         <div class="col-md-2">
-            <input type="number" name="period_value_max" placeholder="Max credit hour">
+            <input type="number" value="{!! $course->period_value_max !!}" name="period_value_max" placeholder="Max credit hour">
         </div>
     </div>
     <div class="row">
@@ -81,18 +80,18 @@
             Credit Hour
         </div>
         <div class="col-md-4">
-            <input type="text" name="credit_hour" placeholder="Credit hour needed to pass this course">
+            <input type="text" value="{!! $course->credit_hours !!}" name="credit_hours" placeholder="Credit hour needed to pass this course">
         </div>
     </div>
     <div class="row">
         <div class="col-md-2">
             Duration
         </div>
+        <!-- <div class="col-md-2">
+            <input type="number"  name="period" placeholder="Duration of study">
+        </div> -->
         <div class="col-md-2">
-            <input type="number" name="period" placeholder="Duration of study">
-        </div>
-        <div class="col-md-2">
-            {{ Form::select('period_type', $period_type) }}
+            {{ Form::select('period_type_id',$period_type, $course->period_type_id)}}
         </div>
     </div>
     <div class="row">
@@ -100,7 +99,7 @@
             Qualification Entry
         </div>
         <div class="col-md-4">
-            <input type="text" name="qualification-entry" placeholder="Min qualification">
+            <input type="text" value="{!! $course->qualification !!}" name="qualification" placeholder="Min qualification">
         </div>
     </div>
     <div class="row">
@@ -108,7 +107,7 @@
             Approved
         </div>
         <div class="col-md-4">
-            <input type="text" name="approved" placeholder="Approved">
+            <input type="text" value="{!! $course->approved !!}" name="approved" placeholder="Approved">
         </div>
     </div>
     <div class="row">
@@ -116,7 +115,7 @@
             Accredited
         </div>
         <div class="col-md-4">
-            <input type="text" name="accredited" placeholder="Accredit">
+            <input type="text" value="{!! $course->accredited !!}" name="accredited" placeholder="Accredit">
         </div>
     </div>
     <div class="row">
@@ -124,7 +123,7 @@
             Field
         </div>
         <div class="col-md-4">
-            {{ Form::select('nec', $nec) }}
+            {{ Form::select('nec', $nec, $course->nec_code) }}
         </div>
     </div>
     <div class="row">
@@ -132,25 +131,25 @@
             MQA Reference No
         </div>
         <div class="col-md-4">
-            <input type="text" name="mqa" placeholder="MQA Reference No">
+            <input type="text" value="{!! $course->mqa_reference_no !!}" name="mqa_reference_no" placeholder="MQA Reference No">
         </div>
     </div>
-    <div class="row">
+<!--     <div class="row">
         <div class="col-md-2">
             Course Description
         </div>
         <div class="col-md-4">
             <input type="text" name="course-description" placeholder="Detailed description of the course">
         </div>
-    </div>
+    </div> -->
     <div class="row">
         <div class="col-md-offset-3 col-md-3">
             {{ csrf_field() }}
-            <button type='submit' class='btn btn-default '>Submit</button>
-            <a href="#" class="btn btn-danger">Cancel</a>
+            <a href="{!! route('client.course.update',$course->id) !!}">
+                <button type='submit' class='btn btn-lg btn-default '>Submit</button>
+            </a>
+            <a href="{!! route('client.course.view') !!}">Cancel</a>
         </div>
-
     </div>
 </form>
-</div>
 @endsection

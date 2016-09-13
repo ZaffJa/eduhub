@@ -33,7 +33,7 @@ class Course extends Model
 
     public function mode()
     {
-        return $this->belongsTo('App\Models\StudyMode');
+        return $this->belongsTo('App\Models\StudyMode','mode_id','id');
     }
 
     public function field()

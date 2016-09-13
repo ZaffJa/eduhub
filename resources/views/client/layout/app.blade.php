@@ -104,11 +104,11 @@ desired effect
 
                                 <li class="user-footer">
                                     <div class="pull-left">
-                                        <a href="/client-dashboard/edit-profile" class="btn btn-default btn-flat">Profile</a>
+                                        <a href="/client-dashboard/edit-profile" class="btn btn-default btn-flat" ><font color="black"><i class="fa fa-user"></i> Profile</font></a>
                                     </div>
                                     <div class="pull-right">
                                         <a href="#" class="btn btn-default btn-flat" onclick="event.preventDefault();
-                                                 document.getElementById('logout-form').submit();">Sign out</a>
+                                                 document.getElementById('logout-form').submit();"><font color="black"><i class="fa fa-sign-out"></i> Sign out</font></a>
                                         <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
                                             {{ csrf_field() }}
                                         </form>
@@ -183,7 +183,7 @@ desired effect
 
                           </span>
                         </a>
-                        
+
                     </li>
                     @else
                     <li class="treeview">

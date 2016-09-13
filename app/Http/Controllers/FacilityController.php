@@ -26,7 +26,7 @@ class FacilityController extends Controller
       $facility = new Facility;
 
       $facility->institution_id = Auth::user()->institution->id;
-      $facility->type_id = $r->id_type;
+      $facility->type_id = $r->typeid;
       $facility->name = $r->faci_name;
       $facility->capacity = $r->faci_cap;
 
@@ -37,7 +37,7 @@ class FacilityController extends Controller
             return $ex->errorInfo;
       }
 
-      return view('client.facility.addAllType')->with('status','The facility name '. $facility->name .' has been updated.');
+      return redirect()->back()->with(['status'=>'The facility name '. $facility->name .' has been added.']);
     }
     public function view($typeid)
     {
@@ -67,7 +67,7 @@ class FacilityController extends Controller
             return $ex->errorInfo;
     	}
 
-    	return view('client.facility.add')->with('typeid',$typeid)->with('status','The facility name '. $facility->name .' has been updated.');
+    	return redirect()->back()->with('typeid',$typeid)->with(['status'=>'The facility name '. $facility->name .' has been added.']);
     }
 
     public function edit($typeid, $fid)

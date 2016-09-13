@@ -26,26 +26,7 @@
                   </div>
                 </div>
             </a>
-              <!--<a href="{!! action('FacilityController@view', $type->id) !!}">
-
-                  <div class="box-body">
-                        <div class="img ">
-                          <img src="/img/default/{!! $type->icon !!}" alt="First slide">
-
-                          <div class="carousel-caption">
-                            <div id="search-container">
-                              <div id="search-bg"></div>
-                              <div id="search">
-                                  <h4 style="font-size: 200%">{!! $type->name !!}</h4>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                  </div>
-
-                </div>
-
-              </a>-->
+              
             </div>
           @endforeach
         </div>
