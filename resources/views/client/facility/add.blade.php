@@ -18,7 +18,7 @@
 <div class="box box-primary"> @if (session('status'))
     <div class="box-header with-border"> <label> {{session('status')}} </label>
     </div> @endif
-    <form role="form" method="POST" action="{{route('faci.store', $typeid)}}" enctype="multipart/form-data"
+    <form role="form" method="POST" action="{{route('faci.store', $typeid)}}" enctype="multipart/form-data">
       <div class="box-body">
         <div class="form-group">
 

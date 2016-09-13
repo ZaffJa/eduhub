@@ -56,6 +56,7 @@ Route::group(['middleware' => ['auth'],'prefix' => 'client-dashboard'],function(
     Route::get('get-courses','DashboardController@getCourses')->name('client.get.courses');
 
     Route::get('/scholarship/add', 'ScholarshipController@add');
+    Route::post('/scholarship/add', 'ScholarshipController@postAdd')->name('add.scholarship');
 
     Route::get('/faculty/add', 'FacultyController@add')->name('client.add.faculty');
     Route::post('/faculty/add', 'FacultyController@store')->name('fac.name.store');
