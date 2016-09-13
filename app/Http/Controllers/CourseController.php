@@ -97,7 +97,11 @@ class CourseController extends Controller
 
       return View::make('client.course.view',compact('courses','periodTypes'));
      }
+     public function viewCourse()
+     {
 
+      return View::make('client.course.course-info');
+     }
      public function edit($id)
      {
       $faculties = Faculty::pluck('name','id');
