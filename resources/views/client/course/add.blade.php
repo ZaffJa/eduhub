@@ -1,6 +1,9 @@
-@extends('client.layout.app')
- @section('title', 'Dashboard')
-  @section('content')
+@extends('client.layout.headerLayout')
+
+@section('title', 'Course')
+@section('headbar', 'Add new course')
+@section('content2')
+<div class="box box-primary">
 <style media="screen">
     .col-md-2 {
         text-align: center;
@@ -8,11 +11,17 @@
 
     .row {
         padding-top: 10px;
-        text-align: right;
+
     }
 </style>
+<<<<<<< HEAD:resources/views/client/course/add.blade.php
 <form class="" action="{{route('client.course.store')}}" method="post" autocomplete="off">
     <div class='row'>
+=======
+<form class="" action="{{route('client.post.course.detail')}}" method="post" autocomplete="off">
+    <div class='row box-header'>
+
+>>>>>>> 052efd021205e0bfce609b478dd976dd3744b809:resources/views/client/new-course.blade.php
         @if (count($errors) > 0)
         <div class="alert alert-danger">
             <ul>
@@ -22,8 +31,10 @@
             </ul>
         </div>
         @endif
+
     </div>
-    <div class="row">
+    <div class="row box-body">
+
         <div class="col-md-2">
             Course Name
         </div>
@@ -140,8 +151,11 @@
     <div class="row">
         <div class="col-md-offset-3 col-md-3">
             {{ csrf_field() }}
-            <button type='submit' class='btn btn-lg btn-default '>Submit</button>
+            <button type='submit' class='btn btn-default '>Submit</button>
+            <a href="#" class="btn btn-danger">Cancel</a>
         </div>
+
     </div>
 </form>
+</div>
 @endsection
