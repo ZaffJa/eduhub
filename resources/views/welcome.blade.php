@@ -5,7 +5,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Laravel</title>
+    <title>eduhub.my</title>
+
+    <link rel="icon" sizes="192x192" href="/img/logo/LOGO-U-01.png">
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="/css/jquery.dataTables.min.css" media="screen" title="no title" charset="utf-8">
     <script src="http://localhost:8000/livereload.js" charset="utf-8"></script>
@@ -65,6 +67,7 @@
         rd {
             color: black
         }
+
     </style>
 </head>
 
@@ -82,7 +85,7 @@
                 </div>
             </div>
             <div class="links">
-                <h5>DASHBOARD</h5>
+                <h1 class="">DASHBOARD</h1>
             </div>
         </div>
     </div>

@@ -9,11 +9,7 @@
 
 @if (session('status'))
 
-   <div class="box with-border">
-    <label>
-        {{session('status')}}
-    </label>
-  </div>
+  
 @endif
 
 

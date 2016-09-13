@@ -7,16 +7,14 @@
 <div class="col-lg-12">
 
 
-@if (session('status'))
-  <label>
-    {{session('status')}}
-  </label>
-@endif
+
 <div class="box box-primary">
 <div class="box-header with-border">
 <h3>Facilities Form</h3>
 </div>
-<div class="box-body">
+<div class="box-body">@if (session('status'))
+     <label> {{session('status')}} </label>
+    </div> @endif
 <form action="{{route('faci.storeAll')}}" method="post">
   <label>Facility Name</label>
   <input type="hidden" name="_token" value="{{csrf_token()}}">

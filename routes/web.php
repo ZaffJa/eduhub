@@ -66,7 +66,7 @@ Route::group(['middleware' => ['auth'],'prefix' => 'client-dashboard'],function(
 
     Route::get('/facilities', 'FacilityController@viewType')->name('faci.viewType');
     Route::get('/facilities/add-all-type', 'FacilityController@addAllType')->name('faci.addAllType');
-    Route::get('/facilities/add-all-type/store-all', 'FacilityController@storeAllType')->name('faci.storeAll');
+    Route::post('/facilities/add-all-type/store-all', 'FacilityController@storeAllType')->name('faci.storeAll');
 
     Route::get('/facilities/{id}', 'FacilityController@view')->name('faci.view');
     Route::get('/facilities/{id}/add', 'FacilityController@add')->name('faci.add');

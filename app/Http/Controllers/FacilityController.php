@@ -26,7 +26,7 @@ class FacilityController extends Controller
       $facility = new Facility;
 
       $facility->institution_id = Auth::user()->institution->id;
-      $facility->type_id = $r->id_type;
+      $facility->type_id = $r->typeid;
       $facility->name = $r->faci_name;
       $facility->capacity = $r->faci_cap;
 
