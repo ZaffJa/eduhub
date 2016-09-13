@@ -56,7 +56,8 @@
                   @endforeach
                 </tbody>
                 <tfoot>
-                <tr><th rowspan="1" colspan="1">Faculty</th>
+                <tr>
+                  <th rowspan="1" colspan="1">Faculty</th>
                   <th rowspan="1" colspan="1">Edit</th>
                   <th rowspan="1" colspan="1">Delete</th>
 
@@ -76,7 +77,6 @@
 
               </div>
             </div>
-            <!-- /.box-body -->
           </div>
 
 @endif

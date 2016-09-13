@@ -13,7 +13,7 @@
         <div class="box">
             <div class="box-header" style="background-color: #dd4b39">
 
-              <h3 class="box-title" style="font-size:500%;color: white"> @yield('headbar') </h3>
+              <h3 class="box-title" style="font-size:300%;color: white"> @yield('headbar') </h3>
             </div>
 
         </div>

@@ -67,7 +67,7 @@ desired effect
 
         <!-- Main Header -->
         <header class="main-header">
-            <a href="index2.html" class="logo">
+            <a href="/client-dashboard" class="logo">
                 <!-- mini logo for sidebar mini 50x50 pixels -->
                 <span class="logo-mini"><b>A</b>LT</span>
                 <!-- logo for regular state and mobile devices -->
@@ -90,33 +90,18 @@ desired effect
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <!-- <img src="../../dist/img/user2-160x160.jpg" class="user-image" alt="User Image"> -->
-                                <span class="hidden-xs">{{ Auth::user()->institution != null ? 'Auth::user()->institution->name' : 'Not Associated with Instititution'}}</span>
+                                <i class="fa fa-cog"></i><span class="hidden-xs">{{ Auth::user()->institution != null ? Auth::user()->institution->name : 'Not Associated with Instititution'}}</span>
                             </a>
                             <ul class="dropdown-menu">
                                 <!-- User image -->
                                 <li class="user-header">
                                     <img src="/img/logo/logo_uthm.png" class="img-circle" alt="User Image">
                                     <p>
-                                        {{ Auth::user()->institution != null ? 'Auth::user()->institution->name' : 'Not Associated with Instititution'}}
+                                        {{ Auth::user()->institution != null ? Auth::user()->institution->name : 'Not Associated with Instititution'}}
                                         <small>Member since {{Auth::user()->created_at->diffForHumans()}}</small>
                                     </p>
                                 </li>
-                                <!-- Menu Body -->
-                                <!-- <li class="user-body">
-                      <div class="row">
-                        <div class="col-xs-4 text-center">
-                          <a href="#">Followers</a>
-                        </div>
-                        <div class="col-xs-4 text-center">
-                          <a href="#">Sales</a>
-                        </div>
-                        <div class="col-xs-4 text-center">
-                          <a href="#">Friends</a>
-                        </div>
-                      </div> -->
-                                <!-- /.row -->
-                                <!-- </li> -->
-                                <!-- Menu Footer-->
+
                                 <li class="user-footer">
                                     <div class="pull-left">
                                         <a href="/client-dashboard/edit-profile" class="btn btn-default btn-flat">Profile</a>
@@ -166,15 +151,12 @@ desired effect
 
                 <!-- Sidebar Menu -->
                 <ul class="sidebar-menu">
-                    <!-- <li class="header">HEADER</li> -->
-                    <!-- Optionally, you can add icons to the links -->
-                    <!-- <li class="active"><a href="#"><i class="fa fa-link"></i> <span>Link</span></a></li>
-          <li><a href="#"><i class="fa fa-link"></i> <span>Another Link</span></a></li> -->
+
                     @if(Auth::user()->institution != null)
                     <li class="treeview">
                         <a href="#"><i class="fa fa-book"></i> <span>Courses</span>
                           <span class="pull-right-container">
-                            <i class="fa fa-angle-left pull-right"></i>
+
                           </span>
                         </a>
 
@@ -182,7 +164,7 @@ desired effect
                     <li class="treeview">
                         <a href="/client-dashboard/faculty"><i class="fa fa-building"></i> <span>Faculties</span>
                           <span class="pull-right-container">
-                            <i class="fa fa-angle-left pull-right"></i>
+
                           </span>
                         </a>
 
@@ -190,7 +172,7 @@ desired effect
                     <li class="treeview">
                         <a href="/client-dashboard/facilities"><i class="fa fa-building-o"></i> <span>Facilities</span>
                           <span class="pull-right-container">
-                            <i class="fa fa-angle-left pull-right"></i>
+
                           </span>
                         </a>
 
@@ -198,7 +180,7 @@ desired effect
                     <li class="treeview">
                         <a href="#"><i class="fa fa-usd"></i> <span>Scholarship</span>
                           <span class="pull-right-container">
-                            <i class="fa fa-angle-left pull-right"></i>
+
                           </span>
                         </a>
                         <ul class="treeview-menu">
@@ -210,7 +192,7 @@ desired effect
                     <li class="treeview">
                         <a href="#"><i class="fa fa-building-o"></i> <span>Request Institution</span>
                           <span class="pull-right-container">
-                            <i class="fa fa-angle-left pull-right"></i>
+
                           </span>
                         </a>
 
@@ -226,16 +208,6 @@ desired effect
         <div class="content-wrapper" style="min-height: 864px;">
             <section class="content-header">
 
-                <!-- <h1>
-          Client Dashboard
-          <small>Manage your University information</small>
-        </h1>
-
-        <ol class="breadcrumb">
-          <li><a href="#"><i class="fa fa-dashboard"></i> Level</a></li>
-          <li class="active">Here</li>
-        </ol>
-      </section> -->
 
                 <section class="content">
 
@@ -254,10 +226,10 @@ desired effect
         <footer class="main-footer">
             <!-- To the right -->
             <div class="pull-right hidden-xs">
-                Anything you want
+                Malaysia's #1 education guide
             </div>
             <!-- Default to the left -->
-            <strong>Copyright © 2016 <a href="#">Company</a>.</strong> All rights reserved.
+            <strong>Copyright © 2016 <a href="#">eduhub.my</a>™.</strong>
         </footer>
 
 
