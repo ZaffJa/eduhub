@@ -14,6 +14,33 @@
 
 
 
+<<<<<<< HEAD
+            <!-- /.box-header -->
+            <!-- form start -->
+            <form action="{{route('fac.name.store')}}" role="form">
+              <div class="box-body">
+                <div class="form-group">
+                  <label>Faculty Name</label>
+                  <input type="hidden" name="_token" value="{{csrf_token()}}">
+                </div>
+                <div class="form-group">
+                  <input type="text" id="fac_name" name="fac_name" placeholder="Faculty Name">
+
+                </div>
+
+
+
+              </div>
+              <!-- /.box-body -->
+
+              <div class="box-footer">
+               <a href="{{action('FacultyController@view')}}" class="btn btn-danger">Cancel</a>
+               <button class="btn btn-primary">Submit</button>
+              </div>
+            </form>
+          </div>
+=======
+>>>>>>> 03510495e59314bd3ab6cd9d3c848f5379af3f08
 
     <div class='row'>
         @if (count($errors) > 0)
