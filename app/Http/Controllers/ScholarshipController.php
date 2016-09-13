@@ -20,6 +20,7 @@ class ScholarshipController extends Controller
       return view('client.scholarship.add-scholar')->with(compact('filetypes'));
   }
 
+
   public function postAdd(Request $r)
   {
     $mime = $r->file_type;

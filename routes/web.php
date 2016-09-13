@@ -83,6 +83,7 @@ Route::group(['middleware' => ['auth'],'prefix' => 'client-dashboard'],function(
     Route::get('/facilities/{id}/{fid}/edit', 'FacilityController@edit')->name('faci.edit');
     Route::post('/facilities/{id}/{fid}/edit', 'FacilityController@update')->name('faci.update');
     Route::post('/facilities/{id}/{fid}/delete', 'FacilityController@delete')->name('faci.delete');
+  });
 
   });
 });
