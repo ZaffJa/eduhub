@@ -32,6 +32,8 @@ Route::get('/course','CourseController@view')->name('client.course.view');
 Route::get('/course/add','CourseController@add')->name('client.course.add');
 Route::post('/course/add','CourseController@store')->name('client.course.store');
 Route::get('/course/{id}/edit', 'CourseController@edit')->name('client.course.edit');
+Route::post('/course/{id}/edit', 'CourseController@update')->name('client.course.update');
+Route::post('/course/{id}/delete', 'CourseController@delete')->name('client.course.delete');
 
 Route::get('/editProfile', 'DashboardController@profile');
 Route::get('/dataTables',function(){

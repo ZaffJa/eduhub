@@ -9,7 +9,7 @@
         text-align: right;
     }
 </style>
-<form class="" action="{{route('client.course.store')}}" method="post" autocomplete="off">
+<form class=""  method="post" autocomplete="off">
     <div class='row'>
         @if (count($errors) > 0)
         <div class="alert alert-danger">
@@ -17,6 +17,13 @@
                 @foreach ($errors->all() as $error)
                 <li>{{ $error }}</li>
                 @endforeach
+            </ul>
+        </div>
+        @endif
+        @if (session('status'))
+        <div class="alert alert-danger">
+            <ul>
+                <li>{{ session('status') }}</li>
             </ul>
         </div>
         @endif
@@ -73,7 +80,7 @@
             Credit Hour
         </div>
         <div class="col-md-4">
-            <input type="text" value="{!! $course->credit_hours !!}" name="credit_hour" placeholder="Credit hour needed to pass this course">
+            <input type="text" value="{!! $course->credit_hours !!}" name="credit_hours" placeholder="Credit hour needed to pass this course">
         </div>
     </div>
     <div class="row">
@@ -84,7 +91,7 @@
             <input type="number"  name="period" placeholder="Duration of study">
         </div> -->
         <div class="col-md-2">
-            {{ Form::select('period_type_id',$period_type)}}
+            {{ Form::select('period_type_id',$period_type, $course->period_type_id)}}
         </div>
     </div>
     <div class="row">
@@ -92,7 +99,7 @@
             Qualification Entry
         </div>
         <div class="col-md-4">
-            <input type="text" value="{!! $course->qualification !!}" name="qualification-entry" placeholder="Min qualification">
+            <input type="text" value="{!! $course->qualification !!}" name="qualification" placeholder="Min qualification">
         </div>
     </div>
     <div class="row">
@@ -116,6 +123,7 @@
             Field
         </div>
         <div class="col-md-4">
+            {{ Form::select('nec', $nec, $course->nec_code) }}
         </div>
     </div>
     <div class="row">
@@ -123,21 +131,24 @@
             MQA Reference No
         </div>
         <div class="col-md-4">
-            <input type="text" name="mqa" placeholder="MQA Reference No">
+            <input type="text" value="{!! $course->mqa_reference_no !!}" name="mqa_reference_no" placeholder="MQA Reference No">
         </div>
     </div>
-    <div class="row">
+<!--     <div class="row">
         <div class="col-md-2">
             Course Description
         </div>
         <div class="col-md-4">
             <input type="text" name="course-description" placeholder="Detailed description of the course">
         </div>
-    </div>
+    </div> -->
     <div class="row">
         <div class="col-md-offset-3 col-md-3">
             {{ csrf_field() }}
-            <button type='submit' class='btn btn-lg btn-default '>Submit</button>
+            <a href="{!! route('client.course.update',$course->id) !!}">
+                <button type='submit' class='btn btn-lg btn-default '>Submit</button>
+            </a>
+            <a href="{!! route('client.course.view') !!}">Cancel</a>
         </div>
     </div>
 </form>

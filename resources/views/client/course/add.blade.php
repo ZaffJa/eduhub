@@ -75,7 +75,7 @@
             Credit Hour
         </div>
         <div class="col-md-4">
-            <input type="text" name="credit_hour" placeholder="Credit hour needed to pass this course">
+            <input type="text" name="credit_hours" placeholder="Credit hour needed to pass this course">
         </div>
     </div>
     <div class="row">
@@ -94,7 +94,7 @@
             Qualification Entry
         </div>
         <div class="col-md-4">
-            <input type="text" name="qualification-entry" placeholder="Min qualification">
+            <input type="text" name="qualification" placeholder="Min qualification">
         </div>
     </div>
     <div class="row">
@@ -129,14 +129,14 @@
             <input type="text" name="mqa" placeholder="MQA Reference No">
         </div>
     </div>
-    <div class="row">
+<!--     <div class="row">
         <div class="col-md-2">
             Course Description
         </div>
         <div class="col-md-4">
             <input type="text" name="course-description" placeholder="Detailed description of the course">
         </div>
-    </div>
+    </div> -->
     <div class="row">
         <div class="col-md-offset-3 col-md-3">
             {{ csrf_field() }}

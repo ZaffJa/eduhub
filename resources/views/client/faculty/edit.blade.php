@@ -1,16 +1,17 @@
-@extends('client.layout.app')
+@extends('client.layout.headerLayout')
 
 @section('title', 'Faculty')
+@section('headbar', 'Edit Faculty')
+@section('content2')
 
-@section('content')
-
-<h3>Faculty</h3>
-
+<div class="box">
 @foreach ($errors->all() as $error)
+<div class="box-header">
   <p>
     Error Message
     <br/>
   <p>
+  </div>
 @endforeach
 
 @if (session('status'))
@@ -18,18 +19,19 @@
   {{session('status')}}
 </label>
 @endif
-
+<div class="box-body">
 <fieldset>
-  
+
   <legend>Edit Faculty</legend>
   <form method="post" >
 	  <input type="text" name="fac_name" value="{!! $faculty->name !!}">
 	  <input type="hidden" name="_token" value="{!! csrf_token() !!}">
 
-	  <a href="{!! route('fac_name',$faculty->id) !!}"><button>Update</button></a>
-	  <a href="{!! action('FacultyController@view') !!}">Cancel</a>
+	  <a href="{!! route('fac_name',$faculty->id) !!}"><button class="btn btn-info">Update</button></a>
+	  <a href="{!! action('FacultyController@view') !!}" class="btn btn-danger">Cancel</a>
   </form>
 
 </fieldset>
-
+</div>
+</div>
 @endsection

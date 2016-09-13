@@ -56,7 +56,11 @@
         <td> {{$course->qualification}}</td>
         <td> {{$course->mqa_reference_no}}</td>
         <td><a href="{{ route('client.course.edit', $course->id) }}"><button>Edit</button></td>
-        <td>Delete</td>
+        <td>
+          <a href="{{ route('client.course.delete', $course->id) }}">
+          Delete
+          </a>
+        </td>
       @endforeach
     <tbody>
 

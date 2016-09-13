@@ -41,9 +41,9 @@ class CourseController extends Controller
              'faculty' => 'required',
              'level' => 'required',
              'mode' => 'required',
-             'period' => 'required',
-             'credit_hour' => 'required',
-             'qualification-entry' => 'required',
+             // 'period' => 'required',
+             'credit_hours' => 'required',
+             'qualification' => 'required',
              'approved' => 'required',
              'accredited' => 'required',
              'mqa' => 'required',
@@ -58,19 +58,21 @@ class CourseController extends Controller
          }
 
          try{
-           $course = new Course;
+            $course = new Course;
 
-           $course->faculty_id = $r->faculty;
-           $course->nec_code = $r->nec;
-           $course->level_id = $r->level;
-           $course->period_type_id = $r->period_type;
-           $course->mode_id = $r->mode_id;
-           $course->name_en = $r->name_en;
-           $course->name_ms = $r->name_ms;
-           $course->period_value_min = $r->period_value_min;
-           $course->period_value_max = $r->period_value_max;
-           $course->credit_hours = $r->credit_hours;
-           $course->accredited = $r->accredited;
+            $course->faculty_id = $r->faculty;
+            $course->nec_code = $r->nec;
+            $course->level_id = $r->level;
+            $course->period_type_id = $r->period_type;
+            $course->mode_id = $r->mode;
+            $course->name_en = $r->name_en;
+            $course->name_ms = $r->name_ms;
+            $course->period_value_min = $r->period_value_min;
+            $course->period_value_max = $r->period_value_max;
+            $course->credit_hours = $r->credit_hours;
+            $course->accredited = $r->accredited;
+            $course->qualification = $r->qualification;
+            $course->mqa_reference_no = $r->mqa;
 
            $course->save();
 
@@ -108,7 +110,48 @@ class CourseController extends Controller
 
       $course = Course::whereId($id)->firstOrFail();
 
-      // return $course->faculty;
-      return View::make('client.course.edit',compact('course','faculties','levels','modes','period_type')); 
+      // return $course;
+      return View::make('client.course.edit',compact('course','faculties','levels','modes','period_type','nec')); 
      }
+
+     public function update(Request $r,$id)
+     {
+        $course = Course::whereId($id)->firstOrFail();
+
+        $course->faculty_id = $r->faculty_id;
+        $course->nec_code = $r->nec_code;
+        $course->level_id = $r->level_id;
+        $course->period_type_id = $r->period_type_id;
+        $course->mode_id = $r->mode_id;
+        $course->name_en = $r->name_en;
+        $course->name_ms = $r->name_ms;
+        $course->period_value_min = $r->period_value_min;
+        $course->period_value_max = $r->period_value_max;
+        $course->credit_hours = $r->credit_hours;
+        $course->accredited = $r->accredited;
+        $course->qualification = $r->qualification;
+        $course->approved = $r->approved;
+        $course->mqa_reference_no = $r->mqa_reference_no;
+
+        try{
+          $course->save();
+        }catch(\Illuminate\Database\QueryException $e){
+
+        }
+
+        return  redirect()->back()->with(['status'=>'The course name '.$course->name_en.' has been updated.']);
+     }
+
+    public function delete($id)
+    {
+      $course = Course::whereId($id)->firstOrFail();
+
+      try {
+        $course->delete();
+      }catch(\Illuminate\Database\QueryException $ex){
+
+      }
+
+      return redirect()->back()->with(['status'=>'The course name '.$course->name_en.' has been deleted.']);
+    }
 }

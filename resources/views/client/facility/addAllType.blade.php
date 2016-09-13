@@ -1,16 +1,22 @@
-@extends('client.layout.app')
+@extends('client.layout.headerLayout')
 
-@section('title', 'Facilities')
+@section('title', 'Facility')
+@section('headbar', 'Add Facility')
+@section('content2')
 
-@section('content')
+<div class="col-lg-12">
+
 
 @if (session('status'))
   <label>
     {{session('status')}}
   </label>
 @endif
-
+<div class="box box-primary">
+<div class="box-header with-border">
 <h3>Facilities Form</h3>
+</div>
+<div class="box-body">
 <form action="{{route('faci.storeAll')}}" method="post">
   <label>Facility Name</label>
   <input type="hidden" name="_token" value="{{csrf_token()}}">
@@ -36,8 +42,10 @@
   <!-- TODO
         upload image feature
    -->
-   <a href="{{route('faci.viewType')}}">Cancel</a>
-   <button>Submit</button>
+   <a href="{{route('faci.viewType')}}" class="btn btn-danger">Cancel</a>
+   <button class="btn btn-primary">Submit</button>
 </form>
-
+</div>
+</div>
+</div>
 @endsection
