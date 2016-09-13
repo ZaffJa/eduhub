@@ -8,6 +8,7 @@
     <title>Laravel</title>
     <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
     <link rel="stylesheet" href="/css/jquery.dataTables.min.css" media="screen" title="no title" charset="utf-8">
+    <script src="http://localhost:8000/livereload.js" charset="utf-8"></script>
     <style>
         html,
         body {

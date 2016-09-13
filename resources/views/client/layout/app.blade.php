@@ -23,6 +23,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 
     <link rel="stylesheet" href="/client/dist/css/skins/_all-skins.min.css">
     <link rel="stylesheet" href="/css/mdb.min.css">
+    <script src="http://localhost:8000/livereload.js" charset="utf-8"></script>
     <!-- <link rel="stylesheet" href="/css/material.min.css"> -->
 
     <!-- jQuery 2.2.3 -->
