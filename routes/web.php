@@ -45,26 +45,23 @@ Route::group(['prefix'=>'client-dashboard'],function(){
   Route::group(['middleware'=>'auth'],function(){
     Route::get('/', 'DashboardController@dashboard');
 
+Route::group(['middleware' => ['auth'],'prefix' => 'client-dashboard'],function(){
+
+    Route::get('/edit-profile', 'DashboardController@profile');
+    Route::get('/', 'DashboardController@dashboard')->name('client.dashboard');
     Route::get('/new-institution', 'InstitutionController@index');
     Route::post('/new-institution', 'InstitutionController@create')->name('client.post.institution');
-
     Route::get('new-course','CourseNameController@getDetails')->name('client.get.course.details');
     Route::post('post-new-course','CourseNameController@postCreateDetails')->name('client.post.course.detail');
     Route::get('get-courses','DashboardController@getCourses')->name('client.get.courses');
-
     Route::get('/scholarship/add', 'ScholarshipController@add');
     Route::post('/scholarship/add', 'ScholarshipController@postAdd')->name('add.scholarship');
-
-
     Route::get('/faculty/add', 'FacultyController@add')->name('client.faculty.add');
     Route::post('/faculty/add', 'FacultyController@store')->name('client.faculty.store');
     Route::get('/faculty', 'FacultyController@view')->name('client.faculty.view');
-
     Route::get('/faculty/{id}/edit', 'FacultyController@edit');
     Route::post('/faculty/{id}/edit', 'FacultyController@update')->name('fac_name');
     Route::post('/faculty/{id}/delete', 'FacultyController@delete');
-
-
     Route::get('/facilities', 'FacilityController@viewType')->name('faci.viewType');
     Route::get('/facilities/add-all-type', 'FacilityController@addAllType')->name('faci.addAllType');
     Route::post('/facilities/add-all-type/store-all', 'FacilityController@storeAllType')->name('faci.storeAll');
@@ -74,5 +71,8 @@ Route::group(['prefix'=>'client-dashboard'],function(){
     Route::get('/facilities/{id}/{fid}/edit', 'FacilityController@edit')->name('faci.edit');
     Route::post('/facilities/{id}/{fid}/edit', 'FacilityController@update')->name('faci.update');
     Route::post('/facilities/{id}/{fid}/delete', 'FacilityController@delete')->name('faci.delete');
-    });
+  });
+
+  });
+});
 });

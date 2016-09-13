@@ -11,7 +11,7 @@
   </label>
 @endif
 
-@if ($courses->isEmpty())
+@if ($faculty->isEmpty())
   <p> There are no facilities. </p>
 @else
   <table>
@@ -19,7 +19,6 @@
       <tr>
       <th>Faculty</th>
       <th>Level</th>
-      <th>Period</th>
       <th>Mode</th>
       <th>Name (English)</th>
       <th>Name (Malay)</th>
@@ -33,35 +32,27 @@
       <th>MQA Reference Number</th>
       <tr>
     </thead>
-      @foreach($courses as $course)
+      @foreach($faculty as $f)
+        @foreach($f->courses as $c)
       <tr>
-        <td> {{$course->faculty->name}} </td>
-        <td> {{$course->level != null ? $course->level->name : 'Not Defined'}} </td>
-        <td>
-          @foreach($periodTypes as $periodType)
-            @if($periodType->id == $course->period_type_id)
-              {{$periodType->name}}
-            @endif
-          @endforeach
-        </td>
-        <td> {{$course->mode != null ? $course->mode->name : 'Not Defined'}}</td>
-        <td> {{$course->name_ms}}</td>
-        <td> {{$course->period_value_min}}</td>
-        <td> {{$course->period_value_max}}</td>
-        <td> {{$course->credit_hours}}</td>
-        <td> {{$course->approved}}</td>
-        <td> {{$course->accredited}}</td>
-        <td> {{$course->commencement}}</td>
-        <td> {{$course->qualification}}</td>
-        <td> {{$course->mqa_reference_no}}</td>
-        <td><a href="{{ route('client.course.edit', $course->id) }}"><button>Edit</button></td>
-        <td>
-          <a href="{{ route('client.course.delete', $course->id) }}">
-          Delete
-          </a>
-        </td>
+        <td> {{$f->name}} </td>
+        <td> {{$c->level->name}}</td>
+        <td> {{$c->mode->name}}</td>
+        <td> {{$c->name_en}}</td>
+        <td> {{$c->name_ms}}</td>
+        <td> {{$c->period_value_min}}</td>
+        <td> {{$c->period_value_max}}</td>
+        <td> {{$c->credit_hours}}</td>
+        <td> {{$c->approved}}</td>
+        <td> {{$c->accredited}}</td>
+        <td> {{$c->commencement}}</td>
+        <td> {{$c->qualification}}</td>
+        <td> {{$c->mqa_reference_no}}</td>
+
+        @endforeach
       @endforeach
     <tbody>
+      {{$faculty->render()}}
 
 @endif
 <a href="{!! route('client.course.add')!!}">Add</a>
