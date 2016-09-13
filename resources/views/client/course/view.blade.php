@@ -1,10 +1,9 @@
-@extends('client.layout.app')
+@extends('client.layout.headerLayout')
 
-@section('title', 'Facilities')
-
-@section('content')
-
-
+@section('title', 'Course')
+@section('headbar', 'Courses')
+@section('content2')
+<div class="box box-primary">
 @if (session('status'))
   <label>
     {{session('status')}}
@@ -14,7 +13,10 @@
 @if ($faculty->isEmpty())
   <p> There are no facilities. </p>
 @else
-  <table>
+
+  <div class="box-body">
+      {{$faculty->render()}}
+  <table class="table table-bordered table-hover dataTable" style="width:100%">
     <thead>
       <tr>
       <th>Faculty</th>
@@ -22,39 +24,41 @@
       <th>Mode</th>
       <th>Name (English)</th>
       <th>Name (Malay)</th>
-      <th>Period min </th>
-      <th>Period max</th>
+
       <th>Credit hour</th>
-      <th>Approved</th>
-      <th>Accredited</th>
-      <th>Commencement</th>
-      <th>Qualification</th>
-      <th>MQA Reference Number</th>
+
       <tr>
     </thead>
+    <tbody>
       @foreach($faculty as $f)
         @foreach($f->courses as $c)
+
       <tr>
         <td> {{$f->name}} </td>
         <td> {{$c->level->name}}</td>
         <td> {{$c->mode->name}}</td>
         <td> {{$c->name_en}}</td>
         <td> {{$c->name_ms}}</td>
-        <td> {{$c->period_value_min}}</td>
-        <td> {{$c->period_value_max}}</td>
-        <td> {{$c->credit_hours}}</td>
-        <td> {{$c->approved}}</td>
-        <td> {{$c->accredited}}</td>
-        <td> {{$c->commencement}}</td>
-        <td> {{$c->qualification}}</td>
-        <td> {{$c->mqa_reference_no}}</td>
 
+        <td> {{$c->credit_hours}}</td>
+
+      </tr>
         @endforeach
       @endforeach
-    <tbody>
+    </tbody>
+
+    </table>
+    <div>
       {{$faculty->render()}}
-
 @endif
-<a href="{!! route('client.course.add')!!}">Add</a>
+</div>
+<a href="" class="float">
+<i class="fa fa-plus my-float"></i>
+</a>
+<div class="label-container">
+  <div class="label-text">Add Faculty</div>
+  <i class="fa fa-arrow- label-arrow"></i>
 
+
+</div>
 @endsection

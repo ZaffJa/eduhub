@@ -75,4 +75,3 @@ Route::group(['prefix'=>'client-dashboard'],function(){
   });
 
   });
-});
