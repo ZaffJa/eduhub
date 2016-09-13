@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\Faculty;
 use Auth;
 use Validator;
+use View;
 
 
 class FacultyController extends Controller
@@ -17,7 +18,7 @@ class FacultyController extends Controller
 
     public function add()
     {
-    	return view('client.faculty.add');
+    	return View::make('client.faculty.add');
     }
 
     public function store(Request $r)
@@ -56,7 +57,7 @@ class FacultyController extends Controller
           }
       }
 
-        return redirect(action('FacultyController@add'))->with('status','The faculty name '. $faculty->name.' has been added.');
+        return redirect()->back()->with(['status'=>'The faculty name '. $faculty->name.' has been added.']);
     }
 
 
@@ -100,6 +101,6 @@ class FacultyController extends Controller
 
         }
 
-        return view('client.faculty.view')->with('status','The faculty '. $faculty->name .' has been deleted');
+        return redirect()->back()->with(['status'=>'The '. $faculty->name .' has been deleted']);
     }
 }

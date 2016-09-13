@@ -108,7 +108,7 @@ class CourseController extends Controller
 
       $institution = Institution::whereClientId(Auth::user()->id)->firstOrFail();
 
-      $course = Course::whereId($id)->firstOrFail();
+      $courses = Course::whereId($id)->firstOrFail();
 
 
       // return $course;

@@ -37,7 +37,7 @@ class FacilityController extends Controller
             return $ex->errorInfo;
       }
 
-      return view('client.facility.addAllType')->with('status','The facility name '. $facility->name .' has been updated.');
+      return redirect()->back()->with(['status'=>'The facility name '. $facility->name .' has been added.']);
     }
     public function view($typeid)
     {
@@ -67,7 +67,7 @@ class FacilityController extends Controller
             return $ex->errorInfo;
     	}
 
-    	return view('client.facility.add')->with('typeid',$typeid)->with('status','The facility name '. $facility->name .' has been updated.');
+    	return redirect()->back()->with('typeid',$typeid)->with(['status'=>'The facility name '. $facility->name .' has been added.']);
     }
 
     public function edit($typeid, $fid)

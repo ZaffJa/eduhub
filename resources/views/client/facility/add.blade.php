@@ -26,11 +26,11 @@
         </div>
         <div class="form-group">
           <label>Facility Name</label>
-           <input type="text" id="fac_name" name="fac_name" placeholder="Facility Name">
+           <input type="text" id="fac_name" name="faci_name" placeholder="Facility Name">
         </div>
         <div class="form-group">
           <label>Capacity</label>
-           <input type="text" id="fac_name" name="fac_name" placeholder="Capacity">
+           <input type="text" id="fac_name" name="faci_cap" placeholder="Capacity">
         </div>
       </div>
       <div class="box-footer">

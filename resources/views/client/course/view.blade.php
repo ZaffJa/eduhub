@@ -36,7 +36,7 @@
       @foreach($courses as $course)
       <tr>
         <td> {{$course->faculty->name}} </td>
-        <td> {{$course->level->name}} </td>
+        <td> {{$course->level != null ? $course->level->name : 'Not Defined'}} </td>
         <td>
           @foreach($periodTypes as $periodType)
             @if($periodType->id == $course->period_type_id)

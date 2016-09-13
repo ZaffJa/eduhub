@@ -45,9 +45,9 @@ Route::group(['prefix'=>'client-dashboard'],function(){
   Route::group(['middleware'=>'auth'],function(){
     Route::get('/', 'DashboardController@dashboard');
 
-    Route::get('/faculty/add', 'FacultyController@add');
-    Route::post('/faculty/add', 'FacultyController@store')->name('fac.name.store');
-    Route::get('/faculty', 'FacultyController@view');
+    Route::get('/faculty/add', 'FacultyController@add')->name('client.faculty.add');
+    Route::post('/faculty/add', 'FacultyController@store')->name('client.faculty.store');
+    Route::get('/faculty', 'FacultyController@view')->name('client.faculty.view');
     Route::get('/faculty/{id}/edit', 'FacultyController@edit');
     Route::post('/faculty/{id}/edit', 'FacultyController@update')->name('fac_name');
     Route::post('/faculty/{id}/delete', 'FacultyController@delete');
@@ -56,10 +56,6 @@ Route::group(['prefix'=>'client-dashboard'],function(){
     Route::get('/facilities', 'FacilityController@viewType')->name('faci.viewType');
     Route::get('/facilities/add-all-type', 'FacilityController@addAllType')->name('faci.addAllType');
     Route::post('/facilities/add-all-type/store-all', 'FacilityController@storeAllType')->name('faci.storeAll');
-
-
-
-
     Route::get('/facilities/{id}', 'FacilityController@view')->name('faci.view');
     Route::get('/facilities/{id}/add', 'FacilityController@add')->name('faci.add');
     Route::post('/facilities/{id}/add', 'FacilityController@store')->name('faci.store');
