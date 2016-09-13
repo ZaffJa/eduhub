@@ -31,7 +31,7 @@
         @endif
     </div>
     <div class="box box-primary"> @if (session('status'))
-        <div class="box-header with-border"> <label> {{session('status')}} </label>
+         <label> {{session('status')}} </label>
         </div> @endif
         <form role="form" method="POST" action="{{route('client.add.faculty')}}" enctype="multipart/form-data"
           <div class="box-body">

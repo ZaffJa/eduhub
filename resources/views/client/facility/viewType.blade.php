@@ -53,13 +53,13 @@
 
                       <a href="{{route('faci.addAllType')}}" class="float">
                       <i class="fa fa-plus my-float"></i>
-
+                    </a>
                       <div class="label-container">
                         <div class="label-text">Add facilities</div>
                         <i class="fa fa-arrow- label-arrow"></i>
 
                       </div>
-                      </a>
+
 
 </div>
 @endsection
