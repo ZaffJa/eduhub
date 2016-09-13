@@ -89,13 +89,15 @@ class CourseController extends Controller
 
      public function view()
      {
-      $faculty = Faculty::whereInstitution_id(Auth::user()->institution->id)->pluck('id','name');
-      $max_faculty_id = Faculty::whereInstitution_id(Auth::user()->institution->id)->max('id');
+      $faculty = Faculty::whereInstitutionId(Auth::user()->institution->id)->paginate(2);
+      // return $faculty;
+      // foreach ($faculty as $key) {
+      //   return $key->courses;
+      // }
 
-      $courses = Course::where('faculty_id','<=', $max_faculty_id)->get();
       $periodTypes = PeriodType::all();
 
-      return View::make('client.course.view',compact('courses','periodTypes'));
+      return View::make('client.course.view',compact('faculty','periodTypes'));
      }
      public function viewCourse()
      {
