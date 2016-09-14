@@ -66,4 +66,12 @@ class ScholarshipController extends Controller
        }
      }
 
+     public function view()
+     {
+       $institution = Institution::whereClientId(Auth::user->id)->first();
+
+       return $institution;
+
+     }
+
 }

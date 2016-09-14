@@ -63,6 +63,7 @@ Route::group(['middleware' => ['auth'],'prefix' => 'client-dashboard'],function(
 
     Route::get('/scholarship/add', 'ScholarshipController@add');
     Route::post('/scholarship/add', 'ScholarshipController@postAdd')->name('add.scholarship');
+    Route::post('/scholarship/view', 'ScholarshipController@view')->name('view.scholarship');
 
 
     Route::get('/faculty/add', 'FacultyController@add')->name('client.faculty.add');
@@ -84,7 +85,5 @@ Route::group(['middleware' => ['auth'],'prefix' => 'client-dashboard'],function(
     Route::post('/facilities/{id}/{fid}/edit', 'FacilityController@update')->name('faci.update');
     Route::post('/facilities/{id}/{fid}/delete', 'FacilityController@delete')->name('faci.delete');
   });
-
   });
-});
 });

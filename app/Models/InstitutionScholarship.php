@@ -10,6 +10,6 @@ class InstitutionScholarship extends Model
   use SoftDeletes;
   public function institutions()
   {
-      return $this->hasMany('App\Models\Institution');
+      return $this->belongsTo('App\Models\Institution');
   }
 }
