@@ -5,12 +5,12 @@
 @section('content2')
 <div class="box box-primary">
 
-  @if ($status != null)
   <div class="box-header">
-      <label style="color:rgb(0,255,12);"><strong> {{$status}}</strong> </label>
-        </div>
-      @endif
-
+      <label style="color:rgb(0,255,12);" id="haha"><strong> {{$status != null ? $status : ''}}</strong> </label>
+  </div>
+<script type="text/javascript">
+  $('#haha').hide(10000);
+</script>
 <style media="screen">
     .col-md-2 {
         text-align: center;

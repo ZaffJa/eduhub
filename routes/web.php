@@ -29,7 +29,7 @@ Route::get('/email',function(){
 Route::get('/home', 'HomeController@index');
 
 
-Route::get('/editProfile', 'DashboardController@profile');
+
 Route::get('/dataTables',function(){
     return Datatables::eloquent(User::query())->make(true);
 })->name('dataTables');
@@ -38,7 +38,7 @@ Route::get('/dataTables',function(){
 Route::group(['prefix'=>'client-dashboard'],function(){
   Route::group(['middleware'=>'auth'],function(){
     Route::get('/', 'DashboardController@dashboard');
-
+    Route::get('/edit-profile', 'DashboardController@profile')->name('client.profile');
 
     Route::get('/new-institution', 'InstitutionController@index');
     Route::post('/new-institution', 'InstitutionController@create')->name('client.post.institution');
