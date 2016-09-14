@@ -34,7 +34,7 @@
       @foreach($faculty as $f)
         @foreach($f->courses as $c)
 
-      
+
       <tr>
         <td> {{$f->name}} </td>
         <td> {{$c->level->name}}</td>
@@ -43,10 +43,10 @@
         <td> {{$c->name_ms}}</td>
         <td> {{$c->credit_hours}}</td>
         <td>
-          <a href=" {!! route('client.course.view.course', $c->id)  !!} ">
+          <a href=" {!! route('client.course.view.course', $c->id)  !!} " class="btn btn-primary-outline">
             View
           </a>
-        </td> 
+        </td>
       </tr>
 
         @endforeach

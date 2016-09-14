@@ -8,15 +8,15 @@
 
           <div class="col-lg-12">
             <div class="box box-solid">
-              <div class="box-header with-border">
+              <div class="box-header with-border" style="margin-left:2%">
                 <i class="fa fa-book"></i>
 
-                <h3 class="box-title"> {{ $course->name_en}} </h3>
+                <h1 class="box-title"> {{ $course->name_en}} </h1>
               </br>
-                <h3 class="box-title"> {{ $course->name_ms}} </h3>
+                <h1 class="box-title"> {{ $course->name_ms}} </h1>
               </div>
               <!-- /.box-header -->
-              <div class="box-body">
+              <div class="box-body" style="margin-left:2%; font-size:125%">
                 <dl class="dl-horizontal">
                   <dt>Faculty Name</dt>
                   <dd> {{ $course->faculty != null ? $course->faculty->name : 'Not Defined' }} </dd>
