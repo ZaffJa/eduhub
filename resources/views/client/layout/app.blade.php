@@ -18,7 +18,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <!-- Datatables css -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">
     <!-- Theme style -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="/client/dist/css/AdminLTE.min.css">
 
     <link rel="stylesheet" href="/client/dist/css/skins/_all-skins.min.css">
@@ -30,6 +33,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="/client/plugins/jQuery/jquery-2.2.3.min.js"></script>
     <!-- Bootstrap 3.3.6 -->
     <script src="/client/bootstrap/js/bootstrap.min.js"></script>
+    <!-- Datatable js -->
+    <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
     <!-- AdminLTE App -->
     <script src="/client/dist/js/app.min.js"></script>
 
@@ -167,7 +173,6 @@ desired effect
 
                           </span>
                         </a>
-
                     </li>
                     <li class="treeview">
                         <a href="/client-dashboard/facilities"><i class="fa fa-building-o"></i> <span>Facilities</span>
@@ -175,7 +180,6 @@ desired effect
 
                           </span>
                         </a>
-
                     </li>
                     <li class="treeview">
                         <a href="/client-dashboard/scholarship/view"><i class="fa fa-usd"></i> <span>Scholarship</span>
