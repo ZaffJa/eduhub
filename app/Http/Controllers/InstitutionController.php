@@ -17,7 +17,11 @@ class InstitutionController extends Controller
       $i = InstitutionType::pluck('name','id');
       return View::make('client.institution.create',compact('i'));
     }
+    public function view()
+    {
 
+    	return view('client.institution.view');
+    }
 
     public function create(Request $r)
     {
