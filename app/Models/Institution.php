@@ -59,8 +59,8 @@ class Institution extends Model
         return $this->belongsTo('App\Models\User','client_id');
     }
 
-    public function institution_scholarship()
+    public function scholarship()
     {
-        return $this->hasMany('App\Models\institutionScholarship','client_id');
+        return $this->hasMany('App\Models\institutionScholarship','fileable_id');
     }
 }

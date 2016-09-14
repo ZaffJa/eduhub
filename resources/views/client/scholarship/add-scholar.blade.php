@@ -17,7 +17,7 @@
             <label>{{session('status')}}</label>
         </div>
         @endif
-          <form role=form method=post action="{{route('add.scholarship')}}" autocomplete="off" enctype="multipart/form-data"
+          <form role=form method=post action="{{route('client.add.scholarship')}}" autocomplete="off" enctype="multipart/form-data"
             <div class=box-body>
                 <div class=form-group>
                     <label>Name</label>

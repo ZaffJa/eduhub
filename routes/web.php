@@ -44,9 +44,6 @@ Route::get('/dataTables',function(){
 Route::group(['prefix'=>'client-dashboard'],function(){
   Route::group(['middleware'=>'auth'],function(){
     Route::get('/', 'DashboardController@dashboard');
-
-Route::group(['middleware' => ['auth'],'prefix' => 'client-dashboard'],function(){
-
     Route::get('/edit-profile', 'DashboardController@profile');
     Route::get('/', 'DashboardController@dashboard')->name('client.dashboard');
 
@@ -61,9 +58,10 @@ Route::group(['middleware' => ['auth'],'prefix' => 'client-dashboard'],function(
     Route::post('post-new-course','CourseNameController@postCreateDetails')->name('client.post.course.detail');
     Route::get('get-courses','DashboardController@getCourses')->name('client.get.courses');
 
-    Route::get('/scholarship/add', 'ScholarshipController@add');
-    Route::post('/scholarship/add', 'ScholarshipController@postAdd')->name('add.scholarship');
-    Route::post('/scholarship/view', 'ScholarshipController@view')->name('view.scholarship');
+    Route::get('/scholarship/add', 'ScholarshipController@add')->name('client.view.add.scholarship');
+    Route::post('/scholarship/add', 'ScholarshipController@postAdd')->name('client.add.scholarship');
+    Route::get('/scholarship/view', 'ScholarshipController@view')->name('client.view.scholarship');
+    Route::get('/scholarship/delete/{id}', 'ScholarshipController@delete')->name('client.delete.scholarship');
 
 
     Route::get('/faculty/add', 'FacultyController@add')->name('client.faculty.add');
@@ -84,6 +82,5 @@ Route::group(['middleware' => ['auth'],'prefix' => 'client-dashboard'],function(
     Route::get('/facilities/{id}/{fid}/edit', 'FacilityController@edit')->name('faci.edit');
     Route::post('/facilities/{id}/{fid}/edit', 'FacilityController@update')->name('faci.update');
     Route::post('/facilities/{id}/{fid}/delete', 'FacilityController@delete')->name('faci.delete');
-  });
   });
 });

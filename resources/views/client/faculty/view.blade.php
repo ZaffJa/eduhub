@@ -17,16 +17,16 @@
 
 @if (session('status'))
 <div class="box-header ">
-  
+
    <h4> {{session('status')}}</h4>
-  
+
 </div>
 @endif
 
 
 
 
-           
+
             <div class="box-body">
               <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
                 <div class="row"><div class="col-sm-6">
@@ -79,8 +79,6 @@
               <div class="label-container">
                 <div class="label-text">Add Faculty</div>
                 <i class="fa fa-arrow- label-arrow"></i>
-
-
               </div>
             </div>
           </div>

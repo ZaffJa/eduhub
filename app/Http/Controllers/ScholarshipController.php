@@ -41,7 +41,7 @@ class ScholarshipController extends Controller
     }
 
     try{
-      $institutionScholarship = new institutionScholarship;
+      $institutionScholarship = new InstitutionScholarship;
       $institutionScholarship->fileable_type = 'file';
       $institutionScholarship->fileable_id = Auth::user()->institution->id;
       $institutionScholarship->type_id = $r->type_id;
@@ -68,10 +68,43 @@ class ScholarshipController extends Controller
 
      public function view()
      {
-       $institution = Institution::whereClientId(Auth::user->id)->first();
+       $scholarship = InstitutionScholarship::whereFileableId(Auth::user()->institution->id)->get();
 
-       return $institution;
-
+       return view('client.scholarship.view')
+                  ->with(compact('scholarship'));
      }
+
+     public function delete($id)
+     {
+       $s = InstitutionScholarship::find($id);
+
+       try{
+        //  $s->delete();
+         return redirect()
+                     ->back()
+                     ->with(['status'=>'Succesfully deleted record']);
+       }catch(\Illuminate\Database\QueryException $ex){
+              return redirect()
+                          ->back()
+                          ->withErrors($ex);
+        }
+   }
+
+
+   public function edit($id)
+   {
+     $s = InstitutionScholarship::find($id);
+
+     try{
+       return redirect()
+                   ->back()
+                   ->with(['status'=>'Succesfully deleted record',
+                           'scholarship'=>$s]);
+     }catch(\Illuminate\Database\QueryException $ex){
+            return redirect()
+                        ->back()
+                        ->withErrors($ex);
+      }
+   }
 
 }
