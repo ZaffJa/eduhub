@@ -178,7 +178,15 @@ desired effect
 
                     </li>
                     <li class="treeview">
-                        <a href="#"><i class="fa fa-usd"></i> <span>Scholarship</span>
+                        <a href="/client-dashboard/scholarship/view"><i class="fa fa-usd"></i> <span>Scholarship</span>
+                          <span class="pull-right-container">
+
+                          </span>
+                        </a>
+
+                    </li>
+                    <li class="treeview">
+                        <a href="/client-dashboard/institution"><i class="fa fa-university"></i> <span>Institution</span>
                           <span class="pull-right-container">
 
                           </span>
