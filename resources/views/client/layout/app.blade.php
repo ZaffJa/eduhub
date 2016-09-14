@@ -180,10 +180,8 @@ desired effect
                     <li class="treeview">
                         <a href="/client-dashboard/scholarship/view"><i class="fa fa-usd"></i> <span>Scholarship</span>
                           <span class="pull-right-container">
-
                           </span>
                         </a>
-
                     </li>
                     <li class="treeview">
                         <a href="/client-dashboard/institution"><i class="fa fa-university"></i> <span>Institution</span>
@@ -191,7 +189,6 @@ desired effect
 
                           </span>
                         </a>
-
                     </li>
                     @else
                     <li class="treeview">
