@@ -86,7 +86,6 @@ class CourseController extends Controller
             }
 
         return  redirect()->back();
-
      }
 
      public function view()
@@ -101,11 +100,14 @@ class CourseController extends Controller
 
       return View::make('client.course.view',compact('faculty','periodTypes'));
      }
-     public function viewCourse()
-     {
 
-      return View::make('client.course.course-info');
+     public function viewCourse($id)
+     {
+      $course = Course::whereId($id)->firstOrFail();
+
+      return View::make('client.course.course-info',compact('course'));
      }
+
      public function edit($id)
      {
       $faculties = Faculty::pluck('name','id');
@@ -116,7 +118,7 @@ class CourseController extends Controller
 
       $institution = Institution::whereClientId(Auth::user()->id)->firstOrFail();
 
-      $courses = Course::whereId($id)->firstOrFail();
+      $course = Course::whereId($id)->firstOrFail();
 
 
       // return $course;

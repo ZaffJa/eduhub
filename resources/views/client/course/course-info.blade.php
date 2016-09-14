@@ -11,56 +11,50 @@
               <div class="box-header with-border">
                 <i class="fa fa-book"></i>
 
-                <h3 class="box-title">COURSE NAMEEEEEE</h3>
+                <h3 class="box-title"> {{ $course->name_en}} </h3>
+              </br>
+                <h3 class="box-title"> {{ $course->name_ms}} </h3>
               </div>
               <!-- /.box-header -->
               <div class="box-body">
                 <dl class="dl-horizontal">
                   <dt>Faculty Name</dt>
-                  <dd>A description list is perfect for defining terms.</dd>
+                  <dd> {{ $course->faculty != null ? $course->faculty->name : 'Not Defined' }} </dd>
                   <dt>Level</dt>
-                  <dd>Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit.</dd>
-                  <dd>Donec id elit non mi porta gravida at eget metus.</dd>
+                  <dd> {{ $course->level != null ? $course->level->name : 'Not Defined' }} </dd>
                   <dt>Period</dt>
-                  <dd>Etiam porta sem malesuada magna mollis euismod.</dd>
+                  <dd> {{ $course->periodType =! null ? $course->periodType->name : 'Not Defined' }} </dd>
                   <dt>Mode</dt>
-                  <dd>A description list is perfect for defining terms.</dd>
+                  <dd> {{ $course->mode != null ? $course->mode->name : 'Not Denfined' }} </dd>
                   <dt>Name(English)</dt>
-                  <dd>Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit.</dd>
-                  <dd>Donec id elit non mi porta gravida at eget metus.</dd>
+                  <dd> {{ $course->name_en }} </dd>
                   <dt>Name(Malay)</dt>
-                  <dd>Etiam porta sem malesuada magna mollis euismod.</dd>
+                  <dd> {{ $course->name_ms }} </dd>
                   <dt>Period Min</dt>
-                  <dd>A description list is perfect for defining terms.</dd>
+                  <dd> {{ $course->period_value_min }} </dd>
                   <dt>Period Max</dt>
-                  <dd>A description list is perfect for defining terms.</dd>
+                  <dd>  {{ $course->period_value_max }} </dd>
                   <dt>Credit Hour</dt>
-                  <dd>Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit.</dd>
-                  <dd>Donec id elit non mi porta gravida at eget metus.</dd>
+                  <dd> {{ $course->credit_hours }} </dd>
                   <dt>Approved</dt>
-                  <dd>Etiam porta sem malesuada magna mollis euismod.</dd><dt>Description lists</dt>
-                  <dd>A description list is perfect for defining terms.</dd>
+                  <dd> {{ $course->approved }} </dd>
+                  <dt>Description lists</dt>
+                  <dd> </dd>
                   <dt>Accredited</dt>
-                  <dd>Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit.</dd>
-                  <dd>Donec id elit non mi porta gravida at eget metus.</dd>
+                  <dd> {{ $course->accredited }} </dd>
                   <dt>Commencement</dt>
-                  <dd>Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit.</dd>
-                  <dd>Donec id elit non mi porta gravida at eget metus.</dd>
+                  <dd> {{ $course->commencement }} </dd>
                   <dt>Qualification</dt>
-                  <dd>Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit.</dd>
-                  <dd>Donec id elit non mi porta gravida at eget metus.</dd>
+                  <dd> {{ $course->qualification }} </dd>
                   <dt>MQA Refference Number</dt>
-                  <dd>Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit.</dd>
-                  <dd>Donec id elit non mi porta gravida at eget metus.</dd>
-
-
+                  <dd> {{ $course->mqa_reference_no }} </dd>
                 </dl>
 
               </div>
               <div class="box-footer">
-                 <a href="" class="btn btn-danger">Cancel</a>
-                 <a href="" class="btn btn-primary">edit</a>
-
+                 <a href="{!! route('client.course.view') !!}" class="btn btn-danger-outline">Cancel</a>
+                 <a href="{!! route('client.course.edit',$course->id) !!}" class="btn btn-primary">Edit</a>
+                 <a href="{!! route('client.course.delete', $course->id) !!}" class="btn btn-danger">Delete</a>
                 </div>
 
               <!-- /.box-body -->
