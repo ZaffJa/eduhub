@@ -154,7 +154,7 @@ desired effect
 
                     @if(Auth::user()->institution != null)
                     <li class="treeview">
-                        <a href="#"><i class="fa fa-book"></i> <span>Courses</span>
+                        <a href="/client-dashboard/course"><i class="fa fa-book"></i> <span>Courses</span>
                           <span class="pull-right-container">
 
                           </span>
