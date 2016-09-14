@@ -30,7 +30,17 @@ class CourseController extends Controller
       $nec = Nec::pluck('field','code');
       $period_type = PeriodType::pluck('name','id');
 
-      return View::make('client.course.add',compact('faculties','levels','modes','nec','period_type'));
+      try{
+        return view('client.course.add')
+                              ->with(compact('faculties','levels','modes','nec','period_type'))
+                              ->with(['status'=>'hahaha']);
+      }catch(Error $x){
+        return view('client.course.add')
+                              ->with(compact('faculties','levels','modes','nec','period_type'))
+                              ->withError(['status'=>'hahaha']);
+      }
+
+
     }
 
     public function store(Request $r)
@@ -84,7 +94,6 @@ class CourseController extends Controller
             }
 
         return  redirect()->back();
-
      }
 
      public function view()
@@ -100,6 +109,13 @@ class CourseController extends Controller
       return View::make('client.course.view',compact('faculty','periodTypes'));
      }
 
+     public function viewCourse($id)
+     {
+      $course = Course::whereId($id)->firstOrFail();
+
+      return View::make('client.course.course-info',compact('course'));
+     }
+
      public function edit($id)
      {
       $faculties = Faculty::pluck('name','id');
@@ -110,7 +126,7 @@ class CourseController extends Controller
 
       $institution = Institution::whereClientId(Auth::user()->id)->firstOrFail();
 
-      $courses = Course::whereId($id)->firstOrFail();
+      $course = Course::whereId($id)->firstOrFail();
 
 
       // return $course;

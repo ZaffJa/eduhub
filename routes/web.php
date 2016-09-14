@@ -28,14 +28,8 @@ Route::get('/email',function(){
 
 Route::get('/home', 'HomeController@index');
 
-Route::get('/course','CourseController@view')->name('client.course.view');
-Route::get('/course/add','CourseController@add')->name('client.course.add');
-Route::post('/course/add','CourseController@store')->name('client.course.store');
-Route::get('/course/{id}/edit', 'CourseController@edit')->name('client.course.edit');
-Route::post('/course/{id}/edit', 'CourseController@update')->name('client.course.update');
-Route::post('/course/{id}/delete', 'CourseController@delete')->name('client.course.delete');
 
-Route::get('/editProfile', 'DashboardController@profile');
+
 Route::get('/dataTables',function(){
     return Datatables::eloquent(User::query())->make(true);
 })->name('dataTables');
@@ -43,31 +37,30 @@ Route::get('/dataTables',function(){
 
 Route::group(['prefix'=>'client-dashboard'],function(){
   Route::group(['middleware'=>'auth'],function(){
+    
     Route::get('/', 'DashboardController@dashboard');
-    Route::get('/edit-profile', 'DashboardController@profile');
-    Route::get('/', 'DashboardController@dashboard')->name('client.dashboard');
-
-
+    Route::get('/edit-profile', 'DashboardController@profile')->name('client.profile');
 
     Route::get('/new-institution', 'InstitutionController@index');
     Route::post('/new-institution', 'InstitutionController@create')->name('client.post.institution');
 
 
-
-    Route::get('new-course','CourseNameController@getDetails')->name('client.get.course.details');
-    Route::post('post-new-course','CourseNameController@postCreateDetails')->name('client.post.course.detail');
-    Route::get('get-courses','DashboardController@getCourses')->name('client.get.courses');
+    Route::get('/course','CourseController@view')->name('client.course.view');
+    Route::get('/course/{id}/course-view','CourseController@viewCourse')->name('client.course.view.course');
+    Route::get('/course/add','CourseController@add')->name('client.course.add');
+    Route::post('/course/add','CourseController@store')->name('client.course.store');
+    Route::get('/course/{id}/edit', 'CourseController@edit')->name('client.course.edit');
+    Route::post('/course/{id}/edit', 'CourseController@update')->name('client.course.update');
+    Route::post('/course/{id}/delete', 'CourseController@delete')->name('client.course.delete');
 
     Route::get('/scholarship/add', 'ScholarshipController@add')->name('client.view.add.scholarship');
     Route::post('/scholarship/add', 'ScholarshipController@postAdd')->name('client.add.scholarship');
     Route::get('/scholarship/view', 'ScholarshipController@view')->name('client.view.scholarship');
     Route::get('/scholarship/delete/{id}', 'ScholarshipController@delete')->name('client.delete.scholarship');
 
-
+    Route::get('/faculty', 'FacultyController@view')->name('client.faculty.view');
     Route::get('/faculty/add', 'FacultyController@add')->name('client.faculty.add');
     Route::post('/faculty/add', 'FacultyController@store')->name('client.faculty.store');
-    Route::get('/faculty', 'FacultyController@view')->name('client.faculty.view');
-
     Route::get('/faculty/{id}/edit', 'FacultyController@edit');
     Route::post('/faculty/{id}/edit', 'FacultyController@update')->name('fac_name');
     Route::post('/faculty/{id}/delete', 'FacultyController@delete');
@@ -83,4 +76,9 @@ Route::group(['prefix'=>'client-dashboard'],function(){
     Route::post('/facilities/{id}/{fid}/edit', 'FacilityController@update')->name('faci.update');
     Route::post('/facilities/{id}/{fid}/delete', 'FacilityController@delete')->name('faci.delete');
   });
+<<<<<<< HEAD
 });
+=======
+
+  });
+>>>>>>> 4d21860007b9c469e182d0f956a32a32df7b0ea3

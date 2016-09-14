@@ -12,9 +12,7 @@
 <div class="box-header with-border">
 <h3>Facilities Form</h3>
 </div>
-<div class="box-body">@if (session('status'))
-     <label> {{session('status')}} </label>
-    </div> @endif
+<div class="box-body">
 <form action="{{route('faci.storeAll')}}" method="post">
   <label>Facility Name</label>
   <input type="hidden" name="_token" value="{{csrf_token()}}">

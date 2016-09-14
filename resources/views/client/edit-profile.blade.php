@@ -15,23 +15,23 @@
             <form role="form">
               <div class="box-body">
                 <div class="form-group">
-                  <label for="exampleInputEmail1">Email address</label>
-                  <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                  <label for="exampleInputEmail1">Address</label>
+                  <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Address">
                 </div>
                 <div class="form-group">
-                  <label for="exampleInputEmail1">Email address</label>
-                  <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                  <label for="exampleInputEmail1">Telephone</label>
+                  <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Telephone">
                 </div>
                 <div class="form-group">
-                  <label for="exampleInputEmail1">Email address</label>
-                  <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
+                  <label for="exampleInputEmail1">Fax</label>
+                  <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Fax">
                 </div>
                 <div class="form-group">
-                  <label for="exampleInputPassword1">Password</label>
-                  <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                  <label for="exampleInputPassword1">Email</label>
+                  <input type="email" class="form-control" id="exampleInputPassword1" placeholder="Email">
                 </div>
                 <div class="form-group">
-                  <label for="exampleInputFile">File input</label>
+                  <label for="exampleInputFile">University logo</label>
                   <input type="file" id="exampleInputFile">
 
                   <p class="help-block">Example block-level help text here.</p>
@@ -45,6 +45,7 @@
               <!-- /.box-body -->
 
               <div class="box-footer">
+                <button type="submit" class="btn btn-danger">Cancel</button>
                 <button type="submit" class="btn btn-primary">Submit</button>
               </div>
             </form>

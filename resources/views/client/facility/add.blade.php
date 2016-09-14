@@ -6,18 +6,8 @@
 <div class="col-lg-12">
 
 
-@if (session('status'))
-<div class="box with-border">
- <label>
-     {{session('status')}}
- </label>
-</div>
-@endif
 
-
-<div class="box box-primary"> @if (session('status'))
-    <div class="box-header with-border"> <label> {{session('status')}} </label>
-    </div> @endif
+<div class="box box-primary">
     <form role="form" method="POST" action="{{route('faci.store', $typeid)}}" enctype="multipart/form-data">
       <div class="box-body">
         <div class="form-group">

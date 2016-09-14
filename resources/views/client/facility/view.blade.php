@@ -7,14 +7,6 @@
 
 <div class="col-lg-12">
 
-@if (session('status'))
-
-   <div class="box with-border">
-    <label>
-        {{session('status')}}
-    </label>
-  </div>
-@endif
 
 <div class="box">
 @if ($facilities->isEmpty())

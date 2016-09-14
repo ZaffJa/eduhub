@@ -6,13 +6,6 @@
 
 <div class="box">
 
-@if (session('status'))
-<div class="box-header">
-  <label>
-    {{session('status')}}
-  </label>
-</div>
-@endif
 <div class="box-body">
 <fieldset>
 

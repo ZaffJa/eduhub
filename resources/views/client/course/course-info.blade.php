@@ -6,43 +6,69 @@
 
 <div>
 
-          <div class="col-md-6">
+          <div class="col-lg-12">
             <div class="box box-solid">
-              <div class="box-header with-border">
-                <i class="fa fa-text-width"></i>
+              <div class="box-header with-border" style="margin-left:2%">
+                <i class="fa fa-book"></i>
 
-                <h3 class="box-title">Description</h3>
+                <h1 class="box-title"> {{ $course->name_en}} </h1>
+              </br>
+                <h1 class="box-title"> {{ $course->name_ms}} </h1>
               </div>
               <!-- /.box-header -->
-              <div class="box-body">
-                <dl>
-                  <dt>Description lists</dt>
-                  <dd>A description list is perfect for defining terms.</dd>
-                  <dt>Euismod</dt>
-                  <dd>Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit.</dd>
-                  <dd>Donec id elit non mi porta gravida at eget metus.</dd>
-                  <dt>Malesuada porta</dt>
-                  <dd>Etiam porta sem malesuada magna mollis euismod.</dd>
+              <div class="box-body" style="margin-left:2%; font-size:125%">
+                <dl class="dl-horizontal">
+                  <dt>Faculty Name</dt>
+                  <dd> {{ $course->faculty != null ? $course->faculty->name : 'Not Defined' }} </dd>
+                  <hr>
+                  <dt>Level</dt>
+                  <dd> {{ $course->level != null ? $course->level->name : 'Not Defined' }} </dd>
+                  <hr>
+                  <dt>Period</dt>
+                  <dd> {{ $course->periodType =! null ? $course->periodType->name : 'Not Defined' }} </dd>
+                  <hr>
+                  <dt>Mode</dt>
+                  <dd> {{ $course->mode != null ? $course->mode->name : 'Not Denfined' }} </dd>
+                  <hr>
+                  <dt>Name(English)</dt>
+                  <dd> {{ $course->name_en }} </dd>
+                  <hr>
+                  <dt>Name(Malay)</dt>
+                  <dd> {{ $course->name_ms }} </dd>
+                  <hr>
+                  <dt>Period Min</dt>
+                  <dd> {{ $course->period_value_min }} </dd>
+                  <hr>
+                  <dt>Period Max</dt>
+                  <dd>  {{ $course->period_value_max }} </dd>
+                  <hr>
+                  <dt>Credit Hour</dt>
+                  <dd> {{ $course->credit_hours }} </dd>
+                  <hr>
+                  <dt>Approved</dt>
+                  <dd> {{ $course->approved }} </dd>
+                  <hr>
+                  <dt>Accredited</dt>
+                  <dd> {{ $course->accredited }} </dd>
+                  <hr>
+                  <dt>Commencement</dt>
+                  <dd> {{ $course->commencement }} </dd>
+                  <hr>
+                  <dt>Qualification</dt>
+                  <dd> {{ $course->qualification }} </dd>
+                  <hr>
+                  <dt>MQA Refference Number</dt>
+                  <dd> {{ $course->mqa_reference_no }} </dd>
+                  <hr>
                 </dl>
-                <dl>
-                  <dt>Description lists</dt>
-                  <dd>A description list is perfect for defining terms.</dd>
-                  <dt>Euismod</dt>
-                  <dd>Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit.</dd>
-                  <dd>Donec id elit non mi porta gravida at eget metus.</dd>
-                  <dt>Malesuada porta</dt>
-                  <dd>Etiam porta sem malesuada magna mollis euismod.</dd>
-                </dl>
-                <dl>
-                  <dt>Description lists</dt>
-                  <dd>A description list is perfect for defining terms.</dd>
-                  <dt>Euismod</dt>
-                  <dd>Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit.</dd>
-                  <dd>Donec id elit non mi porta gravida at eget metus.</dd>
-                  <dt>Malesuada porta</dt>
-                  <dd>Etiam porta sem malesuada magna mollis euismod.</dd>
-                </dl>
+
               </div>
+              <div class="box-footer">
+                 <a href="{!! route('client.course.view') !!}" class="btn btn-danger-outline">Cancel</a>
+                 <a href="{!! route('client.course.edit',$course->id) !!}" class="btn btn-primary">Edit</a>
+                 <a href="{!! route('client.course.delete', $course->id) !!}" class="btn btn-danger">Delete</a>
+                </div>
+
               <!-- /.box-body -->
             </div>
             <!-- /.box -->
