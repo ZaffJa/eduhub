@@ -9,6 +9,7 @@ use App\Models\InstitutionType;
 use App\Models\Institution;
 use App\Models\ContactType;
 use DB;
+use Auth;
 
 class InstitutionController extends Controller
 {
@@ -17,10 +18,21 @@ class InstitutionController extends Controller
       $i = InstitutionType::pluck('name','id');
       return View::make('client.institution.create',compact('i'));
     }
+
     public function view()
     {
+      $institutions = Institution::whereClient_id(Auth::user()->id)->paginate(5);
 
-    	return view('client.institution.view');
+    	return View::make('client.institution.view',compact('institutions'));
+    }
+
+    public function viewInstitution($id)
+    {
+      $institution = Institution::whereId($id)->firstOrFail();
+      // $parent_id = Institution::whereParent_id($institution->id)->firstOrFail();
+
+      // return $institution;
+      return View::make('client.institution.institution-info',compact('institution','parent_id'));
     }
 
     public function create(Request $r)

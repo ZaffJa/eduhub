@@ -61,8 +61,6 @@ class FacultyController extends Controller
     }
 
 
-
-
     public function view()
     {
     	$faculties = Faculty::whereInstitution_id(Auth::user()->institution->id)->get();
