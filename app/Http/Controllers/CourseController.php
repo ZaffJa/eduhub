@@ -29,8 +29,10 @@ class CourseController extends Controller
       $modes = StudyMode::pluck('name','id');
       $nec = Nec::pluck('field','code');
       $period_type = PeriodType::pluck('name','id');
+      $status= "The course had been added";
 
-      return View::make('client.course.add',compact('faculties','levels','modes','nec','period_type'));
+
+      return View::make('client.course.add',compact('faculties','levels','modes','nec','period_type','status'));
     }
 
     public function store(Request $r)

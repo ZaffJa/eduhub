@@ -4,6 +4,13 @@
 @section('headbar', 'Add new course')
 @section('content2')
 <div class="box box-primary">
+
+  @if ($status != null)
+  <div class="box-header">
+      <label style="color:rgb(0,255,12);"><strong> {{$status}}</strong> </label>
+        </div>
+      @endif
+
 <style media="screen">
     .col-md-2 {
         text-align: center;
@@ -14,14 +21,12 @@
 
     }
 </style>
-<<<<<<< HEAD:resources/views/client/course/add.blade.php
+
 <form class="" action="{{route('client.course.store')}}" method="post" autocomplete="off">
     <div class='row'>
-=======
-<form class="" action="{{route('client.post.course.detail')}}" method="post" autocomplete="off">
-    <div class='row box-header'>
 
->>>>>>> 052efd021205e0bfce609b478dd976dd3744b809:resources/views/client/new-course.blade.php
+
+
         @if (count($errors) > 0)
         <div class="alert alert-danger">
             <ul>
@@ -38,12 +43,18 @@
         <div class="col-md-2">
             Course Name
         </div>
+        <div class="col-md-8">
+        <div class="row">
         <div class="col-md-4">
             <input type="text" name="name_eng" placeholder="English Name">
         </div>
-        <div class="col-md-4 col-md-offset-1">
+      </div>
+      <div class="row">
+        <div class="col-md-4 ">
             <input type="text" name="name_ms" placeholder="Malay Name">
         </div>
+      </div>
+    </div>
     </div>
     <div class="row">
         <div class="col-md-2">
@@ -152,7 +163,7 @@
         <div class="col-md-offset-3 col-md-3">
             {{ csrf_field() }}
             <button type='submit' class='btn btn-default '>Submit</button>
-            <a href="#" class="btn btn-danger">Cancel</a>
+            <a href="{!! route('client.course.view') !!}" class="btn btn-danger">Cancel</a>
         </div>
 
     </div>

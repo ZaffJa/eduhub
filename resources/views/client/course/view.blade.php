@@ -4,11 +4,13 @@
 @section('headbar', 'Courses')
 @section('content2')
 <div class="box box-primary">
+<div class="box-header">
 @if (session('status'))
   <label>
     {{session('status')}}
   </label>
 @endif
+</div>
 
 @if ($faculty->isEmpty())
   <p> There are no facilities. </p>
@@ -52,11 +54,11 @@
       {{$faculty->render()}}
 @endif
 </div>
-<a href="" class="float">
+<a href="{!! route('client.course.add') !!}" class="float">
 <i class="fa fa-plus my-float"></i>
 </a>
 <div class="label-container">
-  <div class="label-text">Add Faculty</div>
+  <div class="label-text">Add Course</div>
   <i class="fa fa-arrow- label-arrow"></i>
 
 
