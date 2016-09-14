@@ -26,25 +26,29 @@
       <th>Mode</th>
       <th>Name (English)</th>
       <th>Name (Malay)</th>
-
       <th>Credit hour</th>
-
+      <th>View</th>
       <tr>
     </thead>
     <tbody>
       @foreach($faculty as $f)
         @foreach($f->courses as $c)
 
+      
       <tr>
         <td> {{$f->name}} </td>
         <td> {{$c->level->name}}</td>
         <td> {{$c->mode->name}}</td>
         <td> {{$c->name_en}}</td>
         <td> {{$c->name_ms}}</td>
-
         <td> {{$c->credit_hours}}</td>
-
+        <td>
+          <a href=" {!! route('client.course.view.course', $c->id)  !!} ">
+            View
+          </a>
+        </td> 
       </tr>
+
         @endforeach
       @endforeach
     </tbody>

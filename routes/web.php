@@ -45,7 +45,7 @@ Route::group(['prefix'=>'client-dashboard'],function(){
 
 
     Route::get('/course','CourseController@view')->name('client.course.view');
-    Route::get('/course/course-view','CourseController@viewCourse')->name('client.course.view.course');
+    Route::get('/course/{id}/course-view','CourseController@viewCourse')->name('client.course.view.course');
     Route::get('/course/add','CourseController@add')->name('client.course.add');
     Route::post('/course/add','CourseController@store')->name('client.course.store');
     Route::get('/course/{id}/edit', 'CourseController@edit')->name('client.course.edit');

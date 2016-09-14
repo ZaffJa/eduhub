@@ -123,7 +123,7 @@
             Field
         </div>
         <div class="col-md-4">
-            {{ Form::select('nec', $nec, $course->nec_code) }}
+            {{ Form::select('nec_code', $nec, $course->nec_code) }}
         </div>
     </div>
     <div class="row">
@@ -148,7 +148,7 @@
             <a href="{!! route('client.course.update',$course->id) !!}">
                 <button type='submit' class='btn btn-lg btn-default '>Submit</button>
             </a>
-            <a href="{!! route('client.course.view') !!}">Cancel</a>
+            <a href="{!! route('client.course.view.course', $course->id ) !!}" class="btn btn-danger-outline ">Cancel</a>
         </div>
     </div>
 </form>
