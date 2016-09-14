@@ -178,7 +178,7 @@ desired effect
 
                     </li>
                     <li class="treeview">
-                        <a href="#"><i class="fa fa-usd"></i> <span>Scholarship</span>
+                        <a href="{{route('client.view.scholarship')}}"><i class="fa fa-usd"></i> <span>Scholarship</span>
                           <span class="pull-right-container">
 
                           </span>
