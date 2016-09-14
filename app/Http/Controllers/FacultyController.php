@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Http\Requests\FacultyFormRequest;
 use Illuminate\Support\Facades\Storage;
@@ -47,7 +46,7 @@ class FacultyController extends Controller
         $faculty->institution_id = Auth::user()->institution->id;
         $faculty->name = $r->fac_name;
         $faculty->img_url = $imageName;
-        
+
         $r->fac_file->move(public_path('img/faculty'),$imageName);
 
         try{
@@ -60,17 +59,29 @@ class FacultyController extends Controller
         return redirect()->back()->with(['status'=>'The faculty name '. $faculty->name.' has been added.']);
     }
 
+    public function postSearchFaculty(Request $r)
+    {
+      $faculty = Faculty::where('name','LIKE','%'.$r->term.'%')->whereInstitution_id(Auth::user()->institution->id)->get();
+
+      foreach($faculty as $f){
+        $data[] = $f->name;
+      }
+
+      return response()->json($data);
+    }
+
 
     public function view()
     {
-    	$faculties = Faculty::whereInstitution_id(Auth::user()->institution->id)->get();
-    	return view('client.faculty.view')->with('faculties',$faculties);
+    	$faculties = Faculty::whereInstitution_id(Auth::user()->institution->id)->paginate(5);
+    	return view('client.faculty.view')->with(compact('faculties','dataTables'));
     }
 
     public function edit($id)
     {
         $faculty = Faculty::whereId($id)->firstOrFail();
-        return view('client.faculty.edit', compact('faculty'));
+        $courses = $faculty->courses;
+        return view('client.faculty.edit', compact('faculty','courses'));
     }
 
     public function update( Request $request,$id)
@@ -92,7 +103,6 @@ class FacultyController extends Controller
     public function delete($id)
     {
         $faculty = Faculty::whereId($id)->firstOrFail();
-
         try {
             $faculty->delete();
         } catch(\Illuminate\Database\QueryException $ex) {

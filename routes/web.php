@@ -51,7 +51,7 @@ Route::group(['prefix'=>'client-dashboard'],function(){
     Route::post('/course/add','CourseController@store')->name('client.course.store');
     Route::get('/course/{id}/edit', 'CourseController@edit')->name('client.course.edit');
     Route::post('/course/{id}/edit', 'CourseController@update')->name('client.course.update');
-    Route::post('/course/{id}/delete', 'CourseController@delete')->name('client.course.delete');
+    Route::get('/course/{id}/delete', 'CourseController@delete')->name('client.course.delete');
 
     Route::get('/scholarship/add', 'ScholarshipController@add')->name('client.view.add.scholarship');
     Route::post('/scholarship/add', 'ScholarshipController@postAdd')->name('client.add.scholarship');
@@ -63,7 +63,9 @@ Route::group(['prefix'=>'client-dashboard'],function(){
     Route::post('/faculty/add', 'FacultyController@store')->name('client.faculty.store');
     Route::get('/faculty/{id}/edit', 'FacultyController@edit');
     Route::post('/faculty/{id}/edit', 'FacultyController@update')->name('fac_name');
-    Route::post('/faculty/{id}/delete', 'FacultyController@delete');
+    Route::get('/faculty/{id}/delete', 'FacultyController@delete')->name('client.faculty.delete');
+    Route::get('/faculty/search', 'FacultyController@postSearchFaculty')->name('client.faculty.search');
+    Route::get('/faculty/search-result', 'FacultyController@postSearchResult')->name('client.faculty.search.result');
 
 
     Route::get('/facilities', 'FacilityController@viewType')->name('faci.viewType');

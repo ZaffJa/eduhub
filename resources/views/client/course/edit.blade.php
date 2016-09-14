@@ -1,6 +1,9 @@
-@extends('client.layout.app')
- @section('title', 'Dashboard')
-  @section('content')
+@extends('client.layout.headerLayout')
+
+@section('title', 'Course')
+@section('headbar', 'Edit course')
+@section('content2')
+<div class="box box-primary">
 <style media="screen">
     .col-md-2 {
         text-align: center;
@@ -8,7 +11,7 @@
 
     .row {
         padding-top: 10px;
-        text-align: right;
+        
     }
 </style>
 <form class=""  method="post" autocomplete="off">
@@ -34,12 +37,18 @@
         <div class="col-md-2">
             Course Name
         </div>
+        <div class="col-md-8">
+        <div class="row">
         <div class="col-md-4">
             <input type="text" value="{!! $course->name_en !!}" name="name_eng" placeholder="English Name">
         </div>
-        <div class="col-md-4 col-md-offset-1">
+      </div>
+      <div class="row">
+        <div class="col-md-4 ">
             <input type="text" value="{!! $course->name_ms !!}" name="name_ms" placeholder="Malay Name">
         </div>
+      </div>
+    </div>
     </div>
     <div class="row">
         <div class="col-md-2">
@@ -148,10 +157,11 @@
         <div class="col-md-offset-3 col-md-3">
             {{ csrf_field() }}
             <a href="{!! route('client.course.update',$course->id) !!}">
-                <button type='submit' class='btn btn-lg btn-default '>Submit</button>
+                <button type='submit' class='btn btn-success '>Submit</button>
             </a>
             <a href="{!! route('client.course.view.course', $course->id ) !!}" class="btn btn-danger-outline ">Cancel</a>
         </div>
     </div>
 </form>
+</div>
 @endsection

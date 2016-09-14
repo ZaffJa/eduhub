@@ -22,12 +22,12 @@
     <div class="row">
       <div class="col-lg-12">
         @foreach ($errors->all() as $error)
-        <div class="box-header">
+
           <p>
             Error Message
             <br/>
           <p>
-          </div>
+
         @endforeach
 
         @if (session('status'))
@@ -38,7 +38,33 @@
         @yield('content2')
         </div>
       </div>
+      <div class="modal fade" tabindex="-1" role="dialog" id="confirmDelete">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                  <h4 class="modal-title">Delete Confirmation</h4>
+              </div>
+              <div class="modal-body">
+                  <p>Confirm delete this record?&hellip;</p>
+              </div>
+              <div class="modal-footer">
+                  <a href="" role="button" id="parseDeleteRoute" class="btn btn-danger">Delete</a>
+                  <button type="button" class="btn btn-success" data-dismiss="modal">Cancel</button>
+              </div>
+          </div>
+          <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+      </div>
+      <!-- /.modal -->
+      <script type="text/javascript">
+          $('.confirmDeleteBtn').on('click', function() {
+              $('#parseDeleteRoute').attr('href', $(this).val());
+              $('#confirmDelete').modal();
+          });
+      </script>
     </div>
   <!--</div>-->
-</div>
+
 @endsection
