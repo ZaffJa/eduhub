@@ -4,13 +4,7 @@
 @section('headbar', 'Courses')
 @section('content2')
 <div class="box box-primary">
-<div class="box-header">
-@if (session('status'))
-  <label>
-    {{session('status')}}
-  </label>
-@endif
-</div>
+
 
 @if ($faculty->isEmpty())
   <p> There are no facilities. </p>

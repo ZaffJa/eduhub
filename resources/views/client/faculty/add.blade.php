@@ -6,21 +6,9 @@
 
 
 <div class="col-lg-12">
-    <div class='row'>
-        @if (count($errors) > 0)
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-        @endif
-    </div>
+  
     <div class="box box-primary">
-     @if (session('status'))
-         <label> {{session('status')}} </label>
-         @endif
+
         <form role="form" method="POST" action="{{route('client.faculty.store')}}" enctype="multipart/form-data"
           <div class="box-body">
             <div class="form-group">

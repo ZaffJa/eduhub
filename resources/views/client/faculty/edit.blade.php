@@ -5,20 +5,7 @@
 @section('content2')
 
 <div class="box">
-@foreach ($errors->all() as $error)
-<div class="box-header">
-  <p>
-    Error Message
-    <br/>
-  <p>
-  </div>
-@endforeach
 
-@if (session('status'))
-<label>
-  {{session('status')}}
-</label>
-@endif
 <div class="box-body">
 <fieldset>
 

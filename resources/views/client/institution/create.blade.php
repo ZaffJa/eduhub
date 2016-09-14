@@ -1,4 +1,6 @@
-@extends('client.layout.app') @section('title', 'Profile') @section('content')
+@extends('client.layout.app')
+ @section('title', 'Profile')
+  @section('content')
 <div class="col-lg-10">
     <div class="row">
         <div class="col-lg-12">

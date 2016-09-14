@@ -1,22 +1,13 @@
-@extends('client.layout.headerLayout') @section('title', 'Scholarship') @section('headbar', 'Add Scholarship') @section('content2')
+@extends('client.layout.headerLayout')
+ @section('title', 'Scholarship')
+  @section('headbar', 'Add Scholarship')
+   @section('content2')
 <div class=col-lg-12>
     <div class="box box-primary">
-        <div class='row box-header'>
-            @if (count($errors) > 0)
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-            @endif
-        </div>
-        @if (session('status'))
-        <div class="box-header with-border">
-            <label>{{session('status')}}</label>
-        </div>
-        @endif
+        <div class='row box-body'>
+
+
+
           <form role=form method=post action="{{route('add.scholarship')}}" autocomplete="off" enctype="multipart/form-data"
             <div class=box-body>
                 <div class=form-group>
@@ -50,6 +41,7 @@
                 <a class="btn btn-danger" href="{{action('FacultyController@view')}}">Cancel</a>
             </div>
         </form>
+        </div>
     </div>
 </div>
 <script type="text/javascript">
