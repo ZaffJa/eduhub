@@ -37,7 +37,7 @@ Route::get('/dataTables',function(){
 
 Route::group(['prefix'=>'client-dashboard'],function(){
   Route::group(['middleware'=>'auth'],function(){
-    
+
     Route::get('/', 'DashboardController@dashboard');
     Route::get('/edit-profile', 'DashboardController@profile')->name('client.profile');
 
@@ -76,9 +76,4 @@ Route::group(['prefix'=>'client-dashboard'],function(){
     Route::post('/facilities/{id}/{fid}/edit', 'FacilityController@update')->name('faci.update');
     Route::post('/facilities/{id}/{fid}/delete', 'FacilityController@delete')->name('faci.delete');
   });
-<<<<<<< HEAD
 });
-=======
-
-  });
->>>>>>> 4d21860007b9c469e182d0f956a32a32df7b0ea3
