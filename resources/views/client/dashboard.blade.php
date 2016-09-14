@@ -53,13 +53,82 @@
     </div>
 
     <div class="row">
-      <div class="col-xs-4">
+      <div class="col-lg-12">
+        <a href="">
+          <div class="box-body">
+            <div class="demo-card-image mdl-card mdl-shadow--2dp" style="background-image: url('/img/default/library.jpg')">
+              <div class="mdl-card__title mdl-card--expand"  >
 
+              </div>
+                <div class="mdl-card__actions" >
+                  <span class="demo-card-image__filename">Course</span>
+                </div>
+            </div>
+          </div>
+        </a>
       </div>
-      <div class="col-lg-4">
 
 
+    </div>
+    <div class="row">
+      <div class="col-lg-3">
+        <a href="">
+          <div class="box-body">
+            <div class="demo-card-image mdl-card mdl-shadow--2dp" style="background-image: url('/img/default/library.jpg')">
+              <div class="mdl-card__title mdl-card--expand"  >
+
+              </div>
+                <div class="mdl-card__actions" >
+                  <span class="demo-card-image__filename">Course</span>
+                </div>
+            </div>
+          </div>
+        </a>
       </div>
+      <div class="col-lg-3">
+        <a href="">
+          <div class="box-body">
+            <div class="demo-card-image mdl-card mdl-shadow--2dp" style="background-image: url('/img/default/library.jpg')">
+              <div class="mdl-card__title mdl-card--expand"  >
+
+              </div>
+                <div class="mdl-card__actions" >
+                  <span class="demo-card-image__filename">Course</span>
+                </div>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="col-lg-3">
+        <a href="">
+          <div class="box-body">
+            <div class="demo-card-image mdl-card mdl-shadow--2dp" style="background-image: url('/img/default/library.jpg')">
+              <div class="mdl-card__title mdl-card--expand"  >
+
+              </div>
+                <div class="mdl-card__actions" >
+                  <span class="demo-card-image__filename">Course</span>
+                </div>
+            </div>
+          </div>
+        </a>
+      </div>
+      <div class="col-lg-3">
+        <a href="">
+          <div class="box-body">
+            <div class="demo-card-image mdl-card mdl-shadow--2dp" style="background-image: url('/img/default/library.jpg')">
+              <div class="mdl-card__title mdl-card--expand"  >
+
+              </div>
+                <div class="mdl-card__actions" >
+                  <span class="demo-card-image__filename">Course</span>
+                </div>
+            </div>
+          </div>
+        </a>
+      </div>
+
+
     </div>
 
     @endsection

@@ -22,12 +22,12 @@
     <div class="row">
       <div class="col-lg-12">
         @foreach ($errors->all() as $error)
-        <div class="box-header">
+
           <p>
             Error Message
             <br/>
           <p>
-          </div>
+
         @endforeach
 
         @if (session('status'))
@@ -40,5 +40,5 @@
       </div>
     </div>
   <!--</div>-->
-</div>
+
 @endsection
