@@ -55,12 +55,12 @@
       <div class="col-lg-12">
         <a href="">
           <div class="box-body">
-            <div class="demo-card-image mdl-card mdl-shadow--2dp" style="background-image: url('/img/default/book-02.png')">
+            <div class="demo-card-image mdl-card mdl-shadow--2dp" style="background-image: url('/img/default/institution-05.png'); background-size: contain; background-color:white;">
               <div class="mdl-card__title mdl-card--expand"  >
 
               </div>
                 <div class="mdl-card__actions" >
-                  <span class="demo-card-image__filename">Course</span>
+                  <span class="demo-card-image__filename" style="font-size:150%;color:black">Institution</span>
                 </div>
             </div>
           </div>
@@ -73,12 +73,12 @@
       <div class="col-lg-3">
         <a href="">
           <div class="box-body">
-            <div class="demo-card-image mdl-card mdl-shadow--2dp" style="background-image: url('/img/default/book-02.png')">
+            <div class="demo-card-image mdl-card mdl-shadow--2dp" style="background-image: url('/img/default/BOOK-06.png'); background-size: contain; background-color:white;">
               <div class="mdl-card__title mdl-card--expand"  >
 
               </div>
                 <div class="mdl-card__actions" >
-                  <span class="demo-card-image__filename">Course</span>
+                  <span class="demo-card-image__filename" style="font-size:150%;color:black">Course</span>
                 </div>
             </div>
           </div>
@@ -87,12 +87,12 @@
       <div class="col-lg-3">
         <a href="">
           <div class="box-body">
-            <div class="demo-card-image mdl-card mdl-shadow--2dp" style="background-image: url('/img/default/library.jpg')">
+            <div class="demo-card-image mdl-card mdl-shadow--2dp" style="background-image: url('/img/default/faculty-04.png'); background-size: contain; background-color:white;">
               <div class="mdl-card__title mdl-card--expand"  >
 
               </div>
                 <div class="mdl-card__actions" >
-                  <span class="demo-card-image__filename">Course</span>
+                  <span class="demo-card-image__filename" style="font-size:150%;color:black">Faculty</span>
                 </div>
             </div>
           </div>
@@ -101,12 +101,12 @@
       <div class="col-lg-3">
         <a href="">
           <div class="box-body">
-            <div class="demo-card-image mdl-card mdl-shadow--2dp" style="background-image: url('/img/default/library.jpg')">
+            <div class="demo-card-image mdl-card mdl-shadow--2dp" style="background-image: url('/img/default/dumbbell-03.png'); background-size: contain; background-color:white;">
               <div class="mdl-card__title mdl-card--expand"  >
 
               </div>
                 <div class="mdl-card__actions" >
-                  <span class="demo-card-image__filename">Course</span>
+                  <span class="demo-card-image__filename" style="font-size:150%;color:black">Facility</span>
                 </div>
             </div>
           </div>
@@ -115,12 +115,12 @@
       <div class="col-lg-3">
         <a href="">
           <div class="box-body">
-            <div class="demo-card-image mdl-card mdl-shadow--2dp" style="background-image: url('/img/default/library.jpg')">
+            <div class="demo-card-image mdl-card mdl-shadow--2dp" style="background-image: url('/img/default/scholar-02.png'); background-size: contain; background-color:white;">
               <div class="mdl-card__title mdl-card--expand"  >
 
               </div>
                 <div class="mdl-card__actions" >
-                  <span class="demo-card-image__filename">Course</span>
+                  <span class="demo-card-image__filename" style="font-size:150%;color:black">Scholarship</span>
                 </div>
             </div>
           </div>
