@@ -16,16 +16,10 @@
 
     }
 </style>
-
+<div class="box-body">
 <form class="" action="{{route('client.course.store')}}" method="post" autocomplete="off">
-    <div class='row'>
-
-
-
-
-    </div>
-    <div class="row box-body">
-
+    
+    <div class="row">
         <div class="col-md-2">
             Course Name
         </div>
@@ -46,7 +40,7 @@
         <div class="col-md-2">
             Faculty
         </div>
-        <div class="col-md-2">
+        <div class="col-md-1">
             {{ Form::select('faculty', $faculties,['class' => 'col-md-2']) }}
         </div>
     </div>
@@ -54,10 +48,13 @@
         <div class="col-md-2">
             Level
         </div>
-        <div class="col-md-2">
+        <div class="col-md-1">
             {{ Form::select('level', $levels) }}
         </div>
-        <div class="col-md-1">
+        
+    </div>
+    <div class="row">
+    <div class="col-md-2">
             Mode
         </div>
         <div class="col-md-1">
@@ -71,10 +68,12 @@
         <div class="col-md-1">
             <input type="number" name="period_value_min" placeholder="Min credit hour">
         </div>
-        <div class="col-md-1">
+    </div>
+    <div class="row">
+        <div class="col-md-2">
             Period Max
         </div>
-        <div class="col-md-2">
+        <div class="col-md-1">
             <input type="number" name="period_value_max" placeholder="Max credit hour">
         </div>
     </div>
@@ -93,7 +92,7 @@
         <!-- <div class="col-md-2">
             <input type="number" name="period" placeholder="Duration of study">
         </div> -->
-        <div class="col-md-2">
+        <div class="col-md-1">
             {{ Form::select('period_type', $period_type) }}
         </div>
     </div>
@@ -155,4 +154,6 @@
     </div>
 </form>
 </div>
+</div>
+
 @endsection

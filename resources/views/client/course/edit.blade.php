@@ -37,7 +37,7 @@
         <div class="col-md-2">
             Faculty
         </div>
-        <div class="col-md-2">
+        <div class="col-md-1">
             {{ Form::select('faculty_id', $faculties,$course->faculty->id) }}
         </div>
     </div>
@@ -45,10 +45,13 @@
         <div class="col-md-2">
             Level
         </div>
-        <div class="col-md-2">
+        <div class="col-md-1">
             {{ Form::select('level_id', $levels, $course->level->id) }}
         </div>
-        <div class="col-md-1">
+        
+    </div>
+    <div class="row">
+        <div class="col-md-2">
             Mode
         </div>
         <div class="col-md-1">
@@ -62,10 +65,13 @@
         <div class="col-md-1">
             <input type="number" value="{!! $course->period_value_min !!}" name="period_value_min" placeholder="Min credit hour">
         </div>
-        <div class="col-md-1">
+        
+    </div>
+    <div class="row">
+        <div class="col-md-2">
             Period Max
         </div>
-        <div class="col-md-2">
+        <div class="col-md-1">
             <input type="number" value="{!! $course->period_value_max !!}" name="period_value_max" placeholder="Max credit hour">
         </div>
     </div>
@@ -84,7 +90,7 @@
         <!-- <div class="col-md-2">
             <input type="number"  name="period" placeholder="Duration of study">
         </div> -->
-        <div class="col-md-2">
+        <div class="col-md-1">
             {{ Form::select('period_type_id',$period_type, $course->period_type_id)}}
         </div>
     </div>
