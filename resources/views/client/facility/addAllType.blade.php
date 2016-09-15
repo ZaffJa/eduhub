@@ -19,7 +19,7 @@
   <input type="text" id="faci_name" name="faci_name" placeholder="Facility Name">
   <input type="text" id="faci_cap" name="faci_cap" placeholder="Capacity">
   <label>Facility Type
-    <select id="id_type" name="typeid" aria-controls="example1" class="form-control input-lg">
+    <select id="id_type" name="typeid" aria-controls="example1" class="form-control input-md">
 
     <option value=1>Cafeteria</option>
     <option value=2>Transportation</option>
@@ -35,11 +35,9 @@
   </label>
 
 </br>
-  <!-- TODO
-        upload image feature
-   -->
-   <a href="{{route('faci.viewType')}}" class="btn btn-danger">Cancel</a>
-   <button class="btn btn-primary">Submit</button>
+  <button class="btn btn-success">Submit</button>
+   <a href="{{route('faci.viewType')}}" class="btn btn-warning">Cancel</a>
+
 </form>
 </div>
 </div>
