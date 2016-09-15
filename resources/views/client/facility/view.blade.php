@@ -25,9 +25,9 @@
     <tbody>
       @foreach($facilities as $facility)
       <tr>
-        <td>{{$facility->name}}</td>
-        <td>{{$facility->capacity}}</td>
-        <td><a href="{!! action('FacilityController@edit',array($typeid, $facility->id)) !!}"><button class="btn btn-primary-outline">edit</button></a></td>
+        <td> {{$facility->name}} </td>
+        <td> {{$facility->capacity}} </td>
+        <td><a href="{!! action('FacilityController@edit',array($typeid, $facility->id)) !!}"><button class="btn btn-info">edit</button></a></td>
         <td>
           <form method="post" action="{!! action('FacilityController@delete', array($typeid, $facility->id)) !!}">
             <input type="hidden" name="_token" value="{!! csrf_token() !!}">

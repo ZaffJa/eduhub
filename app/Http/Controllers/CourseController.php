@@ -75,7 +75,7 @@ class CourseController extends Controller
             $course->level_id = $r->level;
             $course->period_type_id = $r->period_type;
             $course->mode_id = $r->mode;
-            $course->name_en = $r->name_en;
+            $course->name_en = $r->name_eng;
             $course->name_ms = $r->name_ms;
             $course->period_value_min = $r->period_value_min;
             $course->period_value_max = $r->period_value_max;
@@ -84,7 +84,9 @@ class CourseController extends Controller
             $course->qualification = $r->qualification;
             $course->mqa_reference_no = $r->mqa;
 
-           $course->save();
+          $course->save();
+
+          return  redirect()->route('client.course.view')->with(['status'=>'The course '. $course->name_en .' has been added.']);
 
          }catch(\Illuminate\Database\QueryException $e){
                 return redirect()
@@ -93,7 +95,7 @@ class CourseController extends Controller
                             ->withInput();
             }
 
-        return  redirect()->back();
+
      }
 
      public function view()
@@ -135,6 +137,8 @@ class CourseController extends Controller
 
      public function update(Request $r,$id)
      {
+
+      try{
         $course = Course::whereId($id)->firstOrFail();
 
         $course->faculty_id = $r->faculty_id;
@@ -152,13 +156,18 @@ class CourseController extends Controller
         $course->approved = $r->approved;
         $course->mqa_reference_no = $r->mqa_reference_no;
 
-        try{
-          $course->save();
-        }catch(\Illuminate\Database\QueryException $e){
-
-        }
+        
+        $course->save();
 
         return  redirect()->back()->with(['status'=>'The course name '.$course->name_en.' has been updated.']);
+
+        }catch(\Illuminate\Database\QueryException $e){
+                return redirect()
+                            ->back()
+                            ->withErrors($ex)
+                            ->withInput();
+        }
+
      }
 
     public function delete($id)
@@ -171,6 +180,7 @@ class CourseController extends Controller
 
       }
 
-      return redirect()->back()->with(['status'=>'The course name '.$course->name_en.' has been deleted.']);
+      return redirect()->route('client.course.view')->with(['status'=>'The course has been deleted.']);
+    
     }
 }

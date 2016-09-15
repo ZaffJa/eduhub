@@ -11,28 +11,11 @@
 
     .row {
         padding-top: 10px;
-        
+
     }
 </style>
+<div class="box-body">
 <form class=""  method="post" autocomplete="off">
-    <div class='row'>
-        @if (count($errors) > 0)
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-        @endif
-        @if (session('status'))
-        <div class="alert alert-danger">
-            <ul>
-                <li>{{ session('status') }}</li>
-            </ul>
-        </div>
-        @endif
-    </div>
     <div class="row">
         <div class="col-md-2">
             Course Name
@@ -40,7 +23,7 @@
         <div class="col-md-8">
         <div class="row">
         <div class="col-md-4">
-            <input type="text" value="{!! $course->name_en !!}" name="name_eng" placeholder="English Name">
+            <input type="text" value="{!! $course->name_en !!}" name="name_en" placeholder="English Name">
         </div>
       </div>
       <div class="row">
@@ -153,15 +136,18 @@
             <input type="text" name="course-description" placeholder="Detailed description of the course">
         </div>
     </div> -->
-    <div class="row">
-        <div class="col-md-offset-3 col-md-3">
-            {{ csrf_field() }}
-            <a href="{!! route('client.course.update',$course->id) !!}">
-                <button type='submit' class='btn btn-success '>Submit</button>
-            </a>
-            <a href="{!! route('client.course.view.course', $course->id ) !!}" class="btn btn-danger-outline ">Cancel</a>
-        </div>
-    </div>
+
+
+</div>
+<div class="box-footer">
+  
+        {{ csrf_field() }}
+        <a href="{!! route('client.course.update',$course->id) !!}">
+            <button class='btn btn-success '>Submit</button>
+        </a>
+        <a href="{!! route('client.course.view.course', $course->id ) !!}" class="btn btn-warning ">Cancel</a>
+
 </form>
+</div>
 </div>
 @endsection

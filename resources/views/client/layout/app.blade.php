@@ -142,7 +142,7 @@ desired effect
                 <!-- Sidebar user panel (optional) -->
                 <div class="user-panel">
                     <div class="pull-left image">
-                        <img src="/client/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                        <img src="/img/logo/LOGO-U.svg" class="img-circle" alt="User Image">
                     </div>
                     <div class="pull-left info">
                         <p>{{ Auth::user()->name}}
@@ -150,9 +150,7 @@ desired effect
                 </div>
 
                 <!-- search form (Optional) -->
-                <form action="#" method="get" class="sidebar-form">
 
-                </form>
                 <!-- /.search form -->
 
                 <!-- Sidebar Menu -->

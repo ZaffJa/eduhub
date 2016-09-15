@@ -1,4 +1,7 @@
-@extends('client.layout.headerLayout') @section('title', 'Faculty') @section('headbar', 'Edit Faculty') @section('content2')
+@extends('client.layout.headerLayout')
+@section('title', 'Faculty')
+@section('headbar', 'Edit Faculty')
+@section('content2')
 
 <div class="box">
 
@@ -10,8 +13,8 @@
                 <input type="text" name="fac_name" value="{!! $faculty->name !!}">
                 <input type="hidden" name="_token" value="{!! csrf_token() !!}">
 
-                <a href="{!! route('fac_name',$faculty->id) !!}"><button class="btn btn-info">Update</button></a>
-                <a href="{!! action('FacultyController@view') !!}" class="btn btn-danger">Cancel</a>
+                <a href="{!! route('fac_name',$faculty->id) !!}"><button class="btn btn-primary">Update</button></a>
+                <a href="{!! action('FacultyController@view') !!}" class="btn btn-warning">Cancel</a>
             </form>
 
         </fieldset>
@@ -32,7 +35,7 @@
                         <tr>
                             <td>{{$c->name_en}}</td>
                             <td>
-                              <a href="{{route('client.course.update',$c->id)}}" role="button" class="btn btn-info btn-sm">Edit</a>
+                              <a href="{{route('client.course.update',$c->id)}}" role="button" class="btn btn-info">Edit</a>
                               <button value="{{route('client.course.delete',$c->id)}}" class='btn btn-sm btn-danger confirmDeleteBtn'>Delete</button>
                             </td>
                         </tr>

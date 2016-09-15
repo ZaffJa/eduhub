@@ -13,6 +13,7 @@ use App\Models\RegisterInstitution;
 use Auth;
 use Validator;
 
+
 class InstitutionController extends Controller
 {
     public function index()
@@ -20,10 +21,20 @@ class InstitutionController extends Controller
       $i = InstitutionType::pluck('name','id');
       return View::make('client.institution.create',compact('i'));
     }
+
     public function view()
     {
+      $institutions = Institution::whereClient_id(Auth::user()->id)->paginate(5);
 
-    	return view('client.institution.view');
+      return View::make('client.institution.view',compact('institutions'));
+    }
+
+    public function viewInstitution($id)
+    {
+      $institution = Institution::whereId($id)->firstOrFail();
+
+      // return $institution;
+      return View::make('client.institution.institution-info',compact('institution','parent_id'));
     }
 
     public function create(Request $r)
@@ -104,7 +115,6 @@ class InstitutionController extends Controller
       if($i == null){
           $ri = RegisterInstitution::whereUserId(Auth::user()->id)->first();
           $i = Institution::whereClientId(null)->pluck('name','id');
-
 
           if($ri != null){
             return view('client.request-institution')
