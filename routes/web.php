@@ -38,7 +38,7 @@ Route::get('/dataTables',function(){
 Route::group(['prefix'=>'client-dashboard'],function(){
   Route::group(['middleware'=>'auth'],function(){
 
-    Route::get('/', 'DashboardController@dashboard');
+    Route::get('/', 'DashboardController@dashboard')->name('client.dashboard');
     Route::get('/edit-profile', 'DashboardController@profile')->name('client.profile');
 
     Route::get('/new-institution', 'InstitutionController@index');
