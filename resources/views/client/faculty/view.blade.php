@@ -28,8 +28,8 @@
 
                                 <td> {!! $faculty->name !!} </td>
                                 <td>
-                                    <a href="{!! action('FacultyController@edit', $faculty->id) !!}" class='btn btn-xs btn-primary'>Edit</a>
-                                    <button value="{!! action('FacultyController@delete', $faculty->id) !!}" class='btn btn-xs btn-danger confirmDeleteBtn'>Delete</button>
+                                    <a href="{!! action('FacultyController@edit', $faculty->id) !!}" class='btn btn-md btn-primary'>Edit</a>
+                                    <button value="{!! action('FacultyController@delete', $faculty->id) !!}" class='btn btn-md btn-danger confirmDeleteBtn'>Delete</button>
                                 </td>
                             </tr>
                             @endforeach

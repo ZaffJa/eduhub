@@ -37,7 +37,7 @@
         <td> {{$c->name_ms}}</td>
         <td> {{$c->credit_hours}}</td>
         <td>
-          <a href=" {!! route('client.course.view.course', $c->id)  !!} " class="btn btn-primary-outline">
+          <a href=" {!! route('client.course.view.course', $c->id)  !!} " class="btn btn-info">
             View
           </a>
         </td>

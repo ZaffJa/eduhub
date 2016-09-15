@@ -50,7 +50,7 @@
               </div>
               <div class="modal-footer">
                   <a href="" role="button" id="parseDeleteRoute" class="btn btn-danger">Delete</a>
-                  <button type="button" class="btn btn-success" data-dismiss="modal">Cancel</button>
+                  <button type="button" class="btn btn-warning" data-dismiss="modal">Cancel</button>
               </div>
           </div>
           <!-- /.modal-content -->
