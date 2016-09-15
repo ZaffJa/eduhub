@@ -101,7 +101,7 @@ desired effect
                             <ul class="dropdown-menu">
                                 <!-- User image -->
                                 <li class="user-header">
-                                    <img src="/img/logo/logo_uthm.png" class="img-circle" alt="User Image">
+                                    <img src="http://www.iiwas.org/conferences/iiwas2011/img/logos/UTM.jpg" class="img-circle" alt="User Image">
                                     <p>
                                         {{ Auth::user()->institution != null ? Auth::user()->institution->name : 'Not Associated with Instititution'}}
                                         <small>Member since {{Auth::user()->created_at->diffForHumans()}}</small>
