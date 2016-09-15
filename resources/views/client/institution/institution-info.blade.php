@@ -45,8 +45,8 @@
               </div>
               <div class="box-footer">
                  <a href="{!! route('client.institution.view') !!}" class="btn btn-warning">Cancel</a>
-                 <a href="" class="btn btn-primary">Edit</a>
-                </div>
+                 <a href="{!! route('client.institution.edit',$institution->id) !!}" class="btn btn-primary">Edit</a>
+              </div>
 
               <!-- /.box-body -->
             </div>

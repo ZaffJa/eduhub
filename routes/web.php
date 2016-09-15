@@ -76,6 +76,7 @@ Route::group(['prefix'=>'client-dashboard'],function(){
     Route::post('/facilities/{id}/{fid}/delete', 'FacilityController@delete')->name('faci.delete');
 
     Route::get('/institution','InstitutionController@view')->name('client.institution.view');
-    Route::get('/institution/{slug}/institution-view', 'InstitutionController@viewInstitution')->name('client.institution.view.institution');
+    Route::get('/institution/{id}/institution-view', 'InstitutionController@viewInstitution')->name('client.institution.view.institution');
+    Route::get('/institution/{id}/edit', 'InstitutionController@edit')->name('client.institution.edit');
   });
 });

@@ -31,10 +31,37 @@ class InstitutionController extends Controller
 
     public function viewInstitution($id)
     {
-      $institution = Institution::whereId($id)->firstOrFail();
+      if($id != Auth::user()->institution->id){
+        
+        $institutions = Institution::whereClient_id(Auth::user()->id)->paginate(5);
 
-      // return $institution;
-      return View::make('client.institution.institution-info',compact('institution','parent_id'));
+        return redirect()->route('client.institution.view',compact('institutions'));
+      
+      }else{
+
+        $institution = Institution::whereId($id)->firstOrFail();
+
+        return View::make('client.institution.institution-info',compact('institution'));
+      }
+    }
+
+    public function edit($id)
+    {
+    
+      if($id != Auth::user()->institution->id){
+        
+        $institutions = Institution::whereClient_id(Auth::user()->id)->paginate(5);
+
+        return redirect()->route('client.institution.view',compact('institutions'));
+
+      }else{
+
+        $institution = Institution::whereId($id)->firstOrFail();
+        $institution_types = InstitutionType::pluck('name','id');
+
+        return View::make('client.institution.edit',compact('institution','institution_types'));
+      }
+
     }
 
     public function create(Request $r)
