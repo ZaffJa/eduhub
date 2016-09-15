@@ -67,7 +67,7 @@
               <div class="box-footer">
                  <a href="{!! route('client.course.view') !!}" class="btn btn-warning">Cancel</a>
                  <a href="{!! route('client.course.edit',$course->id) !!}" class="btn btn-info">Update</a>
-                 <a href="{!! route('client.course.delete', $course->id) !!}" class="btn btn-danger">Delete</a>
+                 <button value="{!! route('client.course.delete', $course->id) !!}" class="btn btn-danger confirmDeleteBtn">Delete</button>
                 </div>
 
               <!-- /.box-body -->
