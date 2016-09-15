@@ -13,6 +13,7 @@
 
                 <h1 class="box-title"> {{ $course->name_en}} </h1>
               </br>
+                <i class="fa fa-book"></i>
                 <h1 class="box-title"> {{ $course->name_ms}} </h1>
               </div>
               <!-- /.box-header -->
@@ -64,8 +65,8 @@
 
               </div>
               <div class="box-footer">
-                 <a href="{!! route('client.course.view') !!}" class="btn btn-danger-outline">Cancel</a>
-                 <a href="{!! route('client.course.edit',$course->id) !!}" class="btn btn-primary">Edit</a>
+                 <a href="{!! route('client.course.view') !!}" class="btn btn-warning">Cancel</a>
+                 <a href="{!! route('client.course.edit',$course->id) !!}" class="btn btn-info">Update</a>
                  <a href="{!! route('client.course.delete', $course->id) !!}" class="btn btn-danger">Delete</a>
                 </div>
 

@@ -5,12 +5,7 @@
 @section('content2')
 <div class="box box-primary">
 
-  <div class="box-header">
-      <label style="color:rgb(0,255,12);" id="haha"><strong> {{$status != null ? $status : ''}}</strong> </label>
-  </div>
-<script type="text/javascript">
-  $('#haha').hide(10000);
-</script>
+
 <style media="screen">
     .col-md-2 {
         text-align: center;
@@ -153,8 +148,8 @@
     <div class="row">
         <div class="col-md-offset-3 col-md-3">
             {{ csrf_field() }}
-            <button type='submit' class='btn btn-default '>Submit</button>
-            <a href="{!! route('client.course.view') !!}" class="btn btn-danger">Cancel</a>
+            <button type='submit' class='btn btn-success '>Submit</button>
+            <a href="{!! route('client.course.view') !!}" class="btn btn-warning">Cancel</a>
         </div>
 
     </div>

@@ -56,7 +56,7 @@
       <div class="col-lg-12">
         <a href="">
           <div class="box-body">
-            <div class="demo-card-image mdl-card mdl-shadow--2dp" style="background-image: url('/img/default/library.jpg')">
+            <div class="demo-card-image mdl-card mdl-shadow--2dp" style="background-image: url('/img/default/book-02.png')">
               <div class="mdl-card__title mdl-card--expand"  >
 
               </div>
@@ -74,7 +74,7 @@
       <div class="col-lg-3">
         <a href="">
           <div class="box-body">
-            <div class="demo-card-image mdl-card mdl-shadow--2dp" style="background-image: url('/img/default/library.jpg')">
+            <div class="demo-card-image mdl-card mdl-shadow--2dp" style="background-image: url('/img/default/book-02.png')">
               <div class="mdl-card__title mdl-card--expand"  >
 
               </div>

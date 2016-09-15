@@ -6,7 +6,7 @@
 
 
 <div class="col-lg-12">
-  
+
     <div class="box box-primary">
 
         <form role="form" method="POST" action="{{route('client.faculty.store')}}" enctype="multipart/form-data"
@@ -23,7 +23,7 @@
                 <p class="help-block">Example block-level help text here.</p>
             </div>
           </div>
-          <div class="box-footer"> <a href="{!! route('client.faculty.view') !!}" class="btn btn-danger">Cancel</a> <button class="btn btn-primary">Submit</button></div>
+          <div class="box-footer"> <a href="{!! route('client.faculty.view') !!}" class="btn btn-warning">Cancel</a> <button class="btn btn-success">Submit</button></div>
     </form>
   </div>
   </div>

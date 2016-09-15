@@ -11,9 +11,10 @@
 
     .row {
         padding-top: 10px;
-        
+
     }
 </style>
+<div class="box-body">
 <form class=""  method="post" autocomplete="off">
     <div class='row'>
         @if (count($errors) > 0)
@@ -153,15 +154,17 @@
             <input type="text" name="course-description" placeholder="Detailed description of the course">
         </div>
     </div> -->
-    <div class="row">
-        <div class="col-md-offset-3 col-md-3">
-            {{ csrf_field() }}
-            <a href="{!! route('client.course.update',$course->id) !!}">
-                <button type='submit' class='btn btn-success '>Submit</button>
-            </a>
-            <a href="{!! route('client.course.view.course', $course->id ) !!}" class="btn btn-danger-outline ">Cancel</a>
-        </div>
-    </div>
+
 </form>
+</div>
+<div class="box-footer">
+  
+        {{ csrf_field() }}
+        <a href="{!! route('client.course.update',$course->id) !!}">
+            <button type='submit' class='btn btn-success '>Submit</button>
+        </a>
+        <a href="{!! route('client.course.view.course', $course->id ) !!}" class="btn btn-warning ">Cancel</a>
+
+</div>
 </div>
 @endsection
