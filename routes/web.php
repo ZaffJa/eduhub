@@ -30,16 +30,13 @@ Route::get('/home', 'HomeController@index');
 
 
 
-Route::get('/dataTables',function(){
-    return Datatables::eloquent(User::query())->make(true);
-})->name('dataTables');
-
-
 Route::group(['prefix'=>'client-dashboard'],function(){
   Route::group(['middleware'=>'auth'],function(){
 
     Route::get('/', 'DashboardController@dashboard');
     Route::get('/edit-profile', 'DashboardController@profile')->name('client.profile');
+    Route::get('/request-institution','InstitutionController@requestInstitution')->name('client.request.institution');
+    Route::post('/request-institution','InstitutionController@requestAddInstitution')->name('client.request.add.institution');
 
     Route::get('/new-institution', 'InstitutionController@index');
     Route::post('/new-institution', 'InstitutionController@create')->name('client.post.institution');

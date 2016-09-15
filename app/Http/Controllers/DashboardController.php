@@ -27,10 +27,7 @@ class DashboardController extends Controller
 
   public function getCourses()
   {
-
-    // return Auth::user()->id;
     $v = Institution::whereClientId(Auth::user()->id)->firstOrFail();
-
     return $v->courses;
   }
 }

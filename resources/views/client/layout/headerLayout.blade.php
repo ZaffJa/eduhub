@@ -24,7 +24,7 @@
         @foreach ($errors->all() as $error)
 
           <p>
-            Error Message
+            {{$error}}
             <br/>
           <p>
 
