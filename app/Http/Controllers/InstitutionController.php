@@ -23,13 +23,12 @@ class InstitutionController extends Controller
     {
       $institutions = Institution::whereClient_id(Auth::user()->id)->paginate(5);
 
-    	return View::make('client.institution.view',compact('institutions'));
+      return View::make('client.institution.view',compact('institutions'));
     }
 
     public function viewInstitution($id)
     {
       $institution = Institution::whereId($id)->firstOrFail();
-      // $parent_id = Institution::whereParent_id($institution->id)->firstOrFail();
 
       // return $institution;
       return View::make('client.institution.institution-info',compact('institution','parent_id'));
@@ -61,9 +60,5 @@ class InstitutionController extends Controller
 
 
       return redirect()->route('client.dashboard');
-
-
-
-
     }
 }

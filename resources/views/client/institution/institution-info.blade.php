@@ -44,9 +44,8 @@
 
               </div>
               <div class="box-footer">
-                 <a href="{!! route('client.institution.view') !!}" class="btn btn-danger-outline">Cancel</a>
+                 <a href="{!! route('client.institution.view') !!}" class="btn btn-warning">Cancel</a>
                  <a href="" class="btn btn-primary">Edit</a>
-                 <a href="" class="btn btn-danger">Delete</a>
                 </div>
 
               <!-- /.box-body -->

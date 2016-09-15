@@ -80,6 +80,5 @@ Route::group(['prefix'=>'client-dashboard'],function(){
 
     Route::get('/institution','InstitutionController@view')->name('client.institution.view');
     Route::get('/institution/{slug}/institution-view', 'InstitutionController@viewInstitution')->name('client.institution.view.institution');
-
   });
 });
