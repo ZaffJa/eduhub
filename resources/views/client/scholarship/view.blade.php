@@ -23,7 +23,7 @@
                         <td>{{$is->type->name}}</td>
                         <td>{{$is->updated_at->diffForHumans()}}</td>
                         <td>
-                            <button value="{{route('client.delete.scholarship',$is->id)}}" class='btn btn-xs btn-danger confirmDeleteBtn'>Delete</a>
+                            <button value="{{route('client.delete.scholarship',$is->id)}}" class='btn btn-danger confirmDeleteBtn'>Delete</a>
                         </td>
                     </tr>
                   @endforeach

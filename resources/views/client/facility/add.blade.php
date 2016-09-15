@@ -24,8 +24,9 @@
         </div>
       </div>
       <div class="box-footer">
-         <a href="{{route('faci.view', $typeid)}}" class="btn btn-danger">Cancel</a>
-          <button class="btn btn-primary">Submit</button>
+        <button class="btn btn-success">Submit</button>
+         <a href="{{route('faci.view', $typeid)}}" class="btn btn-warning">Cancel</a>
+
         </div>
 </form>
 </div>
