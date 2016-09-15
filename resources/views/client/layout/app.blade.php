@@ -19,7 +19,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Datatables css -->
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css">
+    <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css"> -->
     <!-- Theme style -->
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="/client/dist/css/AdminLTE.min.css">
@@ -34,8 +34,8 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- Bootstrap 3.3.6 -->
     <script src="/client/bootstrap/js/bootstrap.min.js"></script>
     <!-- Datatable js -->
-    <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+    <!-- <script src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script> -->
+    <script src="/js/jquery-ui.js"></script>
     <!-- AdminLTE App -->
     <script src="/client/dist/js/app.min.js"></script>
 
@@ -194,7 +194,7 @@ desired effect
                     </li>
                     @else
                     <li class="treeview">
-                        <a href="#"><i class="fa fa-building-o"></i> <span>Request Institution</span>
+                        <a href="{!!route('client.request.institution')!!}"><i class="fa fa-building-o"></i> <span>Request Institution</span>
                           <span class="pull-right-container">
 
                           </span>
