@@ -42,9 +42,7 @@
                   <td> {{ $institution->location }} </td>
                   <td>
                     <a href="{{ $institution->website }}"> 
-                      <span class="label label-success"> 
                         {{ $institution->website}} 
-                      </span> 
                     </a> 
                   </td>
                   <td>
