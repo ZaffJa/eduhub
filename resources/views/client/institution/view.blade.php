@@ -38,7 +38,7 @@
                 <tr>
                   <td> {{ $index + 1 }} </td>
                   <td> {{ $institution->name }} </td>
-                  <td> //TODO add parent institution </td>
+                  <td> {{ $institution->parent ? $institution->parent->name : 'Parent institution not added'}} </td>
                   <td> {{ $institution->location }} </td>
                   <td>
                     <a href="{{ $institution->website }}"> 
