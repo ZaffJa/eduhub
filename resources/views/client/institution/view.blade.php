@@ -23,30 +23,43 @@
             <div class="box-body table-responsive no-padding">
               <table class="table table-hover table-striped">
                 <tbody>
-                  <tr>
+
+                <tr>
                   <th>NO</th>
                   <th>Name</th>
+                  <th>Parent Institution</th>
                   <th>Location</th>
                   <th>Website</th>
-
+                  <th>View</th>
                 </tr>
+
+                @foreach ($institutions as $index=>$institution)
+
                 <tr>
-                  <td>1</td>
-                  <td>University Technology, of Malaysia</td>
-                  <td>Skudai, Johor</td>
-                  <td><span class="label label-success">www.utm.my</span></td>
-
+                  <td> {{ $index + 1 }} </td>
+                  <td> {{ $institution->name }} </td>
+                  <td> //TODO add parent institution </td>
+                  <td> {{ $institution->location }} </td>
+                  <td>
+                    <a href="{{ $institution->website }}"> 
+                      <span class="label label-success"> 
+                        {{ $institution->website}} 
+                      </span> 
+                    </a> 
+                  </td>
+                  <td>
+                    <a href="{!! route('client.institution.view.institution', $institution->id, $institution->slug) !!}" class="btn btn-info-outline">
+                      View
+                    </a>
+                  </td>
                 </tr>
 
-              <tr>
-                <td>1</td>
-                <td>University Technology, of Malaysia</td>
-                <td>Kuala Lumpur</td>
-                <td><span class="label label-success">www.utm.my</span></td>
+                @endforeach
+              </tbody>
 
-              </tr>
+              {{ $institution->render }}
 
-              </tbody></table>
+            </table>
             </div>
             <!-- /.box-body -->
           </div>
