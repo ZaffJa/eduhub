@@ -45,8 +45,9 @@
               <!-- /.box-body -->
 
               <div class="box-footer">
-                <button type="submit" class="btn btn-danger">Cancel</button>
-                <button type="submit" class="btn btn-primary">Submit</button>
+
+                <button type="submit" class="btn btn-success">Submit</button>
+                <a class="btn btn-warning" href="/client-dashboard">Cancel</a>
               </div>
             </form>
           </div>
