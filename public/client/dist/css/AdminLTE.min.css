@@ -3799,7 +3799,8 @@ table.text-center th {
 .lockscreen-credentials .btn {
     background-color: #fff;
     border: 0;
-    padding: 0 10px
+    padding: 0 10px;
+
 }
 
 .lockscreen-footer {

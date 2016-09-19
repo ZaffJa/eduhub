@@ -24,9 +24,13 @@
         </div>
       </div>
       <div class="box-footer">
+        <div class="col-md-10">
+        </div>
+        <div class="col-md-2">
+        <a href="{{route('faci.view', $typeid)}}" class="btn btn-warning">Cancel</a>
         <button class="btn btn-success">Submit</button>
-         <a href="{{route('faci.view', $typeid)}}" class="btn btn-warning">Cancel</a>
 
+</div>
         </div>
 </form>
 </div>

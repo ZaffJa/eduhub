@@ -22,8 +22,12 @@
             <div class="form-group"> <label for="exampleInputFile">Image</label> <input type="file" id="exampleInputFile" name="fac_file">
                 <p class="help-block">Example block-level help text here.</p>
             </div>
-          </div>
-          <div class="box-footer"> <a href="{!! route('client.faculty.view') !!}" class="btn btn-warning">Cancel</a> <button class="btn btn-success">Submit</button></div>
+            <div class="col-md-10">
+</div>
+<div class="col-md-2">
+           <a href="{!! route('client.faculty.view') !!}" class="btn btn-warning">Cancel</a> <button class="btn btn-success">Submit</button>
+</div>
+           </div>
     </form>
   </div>
   </div>

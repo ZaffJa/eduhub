@@ -65,11 +65,16 @@
 
               </div>
               <div class="box-footer">
+                <div class="col-md-9">
+                  </div>
+                    <div class="col-md-3">
                  <a href="{!! route('client.course.view') !!}" class="btn btn-warning">Cancel</a>
-                 <a href="{!! route('client.course.edit',$course->id) !!}" class="btn btn-info">Update</a>
-                 <button value="{!! route('client.course.delete', $course->id) !!}" class="btn btn-danger confirmDeleteBtn">Delete</button>
-                </div>
 
+                 <button value="{!! route('client.course.delete', $course->id) !!}" class="btn btn-danger confirmDeleteBtn">Delete</button>
+
+                 <a href="{!! route('client.course.edit',$course->id) !!}" class="btn btn-info">Edit</a>
+                </div>
+                </div>
               <!-- /.box-body -->
             </div>
             <!-- /.box -->
