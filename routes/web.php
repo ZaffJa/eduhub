@@ -87,5 +87,6 @@ Route::group(['prefix'=>'client-dashboard'],function(){
     Route::get('/institution','InstitutionController@view')->name('client.institution.view');
     Route::get('/institution/{id}/institution-view', 'InstitutionController@viewInstitution')->name('client.institution.view.institution');
     Route::get('/institution/{id}/edit', 'InstitutionController@edit')->name('client.institution.edit');
+    Route::post('/institution/{id}/edit', 'InstitutionController@update')->name('client.institution.update');
   });
 });

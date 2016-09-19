@@ -34,8 +34,8 @@
                   <dt>Website</dt>
                   <dd><a href=" {{ $institution->website != null ? $institution->website : 'Website not added '}} "> {{ $institution->website != null ? $institution->website : 'Website not added '}} </a></dd>
                   <hr>
-                  <dt>Parent Institution</dt>
-                  <dd> {{ $institution->parent != null ? $institution->parent->name : 'Parent institution not added' }} </dd>
+                  <dt>Main branch</dt>
+                  <dd> {{ $institution->parent != null ? $institution->parent->name : 'Main branch not added' }} </dd>
                   <hr>
                   <dt>Description</dt>
                   <dd> {{ $institution->description }} </dd>
