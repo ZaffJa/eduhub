@@ -45,7 +45,7 @@
                     <h4 class="modal-title">Delete Confirmation</h4>
                 </div>
                 <div class="modal-body">
-                    <p>Confirm delete this record?&hellip;</p>
+                    <p>Are you sure you want to delete this record?</p>
                 </div>
                 <div class="modal-footer">
                     <a href="" role="button" id="parseDeleteRoute" class="btn btn-danger">Delete</a>

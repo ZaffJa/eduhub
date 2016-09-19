@@ -158,6 +158,13 @@ desired effect
 
                     @if(Auth::user()->institution != null)
                     <li class="treeview">
+                        <a href="/client-dashboard/institution"><i class="fa fa-university"></i> <span>Institution</span>
+                          <span class="pull-right-container">
+
+                          </span>
+                        </a>
+                    </li>
+                    <li class="treeview">
                         <a href="/client-dashboard/course"><i class="fa fa-book"></i> <span>Courses</span>
                           <span class="pull-right-container">
 
@@ -185,13 +192,7 @@ desired effect
                           </span>
                         </a>
                     </li>
-                    <li class="treeview">
-                        <a href="/client-dashboard/institution"><i class="fa fa-university"></i> <span>Institution</span>
-                          <span class="pull-right-container">
 
-                          </span>
-                        </a>
-                    </li>
                     @else
                     <li class="treeview">
                         <a href="{!!route('client.request.institution')!!}"><i class="fa fa-building-o"></i> <span>Request Institution</span>
