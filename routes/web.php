@@ -80,9 +80,10 @@ Route::group(['prefix'=>'client-dashboard'],function(){
     Route::post('/facilities/{id}/add', 'FacilityController@store')->name('faci.store');
     Route::get('/facilities/{id}/{fid}/edit', 'FacilityController@edit')->name('faci.edit');
     Route::post('/facilities/{id}/{fid}/edit', 'FacilityController@update')->name('faci.update');
-    Route::post('/facilities/{id}/{fid}/delete', 'FacilityController@delete')->name('faci.delete');
+    Route::get('/facilities/{id}/{fid}/delete', 'FacilityController@delete')->name('faci.delete');
 
     Route::get('/institution','InstitutionController@view')->name('client.institution.view');
-    Route::get('/institution/{slug}/institution-view', 'InstitutionController@viewInstitution')->name('client.institution.view.institution');
+    Route::get('/institution/{id}/institution-view', 'InstitutionController@viewInstitution')->name('client.institution.view.institution');
+    Route::get('/institution/{id}/edit', 'InstitutionController@edit')->name('client.institution.edit');
   });
 });
