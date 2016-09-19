@@ -58,9 +58,37 @@ class InstitutionController extends Controller
 
         $institution = Institution::whereId($id)->firstOrFail();
         $institution_types = InstitutionType::pluck('name','id');
+        $parent_institution = Institution::pluck('name','id');
+        $parent_institution[''] = 'Please select'; 
 
-        return View::make('client.institution.edit',compact('institution','institution_types'));
+        return View::make('client.institution.edit',compact('institution','institution_types','parent_institution'));
       }
+
+    }
+
+    public function update(Request $r, $id)
+    {
+      $institution = Institution::whereId($id)->firstOrFail();
+
+      $institution->name = $r->name;
+      $institution->type_id = $r->type_id;
+      $institution->abbreviation = $r->abbreviation;
+      $institution->established = $r->established;
+      $institution->location = $r->location;
+      $institution->address = $r->address;
+      $institution->website = $r->website;
+      if($r->parent_id == '' || $r->parent_id == null){
+      $institution->parent_id = $r->parent_id;
+      }
+      $institution->description = $r->description;
+
+      try {
+        $institution->save();
+      }catch(\Illuminate\Database\QueryException $ex) {
+
+      }
+
+      return redirect()->back()->with(['status'=>'The '.$institution->name.' has been updated.']);
 
     }
 
