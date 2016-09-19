@@ -33,8 +33,13 @@
                 <input type="hidden" name="file_type" id="file-type" value="jpeg,png,jpg,gif,svg">
                 {{csrf_field()}}
             </div>
-            <div class=box-footer><button class="btn btn-success">Submit</button>
-                <a class="btn btn-danger" href="{{action('FacultyController@view')}}">Cancel</a>
+            <div class=box-footer>
+              <div class="col-lg-10">
+              </div>
+              <div class="col-lg-2">
+              <a class="btn btn-warning" href="{{action('FacultyController@view')}}">Cancel</a>
+              <button class="btn btn-success">Submit</button>
+            </div>
             </div>
         </form>
         </div>
