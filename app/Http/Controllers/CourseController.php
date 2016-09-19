@@ -156,7 +156,7 @@ class CourseController extends Controller
         $course->approved = $r->approved;
         $course->mqa_reference_no = $r->mqa_reference_no;
 
-        
+
         $course->save();
 
         return  redirect()->back()->with(['status'=>'The course name '.$course->name_en.' has been updated.']);
@@ -181,6 +181,43 @@ class CourseController extends Controller
       }
 
       return redirect()->back()->with(['status'=>'The course has been deleted.']);
-    
+
+    }
+
+
+    public function postSearchCourse(Request $r)
+    {
+      $faculty = Faculty::whereInstitution_id(Auth::user()->institution->id)->get();
+      foreach($faculty as $f){
+        foreach($f->courses as $c){
+          $filter = $c->where('name_en','LIKE','%'.$r->term.'%')->get();
+          if($filter != null){
+            foreach($filter as $fil){
+              $data[] = $fil->name_en;
+            }
+            break;
+          }
+          break;
+        }
+        break;
+      }
+      return response()->json($data);
+    }
+    public function postSearchCourseResult(Request $r)
+    {
+
+      $faculty = Faculty::whereInstitution_id(Auth::user()->institution->id)->get();
+      foreach($faculty as $f){ //Faculty
+        foreach($f->courses as $c){ //Courses based on institution
+          $course = Course::where('name_en','LIKE','%'.$r->search_course.'%')->first();
+        }
+        break;
+      }
+
+      if($course == null){
+        return redirect()->back()->with('status','No result found for query '.$r->search_faculty);
+      }else{
+        return redirect()->route('client.course.edit',$course->id);
+      }
     }
 }
