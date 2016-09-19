@@ -65,11 +65,11 @@ Route::group(['prefix'=>'client-dashboard'],function(){
     Route::get('/faculty', 'FacultyController@view')->name('client.faculty.view');
     Route::get('/faculty/add', 'FacultyController@add')->name('client.faculty.add');
     Route::post('/faculty/add', 'FacultyController@store')->name('client.faculty.store');
-    Route::get('/faculty/{id}/edit', 'FacultyController@edit');
+    Route::get('/faculty/{id}/edit', 'FacultyController@edit')->name('client.faculty.edit');
     Route::post('/faculty/{id}/edit', 'FacultyController@update')->name('fac_name');
     Route::get('/faculty/{id}/delete', 'FacultyController@delete')->name('client.faculty.delete');
     Route::get('/faculty/search', 'FacultyController@postSearchFaculty')->name('client.faculty.search');
-    Route::get('/faculty/search-result', 'FacultyController@postSearchResult')->name('client.faculty.search.result');
+    Route::post('/faculty/search-result', 'FacultyController@postSearchResult')->name('client.faculty.search.result');
 
 
     Route::get('/facilities', 'FacilityController@viewType')->name('faci.viewType');
