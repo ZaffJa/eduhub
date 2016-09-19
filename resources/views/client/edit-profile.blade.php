@@ -34,7 +34,7 @@
                   <label for="exampleInputFile">University logo</label>
                   <input type="file" id="exampleInputFile">
 
-                  <p class="help-block">Example block-level help text here.</p>
+                  <p class="help-block">File only accept jpg and png file format</p>
                 </div>
                 <div class="checkbox">
                   <label>

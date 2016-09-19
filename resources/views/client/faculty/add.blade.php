@@ -20,7 +20,7 @@
               <input type="text" id="fac_name" name="fac_name" placeholder="Faculty Name">
             </div>
             <div class="form-group"> <label for="exampleInputFile">Image</label> <input type="file" id="exampleInputFile" name="fac_file">
-                <p class="help-block">Example block-level help text here.</p>
+                <p class="help-block">File only accept jpg and png file format</p>
             </div>
             <div class="col-md-10">
 </div>
