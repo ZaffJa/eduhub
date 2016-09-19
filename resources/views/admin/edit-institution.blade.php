@@ -27,7 +27,7 @@
                                     <label>Established date</label>
                                     <input type="text" class="form-control" name="institution_established_date" value="{{$i->established}}" id="datepicker">
                                 </div>
-                                <!-- <div class="form-group">
+                                <div class="form-group">
                                     <label>Institution Location</label><br>
                                     <select name="country" class="countries" id="countryId">
                                         <option value="132">Malaysia</option>
@@ -38,8 +38,8 @@
                                     <select name="city" class="cities" id="cityId">
                                         <option value="">Select City</option>
                                     </select>
-                                    <script src="http://iamrohit.in/lab/js/location.js"></script> -->
-                                <!-- </div>
+                                    <script src="http://iamrohit.in/lab/js/location.js"></script>
+                                </div>
                                 <div class="form-group">
                                   <label>Institution Type</label>
                                   <input type="text" class="form-control" name="institution_type">
@@ -96,7 +96,7 @@
                             <!-- /.box-body -->
                             <!-- <div class="box-footer">
                                 <button type="submit" class="btn btn-primary">Submit</button>
-                            </div> -->
+                            </div>
                         </form>
                     </div>
                 </div>

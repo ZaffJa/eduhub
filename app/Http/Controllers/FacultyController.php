@@ -69,12 +69,23 @@ class FacultyController extends Controller
 
       return response()->json($data);
     }
+    public function postSearchResult(Request $r)
+    {
+
+      $faculty = Faculty::where('name','LIKE','%'.$r->search_faculty.'%')->first();
+
+      if($faculty == null){
+        return redirect()->back()->with('status','No result found for query '.$r->search_faculty);
+      }else{
+        return redirect()->route('client.faculty.edit',$faculty->id);
+      }
+    }
 
 
     public function view()
     {
     	$faculties = Faculty::whereInstitution_id(Auth::user()->institution->id)->paginate(5);
-    	return view('client.faculty.view')->with(compact('faculties','dataTables'));
+    	return view('client.faculty.view')->with(compact('faculties'));
     }
 
     public function edit($id)

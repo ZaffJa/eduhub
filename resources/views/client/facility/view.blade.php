@@ -36,6 +36,9 @@
             <button type="submit" class="btn btn-danger">Delete</button>
           </form>
         </td>
+
+        <td><a href="{!! action('FacilityController@edit',array($typeid, $facility->id)) !!}"><button class="btn btn-info">edit</button></a></td>
+        <td><button value="{!! route('faci.delete', [$typeid, $facility->id]) !!}" class="btn btn-danger confirmDeleteBtn">Delete</button></td>
       </tr>
       @endforeach
     </tbody>

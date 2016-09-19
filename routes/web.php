@@ -65,11 +65,11 @@ Route::group(['prefix'=>'client-dashboard'],function(){
     Route::get('/faculty', 'FacultyController@view')->name('client.faculty.view');
     Route::get('/faculty/add', 'FacultyController@add')->name('client.faculty.add');
     Route::post('/faculty/add', 'FacultyController@store')->name('client.faculty.store');
-    Route::get('/faculty/{id}/edit', 'FacultyController@edit');
+    Route::get('/faculty/{id}/edit', 'FacultyController@edit')->name('client.faculty.edit');
     Route::post('/faculty/{id}/edit', 'FacultyController@update')->name('fac_name');
     Route::get('/faculty/{id}/delete', 'FacultyController@delete')->name('client.faculty.delete');
     Route::get('/faculty/search', 'FacultyController@postSearchFaculty')->name('client.faculty.search');
-    Route::get('/faculty/search-result', 'FacultyController@postSearchResult')->name('client.faculty.search.result');
+    Route::post('/faculty/search-result', 'FacultyController@postSearchResult')->name('client.faculty.search.result');
 
 
     Route::get('/facilities', 'FacilityController@viewType')->name('faci.viewType');
@@ -80,9 +80,10 @@ Route::group(['prefix'=>'client-dashboard'],function(){
     Route::post('/facilities/{id}/add', 'FacilityController@store')->name('faci.store');
     Route::get('/facilities/{id}/{fid}/edit', 'FacilityController@edit')->name('faci.edit');
     Route::post('/facilities/{id}/{fid}/edit', 'FacilityController@update')->name('faci.update');
-    Route::post('/facilities/{id}/{fid}/delete', 'FacilityController@delete')->name('faci.delete');
+    Route::get('/facilities/{id}/{fid}/delete', 'FacilityController@delete')->name('faci.delete');
 
     Route::get('/institution','InstitutionController@view')->name('client.institution.view');
-    Route::get('/institution/{slug}/institution-view', 'InstitutionController@viewInstitution')->name('client.institution.view.institution');
+    Route::get('/institution/{id}/institution-view', 'InstitutionController@viewInstitution')->name('client.institution.view.institution');
+    Route::get('/institution/{id}/edit', 'InstitutionController@edit')->name('client.institution.edit');
   });
 });
