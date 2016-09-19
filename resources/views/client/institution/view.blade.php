@@ -27,7 +27,7 @@
                 <tr>
                   <th>NO</th>
                   <th>Name</th>
-                  <th>Parent Institution</th>
+                  <th>Main Branch</th>
                   <th>Location</th>
                   <th>Website</th>
                   <th>View</th>
@@ -38,7 +38,7 @@
                 <tr>
                   <td> {{ $index + 1 }} </td>
                   <td> {{ $institution->name }} </td>
-                  <td> {{ $institution->parent ? $institution->parent->name : 'Parent institution not added'}} </td>
+                  <td> {{ $institution->parent ? $institution->parent->name : 'Main branch not added'}} </td>
                   <td> {{ $institution->location }} </td>
                   <td>
                     <a href="{{ $institution->website }}">
