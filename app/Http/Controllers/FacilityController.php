@@ -105,10 +105,9 @@ class FacilityController extends Controller
 
         }
 
-        $status = 'The facility name '. $facility->name .' has been updated.';
         $facilities = Facility::whereType_id($typeid)->whereInstitution_id(Auth::user()->institution->id)->get();
 
-        return view('client.facility.view', compact('status','typeid','facilities'));
+        return redirect()->back()->with(['status'=>'The '. $facility->name .' has been deleted','typeid','facilities']);
 
     }
 }

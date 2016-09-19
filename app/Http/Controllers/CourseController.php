@@ -180,7 +180,7 @@ class CourseController extends Controller
 
       }
 
-      return redirect()->route('client.course.view')->with(['status'=>'The course has been deleted.']);
+      return redirect()->back()->with(['status'=>'The course has been deleted.']);
     
     }
 }
