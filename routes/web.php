@@ -56,6 +56,8 @@ Route::group(['prefix'=>'client-dashboard'],function(){
     Route::get('/course/{id}/edit', 'CourseController@edit')->name('client.course.edit');
     Route::post('/course/{id}/edit', 'CourseController@update')->name('client.course.update');
     Route::get('/course/{id}/delete', 'CourseController@delete')->name('client.course.delete');
+    Route::get('/course/search', 'CourseController@postSearchCourse')->name('client.course.search');
+    Route::post('/course/search-result', 'CourseController@postSearchCourseResult')->name('client.course.search.result');
 
     Route::get('/scholarship/add', 'ScholarshipController@add')->name('client.view.add.scholarship');
     Route::post('/scholarship/add', 'ScholarshipController@postAdd')->name('client.add.scholarship');
