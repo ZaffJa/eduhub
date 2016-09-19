@@ -78,7 +78,7 @@
 
               </div>
                 <div class="mdl-card__actions" >
-                  <span class="demo-card-image__filename" style="font-size:150%;color:black; -webkit-text-stroke: 0.5px white;">Course</span>
+                  <span class="demo-card-image__filename" style="font-size:150%;color:black">Courses</span>
                 </div>
             </div>
           </div>
@@ -92,7 +92,7 @@
 
               </div>
                 <div class="mdl-card__actions" >
-                  <span class="demo-card-image__filename" style="font-size:150%;color:black; -webkit-text-stroke: 0.5px white;">Faculty</span>
+                  <span class="demo-card-image__filename" style="font-size:150%;color:black">Faculties</span>
                 </div>
             </div>
           </div>
@@ -106,7 +106,7 @@
 
               </div>
                 <div class="mdl-card__actions" >
-                  <span class="demo-card-image__filename" style="font-size:150%;color:black; -webkit-text-stroke: 0.5px white;">Facility</span>
+                  <span class="demo-card-image__filename" style="font-size:150%;color:black">Facilities</span>
                 </div>
             </div>
           </div>

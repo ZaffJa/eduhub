@@ -177,6 +177,64 @@ class InstitutionController extends Controller
         }
     }
 
+
+    public function viewInstitutionRequest()
+    {
+      $ri = RegisterInstitution::whereStatus(1)->get();
+      return view('admin.request-institution')
+                  ->with(compact('ri'));
+    }
+
+
+    public function approveInstitutionRequest($id)
+    {
+        $ri = RegisterInstitution::find($id);
+        $ri->status = 3;
+        try{
+            $i = Institution::find($ri->institution_id);
+            $i->client_id = $ri->user_id;
+            $i->save();
+            $ri->save();
+            return  redirect()->back()
+                                 ->with('status','Succesfully approve client request');
+        }catch (\Illuminate\Database\QueryException $ex) {
+          return  redirect()->back()
+                               ->with('status','Error - '.$ex->errorInfo[2]);
+        }
+    }
+
+    public function rejectInstitutionRequest($id)
+    {
+      $ri = RegisterInstitution::find($id);
+      $ri->status = 2;
+
+      try{
+          $ri->save();
+          return  redirect()->back()
+                               ->with('status','Succesfully reject client request');
+      }catch (\Illuminate\Database\QueryException $ex) {
+        return  redirect()->back()
+                             ->with('status','Error - '.$ex->errorInfo[2]);
+      }
+    }
+
+
+    public function viewAllInstitution()
+    {
+      $i = Institution::paginate(30);
+      return view('admin.all-institution')
+                              ->with(compact('i'));
+    }
+
+
+    public function editInstitution($id)
+    {
+      $i = Institution::find($id);
+
+      return view('admin.edit-institution')
+              ->with(compact(('i')));
+    }
+
     public function customMergeArray($data){
       if($data != null){
           $str = "";
