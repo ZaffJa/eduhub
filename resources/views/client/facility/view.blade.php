@@ -20,6 +20,7 @@
       <tr>
       <th>Name</th>
       <th>Capacity</th>
+      <th>Action</th>
       <tr>
     </thead>
     <tbody>
@@ -27,9 +28,10 @@
       <tr>
         <td> {{$facility->name}} </td>
         <td> {{$facility->capacity}} </td>
-        <td><a href="{!! action('FacilityController@edit',array($typeid, $facility->id)) !!}"><button class="btn btn-info">edit</button></a></td>
+
         <td>
           <form method="post" action="{!! action('FacilityController@delete', array($typeid, $facility->id)) !!}">
+            <a href="{!! action('FacilityController@edit',array($typeid, $facility->id)) !!}"><button class="btn btn-info">edit</button></a>
             <input type="hidden" name="_token" value="{!! csrf_token() !!}">
             <button type="submit" class="btn btn-danger">Delete</button>
           </form>

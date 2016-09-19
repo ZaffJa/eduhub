@@ -44,8 +44,12 @@
 
               </div>
               <div class="box-footer">
+                <div class="col-md-10">
+                </div>
+                <div class="col-md-2">
                  <a href="{!! route('client.institution.view') !!}" class="btn btn-warning">Cancel</a>
                  <a href="" class="btn btn-primary">Edit</a>
+                 </div>
                 </div>
 
               <!-- /.box-body -->

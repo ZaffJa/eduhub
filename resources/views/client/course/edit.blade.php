@@ -48,7 +48,7 @@
         <div class="col-md-1">
             {{ Form::select('level_id', $levels, $course->level->id) }}
         </div>
-        
+
     </div>
     <div class="row">
         <div class="col-md-2">
@@ -65,7 +65,7 @@
         <div class="col-md-1">
             <input type="number" value="{!! $course->period_value_min !!}" name="period_value_min" placeholder="Min credit hour">
         </div>
-        
+
     </div>
     <div class="row">
         <div class="col-md-2">
@@ -146,12 +146,15 @@
 
 </div>
 <div class="box-footer">
-  
+
         {{ csrf_field() }}
-        <a href="{!! route('client.course.update',$course->id) !!}">
-            <button class='btn btn-success '>Submit</button>
-        </a>
+<div class="col-md-10">
+</div>
+<div class="col-md-2">
         <a href="{!! route('client.course.view.course', $course->id ) !!}" class="btn btn-warning ">Cancel</a>
+        <a href="{!! route('client.course.update',$course->id) !!}"><button class='btn btn-success '>Update</button>
+        </a>
+</div>
 
 </form>
 </div>

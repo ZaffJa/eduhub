@@ -18,7 +18,7 @@
 </style>
 <div class="box-body">
 <form class="" action="{{route('client.course.store')}}" method="post" autocomplete="off">
-    
+
     <div class="row">
         <div class="col-md-2">
             Course Name
@@ -51,7 +51,7 @@
         <div class="col-md-1">
             {{ Form::select('level', $levels) }}
         </div>
-        
+
     </div>
     <div class="row">
     <div class="col-md-2">
@@ -145,10 +145,13 @@
         </div>
     </div> -->
     <div class="row">
-        <div class="col-md-offset-3 col-md-3">
+
             {{ csrf_field() }}
-            <button type='submit' class='btn btn-success '>Submit</button>
+            <div class="col-md-10">
+            </div>
+            <div class="col-md-2">
             <a href="{!! route('client.course.view') !!}" class="btn btn-warning">Cancel</a>
+            <button type='submit' class='btn btn-success '>Submit</button>
         </div>
 
     </div>

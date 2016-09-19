@@ -41,12 +41,12 @@
                   <td> {{ $institution->parent ? $institution->parent->name : 'Parent institution not added'}} </td>
                   <td> {{ $institution->location }} </td>
                   <td>
-                    <a href="{{ $institution->website }}"> 
-                        {{ $institution->website}} 
-                    </a> 
+                    <a href="{{ $institution->website }}">
+                        {{ $institution->website}}
+                    </a>
                   </td>
                   <td>
-                    <a href="{!! route('client.institution.view.institution', $institution->id, $institution->slug) !!}" class="btn btn-info-outline">
+                    <a href="{!! route('client.institution.view.institution', $institution->id, $institution->slug) !!}" class="btn btn-info">
                       View
                     </a>
                   </td>
