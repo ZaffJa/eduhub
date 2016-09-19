@@ -45,10 +45,14 @@
               <!-- /.box-body -->
 
               <div class="box-footer">
-
+                <div class="col-md-10">
+                </div>
+                <div class="col-md-2">
+                  <a class="btn btn-warning" href="/client-dashboard">Cancel</a>
                 <button type="submit" class="btn btn-success">Submit</button>
-                <a class="btn btn-warning" href="/client-dashboard">Cancel</a>
+
               </div>
+            </div>
             </form>
           </div>
 
