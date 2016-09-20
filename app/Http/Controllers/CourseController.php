@@ -12,6 +12,7 @@ use App\Models\Course;
 use App\Models\Institution;
 use App\Models\Nec;
 use App\Models\PeriodType;
+use App\Models\InstitutionCourse;
 use Validator;
 use Auth;
 use View;
@@ -84,7 +85,14 @@ class CourseController extends Controller
             $course->qualification = $r->qualification;
             $course->mqa_reference_no = $r->mqa;
 
-          $course->save();
+            $course->save();
+
+            //Add to institution course
+            $is = new InstitutionCourse;
+            $is->institution_id = Auth::user()->id;
+            $is->course_id = $course->id;
+
+            $is->save();
 
           return  redirect()->route('client.course.view')->with(['status'=>'The course '. $course->name_en .' has been added.']);
 
@@ -205,7 +213,6 @@ class CourseController extends Controller
     }
     public function postSearchCourseResult(Request $r)
     {
-
       $faculty = Faculty::whereInstitution_id(Auth::user()->institution->id)->get();
       foreach($faculty as $f){ //Faculty
         foreach($f->courses as $c){ //Courses based on institution
