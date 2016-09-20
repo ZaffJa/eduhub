@@ -19,8 +19,8 @@
            <input type="text" id="fac_name" name="faci_name" placeholder="Facility Name">
         </div>
         <div class="form-group">
-          <label>Capacity</label>
-           <input type="text" id="fac_name" name="faci_cap" placeholder="Capacity">
+          <label>Details</label>
+           <textarea type="text" id="fac_name" name="faci_cap" placeholder="Details"></textarea>
         </div>
       </div>
       <div class="box-footer">

@@ -19,7 +19,7 @@
     <thead>
       <tr>
       <th>Name</th>
-      <th>Capacity</th>
+      <th>Details</th>
       <th>Action</th>
       <tr>
     </thead>
@@ -29,7 +29,7 @@
         <td> {{$facility->name}} </td>
         <td> {{$facility->capacity}} </td>
 
-        <td><a href="{!! action('FacilityController@edit',array($typeid, $facility->id)) !!}"><button class="btn btn-info">edit</button></a>
+        <td><a href="{!! action('FacilityController@edit',array($typeid, $facility->id)) !!}"><button class="btn btn-info">Edit</button></a>
         <button value="{!! route('faci.delete', [$typeid, $facility->id]) !!}" class="btn btn-danger confirmDeleteBtn">Delete</button></td>
 
       </tr>
