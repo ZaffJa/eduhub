@@ -31,7 +31,7 @@ class ScholarshipController extends Controller
            'type_id' => 'required',
            'scholarship_contact' => 'required',
            'website' => 'required',
-           'file_form' => 'required|max:20048|mimes:'.$mime,
+           'file_form' => 'required|max:2048|mimes:'.$mime,
        ]);
     if ($validator->fails()) {
        return redirect()
@@ -46,13 +46,17 @@ class ScholarshipController extends Controller
       $institutionScholarship->fileable_id = Auth::user()->institution->id;
       $institutionScholarship->type_id = $r->type_id;
       $institutionScholarship->category_id = 1;
-      $institutionScholarship->filename = time().'_'.$r->file_form->getClientOriginalName();
+      $institutionScholarship->filename = time().'___'.$r->file_form->getClientOriginalName();
       $institutionScholarship->path = 'file/';
       $institutionScholarship->mime = $r->file_form->extension();
       $institutionScholarship->size = $r->file_form->getSize();
       $institutionScholarship->description = 'description';
       $institutionScholarship->contact = $r->scholarship_contact;
       $institutionScholarship->website = $r->website;
+
+      $destinationPath = "/uploads/scholarship";
+
+      $r->file_form->move(public_path().$destinationPath,$r->file_form->getClientOriginalName());
 
       $institutionScholarship->save();
 
@@ -79,7 +83,7 @@ class ScholarshipController extends Controller
        $s = InstitutionScholarship::find($id);
 
        try{
-        //  $s->delete();
+         $s->delete();
          return redirect()
                      ->back()
                      ->with(['status'=>'Succesfully deleted record']);

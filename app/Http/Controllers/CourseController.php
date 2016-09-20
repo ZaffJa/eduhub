@@ -205,7 +205,6 @@ class CourseController extends Controller
     }
     public function postSearchCourseResult(Request $r)
     {
-
       $faculty = Faculty::whereInstitution_id(Auth::user()->institution->id)->get();
       foreach($faculty as $f){ //Faculty
         foreach($f->courses as $c){ //Courses based on institution
