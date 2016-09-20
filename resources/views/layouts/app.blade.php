@@ -44,8 +44,8 @@
                 </button>
 
                 <!-- Branding Image -->
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'eduhub.my') }}
+                <a class="navbar-brand " href="{{ url('/') }}">
+                  <span style="color:black;">eduhub.my - Dashboard</span>
                 </a>
             </div>
 
