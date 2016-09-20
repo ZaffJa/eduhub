@@ -89,9 +89,13 @@ class FacilityController extends Controller
     		return $ex->errorInfo;
     	}
 
-    	$status = 'The facility name '. $facility->name .' has been updated.';
 
-    	return View::make('client.facility.edit',compact('facility','typeid','fid','status'));
+    	return redirect()
+                ->back()
+                ->with('facility',$facility)
+                ->with('typeid',$typeid)
+                ->with('fid',$fid)
+                ->with(['status'=>'The facility name '. $facility->name .' has been updated.']);
 
     }
 

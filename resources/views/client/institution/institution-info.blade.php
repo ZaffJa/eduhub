@@ -34,7 +34,7 @@
                   <dt>Website</dt>
                   <dd><a href=" {{ $institution->website != null ? $institution->website : 'Website not added '}} "> {{ $institution->website != null ? $institution->website : 'Website not added '}} </a></dd>
                   <hr>
-                  <dt>Parent Institution</dt>
+                  <dt>Main branch</dt>
                   <dd> {{ $institution->parent != null ? $institution->parent->name : 'Main branch not added' }} </dd>
                   <hr>
                   <dt>Description</dt>
@@ -48,10 +48,9 @@
                 </div>
                 <div class="col-md-2">
                  <a href="{!! route('client.institution.view') !!}" class="btn btn-warning">Cancel</a>
-                 <a href="" class="btn btn-primary">Edit</a>
+                 <a href="{!! route('client.institution.edit',$institution->id) !!}" class="btn btn-primary">Edit</a>
                  </div>
                 </div>
-                 <a href="{!! route('client.institution.edit',$institution->id) !!}" class="btn btn-primary">Edit</a>
               </div>
 
               <!-- /.box-body -->

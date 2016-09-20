@@ -14,10 +14,11 @@
 </div>
 <div class="box-body">
 <form action="{{route('faci.storeAll')}}" method="post">
-  <label>Facility Name</label>
   <input type="hidden" name="_token" value="{{csrf_token()}}">
+  <label>Facility Name</label>
   <input type="text" id="faci_name" name="faci_name" placeholder="Facility Name">
-  <input type="text" id="faci_cap" name="faci_cap" placeholder="Capacity">
+  <label>Details</label>
+  <textarea type="text" id="faci_cap" name="faci_cap" placeholder="Details"></textarea>
   <label>Facility Type
     <select id="id_type" name="typeid" aria-controls="example1" class="form-control input-md">
 

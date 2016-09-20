@@ -19,7 +19,7 @@
     <thead>
       <tr>
       <th>Name</th>
-      <th>Capacity</th>
+      <th>Details</th>
       <th>Action</th>
       <tr>
     </thead>
@@ -29,16 +29,9 @@
         <td> {{$facility->name}} </td>
         <td> {{$facility->capacity}} </td>
 
-        <td>
-          <form method="post" action="{!! action('FacilityController@delete', array($typeid, $facility->id)) !!}">
-            <a href="{!! action('FacilityController@edit',array($typeid, $facility->id)) !!}"><button class="btn btn-info">edit</button></a>
-            <input type="hidden" name="_token" value="{!! csrf_token() !!}">
-            <button type="submit" class="btn btn-danger">Delete</button>
-          </form>
-        </td>
+        <td><a href="{!! action('FacilityController@edit',array($typeid, $facility->id)) !!}"><button class="btn btn-info">Edit</button></a>
+        <button value="{!! route('faci.delete', [$typeid, $facility->id]) !!}" class="btn btn-danger confirmDeleteBtn">Delete</button></td>
 
-        <td><a href="{!! action('FacilityController@edit',array($typeid, $facility->id)) !!}"><button class="btn btn-info">edit</button></a></td>
-        <td><button value="{!! route('faci.delete', [$typeid, $facility->id]) !!}" class="btn btn-danger confirmDeleteBtn">Delete</button></td>
       </tr>
       @endforeach
     </tbody>

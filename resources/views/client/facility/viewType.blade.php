@@ -7,8 +7,6 @@
 
 <div class="row">
 
-
-
         @foreach(array_chunk($facility_types->all(), 3) as $typeRow)
         <div class="row">
           @foreach($typeRow as $type)
