@@ -19,6 +19,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+Route::get('/agent', 'AgentController@dashboard')->name('agent.dashboard');
+
 Auth::routes();
 
 Route::get('/email',function(){

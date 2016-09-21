@@ -37,7 +37,7 @@
               <div class="col-lg-10">
               </div>
               <div class="col-lg-2">
-              <a class="btn btn-warning" href="{{action('FacultyController@view')}}">Cancel</a>
+              <a class="btn btn-warning" href="{{action('ScholarshipController@view')}}">Cancel</a>
               <button class="btn btn-success">Submit</button>
             </div>
             </div>

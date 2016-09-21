@@ -8,7 +8,7 @@
     <div class="row">
         <div class="col-lg-12">
             <div class="box">
-                <div class="box-header" style="background-color: #dd4b39">
+                <div class="box-header" style="background-color: #DD4B39">
                     <h3 class="box-title" style="font-size:300%;color: white"> @yield('headbar') </h3>
                 </div>
 
