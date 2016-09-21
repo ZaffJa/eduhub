@@ -21,6 +21,10 @@
           <label>Details</label>
            <textarea type="text" id="fac_name" name="faci_cap" placeholder="Details"></textarea>
         </div>
+        <div class="form-group">
+          <label>Upload Image</label>
+          <input type="file" name="faci_img">
+        </div>
       </div>
       <div class="box-footer">
         <div class="col-md-10">
