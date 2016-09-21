@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use OwenIt\Auditing\AuditingTrait;
 
 class File extends Model
 {
+    use AuditingTrait;
+
     protected $fillable = [
         'user_id', 'institution_id', 'faculty_id', 'course_id', 'type_id',
         'category_id', 'filename', 'path', 'mime', 'type', 'description'

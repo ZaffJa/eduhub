@@ -84,7 +84,9 @@ class FacultyController extends Controller
 
     public function view()
     {
-    	$faculties = Faculty::whereInstitution_id(Auth::user()->institution->id)->paginate(5);
+    	$faculties = Faculty::whereInstitution_id(Auth::user()->institution->id)
+                                                                ->paginate(10);
+
     	return view('client.faculty.view')->with(compact('faculties'));
     }
 
@@ -99,7 +101,6 @@ class FacultyController extends Controller
     {
         $faculty = Faculty::whereId($id)->firstOrFail();
         $faculty->name = $request->get('fac_name');
-
 
         try {
             $faculty->save();

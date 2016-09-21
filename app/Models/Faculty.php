@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use OwenIt\Auditing\AuditingTrait;
 
 class Faculty extends Model
 {
     Use SoftDeletes;
+    Use AuditingTrait;
 
     protected $fillable = ['institution_id', 'name'];
     protected $dates = ['deleted_at'];
