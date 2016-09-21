@@ -11,7 +11,6 @@
     <form role="form" method="POST" action="{{route('faci.store', $typeid)}}" enctype="multipart/form-data">
       <div class="box-body">
         <div class="form-group">
-
             <input type="hidden" name="_token" value="{{csrf_token()}}">
         </div>
         <div class="form-group">
@@ -21,6 +20,10 @@
         <div class="form-group">
           <label>Details</label>
            <textarea type="text" id="fac_name" name="faci_cap" placeholder="Details"></textarea>
+        </div>
+        <div class="form-group">
+          <label>Upload Image</label>
+          <input type="file" name="faci_img">
         </div>
       </div>
       <div class="box-footer">

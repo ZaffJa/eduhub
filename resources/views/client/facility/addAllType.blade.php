@@ -13,7 +13,7 @@
 <h3>Facilities Form</h3>
 </div>
 <div class="box-body">
-<form action="{{route('faci.storeAll')}}" method="post">
+<form action="{{route('faci.storeAll')}}" method="post" enctype="multipart/form-data">
   <input type="hidden" name="_token" value="{{csrf_token()}}">
   <label>Facility Name</label>
   <input type="text" id="faci_name" name="faci_name" placeholder="Facility Name">
@@ -34,7 +34,8 @@
     <option value=10>Mini Post Office</option>
   </select>
   </label>
-
+  <label> Upload Image </label>
+  <input type="file" name="faci_img">
 </br>
 <div class="col-md-10">
 </div>

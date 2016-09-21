@@ -11,11 +11,10 @@
 
   <legend>Edit Facility</legend>
 
-  <form method="post" >
-    <label>Faculty Name</label>
+  <form method="post" enctype="multipart/form-data">
     <input type="text" name="faci_name" value="{!! $facility->name !!}">
-    <label>Details</label>
-    <textarea type="text" name="faci_capacity" value="{!! $facility->capacity !!}">{!! $facility->capacity !!}</textarea>
+    <input type="number" name="faci_capacity" value="{!! $facility->capacity !!}">
+    <input type="file" name="faci_img">
     <input type="hidden" name="_token" value="{!! csrf_token() !!}">
     <div class="col-md-10">
 </div>
