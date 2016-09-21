@@ -25,7 +25,7 @@ class FacilityController extends Controller
     {
       $facility = new Facility;
 
-      $facility->institution_id = Auth::user()->institution->id;
+      $facility->institution_id = Auth::user()->client->institution->id;
       $facility->type_id = $r->typeid;
       $facility->name = $r->faci_name;
       $facility->capacity = $r->faci_cap;
@@ -41,7 +41,7 @@ class FacilityController extends Controller
     }
     public function view($typeid)
     {
-    	$facilities = Facility::whereType_id($typeid)->whereInstitution_id(Auth::user()->institution->id)->get();
+    	$facilities = Facility::whereType_id($typeid)->whereInstitution_id(Auth::user()->client->institution->id)->get();
 
     	return view('client.facility.view')->with('typeid',$typeid)->with('facilities',$facilities);
     }
@@ -56,7 +56,7 @@ class FacilityController extends Controller
     {
     	$facility = new Facility;
 
-    	$facility->institution_id = Auth::user()->institution->id;
+    	$facility->institution_id = Auth::user()->client->institution->id;
     	$facility->type_id = $typeid;
     	$facility->name = $r->faci_name;
     	$facility->capacity = $r->faci_cap;
@@ -109,7 +109,7 @@ class FacilityController extends Controller
 
         }
 
-        $facilities = Facility::whereType_id($typeid)->whereInstitution_id(Auth::user()->institution->id)->get();
+        $facilities = Facility::whereType_id($typeid)->whereInstitution_id(Auth::user()->client->institution->id)->get();
 
         return redirect()->back()->with(['status'=>'The '. $facility->name .' has been deleted','typeid','facilities']);
 

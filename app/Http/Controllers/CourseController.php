@@ -23,7 +23,7 @@ class CourseController extends Controller
 
     public function add()
     {
-      $institution = Institution::whereClientId(Auth::user()->id)->firstOrFail();
+      $institution = Institution::whereClientId(Auth::user()->client->id)->firstOrFail();
 
       $faculties = Faculty::whereInstitutionId($institution->id)->pluck('name','id');
       $levels = StudyLevel::pluck('name','id');
@@ -38,7 +38,7 @@ class CourseController extends Controller
       }catch(Error $x){
         return view('client.course.add')
                               ->with(compact('faculties','levels','modes','nec','period_type'))
-                              ->withError(['status'=>'hahaha']);
+                              ->withError(['status'=>'Error getting data']);
       }
 
 
@@ -89,7 +89,7 @@ class CourseController extends Controller
 
             //Add to institution course
             $is = new InstitutionCourse;
-            $is->institution_id = Auth::user()->id;
+            $is->institution_id = Auth::user()->client->institution->id;
             $is->course_id = $course->id;
 
             $is->save();
@@ -99,7 +99,7 @@ class CourseController extends Controller
          }catch(\Illuminate\Database\QueryException $e){
                 return redirect()
                             ->back()
-                            ->withErrors($ex)
+                            ->withErrors($ex->errorInfo[2])
                             ->withInput();
             }
 
@@ -108,11 +108,7 @@ class CourseController extends Controller
 
      public function view()
      {
-      $faculty = Faculty::whereInstitutionId(Auth::user()->institution->id)->paginate(2);
-      // return $faculty;
-      // foreach ($faculty as $key) {
-      //   return $key->courses;
-      // }
+      $faculty = Faculty::whereInstitutionId(Auth::user()->client->institution->id)->paginate(2);
 
       $periodTypes = PeriodType::all();
 
@@ -134,7 +130,7 @@ class CourseController extends Controller
       $nec = Nec::pluck('field','code');
       $period_type = PeriodType::pluck('name','id');
 
-      $institution = Institution::whereClientId(Auth::user()->id)->firstOrFail();
+      $institution = Institution::whereClientId(Auth::user()->client->id)->firstOrFail();
 
       $course = Course::whereId($id)->firstOrFail();
 
@@ -163,8 +159,6 @@ class CourseController extends Controller
         $course->qualification = $r->qualification;
         $course->approved = $r->approved;
         $course->mqa_reference_no = $r->mqa_reference_no;
-
-
         $course->save();
 
         return  redirect()->back()->with(['status'=>'The course name '.$course->name_en.' has been updated.']);
@@ -172,7 +166,7 @@ class CourseController extends Controller
         }catch(\Illuminate\Database\QueryException $e){
                 return redirect()
                             ->back()
-                            ->withErrors($ex)
+                            ->withErrors($ex->errorInfo[2])
                             ->withInput();
         }
 
@@ -185,42 +179,56 @@ class CourseController extends Controller
       try {
         $course->delete();
       }catch(\Illuminate\Database\QueryException $ex){
-
+        return redirect()
+                    ->back()
+                    ->withErrors($ex->errorInfo[2])
+                    ->withInput();
       }
-
-      return redirect()->back()->with(['status'=>'The course has been deleted.']);
+      return redirect()
+              ->action('CourseController@view')
+              ->with(['status'=>'The course has been deleted.']);
 
     }
 
 
     public function postSearchCourse(Request $r)
     {
-      $faculty = Faculty::whereInstitution_id(Auth::user()->institution->id)->get();
-      foreach($faculty as $f){
-        foreach($f->courses as $c){
-          $filter = $c->where('name_en','LIKE','%'.$r->term.'%')->get();
-          if($filter != null){
-            foreach($filter as $fil){
-              $data[] = $fil->name_en;
-            }
-            break;
-          }
-          break;
+      if($r->term == null){
+        return redirect()
+                ->back()
+                ->with(['status'=>'The search bar cannot be empty.']);
+      }
+
+      $ic = InstitutionCourse::whereInstitutionId(Auth::user()->client->institution->id)->get();
+      $data = null;
+      foreach ($ic as $c) {
+        if (strpos(strtolower($c->course != null ? $c->course->name_en : 'null'), strtolower($r->term)) !== false) {
+          // $data[] = $c->course->name_en;
+          $data[] = $c->course != null ? $c->course->name_en : '';
         }
-        break;
       }
       return response()->json($data);
     }
+
     public function postSearchCourseResult(Request $r)
     {
-      $faculty = Faculty::whereInstitution_id(Auth::user()->institution->id)->get();
-      foreach($faculty as $f){ //Faculty
-        foreach($f->courses as $c){ //Courses based on institution
-          $course = Course::where('name_en','LIKE','%'.$r->search_course.'%')->first();
-        }
-        break;
-      }
+      $validator = Validator::make($r->all(), [
+             'search_course' => 'required|max:255|min:10',
+         ]);
 
+         if ($validator->fails()) {
+             return redirect()
+                         ->back()
+                         ->withErrors($validator)
+                         ->withInput();
+         }
+      $ic = InstitutionCourse::whereInstitutionId(Auth::user()->client->institution->id)->get();
+        foreach($ic as $c){ //Courses based on institution
+          $course = $c->course->where('name_en','LIKE','%'.$r->search_course.'%')->first();
+          if($course != null){
+            break;
+          }
+        }
       if($course == null){
         return redirect()->back()->with('status','No result found for query '.$r->search_faculty);
       }else{

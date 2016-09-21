@@ -31,4 +31,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo('App\Models\Institution','id','client_id');
     }
+
+    public function client()
+    {
+        return $this->belongsTo('App\Models\InstitutionUser','id','user_id');
+    }
 }

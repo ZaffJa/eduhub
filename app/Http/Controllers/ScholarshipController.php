@@ -43,7 +43,7 @@ class ScholarshipController extends Controller
     try{
       $institutionScholarship = new InstitutionScholarship;
       $institutionScholarship->fileable_type = 'file';
-      $institutionScholarship->fileable_id = Auth::user()->institution->id;
+      $institutionScholarship->fileable_id = Auth::user()->client->institution->id;
       $institutionScholarship->type_id = $r->type_id;
       $institutionScholarship->category_id = 1;
       $institutionScholarship->filename = time().'___'.$r->file_form->getClientOriginalName();
@@ -72,7 +72,7 @@ class ScholarshipController extends Controller
 
      public function view()
      {
-       $scholarship = InstitutionScholarship::whereFileableId(Auth::user()->institution->id)->get();
+       $scholarship = InstitutionScholarship::whereFileableId(Auth::user()->client->institution->id)->get();
 
        return view('client.scholarship.view')
                   ->with(compact('scholarship'));
