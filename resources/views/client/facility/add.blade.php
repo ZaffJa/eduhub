@@ -11,7 +11,6 @@
     <form role="form" method="POST" action="{{route('faci.store', $typeid)}}" enctype="multipart/form-data">
       <div class="box-body">
         <div class="form-group">
-
             <input type="hidden" name="_token" value="{{csrf_token()}}">
         </div>
         <div class="form-group">

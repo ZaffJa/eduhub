@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Models\Facility;
 use App\Models\FacilityType;
+use App\Models\File;
 use Auth;
 use View;
 
@@ -30,7 +31,6 @@ class FacilityController extends Controller
       $facility->name = $r->faci_name;
       $facility->capacity = $r->faci_cap;
 
-
       try{
         $facility->save();
       }catch(\Illuminate\Database\QueryException $ex){
@@ -43,7 +43,16 @@ class FacilityController extends Controller
     {
     	$facilities = Facility::whereType_id($typeid)->whereInstitution_id(Auth::user()->institution->id)->get();
 
-    	return view('client.facility.view')->with('typeid',$typeid)->with('facilities',$facilities);
+
+        $facility_img = File::whereInstitution_id(Auth::user()->institution->id)
+                                ->whereFacility_type($typeid)->get();
+
+        // return $facility_img;
+        // return $facilities;
+    	return view('client.facility.view')
+                    ->with('typeid',$typeid)
+                    ->with('facilities',$facilities)
+                    ->with('facility_img',$facility_img);
     }
 
     public function add($typeid)
@@ -67,7 +76,10 @@ class FacilityController extends Controller
             return $ex->errorInfo;
     	}
 
-    	return redirect()->back()->with('typeid',$typeid)->with(['status'=>'The facility name '. $facility->name .' has been added.']);
+    	return redirect()
+                ->back()
+                ->with('typeid',$typeid)
+                ->with(['status'=>'The facility name '. $facility->name .' has been added.']);
     }
 
     public function edit($typeid, $fid)
@@ -79,12 +91,29 @@ class FacilityController extends Controller
 
     public function update(Request $r,$typeid,$fid)
     {
-    	$facility = Facility::whereId($fid)->whereType_id($typeid)->firstOrFail();
-    	$facility->name = $r->faci_name;
+    	$facility = Facility::whereId($fid)
+                                ->whereType_id($typeid)
+                                ->firstOrFail();
+    	
+        $facility->name = $r->faci_name;
     	$facility->capacity = $r->faci_capacity;
 
+        $faci_img = new File;
+        $faci_img->institution_id = Auth::user()->institution->id;
+        $faci_img->facility_id = $fid;
+        $faci_img->facility_type = $typeid;
+        $faci_img->type_id = 1;
+        $faci_img->category_id = 2;
+        $faci_img->filename = $r->faci_img->getClientOriginalName();
+        $faci_img->path = 'facility/'.$r->faci_img->getClientOriginalName();
+        $faci_img->mime = $r->faci_img->extension();
+        $faci_img->size = $r->faci_img->getSize();
+
+        $r->faci_img->move(public_path()."/img/facility",$r->faci_img->getClientOriginalName());
+
     	try {
-    		$facility->save();
+            $facility->save();
+            $faci_img->save();
     	}catch(\Illuminate\Database\QueryException $ex){
     		return $ex->errorInfo;
     	}
