@@ -2,7 +2,8 @@
 
 @section('title', 'Dashboard')
 
-    @section('content')
+@section('content')
+
 
 
 @endsection

@@ -125,10 +125,11 @@
                 <!-- /.search form -->
 
                 <!-- Sidebar Menu -->
+
                 <ul class="sidebar-menu">
 
                     @if(Auth::user()->institution != null)
-
+                    <li class="header">Dashboard</li>
                     <li class="treeview">
                         <a href="/client-dashboard/faculty"><i class="fa fa-building"></i> <span>Faculties</span>
                           <span class="pull-right-container">
@@ -144,14 +145,7 @@
                         </a>
 
                     </li>
-                    <li class="treeview">
-                        <a href="/client-dashboard/course"><i class="fa fa-certificate"></i> <span>Short Courses</span>
-                          <span class="pull-right-container">
 
-                          </span>
-                        </a>
-
-                    </li>
                     <li class="treeview">
                         <a href="/client-dashboard/institution"><i class="fa fa-university"></i> <span>Institution</span>
                           <span class="pull-right-container">
@@ -172,7 +166,33 @@
                           </span>
                         </a>
                     </li>
+                    <li class="header">Other</li>
+                    <li class="treeview">
+                        <a href="/client-dashboard/course"><i class="fa fa-certificate"></i> <span>Short Courses</span>
+                          <span class="pull-right-container">
 
+                          </span>
+                        </a>
+
+                    </li>
+
+                    <li class="header">Settings</li>
+                    <li class="treeview">
+                        <a href="{!! route('client.institution.edit',Auth::user()->institution->id) !!}"><i class="fa fa-cog"></i> <span>Edit Profile</span>
+                          <span class="pull-right-container">
+                          </span>
+                        </a>
+                    </li>
+                    <li class="treeview">
+                        <a href="#" onclick="event.preventDefault();
+                                 document.getElementById('logout-form').submit();"><i class="fa fa-sign-out"></i> <span>Logout</span>
+                          <span class="pull-right-container">
+                          </span>
+                        </a>
+                        <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                            {{ csrf_field() }}
+                        </form>
+                    </li>
 
 
                     @else

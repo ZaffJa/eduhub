@@ -37,7 +37,7 @@
     @yield('header-css')
 </head>
 
-<body class=" skin-purple sidebar-toggle">
+<body class=" skin-red sidebar-toggle">
     <div class="wrapper">
 
         <!-- Main Header -->

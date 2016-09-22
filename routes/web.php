@@ -21,6 +21,9 @@ Route::get('/', function () {
 
 Route::get('/agent', 'AgentController@dashboard')->name('agent.dashboard');
 
+Route::get('/short', 'ShortController@dashboard')->name('short.dashboard');
+
+
 Auth::routes();
 
 Route::get('/email',function(){
