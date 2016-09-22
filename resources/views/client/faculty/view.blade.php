@@ -26,15 +26,15 @@
                     </thead>
                     <tbody>
                         @foreach($faculties as $faculty)
-                        <tr>
-
-                            <td> {!! $faculty->name !!} </td>
-                            <td>
-                                <a href="{!! action('FacultyController@edit', $faculty->id) !!}" class='btn btn-md btn-primary'>Edit</a>
-                                <button value="{!! action('FacultyController@delete', $faculty->id) !!}" class='btn btn-md btn-danger confirmDeleteBtn'>Delete</button>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td> {!! $faculty->name !!} </td>
+                                <td>
+                                    <a href="{!! action('FacultyController@edit', $faculty->id) !!}" class='btn btn-md btn-primary'>Edit</a>
+                                    <button value="{!! action('FacultyController@delete', $faculty->id) !!}" class='btn btn-md btn-danger confirmDeleteBtn'>Delete</button>
+                                </td>
+                            </tr>
                         @endforeach
+                        
                     </tbody>
                 </table>
                 {{$faculties->render()}}

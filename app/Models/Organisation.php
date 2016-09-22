@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use OwenIt\Auditing\AuditingTrait;
 
 class Organisation extends Model
 {
     use SoftDeletes;
+    use AuditingTrait;
 
     protected $fillable = [
         'name', 'abbreviation', 'type', 'address', 'phone',
