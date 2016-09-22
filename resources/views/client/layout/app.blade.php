@@ -116,7 +116,7 @@
                         <img src="/img/logo/LOGO-U.svg" class="img-circle" alt="User Image">
                     </div>
                     <div class="pull-left info">
-                        <p>{{ Auth::user()->name}}
+                        <p style="-webkit-transform">kjadhkashdjas daskdjashdhasd asdjkahsdkas asdjkasd</p>
                     </div>
                 </div>
 
