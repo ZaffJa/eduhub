@@ -61,9 +61,32 @@
                   <dt>MQA Refference Number</dt>
                   <dd> {{ $course->mqa_reference_no }} </dd>
                   <hr>
-                </dl>
 
+                  <dt><h3>Course Fee</h3></dt>
+                  <dd></dd>
+                   @foreach($courseFee as $cf) 
+                  @if($cf->fee_id == 1)
+                  <dt>Alumini Fee</dt>
+                  <dd>{{ $cf->amount }} </dd>
+                  @elseif ($cf->fee_id == 2)
+                  <dt>Cocuriculum Fee</dt>
+                  <dd>{{ $cf->amount }} </dd>
+                  @elseif ($cf->fee_id == 3)
+                  <dt>Residential Fee</dt>
+                  <dd>{{ $cf->amount }} </dd>
+                  @elseif ($cf->fee_id == 4)
+                  <dt>Service Fee</dt>
+                  <dd>{{ $cf->amount }} </dd>
+                  @elseif ($cf->fee_id == 5)
+                  <dt>Tuition Fee</dt>
+                  <dd>{{ $cf->amount }} </dd>
+                  @endif
+                  @endforeach
+                  <hr>
+                
+                </dl>
               </div>
+
               <div class="box-footer">
                 <div class="col-md-9">
                   </div>
