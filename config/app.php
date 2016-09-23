@@ -168,6 +168,7 @@ return [
          */
          Yajra\Datatables\DatatablesServiceProvider::class,
          Collective\Html\HtmlServiceProvider::class,
+         OwenIt\Auditing\AuditingServiceProvider::class,
         //
 
         /*
