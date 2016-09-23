@@ -3,9 +3,11 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use OwenIt\Auditing\AuditingTrait;
 
 class RegisterInstitution extends Model
 {
+	use AuditingTrait;
 
     public function user()
     {

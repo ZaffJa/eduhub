@@ -3,9 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use OwenIt\Auditing\AuditingTrait;
 
 class Nec extends Model
 {
+    use AuditingTrait;
+
     protected $table = 'nec';
     protected $primaryKey = 'code';
     public $incrementing = false;
