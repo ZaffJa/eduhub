@@ -13,6 +13,7 @@ use App\Models\Institution;
 use App\Models\Nec;
 use App\Models\PeriodType;
 use App\Models\InstitutionCourse;
+use App\Models\CourseFee;
 use Validator;
 use Auth;
 use View;
@@ -33,15 +34,13 @@ class CourseController extends Controller
 
       try{
         return view('client.course.add')
-                              ->with(compact('faculties','levels','modes','nec','period_type'))
+                              ->with(compact('faculties','levels','modes','nec','period_type','fee_types'))
                               ->with(['status'=>'hahaha']);
       }catch(Error $x){
         return view('client.course.add')
-                              ->with(compact('faculties','levels','modes','nec','period_type'))
+                              ->with(compact('faculties','levels','modes','nec','period_type','fee_types'))
                               ->withError(['status'=>'hahaha']);
       }
-
-
     }
 
     public function store(Request $r)
@@ -59,6 +58,9 @@ class CourseController extends Controller
              'accredited' => 'required',
              'mqa' => 'required',
              'nec' => 'required',
+             'alumni' => 'required',
+             'coq' => 'required',
+             'residential' => 'required',
          ]);
 
          if ($validator->fails()) {
@@ -94,25 +96,58 @@ class CourseController extends Controller
 
             $is->save();
 
-          return  redirect()->route('client.course.view')->with(['status'=>'The course '. $course->name_en .' has been added.']);
+            //Course Fee
+            $alumni = new CourseFee;
+            $alumni->course_id = $course->id;
+            $alumni->fee_id = 1;
+            $alumni->amount = $r->alumni;
 
-         }catch(\Illuminate\Database\QueryException $e){
+            $alumni->save();
+
+            $coq =  new CourseFee;
+            $coq->course_id = $course->id;
+            $coq->fee_id = 2;
+            $coq->amount =  $r->coq;
+            
+            $coq->save();
+
+            $residential = new CourseFee;
+            $residential->course_id = $course->id;
+            $residential->fee_id = 3;
+            $residential->amount = $r->residential;
+
+            $residential->save();
+
+            $service = new CourseFee;
+            $service->course_id = $course->id;
+            $service->fee_id = 4;
+            $service->amount = $r->service;
+
+            $service->save();
+
+            $tuition = new CourseFee;
+            $tuition->course_id = $course->id;
+            $tuition->fee_id = 5;
+            $tuition->amount = $r->tuition;
+
+            $tuition->save();
+
+          return  redirect()
+                    ->route('client.course.view')
+                    ->with(['status'=>'The course '. $course->name_en .' has been added.']);
+
+         }catch(\Illuminate\Database\QueryException $ex){
                 return redirect()
                             ->back()
                             ->withErrors($ex)
                             ->withInput();
-            }
-
+          }
 
      }
 
      public function view()
      {
       $faculty = Faculty::whereInstitutionId(Auth::user()->institution->id)->paginate(2);
-      // return $faculty;
-      // foreach ($faculty as $key) {
-      //   return $key->courses;
-      // }
 
       $periodTypes = PeriodType::all();
 
@@ -123,28 +158,38 @@ class CourseController extends Controller
      {
       $course = Course::whereId($id)->firstOrFail();
 
-      return View::make('client.course.course-info',compact('course'));
+      $courseFee = CourseFee::whereCourse_id($id)->get();
+
+      return View::make('client.course.course-info',compact('course','courseFee'));
      }
 
      public function edit($id)
      {
       $faculties = Faculty::pluck('name','id');
+
       $levels = StudyLevel::pluck('name','id');
+
       $modes = StudyMode::pluck('name','id');
+
       $nec = Nec::pluck('field','code');
+
       $period_type = PeriodType::pluck('name','id');
 
       $institution = Institution::whereClientId(Auth::user()->id)->firstOrFail();
 
       $course = Course::whereId($id)->firstOrFail();
 
+      $courseFee = CourseFee::whereCourseId($id)->get();
 
-      // return $course;
-      return View::make('client.course.edit',compact('course','faculties','levels','modes','period_type','nec'));
+
+      return View::make('client.course.edit',compact('course','faculties','levels','modes','period_type','nec','courseFee'));
+
      }
 
      public function update(Request $r,$id)
      {
+
+
 
       try{
         $course = Course::whereId($id)->firstOrFail();
@@ -163,13 +208,68 @@ class CourseController extends Controller
         $course->qualification = $r->qualification;
         $course->approved = $r->approved;
         $course->mqa_reference_no = $r->mqa_reference_no;
-
-
         $course->save();
+
+
+        $alumni = CourseFee::whereCourseIdAndFeeId($id,1)->first();
+
+        if($alumni == null)
+        {
+        $alumni = new CourseFee;
+        $alumni->course_id = $id;
+        $alumni->fee_id = 1;
+        }
+
+        $alumni->amount = $r->alumni;
+        $alumni->save();
+
+        $coq = CourseFee::whereCourseIdAndFeeId($id,2)->first();
+        if($coq == null)
+        {
+          $coq = new CourseFee;
+          $coq->course_id = $id;
+          $coq->fee_id = 2;
+        }
+
+        $coq->amount =  $r->coq;
+        $coq->save();
+
+        $residential = CourseFee::whereCourseIdAndFeeId($id,3)->first();
+        if($residential == null)
+        {
+          $residential = new CourseFee;
+          $residential->course_id = $id;
+          $residential->fee_id = 3;
+        }
+
+        $residential->amount = $r->residential;
+        $residential->save();
+
+        $service = CourseFee::whereCourseIdAndFeeId($id,4)->first();
+        if($service == null)
+        {
+          $service = new CourseFee;
+          $service->course_id = $id;
+          $service->fee_id = 4;
+        }
+
+        $service->amount = $r->service;
+        $service->save();
+
+        $tuition = CourseFee::whereCourseIdAndFeeId($id,5)->first();
+        if($tuition == null)
+        {
+          $tuition = new CourseFee;
+          $tuition->course_id = $id;
+          $tuition->fee_id = 4;
+        }
+
+        $tuition->amount = $r->tuition;
+        $tuition->save();
 
         return  redirect()->back()->with(['status'=>'The course name '.$course->name_en.' has been updated.']);
 
-        }catch(\Illuminate\Database\QueryException $e){
+        }catch(\Illuminate\Database\QueryException $ex){
                 return redirect()
                             ->back()
                             ->withErrors($ex)

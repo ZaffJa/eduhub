@@ -116,7 +116,7 @@
                         <img src="/img/logo/LOGO-U.svg" class="img-circle" alt="User Image">
                     </div>
                     <div class="pull-left info">
-                        <p style="-webkit-transform">kjadhkashdjas daskdjashdhasd asdjkahsdkas asdjkasd</p>
+                        <p style="-webkit-transform">{!! Auth::user()->name !!}</p>
                     </div>
                 </div>
 
@@ -128,31 +128,31 @@
 
                 <ul class="sidebar-menu">
 
+                    <!-- Dashboard -->
                     @if(Auth::user()->institution != null)
                     <li class="header">Dashboard</li>
-                    <li class="treeview">
-                        <a href="/client-dashboard/faculty"><i class="fa fa-building"></i> <span>Faculties</span>
-                          <span class="pull-right-container">
-
-                          </span>
-                        </a>
-                    </li>
-                    <li class="treeview">
-                        <a href="/client-dashboard/course"><i class="fa fa-book"></i> <span>Courses</span>
-                          <span class="pull-right-container">
-
-                          </span>
-                        </a>
-
-                    </li>
 
                     <li class="treeview">
                         <a href="/client-dashboard/institution"><i class="fa fa-university"></i> <span>Institution</span>
                           <span class="pull-right-container">
-
                           </span>
                         </a>
                     </li>
+
+                    <li class="treeview">
+                        <a href="/client-dashboard/faculty"><i class="fa fa-building"></i> <span>Faculties</span>
+                          <span class="pull-right-container">
+                          </span>
+                        </a>
+                    </li>
+
+                    <li class="treeview">
+                        <a href="/client-dashboard/course"><i class="fa fa-book"></i> <span>Courses</span>
+                          <span class="pull-right-container">
+                          </span>
+                        </a>
+                    </li>
+
                     <li class="treeview">
                         <a href="/client-dashboard/facilities"><i class="fa fa-building-o"></i> <span>Facilities</span>
                           <span class="pull-right-container">
@@ -160,29 +160,34 @@
                           </span>
                         </a>
                     </li>
+
                     <li class="treeview">
                         <a href="/client-dashboard/scholarship/view"><i class="fa fa-usd"></i> <span>Scholarship</span>
                           <span class="pull-right-container">
                           </span>
                         </a>
                     </li>
+
+                    <!-- Short Course -->
                     <li class="header">Other</li>
+
                     <li class="treeview">
                         <a href="/client-dashboard/course"><i class="fa fa-certificate"></i> <span>Short Courses</span>
                           <span class="pull-right-container">
-
                           </span>
                         </a>
-
                     </li>
 
+                    <!-- Settings -->
                     <li class="header">Settings</li>
+
                     <li class="treeview">
                         <a href="{!! route('client.institution.edit',Auth::user()->institution->id) !!}"><i class="fa fa-cog"></i> <span>Edit Profile</span>
                           <span class="pull-right-container">
                           </span>
                         </a>
                     </li>
+                    
                     <li class="treeview">
                         <a href="#" onclick="event.preventDefault();
                                  document.getElementById('logout-form').submit();"><i class="fa fa-sign-out"></i> <span>Logout</span>
@@ -193,7 +198,6 @@
                             {{ csrf_field() }}
                         </form>
                     </li>
-
 
                     @else
                     <li class="treeview">

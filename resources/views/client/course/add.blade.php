@@ -136,6 +136,52 @@
             <input type="text" name="mqa" placeholder="MQA Reference No">
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-2">
+        <h3>Course Fee</h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+        Alumni Fee
+        </div>
+        <div class="col-md-4">
+            <input type="number" name="alumni" placeholder="Alumni Fee">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+        Cocuriculum Fee
+        </div>
+        <div class="col-md-4">
+            <input type="number" name="coq" placeholder="Cocuriculum Fee">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+        Residential College Fee
+        </div>
+        <div class="col-md-4">
+            <input type="number" name="residential" placeholder="Residential College Fee">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+        Service Fee
+        </div>
+        <div class="col-md-4">
+            <input type="number" name="service" placeholder="Service Fee">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
+        Tuition Fee
+        </div>
+        <div class="col-md-4">
+            <input type="number" name="tuition" placeholder="Tuition Fee">
+        </div>
+    </div>
+    
 <!--     <div class="row">
         <div class="col-md-2">
             Course Description
