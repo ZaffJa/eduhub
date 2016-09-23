@@ -64,24 +64,17 @@
 
                   <dt><h3>Course Fee</h3></dt>
                   <dd></dd>
-                   @foreach($courseFee as $cf) 
-                  @if($cf->fee_id == 1)
+                  
                   <dt>Alumini Fee</dt>
-                  <dd>{{ $cf->amount }} </dd>
-                  @elseif ($cf->fee_id == 2)
+                  <dd>{!! isset($courseFee[0]) ? $courseFee[0]->amount : 'Fee not added' !!} </dd>
                   <dt>Cocuriculum Fee</dt>
-                  <dd>{{ $cf->amount }} </dd>
-                  @elseif ($cf->fee_id == 3)
+                  <dd>{!! isset($courseFee[1]) ? $courseFee[1]->amount : 'Fee not added' !!}</dd>
                   <dt>Residential Fee</dt>
-                  <dd>{{ $cf->amount }} </dd>
-                  @elseif ($cf->fee_id == 4)
+                  <dd>{!! isset($courseFee[2]) ? $courseFee[2]->amount : 'Fee not added' !!}</dd>
                   <dt>Service Fee</dt>
-                  <dd>{{ $cf->amount }} </dd>
-                  @elseif ($cf->fee_id == 5)
+                  <dd>{!! isset($courseFee[3]) ? $courseFee[3]->amount : 'Fee not added' !!}</dd>
                   <dt>Tuition Fee</dt>
-                  <dd>{{ $cf->amount }} </dd>
-                  @endif
-                  @endforeach
+                  <dd>{!! isset($courseFee[4]) ? $courseFee[4]->amount : 'Fee not added' !!}</dd>
                   <hr>
                 
                 </dl>
