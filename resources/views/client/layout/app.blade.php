@@ -168,7 +168,7 @@
                     </li>
                     <li class="header">Other</li>
                     <li class="treeview">
-                        <a href="/client-dashboard/course"><i class="fa fa-certificate"></i> <span>Short Courses</span>
+                        <a href="/client-dashboard/course" class="not-active"><i class="fa fa-certificate"></i> <span>Short Courses(Coming Soon)</span>
                           <span class="pull-right-container">
 
                           </span>

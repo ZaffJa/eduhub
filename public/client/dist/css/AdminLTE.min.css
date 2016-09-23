@@ -7,6 +7,10 @@
  *   License: Open source - MIT
  *           Please visit http://opensource.org/licenses/MIT for more information
 !*/
+.not-active {
+   pointer-events: none;
+   cursor: default;
+}
 
 html,
 body {
