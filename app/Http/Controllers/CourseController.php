@@ -23,7 +23,7 @@ class CourseController extends Controller
 
     public function add()
     {
-      $institution = Institution::whereClientId(Auth::user()->client->id)->firstOrFail();
+      $institution = Institution::whereClientId(Auth::user()->client->user->id)->firstOrFail();
 
       $faculties = Faculty::whereInstitutionId($institution->id)->pluck('name','id');
       $levels = StudyLevel::pluck('name','id');
@@ -130,7 +130,7 @@ class CourseController extends Controller
       $nec = Nec::pluck('field','code');
       $period_type = PeriodType::pluck('name','id');
 
-      $institution = Institution::whereClientId(Auth::user()->client->id)->firstOrFail();
+      $institution = Institution::whereClientId(Auth::user()->client->user->id)->firstOrFail();
 
       $course = Course::whereId($id)->firstOrFail();
 

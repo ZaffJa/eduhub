@@ -17,12 +17,12 @@ class DashboardController extends Controller
 {
   public function dashboard()
   {
-      $institution = Institution::whereClientId(Auth::user()->client->id)->firstOrFail();
+      $institution = Institution::whereId(Auth::user()->client->institution->id)->firstOrFail();
 
-      $faculties =  Faculty::whereInstitution_id(Auth::user()->client->institution->id)->get();
+      $faculties =  Faculty::whereInstitutionId(Auth::user()->client->institution->id)->get();
       $faculty_count =  count($faculties);
 
-      $facility_count = Facility::whereInstitution_id(Auth::user()->client->institution->id)->count();
+      $facility_count = Facility::whereInstitutionId(Auth::user()->client->institution->id)->count();
 
       $course_count = Course::where('faculty_id','<=',$faculties->last()->id)->count();
 
@@ -36,7 +36,7 @@ class DashboardController extends Controller
 
   public function getCourses()
   {
-    $v = Institution::whereClientId(Auth::user()->client->id)->firstOrFail();
+    $v = Institution::whereClientId(Auth::user()->client->user->id)->firstOrFail();
     return $v->courses;
   }
 }

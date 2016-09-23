@@ -20,7 +20,7 @@
             <tbody>
 
                 <tr>
-                    <th>NO</th>
+                    <th>No</th>
                     <th>Name</th>
                     <th>Main Branch</th>
                     <th>Location</th>

@@ -89,7 +89,7 @@
                 Description
             </div>
             <div class="col-lg-4">
-                <textarea name="description" type="text" value="{!! $institution->description !!} " placeholder="Institution Description"></textarea>
+                <textarea name="description" type="text" value="{!! $institution->description !!}" placeholder="Institution Description"></textarea>
             </div>
         </div>
     </div>

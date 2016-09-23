@@ -1,16 +1,19 @@
-@extends('agent.layout.app')
+@extends('client.layout.app')
 
-@section('title', 'Dashboard')
 
-    @section('content')
-    <div class="row">
+
+@section('title', 'ShortCourse')
+
+@section('content')
+
+<div class="row">
       <div class="col-md-12">
           <!-- Widget: user widget style 1 -->
           <div class="box box-widget widget-user">
             <!-- Add the bg color to the header using any of the bg-* classes -->
             <div class="widget-user-header bg-purple-active">
               <i
-              <!-- <h3 class="widget-user-username">Agent 007</h3><!--University name-->
+              <!-- <h3 class="widget-user-username">Facilitator Test</h3><!--University name-->
               <h5 class="widget-user-desc">Skudai Johor</h5>
             </div>
             <!-- <div class="widget-user-image">
@@ -108,4 +111,4 @@
         </a>
       </div>
     </div>
-    @endsection
+@endsection

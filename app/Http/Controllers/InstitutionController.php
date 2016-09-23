@@ -9,6 +9,7 @@ use App\Models\InstitutionType;
 use App\Models\Institution;
 use App\Models\ContactType;
 use App\Models\InstitutionContact;
+use App\Models\InstitutionUser;
 use App\Models\RegisterInstitution;
 use Auth;
 use Validator;
@@ -24,7 +25,8 @@ class InstitutionController extends Controller
 
     public function view()
     {
-      $institutions = Institution::whereClient_id(Auth::user()->client->user_id)->paginate(5);
+      $institution_id = Auth::user()->client->institution->id ;
+      $institutions = Institution::whereId($institution_id)->paginate(5);
 
       return View::make('client.institution.view',compact('institutions'));
     }
@@ -33,7 +35,7 @@ class InstitutionController extends Controller
     {
       if($id != Auth::user()->client->institution->id){
 
-        $institutions = Institution::whereClient_id(Auth::user()->client->user_id)->paginate(5);
+        $institutions = Institution::whereClient_id(Auth::user()->client->user->id)->paginate(5);
 
         return redirect()->route('client.institution.view',compact('institutions'));
 
@@ -50,7 +52,7 @@ class InstitutionController extends Controller
 
       if($id != Auth::user()->client->institution->id){
 
-        $institutions = Institution::whereClient_id(Auth::user()->client->user_id)->paginate(5);
+        $institutions = Institution::whereClient_id(Auth::user()->client->user->id)->paginate(5);
 
         return redirect()->route('client.institution.view',compact('institutions'));
 
@@ -164,11 +166,11 @@ class InstitutionController extends Controller
 
     public function requestInstitution()
     {
-      $i = Institution::whereClientId(Auth::user()->client->user_id)->first();
+      $i = Institution::whereClientId(Auth::user()->client->user->id)->first();
 
 
       if($i == null){
-          $ri = RegisterInstitution::whereUserId(Auth::user()->client->user_id)->first();
+          $ri = RegisterInstitution::whereUserId(Auth::user()->client->user->id)->first();
           $i = Institution::whereClientId(null)->pluck('name','id');
 
           if($ri != null){
@@ -193,7 +195,7 @@ class InstitutionController extends Controller
       }
       try{
           $ri = new RegisterInstitution;
-          $ri->user_id = Auth::user()->client->user_id;
+          $ri->user_id = Auth::user()->client->user->id;
           $ri->institution_id = $r->institution_id;
           $ri->status = 1;
           $ri->save();

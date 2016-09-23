@@ -15,9 +15,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-    <!-- Datatables css -->
-    <!-- <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css"> -->
-    <!-- Theme style -->
+
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.0/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="/client/dist/css/AdminLTE.min.css">
 
@@ -48,7 +46,7 @@
                 <!-- mini logo for sidebar mini 50x50 pixels -->
                 <span class="logo-mini"><b>A</b>LT</span>
                 <!-- logo for regular state and mobile devices -->
-                <span class="logo-lg"><b>Client</b> Dashboard</span>
+                <span class="logo-lg"><b>EduConsultant</b> Dashboard</span>
             </a>
             <nav class="navbar navbar-static-top">
 
@@ -66,28 +64,28 @@
                         <!-- User Account: style can be found in dropdown.less -->
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <!-- <img src="../../dist/img/user2-160x160.jpg" class="user-image" alt="User Image"> -->
-                                <i class="fa fa-cog"></i><span class="hidden-xs">{{ Auth::user()->client->institution != null ? Auth::user()->client->institution->name : 'Not Associated with Instititution'}}</span>
+
+                                <i class="fa fa-cog"></i><span class="hidden-xs">Agent 007</span>
                             </a>
                             <ul class="dropdown-menu">
                                 <!-- User image -->
                                 <li class="user-header">
                                     <img src="http://www.iiwas.org/conferences/iiwas2011/img/logos/UTM.jpg" class="img-circle" alt="User Image">
                                     <p>
-                                        {{ Auth::user()->client->institution != null ? Auth::user()->client->institution->name : 'Not Associated with Instititution'}}
-                                        <small>Member since {{Auth::user()->client->user->created_at->diffForHumans()}}</small>
+                                        Agent 007
+                                        <small>Member since yesterday</small>
                                     </p>
                                 </li>
 
                                 <li class="user-footer">
                                     <div class="pull-left">
-                                        <a href="{!! route('client.institution.edit',Auth::user()->client->institution->id) !!}" class="btn btn-default btn-flat" ><font color="black"><i class="fa fa-user"></i> Profile</font></a>
+                                        <a href="" class="btn btn-default btn-flat" ><font color="black"><i class="fa fa-user"></i> Profile</font></a>
                                     </div>
                                     <div class="pull-right">
                                         <a href="#" class="btn btn-default btn-flat" onclick="event.preventDefault();
                                                  document.getElementById('logout-form').submit();"><font color="black"><i class="fa fa-sign-out"></i> Sign out</font></a>
                                         <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
+                                            <!-- {{ csrf_field() }} -->
                                         </form>
                                     </div>
                                 </li>
@@ -116,7 +114,8 @@
                         <img src="/img/logo/LOGO-U.svg" class="img-circle" alt="User Image">
                     </div>
                     <div class="pull-left info">
-                        <p>{{ Auth::user()->client->user->name}}
+                        <!-- <p>{{ Auth::user()->name}} -->
+                        <p>Agent 007</p>
                     </div>
                 </div>
 
@@ -125,13 +124,11 @@
                 <!-- /.search form -->
 
                 <!-- Sidebar Menu -->
-
                 <ul class="sidebar-menu">
 
-                    @if(Auth::user()->client->institution != null)
-                    <li class="header">Dashboard</li>
+                    <!-- @if(Auth::user()->institution != null) -->
                     <li class="treeview">
-                        <a href="/client-dashboard/faculty"><i class="fa fa-building"></i> <span>Faculties</span>
+                        <a href="/client-dashboard/institution"><i class="fa fa-university"></i> <span>Institution</span>
                           <span class="pull-right-container">
 
                           </span>
@@ -145,9 +142,8 @@
                         </a>
 
                     </li>
-
                     <li class="treeview">
-                        <a href="/client-dashboard/institution"><i class="fa fa-university"></i> <span>Institution</span>
+                        <a href="/client-dashboard/faculty"><i class="fa fa-building"></i> <span>Faculties</span>
                           <span class="pull-right-container">
 
                           </span>
@@ -166,36 +162,8 @@
                           </span>
                         </a>
                     </li>
-                    <li class="header">Other</li>
-                    <li class="treeview">
-                        <a href="/client-dashboard/course"><i class="fa fa-certificate"></i> <span>Short Courses</span>
-                          <span class="pull-right-container">
 
-                          </span>
-                        </a>
-
-                    </li>
-
-                    <li class="header">Settings</li>
-                    <li class="treeview">
-                        <a href="{!! route('client.institution.edit',Auth::user()->client->institution->id) !!}"><i class="fa fa-cog"></i> <span>Edit Profile</span>
-                          <span class="pull-right-container">
-                          </span>
-                        </a>
-                    </li>
-                    <li class="treeview">
-                        <a href="#" onclick="event.preventDefault();
-                                 document.getElementById('logout-form').submit();"><i class="fa fa-sign-out"></i> <span>Logout</span>
-                          <span class="pull-right-container">
-                          </span>
-                        </a>
-                        <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-                            {{ csrf_field() }}
-                        </form>
-                    </li>
-
-
-                    @else
+                    <!-- @else -->
                     <li class="treeview">
                         <a href="{!!route('client.request.institution')!!}"><i class="fa fa-building-o"></i> <span>Request Institution</span>
                           <span class="pull-right-container">
@@ -204,7 +172,7 @@
                         </a>
 
                     </li>
-                    @endif
+                    <!-- @endif -->
                 </ul>
                 <!-- /.sidebar-menu -->
             </section>
