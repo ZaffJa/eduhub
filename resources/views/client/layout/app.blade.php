@@ -120,11 +120,10 @@
                         <img src="/img/logo/LOGO-U.svg" class="img-circle" alt="User Image">
                     </div>
                     <div class="pull-left info">
-<<<<<<< HEAD
+
                         <p style="-webkit-transform">{!! Auth::user()->name !!}</p>
-=======
+
                         <p>{{ Auth::user()->client->user->name}}
->>>>>>> c5b7c90dfe588976d2c620f7773b9e368a779c5c
                     </div>
                 </div>
 
@@ -136,12 +135,8 @@
 
                 <ul class="sidebar-menu">
 
-<<<<<<< HEAD
                     <!-- Dashboard -->
-                    @if(Auth::user()->institution != null)
-=======
                     @if(Auth::user()->client->institution != null)
->>>>>>> c5b7c90dfe588976d2c620f7773b9e368a779c5c
                     <li class="header">Dashboard</li>
 
                     <li class="treeview">

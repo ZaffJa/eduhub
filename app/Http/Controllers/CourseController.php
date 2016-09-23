@@ -148,11 +148,8 @@ class CourseController extends Controller
 
      public function view()
      {
-<<<<<<< HEAD
-      $faculty = Faculty::whereInstitutionId(Auth::user()->institution->id)->paginate(2);
-=======
+
       $faculty = Faculty::whereInstitutionId(Auth::user()->client->institution->id)->paginate(2);
->>>>>>> c5b7c90dfe588976d2c620f7773b9e368a779c5c
 
       $periodTypes = PeriodType::all();
 
@@ -214,8 +211,6 @@ class CourseController extends Controller
         $course->approved = $r->approved;
         $course->mqa_reference_no = $r->mqa_reference_no;
         $course->save();
-<<<<<<< HEAD
-
 
         $alumni = CourseFee::whereCourseIdAndFeeId($id,1)->first();
 
@@ -272,8 +267,6 @@ class CourseController extends Controller
 
         $tuition->amount = $r->tuition;
         $tuition->save();
-=======
->>>>>>> c5b7c90dfe588976d2c620f7773b9e368a779c5c
 
         return  redirect()->back()->with(['status'=>'The course name '.$course->name_en.' has been updated.']);
 

@@ -145,104 +145,47 @@
         </div>
     </div>
     @if($courseFee->count())
-    @foreach($courseFee as $cf)
-        @if($cf->fee_id == 1)
         <div class="row">
             <div class="col-md-2">
             Alumni Fee
             </div>
             <div class="col-md-4">
-                <input type="number" name="alumni" value="{!! $cf->amount !!}"  placeholder="Alumni Fee">
+                <input type="number" name="alumni" value="{!! isset($courseFee[0]) ? $courseFee[0]->amount : '' !!}"  placeholder="Alumni Fee">
             </div>
         </div>
-        @else
-        <div class="row">
-        <div class="col-md-2">
-        Alumni Fee
-        </div>
-        <div class="col-md-4">
-            <input type="number" name="alumni" placeholder="Alumni Fee">
-        </div>
-        </div>
-        @endif
-        @if($cf->fee_id == 2)
         <div class="row">
             <div class="col-md-2">
             Cocuriculum Fee
             </div>
             <div class="col-md-4">
-                <input type="number" name="coq" value="{!! $cf->amount !!}" placeholder="Cocuriculum Fee">
+                <input type="number" name="coq" value="{!! isset($courseFee[1]) ? $courseFee[1]->amount : '' !!}" placeholder="Cocuriculum Fee">
             </div>
         </div>
-        @else
-        <div class="row">
-        <div class="col-md-2">
-        Cocuriculum Fee
-        </div>
-        <div class="col-md-4">
-            <input type="number" name="coq" placeholder="Cocuriculum Fee">
-        </div>
-        </div>
-        @endif
-        @if($cf->fee_id == 3)
         <div class="row">
             <div class="col-md-2">
             Residential College Fee
             </div>
             <div class="col-md-4">
-                <input type="number" name="residential" value="{!! $cf->amount !!}" placeholder="Residential College Fee">
+                <input type="number" name="residential" value="{!! isset($courseFee[2]) ? $courseFee[2]->amount : '' !!}" placeholder="Residential College Fee">
             </div>
         </div>
-        @else
-        <div class="row">
-        <div class="col-md-2">
-        Residential College Fee
-        </div>
-        <div class="col-md-4">
-            <input type="number" name="residential" placeholder="Residential College Fee">
-        </div>
-        </div>
-        @endif
-        @if($cf->fee_id == 4)
         <div class="row">
             <div class="col-md-2">
             Service Fee
             </div>
             <div class="col-md-4">
-                <input type="number" name="service" value="{!! $cf->amount !!}" placeholder="Service Fee">
+                <input type="number" name="service" value="{!! isset($courseFee[3]) ? $courseFee[3]->amount : '' !!}" placeholder="Service Fee">
             </div>
-        </div>
-        @else
-        <div class="row">
-        <div class="col-md-2">
-        Service Fee
-        </div>
-        <div class="col-md-4">
-            <input type="number" name="service" placeholder="Service Fee">
-        </div>
-        </div>        
-        @endif
-        @if($cf->fee_id == 5)
+        </div>     
         <div class="row">
             <div class="col-md-2">
             Tuition Fee
             </div>
             <div class="col-md-4">
-                <input type="number" name="tuition" value="{!! $cf->amount !!}" placeholder="Tuition Fee">
+                <input type="number" name="tuition" value="{!! isset($courseFee[4]) ? $courseFee[4]->amount : '' !!}" placeholder="Tuition Fee">
             </div>
         </div>
-        @else
-        <div class="row">
-        <div class="col-md-2">
-        Tuition Fee
-        </div>
-        <div class="col-md-4">
-            <input type="number" name="tuition" placeholder="Tuition Fee">
-        </div>
-        </div>
-        @endif
-        @endforeach
-        @endif
+           @endif
 <!--     <div class="row">
         <div class="col-md-2">
             Course Description
