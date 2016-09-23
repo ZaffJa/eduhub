@@ -52,6 +52,7 @@
             <table style="width:100%">
                 <thead>
                     <tr>
+                        <th>Scholarship Name</th>
                         <th>File Name</th>
                         <th>Website</th>
                         <th>Posted On</th>
@@ -61,7 +62,8 @@
                 <tbody>
                     @foreach($scholarship as $is)
                     <tr>
-                        <td><a href="#img1" class="clickImg">{{$is->filename}}</a></td>
+                        <td><a href="#img1" class="clickImg">{{$is->name}}</a></td>
+                        <td><a href="{{route('client.download.scholarship',$is->id)}}">{{$is->filename}}</a></td>
                         <td><a href="{{$is->website}}" target='_blank'>{{$is->website}}</a></td>
                         <td>{{$is->updated_at->diffForHumans()}}</td>
                         <td>
@@ -73,6 +75,7 @@
           </table>
         </div>
       @endif
+      <i>Click on the file name column to download the associated file</i>
   </div>
 <a href="{!! route('client.view.add.scholarship') !!}" class="float">
   <i class="fa fa-plus my-float"></i>

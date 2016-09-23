@@ -46,20 +46,15 @@
     </div>
 
 <script type="text/javascript">
-  $('.alert-danger').hide(3000);
-
   $('#type-id').on('change',function(){
     $val = $(this).val();
     $only = $('#only-accept');
     if($val == 1){
       $only.html('jpeg,png,jpg,gif,svg');
       $('#file-type').val('jpeg,png,jpg,gif,svg');
-    }else if($val == 2){
-      $only.html('mp4,avi,flv');
-      $('#file-type').val('mp4,avi,flv');
     }else if($val == 3){
-      $only.html('doc,pdf');
-      $('#file-type').val('doc,pdf');
+      $only.html('doc,docx,pdf');
+      $('#file-type').val('doc,docx,pdf');
     }
   });
 </script>

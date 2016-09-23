@@ -16,7 +16,7 @@ class ScholarshipController extends Controller
 {
   public function add()
   {
-      $filetypes = FileType::pluck('name','id');
+      $filetypes = FileType::whereIn('id',[1,3])->pluck('name','id');
       return view('client.scholarship.add-scholar')->with(compact('filetypes'));
   }
 
@@ -29,7 +29,7 @@ class ScholarshipController extends Controller
            'scholarship_name' => 'required|max:255',
            'scholarship_address' => 'required|max:255',
            'type_id' => 'required',
-           'scholarship_contact' => 'required',
+           'scholarship_contact' => 'required|numeric',
            'website' => 'required',
            'file_form' => 'required|max:2048|mimes:'.$mime,
        ]);
@@ -42,11 +42,12 @@ class ScholarshipController extends Controller
 
     try{
       $institutionScholarship = new InstitutionScholarship;
+      $institutionScholarship->name = $r->scholarship_name;
       $institutionScholarship->fileable_type = 'file';
-      $institutionScholarship->fileable_id = Auth::user()->institution->id;
+      $institutionScholarship->fileable_id = Auth::user()->client->institution->id;
       $institutionScholarship->type_id = $r->type_id;
       $institutionScholarship->category_id = 1;
-      $institutionScholarship->filename = time().'___'.$r->file_form->getClientOriginalName();
+      $institutionScholarship->filename = $r->file_form->getClientOriginalName();
       $institutionScholarship->path = 'file/';
       $institutionScholarship->mime = $r->file_form->extension();
       $institutionScholarship->size = $r->file_form->getSize();
@@ -54,9 +55,7 @@ class ScholarshipController extends Controller
       $institutionScholarship->contact = $r->scholarship_contact;
       $institutionScholarship->website = $r->website;
 
-      $destinationPath = "/uploads/scholarship";
-
-      $r->file_form->move(public_path().$destinationPath,$r->file_form->getClientOriginalName());
+      $r->file_form->move(public_path('uploads/scholarship'),$r->file_form->getClientOriginalName());
 
       $institutionScholarship->save();
 
@@ -72,7 +71,7 @@ class ScholarshipController extends Controller
 
      public function view()
      {
-       $scholarship = InstitutionScholarship::whereFileableId(Auth::user()->institution->id)->get();
+       $scholarship = InstitutionScholarship::whereFileableId(Auth::user()->client->institution->id)->get();
 
        return view('client.scholarship.view')
                   ->with(compact('scholarship'));
@@ -109,6 +108,13 @@ class ScholarshipController extends Controller
                         ->back()
                         ->withErrors($ex);
       }
+   }
+
+
+   public function clientDownload($id)
+   {
+     $s = InstitutionScholarship::find($id);
+     return response()->download(public_path('uploads/scholarship/'.$s->filename),$s->filename);
    }
 
 }

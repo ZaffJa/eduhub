@@ -68,6 +68,7 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <!-- <img src="../../dist/img/user2-160x160.jpg" class="user-image" alt="User Image"> -->
                                 <i class="fa fa-cog"></i><span class="hidden-xs">{{ Auth::user()->institution != null ? Auth::user()->institution->name : 'Not Associated with Instititution'}}</span>
+                                <i class="fa fa-cog"></i><span class="hidden-xs">{{ Auth::user()->client->institution != null ? Auth::user()->client->institution->name : 'Not Associated with Instititution'}}</span>
                             </a>
                             <ul class="dropdown-menu">
                                 <!-- User image -->
@@ -76,12 +77,15 @@
                                     <p>
                                         {{ Auth::user()->institution != null ? Auth::user()->institution->name : 'Not Associated with Instititution'}}
                                         <small>Member since {{Auth::user()->created_at->diffForHumans()}}</small>
+                                        {{ Auth::user()->client->institution != null ? Auth::user()->client->institution->name : 'Not Associated with Instititution'}}
+                                        <small>Member since {{Auth::user()->client->user->created_at->diffForHumans()}}</small>
                                     </p>
                                 </li>
 
                                 <li class="user-footer">
                                     <div class="pull-left">
                                         <a href="{!! route('client.institution.edit',Auth::user()->institution->id) !!}" class="btn btn-default btn-flat" ><font color="black"><i class="fa fa-user"></i> Profile</font></a>
+                                        <a href="{!! route('client.institution.edit',Auth::user()->client->institution->id) !!}" class="btn btn-default btn-flat" ><font color="black"><i class="fa fa-user"></i> Profile</font></a>
                                     </div>
                                     <div class="pull-right">
                                         <a href="#" class="btn btn-default btn-flat" onclick="event.preventDefault();
@@ -116,7 +120,11 @@
                         <img src="/img/logo/LOGO-U.svg" class="img-circle" alt="User Image">
                     </div>
                     <div class="pull-left info">
+<<<<<<< HEAD
                         <p style="-webkit-transform">{!! Auth::user()->name !!}</p>
+=======
+                        <p>{{ Auth::user()->client->user->name}}
+>>>>>>> c5b7c90dfe588976d2c620f7773b9e368a779c5c
                     </div>
                 </div>
 
@@ -128,8 +136,12 @@
 
                 <ul class="sidebar-menu">
 
+<<<<<<< HEAD
                     <!-- Dashboard -->
                     @if(Auth::user()->institution != null)
+=======
+                    @if(Auth::user()->client->institution != null)
+>>>>>>> c5b7c90dfe588976d2c620f7773b9e368a779c5c
                     <li class="header">Dashboard</li>
 
                     <li class="treeview">
@@ -183,6 +195,7 @@
 
                     <li class="treeview">
                         <a href="{!! route('client.institution.edit',Auth::user()->institution->id) !!}"><i class="fa fa-cog"></i> <span>Edit Profile</span>
+                        <a href="{!! route('client.institution.edit',Auth::user()->client->institution->id) !!}"><i class="fa fa-cog"></i> <span>Edit Profile</span>
                           <span class="pull-right-container">
                           </span>
                         </a>

@@ -9,6 +9,7 @@ use App\Models\InstitutionType;
 use App\Models\Institution;
 use App\Models\ContactType;
 use App\Models\InstitutionContact;
+use App\Models\InstitutionUser;
 use App\Models\RegisterInstitution;
 use Auth;
 use Validator;
@@ -24,19 +25,20 @@ class InstitutionController extends Controller
 
     public function view()
     {
-      $institutions = Institution::whereClient_id(Auth::user()->id)->paginate(5);
+      $institution_id = Auth::user()->client->institution->id ;
+      $institutions = Institution::whereId($institution_id)->paginate(5);
 
       return View::make('client.institution.view',compact('institutions'));
     }
 
     public function viewInstitution($id)
     {
-      if($id != Auth::user()->institution->id){
-        
-        $institutions = Institution::whereClient_id(Auth::user()->id)->paginate(5);
+      if($id != Auth::user()->client->institution->id){
+
+        $institutions = Institution::whereClient_id(Auth::user()->client->user->id)->paginate(5);
 
         return redirect()->route('client.institution.view',compact('institutions'));
-      
+
       }else{
 
         $institution = Institution::whereId($id)->firstOrFail();
@@ -47,10 +49,10 @@ class InstitutionController extends Controller
 
     public function edit($id)
     {
-    
-      if($id != Auth::user()->institution->id){
-        
-        $institutions = Institution::whereClient_id(Auth::user()->id)->paginate(5);
+
+      if($id != Auth::user()->client->institution->id){
+
+        $institutions = Institution::whereClient_id(Auth::user()->client->user->id)->paginate(5);
 
         return redirect()->route('client.institution.view',compact('institutions'));
 
@@ -59,7 +61,7 @@ class InstitutionController extends Controller
         $institution = Institution::whereId($id)->firstOrFail();
         $institution_types = InstitutionType::pluck('name','id');
         $parent_institution = Institution::pluck('name','id');
-        $parent_institution[''] = 'Please select'; 
+        $parent_institution[''] = 'Please select';
 
         return View::make('client.institution.edit',compact('institution','institution_types','parent_institution'));
       }
@@ -164,11 +166,11 @@ class InstitutionController extends Controller
 
     public function requestInstitution()
     {
-      $i = Institution::whereClientId(Auth::user()->id)->first();
+      $i = Institution::whereClientId(Auth::user()->client->user->id)->first();
 
 
       if($i == null){
-          $ri = RegisterInstitution::whereUserId(Auth::user()->id)->first();
+          $ri = RegisterInstitution::whereUserId(Auth::user()->client->user->id)->first();
           $i = Institution::whereClientId(null)->pluck('name','id');
 
           if($ri != null){
@@ -193,7 +195,7 @@ class InstitutionController extends Controller
       }
       try{
           $ri = new RegisterInstitution;
-          $ri->user_id = Auth::user()->id;
+          $ri->user_id = Auth::user()->client->user->id;
           $ri->institution_id = $r->institution_id;
           $ri->status = 1;
           $ri->save();

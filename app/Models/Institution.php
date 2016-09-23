@@ -58,7 +58,7 @@ class Institution extends Model
 
     public function client()
     {
-        return $this->belongsTo('App\User','client_id');
+        return $this->belongsTo('App\Models\InstitutionUser');
     }
 
     public function scholarship()

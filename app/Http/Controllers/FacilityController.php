@@ -1,5 +1,5 @@
 <?php
-    
+
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
@@ -26,7 +26,7 @@ class FacilityController extends Controller
     {
         $facility = new Facility;
 
-        $facility->institution_id = Auth::user()->institution->id;
+        $facility->institution_id = Auth::user()->client->institution->id;
         $facility->type_id = $r->typeid;
         $facility->name = $r->faci_name;
         $facility->capacity = $r->faci_cap;
@@ -38,7 +38,7 @@ class FacilityController extends Controller
         }
 
         $faci_img = new File;
-        $faci_img->institution_id = Auth::user()->institution->id;
+        $faci_img->institution_id = Auth::user()->client->institution->id;
         $faci_img->facility_id = $facility->id;
         $faci_img->facility_type = $facility->type_id;
         $faci_img->type_id = 1;
@@ -48,9 +48,13 @@ class FacilityController extends Controller
         $faci_img->mime = $r->faci_img->extension();
         $faci_img->size = $r->faci_img->getSize();
 
+      $facility->institution_id = Auth::user()->client->institution->id;
+      $facility->type_id = $r->typeid;
+      $facility->name = $r->faci_name;
+      $facility->capacity = $r->faci_cap;
 
         $r->faci_img->move(public_path()."/img/facility",$r->faci_img->getClientOriginalName());
-        
+
 
         try {
             $faci_img->save();
@@ -62,10 +66,10 @@ class FacilityController extends Controller
     }
     public function view($typeid)
     {
-    	$facilities = Facility::whereType_id($typeid)->whereInstitution_id(Auth::user()->institution->id)->get();
+    	$facilities = Facility::whereType_id($typeid)->whereInstitution_id(Auth::user()->client->institution->id)->get();
 
 
-        $facility_img = File::whereInstitution_id(Auth::user()->institution->id)
+        $facility_img = File::whereInstitution_id(Auth::user()->client->institution->id)
                                 ->whereFacility_type($typeid)->get();
 
         // return $facility_img;
@@ -86,7 +90,7 @@ class FacilityController extends Controller
     {
     	$facility = new Facility;
 
-    	$facility->institution_id = Auth::user()->institution->id;
+    	$facility->institution_id = Auth::user()->client->institution->id;
     	$facility->type_id = $typeid;
     	$facility->name = $r->faci_name;
     	$facility->capacity = $r->faci_cap;
@@ -98,7 +102,7 @@ class FacilityController extends Controller
         }
 
         $faci_img = new File;
-        $faci_img->institution_id = Auth::user()->institution->id;
+        $faci_img->institution_id = Auth::user()->client->institution->id;
         $faci_img->facility_id = $facility->id;
         $faci_img->facility_type = $typeid;
         $faci_img->type_id = 1;
@@ -135,12 +139,12 @@ class FacilityController extends Controller
     	$facility = Facility::whereId($fid)
                                 ->whereType_id($typeid)
                                 ->firstOrFail();
-    	
+
         $facility->name = $r->faci_name;
     	$facility->capacity = $r->faci_capacity;
 
         $faci_img = new File;
-        $faci_img->institution_id = Auth::user()->institution->id;
+        $faci_img->institution_id = Auth::user()->client->institution->id;
         $faci_img->facility_id = $fid;
         $faci_img->facility_type = $typeid;
         $faci_img->type_id = 1;
@@ -179,7 +183,7 @@ class FacilityController extends Controller
 
         }
 
-        $facilities = Facility::whereType_id($typeid)->whereInstitution_id(Auth::user()->institution->id)->get();
+        $facilities = Facility::whereType_id($typeid)->whereInstitution_id(Auth::user()->client->institution->id)->get();
 
         return redirect()->back()->with(['status'=>'The '. $facility->name .' has been deleted','typeid','facilities']);
 

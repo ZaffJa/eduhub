@@ -8,6 +8,7 @@ use App\Http\Requests\FacultyFormRequest;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Faculty;
 use Auth;
+use File;
 use Validator;
 use View;
 
@@ -27,8 +28,6 @@ class FacultyController extends Controller
              'fac_file' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:20048',
          ]);
 
-
-
       if ($validator->fails()) {
           return redirect()
                       ->back()
@@ -36,14 +35,11 @@ class FacultyController extends Controller
                       ->withInput();
       }
 
-
-
       if($r->hasFile('fac_file') && $r->file('fac_file')->isValid())
       {
-        $imageName = time().'.'.$r->fac_file->getClientOriginalExtension();
-
+        $imageName = time().'___'.$r->fac_file->getClientOriginalName();
         $faculty = new Faculty;
-        $faculty->institution_id = Auth::user()->institution->id;
+        $faculty->institution_id = Auth::user()->client->institution->id;
         $faculty->name = $r->fac_name;
         $faculty->img_url = $imageName;
 
@@ -52,7 +48,10 @@ class FacultyController extends Controller
         try{
          $faculty->save();
         }catch(\Illuminate\Database\QueryException $ex) {
-              return $ex->errorInfo;
+          return redirect()
+                      ->back()
+                      ->withErrors($ex->errorInfo[2])
+                      ->withInput();
           }
       }
 
@@ -61,7 +60,7 @@ class FacultyController extends Controller
 
     public function postSearchFaculty(Request $r)
     {
-      $faculty = Faculty::where('name','LIKE','%'.$r->term.'%')->whereInstitution_id(Auth::user()->institution->id)->get();
+      $faculty = Faculty::where('name','LIKE','%'.$r->term.'%')->whereInstitution_id(Auth::user()->client->institution->id)->get();
 
       foreach($faculty as $f){
         $data[] = $f->name;
@@ -84,8 +83,7 @@ class FacultyController extends Controller
 
     public function view()
     {
-    	$faculties = Faculty::whereInstitution_id(Auth::user()->institution->id)
-                                                                ->paginate(10);
+    	$faculties = Faculty::whereInstitution_id(Auth::user()->client->institution->id)->paginate(10);
 
     	return view('client.faculty.view')->with(compact('faculties'));
     }
@@ -106,7 +104,10 @@ class FacultyController extends Controller
             $faculty->save();
 
         } catch (\Illuminate\Database\QueryException $ex) {
-            return $ex->errorInfo;
+            return redirect()
+                      ->back()
+                      ->withErrors($ex->errorInfo[2])
+                      ->withInput();
         }
 
         return redirect(action('FacultyController@edit',$faculty->id))->with('status','The faculty name '. $faculty->name.' has been updated.');
@@ -116,11 +117,20 @@ class FacultyController extends Controller
     {
         $faculty = Faculty::whereId($id)->firstOrFail();
         try {
-            $faculty->delete();
-        } catch(\Illuminate\Database\QueryException $ex) {
+            $fileName = $faculty->img_url;
 
+            File::delete(public_path().'/img/faculty/'.$fileName);
+            $faculty->delete();
+
+        } catch(\Illuminate\Database\QueryException $ex) {
+            return redirect()
+                        ->back()
+                        ->withErrors($ex->errorInfo[2])
+                        ->withInput();
         }
 
-        return redirect()->back()->with(['status'=>'The '. $faculty->name .' has been deleted']);
+        return redirect()
+               ->action('FacultyController@view')
+               ->with(['status'=>'The '. $faculty->name .' has been deleted']);
     }
 }

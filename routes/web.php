@@ -68,6 +68,7 @@ Route::group(['prefix'=>'client-dashboard'],function(){
     Route::post('/scholarship/add', 'ScholarshipController@postAdd')->name('client.add.scholarship');
     Route::get('/scholarship/view', 'ScholarshipController@view')->name('client.view.scholarship');
     Route::get('/scholarship/delete/{id}', 'ScholarshipController@delete')->name('client.delete.scholarship');
+    Route::get('/scholarship/download/{id}', 'ScholarshipController@clientDownload')->name('client.download.scholarship');
 
     Route::get('/faculty', 'FacultyController@view')->name('client.faculty.view');
     Route::get('/faculty/add', 'FacultyController@add')->name('client.faculty.add');
