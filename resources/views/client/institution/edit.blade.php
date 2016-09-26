@@ -81,7 +81,7 @@
                 Main Branch
             </div>
             <div class="col-lg-2">
-                {{ Form::select('parent_id', $parent_institution, $institution->parent_id != null ? $institution->website : null) }}
+                {{ Form::select('parent_id',array(null=>'Please select') + $parent_institution, $institution->parent_id != null ? $institution->parent_id : null) }}
             </div>
         </div>
         <div class="row">

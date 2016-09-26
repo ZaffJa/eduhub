@@ -59,8 +59,7 @@ class InstitutionController extends Controller
 
         $institution = Institution::whereId($id)->firstOrFail();
         $institution_types = InstitutionType::pluck('name','id');
-        $parent_institution = Institution::pluck('name','id');
-        $parent_institution[0] = 'Please select';
+        $parent_institution = Institution::pluck('name','id')->toArray();
 
         return View::make('client.institution.edit',compact('institution','institution_types','parent_institution'));
       }
@@ -84,7 +83,8 @@ class InstitutionController extends Controller
       }
       elseif($r->parent_id == 0)
       {
-        $institutions->parent_id = 0;
+        $r->parent_id = null;
+        $institution->parent_id = $r->parent_id;
       }
       $institution->description = $r->description;
 

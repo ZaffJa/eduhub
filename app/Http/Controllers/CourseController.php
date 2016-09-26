@@ -23,7 +23,6 @@ class CourseController extends Controller
 
     public function add()
     {
-      $institution = Institution::whereClientId(Auth::user()->id)->firstOrFail();
       $institution = Institution::whereClientId(Auth::user()->client->user->id)->firstOrFail();
 
       $faculties = Faculty::whereInstitutionId($institution->id)->pluck('name','id');
