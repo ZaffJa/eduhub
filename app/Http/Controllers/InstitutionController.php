@@ -84,7 +84,7 @@ class InstitutionController extends Controller
       }
       elseif($r->parent_id == 0)
       {
-        $institutions->parent_id = 0;
+        $institutions->parent_id = null;
       }
       $institution->description = $r->description;
 
@@ -170,36 +170,30 @@ class InstitutionController extends Controller
 
     public function requestInstitution()
     {
-      $i = Institution::whereClientId(Auth::user()->client->user->id)->first();
-
+      $i = InstitutionUser::whereUserId(Auth::user()->id)->first();
 
       if($i == null){
-          $ri = RegisterInstitution::whereUserId(Auth::user()->client->user->id)->first();
-          $i = Institution::whereClientId(null)->pluck('name','id');
+          $all_ri = RegisterInstitution::whereUserId(Auth::user()->id)->get();
+          $i = Institution::all()->pluck('name','id');
 
-          if($ri != null){
-            return view('client.request-institution')
-                    ->with(compact('i','ri'));
-          }else{
-            return view('client.request-institution')
-                    ->with(compact('i'));
-          }
+          return view('client.request-institution')
+                  ->with(compact('i','all_ri'));
 
-      }else{
-
-
+      }else{ //if user already associated with an institution
+          return redirect()->route('client.dashboard');
       }
+
     }
 
 
     public function requestAddInstitution(Request $r)
     {
       if($r->institution_id == null){
-        return redirect()->back()->with(['status'=>'Please select an institution from the list']);
+        return redirect()->back()->withErrors('Please select an institution from the list');
       }
       try{
           $ri = new RegisterInstitution;
-          $ri->user_id = Auth::user()->client->user->id;
+          $ri->user_id = Auth::user()->id;
           $ri->institution_id = $r->institution_id;
           $ri->status = 1;
           $ri->save();
@@ -225,9 +219,11 @@ class InstitutionController extends Controller
         $ri = RegisterInstitution::find($id);
         $ri->status = 3;
         try{
-            $i = Institution::find($ri->institution_id);
-            $i->client_id = $ri->user_id;
-            $i->save();
+            $iu = InstitutionUser::create([
+              'user_id' => $ri->user_id,
+              'institution_id' => $ri->institution_id
+            ]);
+
             $ri->save();
             return  redirect()->back()
                                  ->with('status','Succesfully approve client request');
