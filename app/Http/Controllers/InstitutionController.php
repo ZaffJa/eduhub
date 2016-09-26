@@ -79,7 +79,7 @@ class InstitutionController extends Controller
       $institution->location = $r->location;
       $institution->address = $r->address;
       $institution->website = $r->website;
-      if($r->parent_id == '' || $r->parent_id == null){
+      if($r->parent_id != '' || $r->parent_id != null){
       $institution->parent_id = $r->parent_id;
       }
       $institution->description = $r->description;

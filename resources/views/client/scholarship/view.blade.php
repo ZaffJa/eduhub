@@ -62,7 +62,7 @@
                 <tbody>
                     @foreach($scholarship as $is)
                     <tr>
-                        <td><a href="#img1" class="clickImg">{{$is->name}}</a></td>
+                        <td><a href="#img1" class="clickImg" val="{{$is->filename}}">{{$is->name}}</a></td>
                         <td><a href="{{route('client.download.scholarship',$is->id)}}">{{$is->filename}}</a></td>
                         <td><a href="{{$is->website}}" target='_blank'>{{$is->website}}</a></td>
                         <td>{{$is->updated_at->diffForHumans()}}</td>
@@ -72,18 +72,18 @@
                     </tr>
                   @endforeach
                 </tbody>
-          </table>
+            </table>
         </div>
-      @endif
-      <i>Click on the file name column to download the associated file</i>
-  </div>
-<a href="{!! route('client.view.add.scholarship') !!}" class="float">
-  <i class="fa fa-plus my-float"></i>
-</a>
-<div class="label-container">
-  <div class="label-text">Add Scholarship</div>
-  <i class="fa fa-arrow- label-arrow"></i>
-</div>
+        @endif
+        <i>Click on the file name column to download the associated file</i>
+    </div>
+    <a href="{!! route('client.view.add.scholarship') !!}" class="float">
+      <i class="fa fa-plus my-float"></i>
+    </a>
+    <div class="label-container">
+      <div class="label-text">Add Scholarship</div>
+      <i class="fa fa-arrow- label-arrow"></i>
+    </div>
 </div>
 
 <!-- lightbox container hidden with CSS -->
@@ -93,11 +93,8 @@
 
 <script type="text/javascript">
   $('.clickImg').on('click',function(){
-    $data = $(this).text().split("___");
-    console.log($data);
-
-
-    $('.imgSrc').prop('src','/uploads/scholarship/'+$data[1]);
+    console.log($(this).attr('val'));
+    $('.imgSrc').prop('src','/uploads/scholarship/'+$(this).attr('val'));
     console.log($(this).text());
   });
 </script>

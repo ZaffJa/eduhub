@@ -88,7 +88,7 @@ class ScholarshipController extends Controller
                      ->with(['status'=>'Succesfully deleted record']);
        }catch(\Illuminate\Database\QueryException $ex){
               return redirect()
-                          ->back()
+                          ->action('ScholarshipController@view')
                           ->withErrors($ex);
         }
    }

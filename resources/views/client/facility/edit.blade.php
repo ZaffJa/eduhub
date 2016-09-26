@@ -12,9 +12,31 @@
   <legend>Edit Facility</legend>
 
   <form method="post" enctype="multipart/form-data">
-    <input type="text" name="faci_name" value="{!! $facility->name !!}">
-    <input type="number" name="faci_capacity" value="{!! $facility->capacity !!}">
-    <input type="file" name="faci_img">
+    <div class="row">
+      <div class="col-md-1">
+        Facility Name
+      </div>
+      <div class="col-md-10">
+        <input type="text" name="faci_name" value="{!! $facility->name !!}">
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-1">
+        Facility Details
+      </div>
+      <div class="col-md-10">
+        <textarea type="text" name="faci_capacity" placeholder="Details">{!! $facility->capacity !!}</textarea>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-1">
+        Upload Image
+      </div>
+      <div class="col-md-10">
+        <input type="file" name="faci_img">
+        <p class="help-block">File only accept jpg and png file format</p>
+      </div>
+    </div>
     <input type="hidden" name="_token" value="{!! csrf_token() !!}">
     <div class="col-md-10">
 </div>

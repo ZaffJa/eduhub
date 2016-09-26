@@ -27,8 +27,11 @@
                     <input name="website" type="text">
                 </div>
                 <div class=form-group>
-                    <label>File &nbsp;only accept - <span id="only-accept">jpeg,png,jpg,gif,svg</span></label>
+                    <label>Upload Image</label>
+                    </br>
                     <input name="file_form" type="file">
+                    <p>The filename has to be the same as the scholarship name</p>
+                    <p>File &nbsp;only accept - <span id="only-accept">jpeg,png,jpg,gif,svg</span></p>
                 </div>
                 <input type="hidden" name="file_type" id="file-type" value="jpeg,png,jpg,gif,svg">
                 {{csrf_field()}}

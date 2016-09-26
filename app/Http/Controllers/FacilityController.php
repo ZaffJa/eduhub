@@ -143,25 +143,39 @@ class FacilityController extends Controller
         $facility->name = $r->faci_name;
     	$facility->capacity = $r->faci_capacity;
 
-        $faci_img = new File;
-        $faci_img->institution_id = Auth::user()->client->institution->id;
-        $faci_img->facility_id = $fid;
-        $faci_img->facility_type = $typeid;
-        $faci_img->type_id = 1;
-        $faci_img->category_id = 2;
-        $faci_img->filename = $r->faci_img->getClientOriginalName();
-        $faci_img->path = 'facility/'.$r->faci_img->getClientOriginalName();
-        $faci_img->mime = $r->faci_img->extension();
-        $faci_img->size = $r->faci_img->getSize();
-
-        $r->faci_img->move(public_path()."/img/facility",$r->faci_img->getClientOriginalName());
-
-    	try {
+        try {
             $facility->save();
-            $faci_img->save();
-    	}catch(\Illuminate\Database\QueryException $ex){
-    		return $ex->errorInfo;
-    	}
+        }catch(\Illuminate\Database\QueryException $ex){
+            return $ex->errorInfo;
+        }
+
+        if($r->faci_img != '' || $r->faci_img != null)
+        {
+            $faci_img = File::whereFacilityIdAndFacilityType($fid,$typeid)->first();
+            if( $faci_img == null)
+            {
+                $faci_img = new File;
+            }
+            $faci_img->institution_id = Auth::user()->client->institution->id;
+            $faci_img->facility_id = $fid;
+            $faci_img->facility_type = $typeid;
+            $faci_img->type_id = 1;
+            $faci_img->category_id = 2;
+            $faci_img->filename = $r->faci_img->getClientOriginalName();
+            $faci_img->path = 'facility/'.$r->faci_img->getClientOriginalName();
+            $faci_img->mime = $r->faci_img->extension();
+            $faci_img->size = $r->faci_img->getSize();
+
+            $r->faci_img->move(public_path()."/img/facility",$r->faci_img->getClientOriginalName());    
+
+            try {
+                $faci_img->save();
+            }catch(\Illuminate\Database\QueryException $ex){
+                return $ex->errorInfo;
+            }
+        }
+        
+
 
 
     	return redirect()
@@ -185,7 +199,9 @@ class FacilityController extends Controller
 
         $facilities = Facility::whereType_id($typeid)->whereInstitution_id(Auth::user()->client->institution->id)->get();
 
-        return redirect()->back()->with(['status'=>'The '. $facility->name .' has been deleted','typeid','facilities']);
+        return redirect()
+                    ->action('FacilityController@view')
+                    ->with(['status'=>'The '. $facility->name .' has been deleted','typeid','facilities']);
 
     }
 }

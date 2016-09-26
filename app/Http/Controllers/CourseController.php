@@ -57,6 +57,7 @@ class CourseController extends Controller
              'qualification' => 'required',
              'approved' => 'required',
              'accredited' => 'required',
+             'commencement' => 'required',
              'mqa' => 'required',
              'nec' => 'required',
              'alumni' => 'required',
@@ -84,7 +85,9 @@ class CourseController extends Controller
             $course->period_value_min = $r->period_value_min;
             $course->period_value_max = $r->period_value_max;
             $course->credit_hours = $r->credit_hours;
+            $course->approved = $r->approved;
             $course->accredited = $r->accredited;
+            $course->commencement = $r->commencement;
             $course->qualification = $r->qualification;
             $course->mqa_reference_no = $r->mqa;
 
@@ -148,12 +151,11 @@ class CourseController extends Controller
 
      public function view()
      {
+      $institutionCourses = InstitutionCourse::whereInstitutionId(Auth::user()->client->institution->id)->paginate(40);
+      $courses = Course::all();
+      $facCourses = Faculty::all();
 
-      $faculty = Faculty::whereInstitutionId(Auth::user()->client->institution->id)->paginate(2);
-
-      $periodTypes = PeriodType::all();
-
-      return View::make('client.course.view',compact('faculty','periodTypes'));
+      return View::make('client.course.view',compact('faculty','institutionCourses','courses','facCourses'));
      }
 
      public function viewCourse($id)
@@ -209,6 +211,7 @@ class CourseController extends Controller
         $course->accredited = $r->accredited;
         $course->qualification = $r->qualification;
         $course->approved = $r->approved;
+        $course->commencement = $r->commencement;        
         $course->mqa_reference_no = $r->mqa_reference_no;
         $course->save();
 
@@ -282,8 +285,10 @@ class CourseController extends Controller
     public function delete($id)
     {
       $course = Course::whereId($id)->firstOrFail();
+      $institutionCourse = InstitutionCourse::whereCourseId($id)->firstOrFail();
 
       try {
+        $institutionCourse->delete();
         $course->delete();
       }catch(\Illuminate\Database\QueryException $ex){
         return redirect()

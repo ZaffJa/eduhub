@@ -125,6 +125,14 @@
     </div>
     <div class="row">
         <div class="col-md-2">
+            Commencement
+        </div>
+        <div class="col-md-4">
+            <input type="text" value="{!! $course->commencement !!}" name="commencement" placeholder="Commencement">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
             Field
         </div>
         <div class="col-md-4">
