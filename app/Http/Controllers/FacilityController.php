@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Models\Facility;
 use App\Models\FacilityType;
 use App\Models\File;
+use Validator;
 use Auth;
 use View;
 
@@ -22,6 +23,7 @@ class FacilityController extends Controller
     {
     	return view('client.facility.addAllType');
     }
+
     public function storeAllType(Request $r)
     {
         $validator = Validator::make($r->all(), [
@@ -35,6 +37,7 @@ class FacilityController extends Controller
                       ->back()
                       ->withErrors($validator)
                       ->withInput();
+                  }
 
         $facility = new Facility;
 
@@ -76,6 +79,7 @@ class FacilityController extends Controller
 
       return redirect()->back()->with(['status'=>'The facility name '. $facility->name .' has been added.']);
     }
+
     public function view($typeid)
     {
     	$facilities = Facility::whereType_id($typeid)->whereInstitution_id(Auth::user()->client->institution->id)->get();
@@ -111,6 +115,7 @@ class FacilityController extends Controller
                       ->back()
                       ->withErrors($validator)
                       ->withInput();
+                  }
 
     	$facility = new Facility;
 
@@ -163,7 +168,6 @@ class FacilityController extends Controller
          $validator = Validator::make($r->all(), [
              'faci_name' => 'required|max:255',
              'faci_capacity' => 'required|max:255',
-             'faci_img' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:20048',
          ]);
 
         if ($validator->fails()) {
@@ -171,6 +175,7 @@ class FacilityController extends Controller
                       ->back()
                       ->withErrors($validator)
                       ->withInput();
+                  }
 
     	$facility = Facility::whereId($fid)
                                 ->whereType_id($typeid)
@@ -211,9 +216,6 @@ class FacilityController extends Controller
             }
         }
         
-
-
-
     	return redirect()
                 ->back()
                 ->with('facility',$facility)
@@ -236,8 +238,9 @@ class FacilityController extends Controller
         $facilities = Facility::whereType_id($typeid)->whereInstitution_id(Auth::user()->client->institution->id)->get();
 
         return redirect()
-                    ->action('FacilityController@view')
-                    ->with(['status'=>'The '. $facility->name .' has been deleted','typeid','facilities']);
+                    ->back()
+                    ->with('typeid',$typeid)
+                    ->with(['status'=>'The '. $facility->name .' has been deleted','facilities']);
 
     }
 }

@@ -193,7 +193,48 @@
                 <input type="number" name="tuition" value="{!! isset($courseFee[4]) ? $courseFee[4]->amount : '' !!}" placeholder="Tuition Fee">
             </div>
         </div>
-           @endif
+    @else
+        <div class="row">
+            <div class="col-md-2">
+            Alumni Fee
+            </div>
+            <div class="col-md-4">
+                <input type="number" name="alumni" value=""  placeholder="Alumni Fee">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+            Cocuriculum Fee
+            </div>
+            <div class="col-md-4">
+                <input type="number" name="coq" value="" placeholder="Cocuriculum Fee">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+            Residential College Fee
+            </div>
+            <div class="col-md-4">
+                <input type="number" name="residential" value="" placeholder="Residential College Fee">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+            Service Fee
+            </div>
+            <div class="col-md-4">
+                <input type="number" name="service" value="" placeholder="Service Fee">
+            </div>
+        </div>     
+        <div class="row">
+            <div class="col-md-2">
+            Tuition Fee
+            </div>
+            <div class="col-md-4">
+                <input type="number" name="tuition" value="" placeholder="Tuition Fee">
+            </div>
+        </div>
+    @endif
 <!--     <div class="row">
         <div class="col-md-2">
             Course Description
