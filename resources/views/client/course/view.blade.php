@@ -8,7 +8,6 @@
             <input type="text" placeholder="Search a course" name="search_course" id="search" style="width:70%">
             <button type='submit' class='btn btn-md btn-default '>Search</button> {{csrf_field()}}
         </form>
-        {{$institutionCourses->render()}}
         <table class="table table-bordered table-hover" style="width:100%">
             <thead>
                 <tr>
@@ -24,7 +23,7 @@
             <tbody>
                 @foreach($institutionCourses as $ic)
                     @foreach($courses as $c)
-                    @if($ic->course_id == $c->id)
+                        @if($ic->course_id == $c->id)
                         <tr>
                             <td>
                                 @foreach($facCourses as $fc)
@@ -37,10 +36,10 @@
                             <td> {{$c->mode->name}} </td>
                             <td> {{$c->name_en}} </td>
                             <td> {{$c->name_ms}} </td>
-                            <td> {{$c->credit_hours}} </td>
+                            <td> {{$c->credit_hours != null ? $c->credit_hours : "Credit hours not added"}} </td>
                             <td><a href=" {!! route('client.course.view.course', $c->id)  !!} " class="btn btn-info">View</a></td>
                         </tr>
-                    @endif
+                        @endif
                     @endforeach
                 @endforeach
             </tbody>

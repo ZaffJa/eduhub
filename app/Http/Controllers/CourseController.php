@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Models\Faculty;
 use App\Models\StudyLevel;
@@ -193,8 +192,6 @@ class CourseController extends Controller
      public function update(Request $r,$id)
      {
 
-
-
       try{
         $course = Course::whereId($id)->firstOrFail();
 
@@ -292,7 +289,7 @@ class CourseController extends Controller
         $course->delete();
       }catch(\Illuminate\Database\QueryException $ex){
         return redirect()
-                    ->back()
+                    ->action('CourseController@view')
                     ->withErrors($ex->errorInfo[2])
                     ->withInput();
       }

@@ -14,7 +14,6 @@ use App\Models\RegisterInstitution;
 use Auth;
 use Validator;
 
-
 class InstitutionController extends Controller
 {
     public function index()
@@ -61,7 +60,7 @@ class InstitutionController extends Controller
         $institution = Institution::whereId($id)->firstOrFail();
         $institution_types = InstitutionType::pluck('name','id');
         $parent_institution = Institution::pluck('name','id');
-        $parent_institution[''] = 'Please select';
+        $parent_institution[0] = 'Please select';
 
         return View::make('client.institution.edit',compact('institution','institution_types','parent_institution'));
       }
@@ -79,8 +78,13 @@ class InstitutionController extends Controller
       $institution->location = $r->location;
       $institution->address = $r->address;
       $institution->website = $r->website;
-      if($r->parent_id != '' || $r->parent_id != null){
+      if($r->parent_id != 0)
+      {
       $institution->parent_id = $r->parent_id;
+      }
+      elseif($r->parent_id == 0)
+      {
+        $institutions->parent_id = 0;
       }
       $institution->description = $r->description;
 

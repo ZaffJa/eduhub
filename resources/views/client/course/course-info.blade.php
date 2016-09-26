@@ -26,7 +26,7 @@
                   <dd> {{ $course->level != null ? $course->level->name : 'Not Defined' }} </dd>
                   <hr>
                   <dt>Period</dt>
-                  <dd> {{ $course->periodType =! null ? $course->periodType->name : 'Not Defined' }} </dd>
+                  <dd> {{ $course->periodType != null ? $course->periodType->name : 'Not Defined' }} </dd>
                   <hr>
                   <dt>Mode</dt>
                   <dd> {{ $course->mode != null ? $course->mode->name : 'Not Denfined' }} </dd>
@@ -44,7 +44,7 @@
                   <dd>  {{ $course->period_value_max }} </dd>
                   <hr>
                   <dt>Credit Hour</dt>
-                  <dd> {{ $course->credit_hours }} </dd>
+                  <dd> {{$course->credit_hours != null ? $course->credit_hours : "Credit hours not added"}} </dd>
                   <hr>
                   <dt>Approved</dt>
                   <dd> {{ $course->approved }} </dd>

@@ -24,6 +24,18 @@ class FacilityController extends Controller
     }
     public function storeAllType(Request $r)
     {
+        $validator = Validator::make($r->all(), [
+             'faci_name' => 'required|max:255',
+             'faci_cap' => 'required|max:255',
+             'faci_img' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:20048',
+         ]);
+
+        if ($validator->fails()) {
+          return redirect()
+                      ->back()
+                      ->withErrors($validator)
+                      ->withInput();
+
         $facility = new Facility;
 
         $facility->institution_id = Auth::user()->client->institution->id;
@@ -88,6 +100,18 @@ class FacilityController extends Controller
 
     public function store(Request $r, $typeid)
     {
+        $validator = Validator::make($r->all(), [
+             'faci_name' => 'required|max:255',
+             'faci_cap' => 'required|max:255',
+             'faci_img' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:20048',
+         ]);
+
+        if ($validator->fails()) {
+          return redirect()
+                      ->back()
+                      ->withErrors($validator)
+                      ->withInput();
+
     	$facility = new Facility;
 
     	$facility->institution_id = Auth::user()->client->institution->id;
@@ -136,6 +160,18 @@ class FacilityController extends Controller
 
     public function update(Request $r,$typeid,$fid)
     {
+         $validator = Validator::make($r->all(), [
+             'faci_name' => 'required|max:255',
+             'faci_capacity' => 'required|max:255',
+             'faci_img' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:20048',
+         ]);
+
+        if ($validator->fails()) {
+          return redirect()
+                      ->back()
+                      ->withErrors($validator)
+                      ->withInput();
+
     	$facility = Facility::whereId($fid)
                                 ->whereType_id($typeid)
                                 ->firstOrFail();
