@@ -86,7 +86,7 @@
                     Credit Hour
                 </div>
                 <div class="col-md-4">
-                    <input type="text" name="credit_hours" placeholder="Credit hour needed to pass this course">
+                    <input type="number" name="credit_hours" placeholder="Credit hour needed to pass this course">
                 </div>
             </div>
             <div class="row">
