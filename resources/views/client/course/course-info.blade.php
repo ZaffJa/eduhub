@@ -67,7 +67,7 @@
                   
                   <dt>Alumini Fee</dt>
                   <dd>{!! isset($courseFee[0]) ? $courseFee[0]->amount : 'Fee not added' !!} </dd>
-                  <dt>Cocuriculum Fee</dt>
+                  <dt>Co-curriculum Fee</dt>
                   <dd>{!! isset($courseFee[1]) ? $courseFee[1]->amount : 'Fee not added' !!}</dd>
                   <dt>Residential Fee</dt>
                   <dd>{!! isset($courseFee[2]) ? $courseFee[2]->amount : 'Fee not added' !!}</dd>
@@ -75,6 +75,8 @@
                   <dd>{!! isset($courseFee[3]) ? $courseFee[3]->amount : 'Fee not added' !!}</dd>
                   <dt>Tuition Fee</dt>
                   <dd>{!! isset($courseFee[4]) ? $courseFee[4]->amount : 'Fee not added' !!}</dd>
+                  <dt>Total Fee</dt>
+                  <dd>{{ $totalFee != 0 ? $totalFee : 'Fee not added' }}</dd>
                   <hr>
                 
                 </dl>

@@ -14,7 +14,7 @@
               <h5 class="widget-user-desc">Skudai Johor</h5>
             </div>
             <div class="widget-user-image">
-              <img class="img-circle" src="http://www.iiwas.org/conferences/iiwas2011/img/logos/UTM.jpg" alt="User Avatar">
+              <img class="img-circle hidden-xs" src="http://www.iiwas.org/conferences/iiwas2011/img/logos/UTM.jpg" alt="User Avatar">
             </div>
             <div class="box-footer">
               <div class="row">

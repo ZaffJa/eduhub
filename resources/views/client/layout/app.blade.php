@@ -66,6 +66,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
+                    Hello, {{Auth::user()->name}}
                 </a>
 
                 <div class="navbar-custom-menu">

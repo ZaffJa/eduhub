@@ -161,8 +161,12 @@ class CourseController extends Controller
       $course = Course::whereId($id)->firstOrFail();
 
       $courseFee = CourseFee::whereCourse_id($id)->get();
+      (float)$totalFee = 0.0;
+      foreach ($courseFee as $cf) {
+        $totalFee += (float)$cf->amount;
+      }
 
-      return View::make('client.course.course-info',compact('course','courseFee'));
+      return View::make('client.course.course-info',compact('course','courseFee','totalFee'));
      }
 
      public function edit($id)
