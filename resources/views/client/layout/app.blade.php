@@ -66,7 +66,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
-                    Hello, {{Auth::user()->name}}
+
                 </a>
 
                 <div class="navbar-custom-menu">
@@ -76,7 +76,7 @@
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <!-- <img src="../../dist/img/user2-160x160.jpg" class="user-image" alt="User Image"> -->
-                                <i class="fa fa-cog"></i><span class="hidden-xs">{{ Auth::user()->client != null ? Auth::user()->client->institution->name : 'Not Associated with Instititution'}}</span>
+                                <i class="fa fa-cog"></i><span class=""><b>Hello,</b> {{Auth::user()->name}}</span>
                             </a>
                             <ul class="dropdown-menu">
                                 <!-- User image -->
