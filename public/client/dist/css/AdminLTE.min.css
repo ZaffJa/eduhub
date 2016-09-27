@@ -5698,6 +5698,11 @@ table.text-center th {
     height: 100px
 }
 
+.img-circle{
+border-radius: 50%;
+background-color: #fff;
+}
+
 .img-lg+.img-push {
     margin-left: 110px
 }
