@@ -15,7 +15,7 @@
     }
 </style>
 <div class="box-body">
-<form class=""  method="post" autocomplete="off">
+<form  method="post" autocomplete="off" class="confirmLeaveBeforeSave">
     <div class="row">
         <div class="col-md-2">
         <h3>Course Info</h3>
@@ -27,12 +27,12 @@
         </div>
         <div class="col-md-8">
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <input type="text" value="{!! $course->name_en !!}" name="name_en" placeholder="English Name">
                 </div>
             </div>
               <div class="row">
-                <div class="col-md-4 ">
+                <div class="col-md-6 ">
                     <input type="text" value="{!! $course->name_ms !!}" name="name_ms" placeholder="Malay Name">
                 </div>
               </div>
@@ -184,7 +184,7 @@
             <div class="col-md-4">
                 <input type="number" name="service" value="{!! isset($courseFee[3]) ? $courseFee[3]->amount : '' !!}" placeholder="Service Fee">
             </div>
-        </div>     
+        </div>
         <div class="row">
             <div class="col-md-2">
             Tuition Fee
@@ -225,7 +225,7 @@
             <div class="col-md-4">
                 <input type="number" name="service" value="" placeholder="Service Fee">
             </div>
-        </div>     
+        </div>
         <div class="row">
             <div class="col-md-2">
             Tuition Fee

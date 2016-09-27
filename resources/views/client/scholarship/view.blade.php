@@ -49,6 +49,7 @@
         </div>
         @else
         <div class="box-body">
+          <div class="box-body table-responsive no-padding">
             <table style="width:100%">
                 <thead>
                     <tr>
@@ -73,6 +74,7 @@
                   @endforeach
                 </tbody>
             </table>
+          </div>
         </div>
         @endif
         <i>Click on the file name column to download the associated file</i>

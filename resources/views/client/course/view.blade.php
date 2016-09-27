@@ -8,6 +8,8 @@
             <input type="text" placeholder="Search a course" name="search_course" id="search" style="width:70%">
             <button type='submit' class='btn btn-md btn-default '>Search</button> {{csrf_field()}}
         </form>
+
+        <div class="box-body table-responsive no-padding">
         <table class="table table-bordered table-hover" style="width:100%">
             <thead>
                 <tr>
@@ -44,9 +46,12 @@
                 @endforeach
             </tbody>
         </table>
+      </div>
         <div>
             {{$institutionCourses->render()}} @endif
         </div>
+      </div>
+      <div>
         <a href="{!! route('client.course.add') !!}" class="float">
             <i class="fa fa-plus my-float"></i>
         </a>

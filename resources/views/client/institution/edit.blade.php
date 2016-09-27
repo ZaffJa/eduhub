@@ -14,7 +14,7 @@
 
     }
 </style>
-  <form method="post" autocomplete="off">
+  <form method="post" autocomplete="off" class="confirmLeaveBeforeSave">
     <div class="box-body">
       <div class="row">
           <div class="col-lg-2">

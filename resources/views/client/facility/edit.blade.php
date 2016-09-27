@@ -11,7 +11,7 @@
 
   <legend>Edit Facility</legend>
 
-  <form method="post" enctype="multipart/form-data">
+  <form method="post" enctype="multipart/form-data" class="confirmLeaveBeforeSave">
     <div class="row">
       <div class="col-md-1">
         Facility Name

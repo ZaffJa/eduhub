@@ -110,7 +110,7 @@ class CourseController extends Controller
             $coq->course_id = $course->id;
             $coq->fee_id = 2;
             $coq->amount =  $r->coq;
-            
+
             $coq->save();
 
             $residential = new CourseFee;
@@ -177,7 +177,7 @@ class CourseController extends Controller
 
       $period_type = PeriodType::pluck('name','id');
 
-      $institution = Institution::whereClientId(Auth::user()->client->user->id)->firstOrFail();
+      $institution = Institution::find(Auth::user()->client->institution->id);
 
       $course = Course::whereId($id)->firstOrFail();
 
@@ -207,7 +207,7 @@ class CourseController extends Controller
         $course->accredited = $r->accredited;
         $course->qualification = $r->qualification;
         $course->approved = $r->approved;
-        $course->commencement = $r->commencement;        
+        $course->commencement = $r->commencement;
         $course->mqa_reference_no = $r->mqa_reference_no;
         $course->save();
 
