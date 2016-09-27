@@ -58,8 +58,8 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
+                    Hello, {{Auth::user()->client->name }}
                 </a>
-
                 <div class="navbar-custom-menu">
 
                     <ul class="nav navbar-nav">

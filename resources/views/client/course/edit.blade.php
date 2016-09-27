@@ -163,7 +163,7 @@
         </div>
         <div class="row">
             <div class="col-md-2">
-            Cocuriculum Fee
+            Co-curriculum Fee
             </div>
             <div class="col-md-4">
                 <input type="number" name="coq" value="{!! isset($courseFee[1]) ? $courseFee[1]->amount : '' !!}" placeholder="Cocuriculum Fee">
@@ -204,7 +204,7 @@
         </div>
         <div class="row">
             <div class="col-md-2">
-            Cocuriculum Fee
+            Co-curriculum Fee
             </div>
             <div class="col-md-4">
                 <input type="number" name="coq" value="" placeholder="Cocuriculum Fee">
