@@ -1,6 +1,6 @@
 @extends('client.layout.headerLayout') @section('title', 'Course') @section('headbar', 'Courses') @section('content2')
 <div class="box box-primary">
-    @if ($faculty->isEmpty())
+    @if ($institutionCourses->isEmpty())
     <p> There are no facilities. </p>
     @else
     <div class="box-body">
@@ -8,7 +8,8 @@
             <input type="text" placeholder="Search a course" name="search_course" id="search" style="width:70%">
             <button type='submit' class='btn btn-md btn-default '>Search</button> {{csrf_field()}}
         </form>
-        {{$faculty->render()}}
+
+        <div class="box-body table-responsive no-padding">
         <table class="table table-bordered table-hover" style="width:100%">
             <thead>
                 <tr>
@@ -22,22 +23,35 @@
                     <tr>
             </thead>
             <tbody>
-                @foreach($faculty as $f) @foreach($f->courses as $c)
-                <tr>
-                    <td> {{$f->name}} </td>
-                    <td> {{$c->level->name}}</td>
-                    <td> {{$c->mode->name}}</td>
-                    <td> {{$c->name_en}}</td>
-                    <td> {{$c->name_ms}}</td>
-                    <td> {{$c->credit_hours}}</td>
-                    <td><a href=" {!! route('client.course.view.course', $c->id)  !!} " class="btn btn-info">View</a></td>
-                </tr>
-                @endforeach @endforeach
+                @foreach($institutionCourses as $ic)
+                    @foreach($courses as $c)
+                        @if($ic->course_id == $c->id)
+                        <tr>
+                            <td>
+                                @foreach($facCourses as $fc)
+                                    @if($fc->id == $c->faculty_id)
+                                        {{$fc->name}}
+                                    @endif
+                                @endforeach
+                            </td>
+                            <td> {{$c->level->name}} </td>
+                            <td> {{$c->mode->name}} </td>
+                            <td> {{$c->name_en}} </td>
+                            <td> {{$c->name_ms}} </td>
+                            <td> {{$c->credit_hours != null ? $c->credit_hours : "Credit hours not added"}} </td>
+                            <td><a href=" {!! route('client.course.view.course', $c->id)  !!} " class="btn btn-info">View</a></td>
+                        </tr>
+                        @endif
+                    @endforeach
+                @endforeach
             </tbody>
         </table>
+      </div>
         <div>
-            {{$faculty->render()}} @endif
+            {{$institutionCourses->render()}} @endif
         </div>
+      </div>
+      <div>
         <a href="{!! route('client.course.add') !!}" class="float">
             <i class="fa fa-plus my-float"></i>
         </a>

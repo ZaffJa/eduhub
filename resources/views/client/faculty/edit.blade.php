@@ -4,34 +4,30 @@
 @section('content2')
 
 <div class="box">
-
+  <div class="box-body table-responsive no-padding">
     <div class="box-body">
         <fieldset>
-
             <legend>Edit Faculty</legend>
-            <form method="post">
-<div class="col-md-10">
-                <input type="text" name="fac_name" value="{!! $faculty->name !!}">
-                <input type="hidden" name="_token" value="{!! csrf_token() !!}">
-
-</div>
-<div class="col-md-2">
-
-                <a href="{!! action('FacultyController@view') !!}" class="btn btn-warning">Cancel</a>
-
-                <a href="{!! route('fac_name',$faculty->id) !!}"><button class="btn btn-success " style="position: right;">Update</button></a>
-</div>
+            <form method="post" class="confirmLeaveBeforeSave">
+                <div class="col-md-10">
+                  <input type="text" name="fac_name" value="{!! $faculty->name !!}">
+                  <input type="hidden" name="_token" value="{!! csrf_token() !!}">
+                </div>
+                <div class="col-md-2">
+                  <a href="{!! action('FacultyController@view') !!}" class="btn btn-warning">Cancel</a>
+                  <a href="{!! route('fac_name',$faculty->id) !!}"><button class="btn btn-success " style="position: right;">Update</button></a>
+              </div>
             </form>
-
         </fieldset>
     </div>
-
+  </div>
 </div>
 <div class="box">
     <div class="box-footer">
         <fieldset>
             <legend>Edit Faculty Course</legend>
-            <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
+            <div class="box-body table-responsive no-padding">
+            <table class="table table-bordered table-striped">
                 <thead>
                     <tr role="row">
                         <th>Course</th>
@@ -52,5 +48,6 @@
             </table>
         </fieldset>
     </div>
+</div>
 </div>
 @endsection

@@ -168,11 +168,13 @@ return [
          */
          Yajra\Datatables\DatatablesServiceProvider::class,
          Collective\Html\HtmlServiceProvider::class,
+         OwenIt\Auditing\AuditingServiceProvider::class,
         //
 
         /*
          * Application Service Providers...
          */
+         OwenIt\Auditing\AuditingServiceProvider::class,
         App\Providers\AppServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\AuthServiceProvider::class,

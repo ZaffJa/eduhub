@@ -17,6 +17,7 @@
         </div>
         <div class="row">
             <div class="col-sm-12">
+              <div class="box-body table-responsive no-padding">
                 <table class="table table-bordered table-striped">
                     <thead>
                         <tr role="row">
@@ -34,9 +35,10 @@
                                 </td>
                             </tr>
                         @endforeach
-                        
+
                     </tbody>
                 </table>
+              </div>
                 {{$faculties->render()}}
             </div>
         </div>

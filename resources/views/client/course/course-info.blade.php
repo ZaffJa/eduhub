@@ -26,7 +26,7 @@
                   <dd> {{ $course->level != null ? $course->level->name : 'Not Defined' }} </dd>
                   <hr>
                   <dt>Period</dt>
-                  <dd> {{ $course->periodType =! null ? $course->periodType->name : 'Not Defined' }} </dd>
+                  <dd> {{ $course->periodType != null ? $course->periodType->name : 'Not Defined' }} </dd>
                   <hr>
                   <dt>Mode</dt>
                   <dd> {{ $course->mode != null ? $course->mode->name : 'Not Denfined' }} </dd>
@@ -44,7 +44,7 @@
                   <dd>  {{ $course->period_value_max }} </dd>
                   <hr>
                   <dt>Credit Hour</dt>
-                  <dd> {{ $course->credit_hours }} </dd>
+                  <dd> {{$course->credit_hours != null ? $course->credit_hours : "Credit hours not added"}} </dd>
                   <hr>
                   <dt>Approved</dt>
                   <dd> {{ $course->approved }} </dd>
@@ -61,9 +61,27 @@
                   <dt>MQA Refference Number</dt>
                   <dd> {{ $course->mqa_reference_no }} </dd>
                   <hr>
-                </dl>
 
+                  <dt><h3>Course Fee</h3></dt>
+                  <dd></dd>
+                  
+                  <dt>Alumini Fee</dt>
+                  <dd>{!! isset($courseFee[0]) ? $courseFee[0]->amount : 'Fee not added' !!} </dd>
+                  <dt>Co-curriculum Fee</dt>
+                  <dd>{!! isset($courseFee[1]) ? $courseFee[1]->amount : 'Fee not added' !!}</dd>
+                  <dt>Residential Fee</dt>
+                  <dd>{!! isset($courseFee[2]) ? $courseFee[2]->amount : 'Fee not added' !!}</dd>
+                  <dt>Service Fee</dt>
+                  <dd>{!! isset($courseFee[3]) ? $courseFee[3]->amount : 'Fee not added' !!}</dd>
+                  <dt>Tuition Fee</dt>
+                  <dd>{!! isset($courseFee[4]) ? $courseFee[4]->amount : 'Fee not added' !!}</dd>
+                  <dt>Total Fee</dt>
+                  <dd>{{ $totalFee != 0 ? $totalFee : 'Fee not added' }}</dd>
+                  <hr>
+                
+                </dl>
               </div>
+
               <div class="box-footer">
                 <div class="col-md-9">
                   </div>

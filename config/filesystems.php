@@ -56,10 +56,10 @@ return [
 
         's3' => [
             'driver' => 's3',
-            'key' => 'your-key',
-            'secret' => 'your-secret',
-            'region' => 'your-region',
-            'bucket' => 'your-bucket',
+            'key' => 'AKIAIIOSH7U5TNUH523A',
+            'secret' => 'quqpV46a4isJcUqg6bpgXpCDbgwIzHWHUCnETll6',
+            'region' => 'Singapore',
+            'bucket' => 'amr-eduhub-upoads',
         ],
 
     ],

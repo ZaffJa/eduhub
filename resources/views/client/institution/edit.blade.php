@@ -14,7 +14,7 @@
 
     }
 </style>
-  <form method="post" autocomplete="off">
+  <form method="post" autocomplete="off" class="confirmLeaveBeforeSave">
     <div class="box-body">
       <div class="row">
           <div class="col-lg-2">
@@ -81,7 +81,7 @@
                 Main Branch
             </div>
             <div class="col-lg-2">
-                {{ Form::select('parent_id', $parent_institution, $institution->parent_id != null ? $institution->website : null) }}
+                {{ Form::select('parent_id',array(null=>'Please select') + $parent_institution, $institution->parent_id != null ? $institution->parent_id : null) }}
             </div>
         </div>
         <div class="row">
@@ -89,7 +89,7 @@
                 Description
             </div>
             <div class="col-lg-4">
-                <textarea name="description" type="text" value="{!! $institution->description !!}" placeholder="Institution Description"></textarea>
+                <textarea name="description" type="text" placeholder="Institution Description">{!! $institution->description != null ? $institution->description : Null !!}</textarea>
             </div>
         </div>
     </div>

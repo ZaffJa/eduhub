@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
 use App\Http\Requests;
 use App\Models\Faculty;
 use App\Models\StudyLevel;
@@ -13,6 +12,7 @@ use App\Models\Institution;
 use App\Models\Nec;
 use App\Models\PeriodType;
 use App\Models\InstitutionCourse;
+use App\Models\CourseFee;
 use Validator;
 use Auth;
 use View;
@@ -33,15 +33,13 @@ class CourseController extends Controller
 
       try{
         return view('client.course.add')
-                              ->with(compact('faculties','levels','modes','nec','period_type'))
+                              ->with(compact('faculties','levels','modes','nec','period_type','fee_types'))
                               ->with(['status'=>'hahaha']);
       }catch(Error $x){
         return view('client.course.add')
-                              ->with(compact('faculties','levels','modes','nec','period_type'))
-                              ->withError(['status'=>'Error getting data']);
+                              ->with(compact('faculties','levels','modes','nec','period_type','fee_types'))
+                              ->withError(['status'=>'hahaha']);
       }
-
-
     }
 
     public function store(Request $r)
@@ -57,8 +55,12 @@ class CourseController extends Controller
              'qualification' => 'required',
              'approved' => 'required',
              'accredited' => 'required',
+             'commencement' => 'required',
              'mqa' => 'required',
              'nec' => 'required',
+             'alumni' => 'required',
+             'coq' => 'required',
+             'residential' => 'required',
          ]);
 
          if ($validator->fails()) {
@@ -81,7 +83,9 @@ class CourseController extends Controller
             $course->period_value_min = $r->period_value_min;
             $course->period_value_max = $r->period_value_max;
             $course->credit_hours = $r->credit_hours;
+            $course->approved = $r->approved;
             $course->accredited = $r->accredited;
+            $course->commencement = $r->commencement;
             $course->qualification = $r->qualification;
             $course->mqa_reference_no = $r->mqa;
 
@@ -94,49 +98,98 @@ class CourseController extends Controller
 
             $is->save();
 
-          return  redirect()->route('client.course.view')->with(['status'=>'The course '. $course->name_en .' has been added.']);
+            //Course Fee
+            $alumni = new CourseFee;
+            $alumni->course_id = $course->id;
+            $alumni->fee_id = 1;
+            $alumni->amount = $r->alumni;
 
-         }catch(\Illuminate\Database\QueryException $e){
+            $alumni->save();
+
+            $coq =  new CourseFee;
+            $coq->course_id = $course->id;
+            $coq->fee_id = 2;
+            $coq->amount =  $r->coq;
+
+            $coq->save();
+
+            $residential = new CourseFee;
+            $residential->course_id = $course->id;
+            $residential->fee_id = 3;
+            $residential->amount = $r->residential;
+
+            $residential->save();
+
+            $service = new CourseFee;
+            $service->course_id = $course->id;
+            $service->fee_id = 4;
+            $service->amount = $r->service;
+
+            $service->save();
+
+            $tuition = new CourseFee;
+            $tuition->course_id = $course->id;
+            $tuition->fee_id = 5;
+            $tuition->amount = $r->tuition;
+
+            $tuition->save();
+
+          return  redirect()
+                    ->route('client.course.view')
+                    ->with(['status'=>'The course '. $course->name_en .' has been added.']);
+
+         }catch(\Illuminate\Database\QueryException $ex){
                 return redirect()
                             ->back()
                             ->withErrors($ex->errorInfo[2])
                             ->withInput();
-            }
-
+          }
 
      }
 
      public function view()
      {
-      $faculty = Faculty::whereInstitutionId(Auth::user()->client->institution->id)->paginate(2);
+      $institutionCourses = InstitutionCourse::whereInstitutionId(Auth::user()->client->institution->id)->paginate(40);
+      $courses = Course::all();
+      $facCourses = Faculty::all();
 
-      $periodTypes = PeriodType::all();
-
-      return View::make('client.course.view',compact('faculty','periodTypes'));
+      return View::make('client.course.view',compact('faculty','institutionCourses','courses','facCourses'));
      }
 
      public function viewCourse($id)
      {
       $course = Course::whereId($id)->firstOrFail();
 
-      return View::make('client.course.course-info',compact('course'));
+      $courseFee = CourseFee::whereCourse_id($id)->get();
+      (float)$totalFee = 0.0;
+      foreach ($courseFee as $cf) {
+        $totalFee += (float)$cf->amount;
+      }
+
+      return View::make('client.course.course-info',compact('course','courseFee','totalFee'));
      }
 
      public function edit($id)
      {
       $faculties = Faculty::pluck('name','id');
+
       $levels = StudyLevel::pluck('name','id');
+
       $modes = StudyMode::pluck('name','id');
+
       $nec = Nec::pluck('field','code');
+
       $period_type = PeriodType::pluck('name','id');
 
-      $institution = Institution::whereClientId(Auth::user()->client->user->id)->firstOrFail();
+      $institution = Institution::find(Auth::user()->client->institution->id);
 
       $course = Course::whereId($id)->firstOrFail();
 
+      $courseFee = CourseFee::whereCourseId($id)->get();
 
-      // return $course;
-      return View::make('client.course.edit',compact('course','faculties','levels','modes','period_type','nec'));
+
+      return View::make('client.course.edit',compact('course','faculties','levels','modes','period_type','nec','courseFee'));
+
      }
 
      public function update(Request $r,$id)
@@ -158,12 +211,69 @@ class CourseController extends Controller
         $course->accredited = $r->accredited;
         $course->qualification = $r->qualification;
         $course->approved = $r->approved;
+        $course->commencement = $r->commencement;
         $course->mqa_reference_no = $r->mqa_reference_no;
         $course->save();
 
+        $alumni = CourseFee::whereCourseIdAndFeeId($id,1)->first();
+
+        if($alumni == null)
+        {
+        $alumni = new CourseFee;
+        $alumni->course_id = $id;
+        $alumni->fee_id = 1;
+        }
+
+        $alumni->amount = $r->alumni;
+        $alumni->save();
+
+        $coq = CourseFee::whereCourseIdAndFeeId($id,2)->first();
+        if($coq == null)
+        {
+          $coq = new CourseFee;
+          $coq->course_id = $id;
+          $coq->fee_id = 2;
+        }
+
+        $coq->amount =  $r->coq;
+        $coq->save();
+
+        $residential = CourseFee::whereCourseIdAndFeeId($id,3)->first();
+        if($residential == null)
+        {
+          $residential = new CourseFee;
+          $residential->course_id = $id;
+          $residential->fee_id = 3;
+        }
+
+        $residential->amount = $r->residential;
+        $residential->save();
+
+        $service = CourseFee::whereCourseIdAndFeeId($id,4)->first();
+        if($service == null)
+        {
+          $service = new CourseFee;
+          $service->course_id = $id;
+          $service->fee_id = 4;
+        }
+
+        $service->amount = $r->service;
+        $service->save();
+
+        $tuition = CourseFee::whereCourseIdAndFeeId($id,5)->first();
+        if($tuition == null)
+        {
+          $tuition = new CourseFee;
+          $tuition->course_id = $id;
+          $tuition->fee_id = 4;
+        }
+
+        $tuition->amount = $r->tuition;
+        $tuition->save();
+
         return  redirect()->back()->with(['status'=>'The course name '.$course->name_en.' has been updated.']);
 
-        }catch(\Illuminate\Database\QueryException $e){
+        }catch(\Illuminate\Database\QueryException $ex){
                 return redirect()
                             ->back()
                             ->withErrors($ex->errorInfo[2])
@@ -175,12 +285,14 @@ class CourseController extends Controller
     public function delete($id)
     {
       $course = Course::whereId($id)->firstOrFail();
+      $institutionCourse = InstitutionCourse::whereCourseId($id)->firstOrFail();
 
       try {
+        $institutionCourse->delete();
         $course->delete();
       }catch(\Illuminate\Database\QueryException $ex){
         return redirect()
-                    ->back()
+                    ->action('CourseController@view')
                     ->withErrors($ex->errorInfo[2])
                     ->withInput();
       }

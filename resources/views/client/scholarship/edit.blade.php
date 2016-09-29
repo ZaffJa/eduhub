@@ -9,7 +9,7 @@
 <fieldset>
 
   <legend>Edit Faculty</legend>
-  <form method="post" >
+  <form method="post" class="confirmLeaveBeforeSave">
 	  <input type="text" name="fac_name" value="{!! $faculty->name !!}">
 	  <input type="hidden" name="_token" value="{!! csrf_token() !!}">
 

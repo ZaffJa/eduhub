@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Models\Facility;
 use App\Models\FacilityType;
 use App\Models\File;
+use Validator;
 use Auth;
 use View;
 
@@ -22,8 +23,22 @@ class FacilityController extends Controller
     {
     	return view('client.facility.addAllType');
     }
+
     public function storeAllType(Request $r)
     {
+        $validator = Validator::make($r->all(), [
+             'faci_name' => 'required|max:255',
+             'faci_cap' => 'required|max:255',
+             'faci_img' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:20048',
+         ]);
+
+        if ($validator->fails()) {
+          return redirect()
+                      ->back()
+                      ->withErrors($validator)
+                      ->withInput();
+                  }
+
         $facility = new Facility;
 
         $facility->institution_id = Auth::user()->client->institution->id;
@@ -64,6 +79,7 @@ class FacilityController extends Controller
 
       return redirect()->back()->with(['status'=>'The facility name '. $facility->name .' has been added.']);
     }
+
     public function view($typeid)
     {
     	$facilities = Facility::whereType_id($typeid)->whereInstitution_id(Auth::user()->client->institution->id)->get();
@@ -88,6 +104,19 @@ class FacilityController extends Controller
 
     public function store(Request $r, $typeid)
     {
+        $validator = Validator::make($r->all(), [
+             'faci_name' => 'required|max:255',
+             'faci_cap' => 'required|max:255',
+             'faci_img' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:20048',
+         ]);
+
+        if ($validator->fails()) {
+          return redirect()
+                      ->back()
+                      ->withErrors($validator)
+                      ->withInput();
+                  }
+
     	$facility = new Facility;
 
     	$facility->institution_id = Auth::user()->client->institution->id;
@@ -136,6 +165,18 @@ class FacilityController extends Controller
 
     public function update(Request $r,$typeid,$fid)
     {
+         $validator = Validator::make($r->all(), [
+             'faci_name' => 'required|max:255',
+             'faci_capacity' => 'required|max:255',
+         ]);
+
+        if ($validator->fails()) {
+          return redirect()
+                      ->back()
+                      ->withErrors($validator)
+                      ->withInput();
+                  }
+
     	$facility = Facility::whereId($fid)
                                 ->whereType_id($typeid)
                                 ->firstOrFail();
@@ -143,27 +184,38 @@ class FacilityController extends Controller
         $facility->name = $r->faci_name;
     	$facility->capacity = $r->faci_capacity;
 
-        $faci_img = new File;
-        $faci_img->institution_id = Auth::user()->client->institution->id;
-        $faci_img->facility_id = $fid;
-        $faci_img->facility_type = $typeid;
-        $faci_img->type_id = 1;
-        $faci_img->category_id = 2;
-        $faci_img->filename = $r->faci_img->getClientOriginalName();
-        $faci_img->path = 'facility/'.$r->faci_img->getClientOriginalName();
-        $faci_img->mime = $r->faci_img->extension();
-        $faci_img->size = $r->faci_img->getSize();
-
-        $r->faci_img->move(public_path()."/img/facility",$r->faci_img->getClientOriginalName());
-
-    	try {
+        try {
             $facility->save();
-            $faci_img->save();
-    	}catch(\Illuminate\Database\QueryException $ex){
-    		return $ex->errorInfo;
-    	}
+        }catch(\Illuminate\Database\QueryException $ex){
+            return $ex->errorInfo;
+        }
 
+        if($r->faci_img != '' || $r->faci_img != null)
+        {
+            $faci_img = File::whereFacilityIdAndFacilityType($fid,$typeid)->first();
+            if( $faci_img == null)
+            {
+                $faci_img = new File;
+            }
+            $faci_img->institution_id = Auth::user()->client->institution->id;
+            $faci_img->facility_id = $fid;
+            $faci_img->facility_type = $typeid;
+            $faci_img->type_id = 1;
+            $faci_img->category_id = 2;
+            $faci_img->filename = $r->faci_img->getClientOriginalName();
+            $faci_img->path = 'facility/'.$r->faci_img->getClientOriginalName();
+            $faci_img->mime = $r->faci_img->extension();
+            $faci_img->size = $r->faci_img->getSize();
 
+            $r->faci_img->move(public_path()."/img/facility",$r->faci_img->getClientOriginalName());    
+
+            try {
+                $faci_img->save();
+            }catch(\Illuminate\Database\QueryException $ex){
+                return $ex->errorInfo;
+            }
+        }
+        
     	return redirect()
                 ->back()
                 ->with('facility',$facility)
@@ -185,7 +237,10 @@ class FacilityController extends Controller
 
         $facilities = Facility::whereType_id($typeid)->whereInstitution_id(Auth::user()->client->institution->id)->get();
 
-        return redirect()->back()->with(['status'=>'The '. $facility->name .' has been deleted','typeid','facilities']);
+        return redirect()
+                    ->back()
+                    ->with('typeid',$typeid)
+                    ->with(['status'=>'The '. $facility->name .' has been deleted','facilities']);
 
     }
 }

@@ -15,23 +15,28 @@
     }
 </style>
 <div class="box-body">
-<form class=""  method="post" autocomplete="off">
+<form  method="post" autocomplete="off" class="confirmLeaveBeforeSave">
+    <div class="row">
+        <div class="col-md-2">
+        <h3>Course Info</h3>
+        </div>
+    </div>
     <div class="row">
         <div class="col-md-2">
             Course Name
         </div>
         <div class="col-md-8">
-        <div class="row">
-        <div class="col-md-4">
-            <input type="text" value="{!! $course->name_en !!}" name="name_en" placeholder="English Name">
+            <div class="row">
+                <div class="col-md-6">
+                    <input type="text" value="{!! $course->name_en !!}" name="name_en" placeholder="English Name">
+                </div>
+            </div>
+              <div class="row">
+                <div class="col-md-6 ">
+                    <input type="text" value="{!! $course->name_ms !!}" name="name_ms" placeholder="Malay Name">
+                </div>
+              </div>
         </div>
-      </div>
-      <div class="row">
-        <div class="col-md-4 ">
-            <input type="text" value="{!! $course->name_ms !!}" name="name_ms" placeholder="Malay Name">
-        </div>
-      </div>
-    </div>
     </div>
     <div class="row">
         <div class="col-md-2">
@@ -120,6 +125,14 @@
     </div>
     <div class="row">
         <div class="col-md-2">
+            Commencement
+        </div>
+        <div class="col-md-4">
+            <input type="text" value="{!! $course->commencement !!}" name="commencement" placeholder="Commencement">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2">
             Field
         </div>
         <div class="col-md-4">
@@ -134,6 +147,94 @@
             <input type="text" value="{!! $course->mqa_reference_no !!}" name="mqa_reference_no" placeholder="MQA Reference No">
         </div>
     </div>
+    <div class="row">
+        <div class="col-md-2">
+            <h3>Course Fee</h3>
+        </div>
+    </div>
+    @if($courseFee->count())
+        <div class="row">
+            <div class="col-md-2">
+            Alumni Fee
+            </div>
+            <div class="col-md-4">
+                <input type="number" name="alumni" value="{!! isset($courseFee[0]) ? $courseFee[0]->amount : '' !!}"  placeholder="Alumni Fee">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+            Co-curriculum Fee
+            </div>
+            <div class="col-md-4">
+                <input type="number" name="coq" value="{!! isset($courseFee[1]) ? $courseFee[1]->amount : '' !!}" placeholder="Cocuriculum Fee">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+            Residential College Fee
+            </div>
+            <div class="col-md-4">
+                <input type="number" name="residential" value="{!! isset($courseFee[2]) ? $courseFee[2]->amount : '' !!}" placeholder="Residential College Fee">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+            Service Fee
+            </div>
+            <div class="col-md-4">
+                <input type="number" name="service" value="{!! isset($courseFee[3]) ? $courseFee[3]->amount : '' !!}" placeholder="Service Fee">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+            Tuition Fee
+            </div>
+            <div class="col-md-4">
+                <input type="number" name="tuition" value="{!! isset($courseFee[4]) ? $courseFee[4]->amount : '' !!}" placeholder="Tuition Fee">
+            </div>
+        </div>
+    @else
+        <div class="row">
+            <div class="col-md-2">
+            Alumni Fee
+            </div>
+            <div class="col-md-4">
+                <input type="number" name="alumni" value=""  placeholder="Alumni Fee">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+            Co-curriculum Fee
+            </div>
+            <div class="col-md-4">
+                <input type="number" name="coq" value="" placeholder="Cocuriculum Fee">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+            Residential College Fee
+            </div>
+            <div class="col-md-4">
+                <input type="number" name="residential" value="" placeholder="Residential College Fee">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+            Service Fee
+            </div>
+            <div class="col-md-4">
+                <input type="number" name="service" value="" placeholder="Service Fee">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">
+            Tuition Fee
+            </div>
+            <div class="col-md-4">
+                <input type="number" name="tuition" value="" placeholder="Tuition Fee">
+            </div>
+        </div>
+    @endif
 <!--     <div class="row">
         <div class="col-md-2">
             Course Description
