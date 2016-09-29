@@ -7,6 +7,7 @@ use Illuminate\Http\UploadedFile;
 use App\Http\Requests;
 use App\Models\FileType;
 use App\Models\InstitutionScholarship;
+use Illuminate\Support\Facades\Storage;
 use View;
 use Validator;
 use File;
@@ -40,6 +41,8 @@ class ScholarshipController extends Controller
                    ->withInput();
     }
 
+    $file = $r->file('file_form');
+
     try{
       $institutionScholarship = new InstitutionScholarship;
       $institutionScholarship->name = $r->scholarship_name;
@@ -47,15 +50,19 @@ class ScholarshipController extends Controller
       $institutionScholarship->fileable_id = Auth::user()->client->institution->id;
       $institutionScholarship->type_id = $r->type_id;
       $institutionScholarship->category_id = 1;
-      $institutionScholarship->filename = $r->file_form->getClientOriginalName();
+      $institutionScholarship->filename = $file->getClientOriginalName();
       $institutionScholarship->path = 'file/';
-      $institutionScholarship->mime = $r->file_form->extension();
-      $institutionScholarship->size = $r->file_form->getSize();
+      $institutionScholarship->mime = $file->extension();
+      $institutionScholarship->size = $file->getSize();
       $institutionScholarship->description = 'description';
       $institutionScholarship->contact = $r->scholarship_contact;
       $institutionScholarship->website = $r->website;
+      $filePath = public_path('uploads/scholarship');
+      $file->move($filePath,$file->getClientOriginalName());
 
-      $r->file_form->move(public_path('uploads/scholarship'),$r->file_form->getClientOriginalName());
+      // return $filePath;
+      $s3 = Storage::disk('s3');
+      $s3->put($file->getClientOriginalName(),$filePath);
 
       $institutionScholarship->save();
 

@@ -26,6 +26,7 @@ Route::get('/short', 'ShortController@dashboard')->name('short.dashboard');
 Route::get('/short/edit-profile', 'ShortController@profile')->name('short.profile.edit');
 
 
+Route::get('/view', 'ShortController@viewProfile')->name('short.view.profile');
 
 Auth::routes();
 
@@ -36,8 +37,6 @@ Route::get('/email',function(){
 
 Route::get('/home', 'HomeController@index');
 
-
-
 Route::group(['prefix'=>'client-dashboard'],function(){
   Route::group(['middleware'=>'auth'],function(){
 
@@ -45,7 +44,6 @@ Route::group(['prefix'=>'client-dashboard'],function(){
     Route::get('/edit-profile', 'DashboardController@profile')->name('client.profile');
     Route::get('/request-institution','InstitutionController@requestInstitution')->name('client.request.institution');
     Route::post('/request-institution','InstitutionController@requestAddInstitution')->name('client.request.add.institution');
-
 
     Route::get('/all-institution','InstitutionController@viewAllInstitution')->name('admin.view.all.institution');
     Route::get('/edit-institution/{id}','InstitutionController@editInstitution')->name('admin.edit.institution');
@@ -55,7 +53,6 @@ Route::group(['prefix'=>'client-dashboard'],function(){
 
     Route::get('/new-institution', 'InstitutionController@index');
     Route::post('/new-institution', 'InstitutionController@create')->name('client.post.institution');
-
 
     Route::get('/course','CourseController@view')->name('client.course.view');
     Route::get('/course/{id}/course-view','CourseController@viewCourse')->name('client.course.view.course');
@@ -81,7 +78,6 @@ Route::group(['prefix'=>'client-dashboard'],function(){
     Route::get('/faculty/{id}/delete', 'FacultyController@delete')->name('client.faculty.delete');
     Route::get('/faculty/search', 'FacultyController@postSearchFaculty')->name('client.faculty.search');
     Route::post('/faculty/search-result', 'FacultyController@postSearchResult')->name('client.faculty.search.result');
-
 
     Route::get('/facilities', 'FacilityController@viewType')->name('faci.viewType');
     Route::get('/facilities/add-all-type', 'FacilityController@addAllType')->name('faci.addAllType');

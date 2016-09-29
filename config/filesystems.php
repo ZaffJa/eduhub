@@ -58,7 +58,7 @@ return [
             'driver' => 's3',
             'key' => 'AKIAIIOSH7U5TNUH523A',
             'secret' => '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',
-            'region' => 'Singapore',
+            'region' => 'ap-southeast-1',
             'bucket' => 'amr-eduhub-upoads',
         ],
 

@@ -1,5 +1,6 @@
 @extends('client.layout.headerLayout')
 
+@section('headbar', 'Edit Faculty')
 @section('title', 'Profile')
 @section('headbar', 'Edit Profile')
 @section('content2')

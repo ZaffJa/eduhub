@@ -42,11 +42,11 @@
 
         <!-- Main Header -->
         <header class="main-header">
-            <a href="/client-dashboard" class="logo">
+            <a href="{!! action('ShortController@dashboard')  !!}" class="logo">
                 <!-- mini logo for sidebar mini 50x50 pixels -->
                 <span class="logo-mini"><b>A</b>LT</span>
                 <!-- logo for regular state and mobile devices -->
-                <span class="logo-lg"><b>EduConsultant</b> Dashboard</span>
+                <span class="logo-lg"><b>Short Courses</b> Dashboard</span>
             </a>
             <nav class="navbar navbar-static-top">
 
@@ -65,15 +65,15 @@
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
 
-                                <i class="fa fa-cog"></i><span class="hidden-xs">Agent 007</span>
+                                <i class="fa fa-cog"></i><span class="hidden-xs">Hello, {{Auth::user()->name}} </span>
                             </a>
                             <ul class="dropdown-menu">
                                 <!-- User image -->
                                 <li class="user-header">
                                     <img src="http://www.iiwas.org/conferences/iiwas2011/img/logos/UTM.jpg" class="img-circle" alt="User Image">
                                     <p>
-                                        Agent 007
-                                        <small>Member since yesterday</small>
+                                        {{Auth::user()->name}}
+                                        <small>Member since {{Auth::user()->client != null ? Auth::user()->client->user->created_at->diffForHumans() : ''}}</small>
                                     </p>
                                 </li>
 
@@ -114,8 +114,7 @@
                         <img src="/img/logo/LOGO-U.svg" class="img-circle" alt="User Image">
                     </div>
                     <div class="pull-left info">
-                        <!-- <p>{{ Auth::user()->name}} -->
-                        <p>Agent 007</p>
+                        <p>{{ Auth::user()->name}}</p>
                     </div>
                 </div>
 
@@ -126,53 +125,49 @@
                 <!-- Sidebar Menu -->
                 <ul class="sidebar-menu">
 
-                    <!-- @if(Auth::user()->institution != null) -->
-                    <li class="treeview">
-                        <a href="/client-dashboard/institution"><i class="fa fa-university"></i> <span>Institution</span>
-                          <span class="pull-right-container">
+                    <!-- Dashboard -->
+                    <li class="header">Dashboard</li>
 
-                          </span>
-                        </a>
-                    </li>
                     <li class="treeview">
-                        <a href="/client-dashboard/course"><i class="fa fa-book"></i> <span>Courses</span>
-                          <span class="pull-right-container">
-
-                          </span>
-                        </a>
-
-                    </li>
-                    <li class="treeview">
-                        <a href="/client-dashboard/faculty"><i class="fa fa-building"></i> <span>Faculties</span>
-                          <span class="pull-right-container">
-
-                          </span>
-                        </a>
-                    </li>
-                    <li class="treeview">
-                        <a href="/client-dashboard/facilities"><i class="fa fa-building-o"></i> <span>Facilities</span>
-                          <span class="pull-right-container">
-
-                          </span>
-                        </a>
-                    </li>
-                    <li class="treeview">
-                        <a href="/client-dashboard/scholarship/view"><i class="fa fa-usd"></i> <span>Scholarship</span>
+                        <a href="/client-dashboard/institution"><i class="fa fa-certificate"></i> <span>Short Course</span>
                           <span class="pull-right-container">
                           </span>
                         </a>
                     </li>
 
-                    <!-- @else -->
-                    <li class="treeview">
-                        <a href="{!!route('client.request.institution')!!}"><i class="fa fa-building-o"></i> <span>Request Institution</span>
-                          <span class="pull-right-container">
+                    @if( Auth::user()->institution)
+                    <!-- Other -->
+                    <li class="header">Other</li>
 
+                    <li class="treeview">
+                        <a href="/client-dashboard/"><i class="fa fa-university"></i> <span>Institution</span>
+                          <span class="pull-right-container">
                           </span>
                         </a>
-
                     </li>
-                    <!-- @endif -->
+                    @endif
+
+                    <!-- Settings -->
+                    <li class="header">Settings</li>
+
+                    <li class="treeview">
+                        <a href="{!! route('client.institution.edit',Auth::user()->client->institution->id) !!}"><i class="fa fa-cog"></i> <span>Edit Profile</span>
+                          <span class="pull-right-container">
+                          </span>
+                        </a>
+                    </li>
+
+                    <li class="treeview">
+                        <a href="#" onclick="event.preventDefault();
+                                 document.getElementById('logout-form').submit();"><i class="fa fa-sign-out"></i> <span>Logout</span>
+                          <span class="pull-right-container">
+                          </span>
+                        </a>
+                        <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                            {{ csrf_field() }}
+                        </form>
+                    </li>
+
                 </ul>
                 <!-- /.sidebar-menu -->
             </section>
