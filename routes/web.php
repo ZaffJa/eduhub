@@ -23,6 +23,9 @@ Route::get('/agent', 'AgentController@dashboard')->name('agent.dashboard');
 
 Route::get('/short', 'ShortController@dashboard')->name('short.dashboard');
 
+Route::get('/short/edit-profile', 'ShortController@profile')->name('short.profile.edit');
+
+
 
 Auth::routes();
 

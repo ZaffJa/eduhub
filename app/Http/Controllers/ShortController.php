@@ -15,5 +15,12 @@ class ShortController extends Controller
     return view('short.dashboard');
   }
 
+  public function profile()
+  {
+
+
+    return view('short.profile.edit');
+  }
+
 
 }
