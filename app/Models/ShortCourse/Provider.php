@@ -36,4 +36,9 @@ class Provider extends Model
         return $this->morphMany('App\Models\ShortCourse\File', 'fileable');
     }
 
+    public function bank()
+    {
+        return $this->belongsTo('App\Models\BankType','bank_type','id');
+    }
+
 }

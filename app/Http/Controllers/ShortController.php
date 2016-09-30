@@ -27,6 +27,7 @@ class ShortController extends Controller
   	$provider = Auth::user()->short_provider;
   	$providerType = Auth::user()->short_provider->type;
 
+    // return $provider;
   	return View::make('short.profile.view', compact('provider','providerType'));
   }
 

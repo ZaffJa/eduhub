@@ -14,6 +14,9 @@
 
 			<div class="box-body" style="margin-left:2%; font-size:125%">
 				<dl class="dl-horizontal">
+					<dt>Headline</dt>
+					<dd> {{$provider->headline != null ? $provider->headline : "Headline not added"}} </dd>
+					<hr>
 					<dt>Abbreviation</dt>
 					<dd> {{$provider->abbreviation != null ? $provider->abbreviation : "Abbretiviation not added"}} </dd>
 					<hr>
@@ -40,6 +43,12 @@
 					<hr>
 					<dt>Contact</dt>
 					<dd> {{$provider->phone != null ? $provider->phone : "Contact not added"}} </dd>
+					<hr>
+					<dt>Bank Account</dt>
+					<dd> {{$provider->bank_account != null ? $provider->bank_account : "Bank Account not added"}} </dd>
+					<hr>
+					<dt>Bank Type</dt>
+					<dd> </dd>
 					<hr>
 				</dl>
 				<a href="{!! route('short.profile.edit') !!}" class="btn btn-md btn-primary">Edit</a>
