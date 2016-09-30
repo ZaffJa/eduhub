@@ -1,8 +1,0 @@
-diff a/resources/views/short/profile/edit.blade.php b/resources/views/short/profile/edit.blade.php	(rejected hunks)
-@@ -1,6 +1,5 @@
- @extends('client.layout.headerLayout')
- 
--@section('title', 'Faculty')
- @section('title', 'Profile')
- @section('headbar', 'Edit Profile')
- @section('content2')
