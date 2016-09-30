@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddColumnsToShortProviders extends Migration
+class AddMoreColumnsToShortProviders extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,7 @@ class AddColumnsToShortProviders extends Migration
      */
     public function up()
     {
-      Schema::table('short_providers', function (Blueprint $table) {
-        $table->string('bank_name',75);
-        $table->integer('bank_account')->unsigned();
-      });
-
+        //
     }
 
     /**
@@ -27,8 +23,6 @@ class AddColumnsToShortProviders extends Migration
      */
     public function down()
     {
-        Schema::table('short_providers', function (Blueprint $table) {
-            //
-        });
+        //
     }
 }

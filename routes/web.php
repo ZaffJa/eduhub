@@ -23,11 +23,14 @@ Route::get('/agent', 'AgentController@dashboard')->name('agent.dashboard');
 
 Route::get('/short', 'ShortController@dashboard')->name('short.dashboard');
 
-
 Route::get('/short/view-profile', 'ShortController@viewProfile')->name('short.view.profile');
 
+/*
+* All routes for short courses will
+* is registered here
+*/
+Route::get('/short', 'ShortController@dashboard')->name('short.dashboard');
 Route::get('/short/edit-profile', 'ShortController@profile')->name('short.profile.edit');
-
 Route::get('/short/course/', 'ShortController@viewCourse')->name('short.course.view');
 
 Route::get('/short/course/add', 'ShortController@addCourse')->name('short.course.add');
