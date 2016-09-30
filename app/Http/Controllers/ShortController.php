@@ -35,5 +35,10 @@ class ShortController extends Controller
     return view('short.course.view');
   }
 
+  public function addCourse()
+  {
+    return view('short.course.add');
+  }
+
 
 }

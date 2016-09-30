@@ -31,7 +31,20 @@ Route::group(['prefix'=>'short'],function(){
 });
 
 
+Route::get('/short/view-profile', 'ShortController@viewProfile')->name('short.view.profile');
+
+/*
+* All routes for short courses will
+* is registered here
+*/
+Route::get('/short', 'ShortController@dashboard')->name('short.dashboard');
+Route::get('/short/edit-profile', 'ShortController@profile')->name('short.profile.edit');
+>>>>>>> 33e91dd453b084f1119c2d34296a0109497fc677
 Route::get('/short/course/', 'ShortController@viewCourse')->name('short.course.view');
+
+Route::get('/short/course/add', 'ShortController@addCourse')->name('short.course.add');
+
+Route::get('/short/course/edit', 'ShortController@editCourse')->name('short.course.edit');
 
 Auth::routes();
 

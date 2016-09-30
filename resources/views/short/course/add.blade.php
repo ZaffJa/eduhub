@@ -15,7 +15,7 @@
     <div class="row">
       <div class="col-md-2">
       <label>
-          Title
+          Course Name
       </label>
       </div>
       <div class="col-md-10">
@@ -26,22 +26,22 @@
   <div class="row">
     <div class="col-md-2">
     <label>
-        First Name
+        Venue name
     </label>
     </div>
     <div class="col-md-10">
-      <input type="text" value="" name="name_first" placeholder="First Name">
+      <input type="text" value="" name="name_last" placeholder="Last Name">
     </div>
 
   </div>
   <div class="row">
     <div class="col-md-2">
     <label>
-        Venue name
+        Date
     </label>
     </div>
-    <div class="col-md-10">
-      <input type="text" value="" name="name_last" placeholder="Last Name">
+    <div class="col-md-10 col-sm-12 col-xs-12">
+      <input type="date" value="" >
     </div>
 
   </div>
