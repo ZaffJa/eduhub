@@ -21,13 +21,14 @@ Route::get('/', function () {
 
 Route::get('/agent', 'AgentController@dashboard')->name('agent.dashboard');
 
+
+/*
+* All routes for short courses will
+* is registered here
+*/
 Route::get('/short', 'ShortController@dashboard')->name('short.dashboard');
-
-
 Route::get('/view', 'ShortController@viewProfile')->name('short.view.profile');
-
 Route::get('/short/edit-profile', 'ShortController@profile')->name('short.profile.edit');
-
 Route::get('/short/course/', 'ShortController@viewCourse')->name('short.course.view');
 
 Auth::routes();
