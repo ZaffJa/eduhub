@@ -13,7 +13,10 @@ class AddMoreColumnsToShortProviders extends Migration
      */
     public function up()
     {
-        //
+        Schema::table('short_providers', function (Blueprint $table) {
+            $table->string('headline',255);
+            $table->string('profile_pic_location',255);
+        });
     }
 
     /**
@@ -23,6 +26,8 @@ class AddMoreColumnsToShortProviders extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('short_providers', function (Blueprint $table) {
+            //
+        });
     }
 }
