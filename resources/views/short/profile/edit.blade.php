@@ -14,6 +14,27 @@
   <div class="box-body">
     <div class="row">
       <div class="col-md-2">
+        <label>
+            Profile picture
+        </label>
+      </div>
+      <div class="col-md-4">
+        <div class="row">
+        
+        <a class="profile-link" href="#" >
+          <img class="profile-pic" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/91525/AmeliaBR.jpg"/></a>
+
+        </div>
+          <div class="row">
+            <div class="col-md-4">
+            <input type="file" value="" name="name_last" placeholder="Last Name">
+
+          </div></div>
+      </div>
+
+    </div>
+    <div class="row">
+      <div class="col-md-2">
       <label>
           Title
       </label>
