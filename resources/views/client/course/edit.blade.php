@@ -42,7 +42,7 @@
         <div class="col-md-2">
             Faculty
         </div>
-        <div class="col-md-1">
+        <div class="col-md-6 col-sm-8 col-xs-12">
             {{ Form::select('faculty_id', $faculties,$course->faculty->id) }}
         </div>
     </div>
@@ -50,7 +50,7 @@
         <div class="col-md-2">
             Level
         </div>
-        <div class="col-md-1">
+        <div class="col-md-6 col-sm-8 col-xs-12">
             {{ Form::select('level_id', $levels, $course->level->id) }}
         </div>
 
@@ -59,7 +59,7 @@
         <div class="col-md-2">
             Mode
         </div>
-        <div class="col-md-1">
+        <div class="col-md-6 col-sm-8 col-xs-12">
             {{ Form::select('mode_id', $modes, $course->mode->id)}}
         </div>
     </div>
@@ -135,7 +135,7 @@
         <div class="col-md-2">
             Field
         </div>
-        <div class="col-md-4">
+        <div class="col-md-6 col-sm-8 col-xs-12">
             {{ Form::select('nec_code', $nec, $course->nec_code) }}
         </div>
     </div>

@@ -8,7 +8,7 @@
 <div class="box box-primary">
   <div class="box-header">
     <div class="col-md-2">
-    <h3>Edit profile info</h3>
+    <h3>Add Short Course</h3>
     </div>
   </div>
   <div class="box-body">
@@ -37,7 +37,7 @@
   <div class="row">
     <div class="col-md-2">
     <label>
-        Last Name
+        Venue name
     </label>
     </div>
     <div class="col-md-10">
@@ -48,70 +48,7 @@
   <div class="row">
     <div class="col-md-2">
     <label>
-        Headline
-    </label>
-    </div>
-    <div class="col-md-10">
-      <input type="text" value="" name="name_last" placeholder="Last Name">
-    </div>
-
-  </div>
-  <div class="row">
-    <div class="col-md-2">
-    <label>
-        NRIC
-    </label>
-    </div>
-    <div class="col-md-10">
-      <input type="text" value="" name="name_last" placeholder="Last Name">
-    </div>
-
-  </div>
-  <div class="row">
-    <div class="col-md-2">
-    <label>
-        Phone #
-    </label>
-    </div>
-    <div class="col-md-10">
-      <input type="text" value="" name="name_last" placeholder="Last Name">
-    </div>
-
-  </div>
-  <div class="row">
-    <div class="col-md-2">
-    <label>
-        Address
-    </label>
-    </div>
-    <div class="col-md-10">
-      <input type="text" value="" name="name_last" placeholder="Last Name">
-    </div>
-
-  </div>
-  <div class="row">
-
-    <div class="col-md-10 col-md-offset-2">
-      <input type="text" value="" name="name_last" placeholder="Last Name">
-    </div>
-
-  </div>
-  <div class="row">
-    <div class="col-md-2">
-    <label>
-        Email
-    </label>
-    </div>
-    <div class="col-md-10">
-      <input type="text" value="" name="name_last" placeholder="Last Name">
-    </div>
-
-  </div>
-
-  <div class="row">
-    <div class="col-md-2">
-    <label>
-        Biography
+        Detail
     </label>
     </div>
     <div class="col-md-10 col-sm-12 col-xs-12">
@@ -122,7 +59,7 @@
   <div class="row">
     <div class="col-md-2">
     <label>
-        Profile Picture
+         Promotion poster
     </label>
     </div>
     <div class="col-md-10">
