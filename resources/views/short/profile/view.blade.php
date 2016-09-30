@@ -42,7 +42,7 @@
 					<dd> {{$provider->phone != null ? $provider->phone : "Contact not added"}} </dd>
 					<hr>
 				</dl>
-				<a href="#" class="btn btn-md btn-primary">Edit</a>
+				<a href="{!! route('short.profile.edit') !!}" class="btn btn-md btn-primary">Edit</a>
 			</div>
 		</div>
 	</div>

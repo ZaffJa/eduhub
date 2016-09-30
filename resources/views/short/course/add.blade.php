@@ -1,4 +1,4 @@
-@extends('client.layout.headerLayout')
+@extends('short.layout.headerApp')
 
 
 @section('title', 'Short Course')
@@ -18,10 +18,16 @@
           Course Name
       </label>
       </div>
-      <div class="col-md-10">
-        <input type="text" value="" name="name_first" placeholder="First Name">
+      <div class="row">
+        <div class="col-md-10">
+          <input type="text" value="" name="name_en" placeholder="English Name">
+        </div>
       </div>
-
+      <div class="row">
+        <div class="col-md-10 offset-col-md-2">
+          <input type="text" value="" name="name_ms" placeholder="Malay Name">
+        </div>
+      </div>
     </div>
   <div class="row">
     <div class="col-md-2">

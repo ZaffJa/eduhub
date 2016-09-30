@@ -1,4 +1,4 @@
-@extends('client.layout.headerLayout')
+@extends('short.layout.headerApp')
 
 
 @section('title', 'Profile')
@@ -64,7 +64,6 @@
     <div class="col-md-10">
       <input type="text" value="" name="name_last" placeholder="Last Name">
     </div>
-
   </div>
   <div class="row">
     <div class="col-md-2">

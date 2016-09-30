@@ -12,7 +12,6 @@ class Provider extends Model
     protected $table = 'short_providers';
     protected $fillable = [
         'type_id', 'parent_id', 'name', 'slug', 'abbreviation',
-        'description', 'established', 'location', 'name', 'website'
         'description', 'established', 'location', 'bank_name','website',
         'facebook','instagram','phone','bank_account'
     ];
@@ -36,3 +35,5 @@ class Provider extends Model
     {
         return $this->morphMany('App\Models\ShortCourse\File', 'fileable');
     }
+
+}

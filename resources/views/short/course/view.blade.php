@@ -1,4 +1,4 @@
-@extends('client.layout.headerLayout')
+@extends('short.layout.headerApp')
 
 
 @section('title', 'Short Course')
@@ -20,7 +20,7 @@
 
 </div>
 
-  <a href="" class="float">
+  <a href=" {!! route('short.course.add') !!} " class="float">
       <i class="fa fa-plus my-float"></i>
   </a>
   <div class="label-container">

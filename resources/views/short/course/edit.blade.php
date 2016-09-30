@@ -1,4 +1,4 @@
-@extends('client.layout.headerLayout')
+@extends('short.layout.headerApp')
 
 
 @section('title', 'Profile')

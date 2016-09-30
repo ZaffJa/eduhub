@@ -129,7 +129,7 @@
                     <li class="header">Dashboard</li>
 
                     <li class="treeview">
-                        <a href="/client-dashboard/institution"><i class="fa fa-certificate"></i> <span>Short Course</span>
+                        <a href=" {!! route('short.course.view') !!} "><i class="fa fa-certificate"></i> <span>Short Course</span>
                           <span class="pull-right-container">
                           </span>
                         </a>
@@ -151,7 +151,7 @@
                     <li class="header">Settings</li>
 
                     <li class="treeview">
-                        <a href="{!! route('client.institution.edit',Auth::user()->client->institution->id) !!}"><i class="fa fa-cog"></i> <span>Edit Profile</span>
+                        <a href="{!! route('short.profile.edit') !!}"><i class="fa fa-cog"></i> <span>Edit Profile</span>
                           <span class="pull-right-container">
                           </span>
                         </a>
