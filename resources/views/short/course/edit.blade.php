@@ -4,7 +4,6 @@
 @section('title', 'Profile')
 @section('headbar', 'Edit Profile')
 @section('content2')
-
 <div class="box box-primary">
   <div class="box-header">
     <div class="col-md-2">
@@ -141,6 +140,5 @@
   </div>
 
 </div>
-
 
 @endsection

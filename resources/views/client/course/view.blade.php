@@ -51,7 +51,7 @@
             {{$institutionCourses->render()}} @endif
         </div>
       </div>
-      <div>
+
         <a href="{!! route('client.course.add') !!}" class="float">
             <i class="fa fa-plus my-float"></i>
         </a>

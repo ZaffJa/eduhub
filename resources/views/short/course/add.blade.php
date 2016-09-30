@@ -1,8 +1,8 @@
 @extends('client.layout.headerLayout')
 
 
-@section('title', 'Profile')
-@section('headbar', 'Edit Profile')
+@section('title', 'Short Course')
+@section('headbar', 'Add Course')
 @section('content2')
 
 <div class="box box-primary">
@@ -141,6 +141,4 @@
   </div>
 
 </div>
-
-
 @endsection

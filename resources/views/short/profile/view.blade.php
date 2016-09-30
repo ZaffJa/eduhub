@@ -30,7 +30,7 @@
 					<dd> {{$provider->description != null ? $provider->description : "Description not added"}} </dd>
 					<hr>
 					<dt>Website</dt>
-					<dd> {{$provider->website != null ? $provider->website : "Description not added"}} </dd>
+					<dd> {{$provider->website != null ? $provider->website : "Website not added"}} </dd>
 					<hr>
 					<dt>Facebook</dt>
 					<dd> {{$provider->facebook != null ? $provider->facebook : "Facebook not added"}} </dd>
