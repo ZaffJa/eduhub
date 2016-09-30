@@ -27,7 +27,7 @@
 					<dd> {{$provider->location != null ? $provider->location : "Location not added"}} </dd>
 					<hr>
 					<dt>Type</dt>
-					<dd> {{$providerType->name != null ? $providerType->name : "Provider type no added"}} </dd>
+					<dd> {{$provider->type != null ? $provider->type->name : "Provider type no added"}} </dd>
 					<hr>
 					<dt>Description</dt>
 					<dd> {{$provider->description != null ? $provider->description : "Description not added"}} </dd>
@@ -48,7 +48,7 @@
 					<dd> {{$provider->bank_account != null ? $provider->bank_account : "Bank Account not added"}} </dd>
 					<hr>
 					<dt>Bank Type</dt>
-					<dd> </dd>
+					<dd> {{$provider->bank != null ? $provider->bank->name : "Bank Account not added"}} </dd>
 					<hr>
 				</dl>
 				<a href="{!! route('short.profile.edit') !!}" class="btn btn-md btn-primary">Edit</a>
