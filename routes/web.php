@@ -21,12 +21,15 @@ Route::get('/', function () {
 
 Route::get('/agent', 'AgentController@dashboard')->name('agent.dashboard');
 
-Route::get('/short', 'ShortController@dashboard')->name('short.dashboard');
+Route::group(['prefix'=>'short'],function(){
+    
+    Route::get('/', 'ShortController@dashboard')->name('short.dashboard');
 
+    Route::get('/view-profile', 'ShortController@viewProfile')->name('short.profile.view');
+    Route::get('/edit-profile', 'ShortController@editprofile')->name('short.profile.edit');
 
-Route::get('/view', 'ShortController@viewProfile')->name('short.view.profile');
+});
 
-Route::get('/short/edit-profile', 'ShortController@profile')->name('short.profile.edit');
 
 Route::get('/short/course/', 'ShortController@viewCourse')->name('short.course.view');
 

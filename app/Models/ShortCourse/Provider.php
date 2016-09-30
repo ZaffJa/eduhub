@@ -34,4 +34,5 @@ class Provider extends Model
     {
         return $this->morphMany('App\Models\ShortCourse\File', 'fileable');
     }
+
 }
