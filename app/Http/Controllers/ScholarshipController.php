@@ -41,9 +41,9 @@ class ScholarshipController extends Controller
                    ->withInput();
     }
 
-    $file = $r->file('file_form');
-
     try{
+      $file = $r->file('file_form');
+
       $institutionScholarship = new InstitutionScholarship;
       $institutionScholarship->name = $r->scholarship_name;
       $institutionScholarship->fileable_type = 'file';
