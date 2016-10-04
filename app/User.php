@@ -39,6 +39,6 @@ class User extends Authenticatable
 
     public function short_provider()
     {
-        return $this->belongsTo('App\Models\ShortCourse\Provider','id','user_id');
+        return $this->belongsTo('App\Models\ShortCourse\Provider','id','parent_id');
     }
 }

@@ -1,9 +1,4 @@
 <?php
-use Yajra\Datatables\Facades\Datatables;
-use App\User;
-use Illuminate\Support\Facades\Mail;
-use App\Mail\TestSend;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,6 +9,11 @@ use App\Mail\TestSend;
 | to using a Closure or controller method. Build something great!
 |
 */
+Auth::routes();
+
+
+
+Route::get('/home', 'HomeController@index');
 
 Route::get('/', function () {
     return view('welcome');
@@ -22,8 +22,17 @@ Route::get('/', function () {
 Route::get('/agent', 'AgentController@dashboard')->name('agent.dashboard');
 
 Route::group(['prefix'=>'short'],function(){
-    
+
     Route::get('/', 'ShortController@dashboard')->name('short.dashboard');
+
+    Route::get('/register', 'ShortController@getRegister')->name('short.register.view');
+    Route::post('/register', 'ShortController@postRegister')->name('short.register');
+
+    Route::get('/login', 'ShortController@getLogin')->name('short.login.view');
+    Route::post('/login', 'ShortController@postLogin')->name('short.login');
+
+    Route::get('/activate-account/{token}', 'ShortController@activateAccount');
+    Route::get('/resend-activate-account/{token}', 'ShortController@resendActivateAccount');
 
     Route::get('/view-profile', 'ShortController@viewProfile')->name('short.profile.view');
     Route::get('/edit-profile', 'ShortController@editprofile')->name('short.profile.edit');
@@ -36,14 +45,6 @@ Route::group(['prefix'=>'short'],function(){
 
 
 
-Auth::routes();
-
-Route::get('/email',function(){
-    Mail::to('zafrizulkipli@gmail.com')->send(new TestSend);
-    return 'ok';
-})->name('email');
-
-Route::get('/home', 'HomeController@index');
 
 Route::group(['prefix'=>'client-dashboard'],function(){
   Route::group(['middleware'=>'auth'],function(){

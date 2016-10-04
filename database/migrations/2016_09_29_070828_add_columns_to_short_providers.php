@@ -14,8 +14,17 @@ class AddColumnsToShortProviders extends Migration
     public function up()
     {
       Schema::table('short_providers', function (Blueprint $table) {
-        $table->string('bank_name',75);
-        $table->integer('bank_account')->unsigned();
+        $table->string('bank_name',75)->nullable();
+        $table->integer('bank_account')->unsigned()->nullable();
+        $table->string('headline',255)->nullable();
+        $table->string('profile_pic_location',255)->nullable();
+        $table->tinyInteger('status')->nullable();
+      });
+
+      Schema::table('short_providers', function (Blueprint $table) {
+        $table->foreign('parent_id')
+              ->references('id')->on('users')
+              ->onDelete('cascade');
       });
 
     }
@@ -28,7 +37,15 @@ class AddColumnsToShortProviders extends Migration
     public function down()
     {
         Schema::table('short_providers', function (Blueprint $table) {
-            //
+
+            $table->dropColumn('bank_name');
+            $table->dropColumn('headline');
+            $table->dropColumn('bank_account');
+            $table->dropColumn('profile_pic_location');
+            $table->dropColumn('status');
+
+            $table->dropForeign(['parent_id']);
+
         });
     }
 }
