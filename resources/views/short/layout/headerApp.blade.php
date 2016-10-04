@@ -1,11 +1,7 @@
 @extends('short.layout.app')
  @section('content')
 <div class="row">
-    <!-- <div class="col-lg-1">
-    <a href="#" style="color:black;font-size: 200%"><i class="fa fa-arrow-left"></i> <span>Back</span></a>
-  </div> -->
-
-    <!--  <div class="col-lg-10">-->
+  
     <div class="row">
         <div class="col-lg-12">
             <div class="box">
