@@ -27,6 +27,7 @@ Route::group(['prefix'=>'short'],function(){
 
     Route::get('/view-profile', 'ShortController@viewProfile')->name('short.profile.view');
     Route::get('/edit-profile', 'ShortController@editprofile')->name('short.profile.edit');
+    Route::post('/edit-profile','ShortController@updateProfile')->name('short.profile.update');
 
     Route::get('/course', 'ShortController@viewCourse')->name('short.course.view');
     Route::get('/course/add', 'ShortController@addCourse')->name('short.course.add');
