@@ -27,7 +27,8 @@ class ShortController extends Controller
   	$provider = Auth::user()->short_provider;
   	$providerType = Auth::user()->short_provider->type;
 
-  	return View::make('short.profile.view', compact('provider','providerType'));
+    // return $provider->bank;
+  	return View::make('short.profile.view', compact('provider'));
   }
 
   public function viewCourse()
