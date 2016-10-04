@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\ShortCourse\Provider;
 use App\Models\ShortCourse\ActivateShortProvider;
+use App\Models\ShortCourse\ProviderType;
+use App\Models\BankType;
 use View;
 use Auth;
 use App\User;
 
 class ShortController extends Controller
 {
-
 
     public function postLogin(Request $request)
     {
@@ -134,15 +135,58 @@ class ShortController extends Controller
         }else{
 
             return view('errors.503');
-
         }
     }
+
+
+    public function editprofile()
+    {
+        $providerType = ProviderType::pluck('name','id');
+        $bankType = BankType::pluck('name','id');
+        $provider = Auth::user()->short_provider;
+
+        return View::make('short.profile.edit',compact('providerType','bankType','provider'));
+    }
+
+    public function updateProfile(Request $r)
+    {
+        try{
+            $provider =  Provider::whereId(Auth::user()->short_provider->id)->firstOrFail();
+
+            $provider->name =  $r->name;
+            $provider->headline = $r->headline;
+            $provider->abbreviation = $r->abbreviation;
+            $provider->established = $r->established;
+            $provider->location =  $r->location;
+            $provider->type_id = $r->type_id;
+            $provider->website = $r->website;
+            $provider->facebook = $r->facebook;
+            $provider->instagram = $r->instagram;
+            $provider->phone = $r->phone;
+            $provider->description = $r->description;
+            $provider->bank_type = $r->bank_type;
+            $provider->bank_account = $r->bank_account;
+            $provider->save();
+
+            return  redirect()->back()->with(['status'=>'The provider name '.$provider->name.' has been updated.']);
+
+
+        }catch(\Illuminate\Database\QueryException $ex){
+            return redirect()
+                ->back()
+                ->withErrors($ex->errorInfo[2])
+                ->withInput();
+        }
+        // return $provider->bank;
+    	return View::make('short.profile.view', compact('provider'));
+    }
+
+
 
     public function resendActivateAccount($token)
     {
         $activate = ActivateShortProvider::whereToken($token)->first();
         $user = User::whereEmail($activate->email)->first();
-
         $user->notify(new \App\Notifications\RegisterConsultant($user->name,$activate->token));
 
         return redirect()
