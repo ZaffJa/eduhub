@@ -26,9 +26,38 @@ class ShortController extends Controller
     return View::make('short.profile.edit',compact('providerType','bankType','provider'));
   }
 
-  public function updateProfile()
+  public function updateProfile(Request $r)
   {
+
+    try{
     
+        $provider =  Provider::whereId(Auth::user()->short_provider->id)->firstOrFail();
+
+        $provider->name =  $r->name;
+        $provider->headline = $r->headline;
+        $provider->abbreviation = $r->abbreviation;
+        $provider->established = $r->established;
+        $provider->location =  $r->location;
+        $provider->type_id = $r->type_id;
+        $provider->website = $r->website;
+        $provider->facebook = $r->facebook;
+        $provider->instagram = $r->instagram;
+        $provider->phone = $r->phone;
+        $provider->description = $r->description;
+        $provider->bank_type = $r->bank_type;
+        $provider->bank_account = $r->bank_account;
+        $provider->save();
+
+        return  redirect()->back()->with(['status'=>'The provider name '.$provider->name.' has been updated.']);
+
+
+    }catch(\Illuminate\Database\QueryException $ex){
+                return redirect()
+                            ->back()
+                            ->withErrors($ex->errorInfo[2])
+                            ->withInput();
+        }
+
   }
 
   public function viewProfile()

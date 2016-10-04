@@ -9,6 +9,7 @@
     </div>
   </div>
   <div class="box-body">
+    <form method="post" class="confirmLeaveBeforeSave">
     <div class="row">
       <div class="col-md-2">
         <label>
@@ -104,7 +105,7 @@
       </label>
       </div>
       <div class="col-md-10">
-        <input type="text" value=" {{ $provider->facebook != null ? $provider->facebook : '' }} " name="facebook" placeholder="Providers Facebook">
+        <input type="text" value="{{ $provider->facebook != null ? $provider->facebook : '' }} " name="facebook" placeholder="Providers Facebook">
       </div>
     </div>
     <div class="row">
@@ -114,7 +115,7 @@
       </label>
       </div>
       <div class="col-md-10 col-sm-12 col-xs-12">
-        <input type="text" value=" {{ $provider->instagram != null ? $provider->instagram : '' }} " name="instagram" placeholder="Providers Instagram">
+        <input type="text" value="{{ $provider->instagram != null ? $provider->instagram : '' }} " name="instagram" placeholder="Providers Instagram">
       </div>
     </div>
     <div class="row">
@@ -124,7 +125,7 @@
       </label>
       </div>
       <div class="col-md-10 col-sm-12 col-xs-12">
-        <input type="text" value=" {{ $provider->phone !=  null ? $provider->phone : '' }} " name="phone" placeholder="Contact">
+        <input type="text" value="{{ $provider->phone !=  null ? $provider->phone : '' }} " name="phone" placeholder="Contact">
       </div>
     </div>
     <div class="row">
@@ -134,9 +135,7 @@
       </label>
       </div>
       <div class="col-md-10 col-sm-12 col-xs-12">
-        <textarea type="text" name="description" placeholder="Description">
-          {{ $provider->description != null ? $provider->description : ''}}
-        </textarea>
+        <textarea type="text" name="description" placeholder="Description">{{ $provider->description != null ? $provider->description : ''}}</textarea>
       </div>
     </div>
   </div>
@@ -163,15 +162,17 @@
         </label>
       </div>
       <div class="col-md-10 col-sm-12 col-xs-12">
-        <input type="text" value=" {{ $provider->bank_account != null ? $provider->bank_account : '' }} " name="bank_account" placeholder="Providers Bank Account">
+        <input type="text" value="{{ $provider->bank_account != null ? $provider->bank_account : '' }} " name="bank_account" placeholder="Providers Bank Account">
       </div>
     </div>
   </div>
   <div class="box-footer">
+        {{ csrf_field() }}
     <div class="col-md-offset-9">
-      <a href="" class="btn btn-warning ">Cancel</a>
-      <a href=""><button class='btn btn-success '>Update</button></a>
+      <a href="{!! route('short.profile.view') !!}" class="btn btn-warning ">Cancel</a>
+      <a href="{!! route('short.profile.update') !!}"><button class='btn btn-success '>Update</button></a>
     </div>
   </div>
+  </form>
 </div>
 @endsection
