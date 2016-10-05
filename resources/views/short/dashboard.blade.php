@@ -12,7 +12,7 @@
           <div class="box box-widget widget-user">
             <!-- Add the bg color to the header using any of the bg-* classes -->
             <div class="widget-user-header bg-red-active">
-              <h3 class="widget-user-username">{{(Auth::user()->short_provider->name)}}</h3><!--Provider name-->
+              <h3 class="widget-user-username">{{Auth::user()->short_provider->name}}</h3><!--Provider name-->
               <h5 class="widget-user-desc">{{Auth::user()->short_provider->headline != null ? Auth::user()->short_provider->headline : ""}}</h5>
             </div>
             <div class="widget-user-image">

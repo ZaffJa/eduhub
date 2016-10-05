@@ -7,7 +7,10 @@ use App\Models\ShortCourse\Provider;
 use App\Models\ShortCourse\ActivateShortProvider;
 use App\Models\ShortCourse\ProviderType;
 use App\Models\ShortCourse\Course;
+use App\Models\ShortCourse\Level;
+use App\Models\ShortCourse\Field;
 use App\Models\BankType;
+use App\Models\PeriodType;
 use Validator;
 use View;
 use Auth;
@@ -103,7 +106,7 @@ class ShortController extends Controller
 
         }
         return $input;
-        }
+    }
 
     public function dashboard()
     {
@@ -203,14 +206,22 @@ class ShortController extends Controller
     	return View::make('short.profile.view', compact('provider','providerType'));
     }
 
-    public function viewCourse()
-    {
-        return view('short.course.view');
-    }
-
     public function addCourse()
     {
-    return view('short.course.add');
+        $periodType = PeriodType::pluck('name','id');
+        $levelType = Level::pluck('name','id');
+        $fieldType = Field::pluck('name','id');
+
+        return View::make('short.course.add', compact('periodType','levelType','fieldType'));
+    }
+
+    public function viewCourseInfo($id)
+    {
+        $course = Course::whereId($id)->firstOrFail();
+
+        // return $course;
+        
+        return View::make('short.course.course-info',compact('course'));        
     }
 
     private function slugify($text)
@@ -262,6 +273,7 @@ class ShortController extends Controller
         $course->provider_id = Auth::user()->short_provider->id;
         $course->name_en = $r->name_en;
         $course->name_ms = $r->name_ms;
+        $course->mode = 2;  
        
         if($r->description)
           $course->description = $r->description;
@@ -272,6 +284,8 @@ class ShortController extends Controller
         if($r->period_value_max)
           $course->period_value_max = $r->period_value_max;
        
+        $course->period_type_id =  $r->period_type_id;
+
         if($r->credit_hours)
           $course->credit_hours = $r->credit_hours;
        
@@ -287,6 +301,8 @@ class ShortController extends Controller
         if($r->mqa_reference_no)
           $course->mqa_reference_no = $r->mqa_reference_no;
        
+        $course->field_id = $r->field_id;
+
         if($r->code)
           $course->code = $r->code;
        

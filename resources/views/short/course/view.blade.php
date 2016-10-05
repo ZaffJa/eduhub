@@ -32,7 +32,11 @@
                   <td>{{ $c->name_ms }}</td>
                   <td>{{ $c->price }}</td>
                   <td>{{ $c->location }}</td>
-                  <td></td>
+                  <td>
+                    <a href="{!! route('short.course.view.info', $c->id) !!}" class="btn btn-info">
+                      View
+                    </a>
+                  </td>
                 </tr>  
                 @endforeach
             </tbody>
