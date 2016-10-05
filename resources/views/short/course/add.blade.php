@@ -67,6 +67,17 @@
         <div class="row">
           <div class="col-md-2">
           <label>
+              Period Type
+          </label>
+          </div>
+          <div class="col-md-3">
+              </br>
+            {{ Form::select('period_type_id', $periodType) }}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-2">
+          <label>
               Credit Hours
           </label>
           </div>
@@ -122,6 +133,28 @@
           </div>
           <div class="col-md-10 col-sm-12 col-xs-12">
             <input type="text" name="mqa_reference_no" placeholder="MQA No">
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-2">
+          <label>
+              Course Level
+          </label>
+          </div>
+          <div class="col-md-10 col-sm-12 col-xs-12">
+              </br>
+              {{ Form::select('level_id', $levelType) }}
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-2">
+          <label>
+              Course Field
+          </label>
+          </div>
+          <div class="col-md-10 col-sm-12 col-xs-12">
+              </br>
+              {{ Form::select('field_id', $fieldType) }}
           </div>
         </div>
         <div class="row">
@@ -197,7 +230,7 @@
         <div class="row">
           <div class="col-md-2">
           <label>
-              Note
+              Additional Note
           </label>
           </div>
           <div class="col-md-10 col-sm-12 col-xs-12">
@@ -241,6 +274,7 @@
           </label>
           </div>
           <div class="col-md-10 col-sm-12 col-xs-12">
+            <br>
             <textarea type="text" name="learning_outcome" placeholder="Learning outcome"></textarea>
           </div>
         </div>
