@@ -16,6 +16,10 @@ class Provider extends Model
         'facebook','instagram','phone','bank_account'
     ];
 
+    protected $hidden = [
+      'bank_name','bank_account','profile_pic_location'
+    ];
+
     public function courses()
     {
         return $this->hasMany('App\Models\ShortCourse\Course');

@@ -62,7 +62,19 @@ class AddColumnsToShortCourses extends Migration
     public function down()
     {
         Schema::table('short_courses', function (Blueprint $table) {
-            //
+
+            $table->dropColumn('hrdf_scheme');
+            $table->dropColumn('fee');
+            $table->dropColumn('exam_fee');
+            $table->dropColumn('learning_outcome');
+            $table->dropColumn('location');
+
+
+            $table->dropForeign(['provider_id']);
+            $table->dropForeign(['level_id']);
+            $table->dropForeign(['period_type_id']);
+            $table->dropForeign(['mode_id']);
+
         });
     }
 }
