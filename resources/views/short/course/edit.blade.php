@@ -39,7 +39,7 @@
           </div>
           <div class="col-md-10">
             <br>
-            <textarea type="text" name="description" placeholder="Short Course Description">{{$course->description}} </textarea>
+            <textarea type="text" name="description" placeholder="Short Course Description">{{$course->description}}</textarea>
           </div>
         </div>
         <div class="row">
@@ -49,7 +49,7 @@
           </label>
           </div>
           <div class="col-md-3">
-            <input type="number" name="period_value_min" placeholder="Period MIN" value="{{$course->period_value_min}} ">
+            <input type="number" name="period_value_min" placeholder="Period MIN" value="{{$course->period_value_min}}">
           </div>
         </div>
         <div class="row">
@@ -59,7 +59,7 @@
           </label>
           </div>
           <div class="col-md-3">
-            <input type="number" name="period_value_max" placeholder="Period MAX"  value="{{$course->period_value_max}}  ">
+            <input type="number" name="period_value_max" placeholder="Period MAX"  value="{{$course->period_value_max}}">
           </div>
         </div>
         <div class="row">
@@ -80,7 +80,7 @@
           </label>
           </div>
           <div class="col-md-3">
-            <input type="number" name="credit_hours" placeholder="Credit Hours" value="{{$course->credit_hours}} ">
+            <input type="number" name="credit_hours" placeholder="Credit Hours" value="{{$course->credit_hours}}">
           </div>
         </div>
         <div class="row">
@@ -100,7 +100,7 @@
           </label>
           </div>
           <div class="col-md-10 col-sm-12 col-xs-12">
-            <input type="text" name="accredited" placeholder="Accredited" value="{{$course->accredited}} ">
+            <input type="text" name="accredited" placeholder="Accredited" value="{{$course->accredited}}">
           </div>
         </div>
         <div class="row">
@@ -110,7 +110,7 @@
           </label>
           </div>
           <div class="col-md-10 col-sm-12 col-xs-12">
-            <input type="text" name="commencement" placeholder="Commencement" value="{{$course->commencement }}" >
+            <input type="text" name="commencement" placeholder="Commencement" value="{{$course->commencement}}" >
           </div>
         </div>
         <div class="row">
@@ -212,7 +212,7 @@
           </label><span class="required">*</span>
           </div>
           <div class="col-md-10 col-sm-12 col-xs-12">
-            <input name="price" type="number" value="" placeholder="Fee" value="{{ $course->price }} ">
+            <input name="price" type="text" placeholder="Fee" value="{{$course->price}}">
           </div>
         </div>
         <div class="row">
@@ -222,7 +222,7 @@
           </label>
           </div>
           <div class="col-md-10 col-sm-12 col-xs-12">
-            <input type="number" name="exam_fee" placeholder="Exam Fee"  value="{{ $course->exam_fee }} ">
+            <input type="number" name="exam_fee" placeholder="Exam Fee"  value="{{ $course->exam_fee}}">
           </div>
         </div>
         <div class="row">
@@ -252,7 +252,7 @@
           </label>
           </div>
           <div class="col-md-10 col-sm-12 col-xs-12">
-            <input type="number" name="hrdf_scheme" placeholder="HRDF Scheme" value="{{ $course->hrdf_scheme }} ">
+            <input type="number" name="hrdf_scheme" placeholder="HRDF Scheme" value="{{ $course->hrdf_scheme }}">
           </div>
         </div>
         <div class="row">
@@ -262,7 +262,7 @@
           </label><span class="required">*</span>
           </div>
           <div class="col-md-10 col-sm-12 col-xs-12">
-            <input name="location" type="text" value="" placeholder="Location" value="{{ $course->location }} " >
+            <input name="location" type="text" placeholder="Location" value="{{$course->location}}">
           </div>
         </div>
         <div class="row">
@@ -273,7 +273,7 @@
           </div>
           <div class="col-md-10 col-sm-12 col-xs-12">
             <br>
-            <textarea type="text" name="learning_outcome" placeholder="Learning outcome" value="{{ $course->learning_outcome }} " ></textarea>
+            <textarea  type="text" name="learning_outcome" placeholder="Learning outcome"  >{{ $course->learning_outcome }}</textarea>
           </div>
         </div>
         

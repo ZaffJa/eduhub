@@ -229,6 +229,7 @@ class ShortController extends Controller
         $levelType = Level::pluck('name','id');
         $fieldType = Field::pluck('name','id');
 
+
         return View::make('short.course.edit',compact('course','periodType','levelType','fieldType'));
     }
 
