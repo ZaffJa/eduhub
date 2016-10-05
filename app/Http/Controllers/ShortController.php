@@ -219,9 +219,17 @@ class ShortController extends Controller
     {
         $course = Course::whereId($id)->firstOrFail();
 
-        // return $course;
-        
         return View::make('short.course.course-info',compact('course'));        
+    }
+
+    public function editCourse($id)
+    {
+        $course = Course::whereId($id)->firstOrFail();
+        $periodType = PeriodType::pluck('name','id');
+        $levelType = Level::pluck('name','id');
+        $fieldType = Field::pluck('name','id');
+
+        return View::make('short.course.edit',compact('course','periodType','levelType','fieldType'));
     }
 
     private function slugify($text)

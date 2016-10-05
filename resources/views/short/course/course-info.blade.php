@@ -29,7 +29,7 @@
                 	<dd> {{ $course->field != null ? $course->field->name : 'No course field'}} </dd>
                 	<hr>
                 	<dt>Course Period (min - max)</dt>
-                	<dd>{{ $course->period_value_min }} - {{ $course->period_value_max }} </dd>
+                	<dd>{{ $course->period_value_min }} - {{ $course->period_value_max }} {{ $course->periodType != null ? $course->periodType->name : 'No course period' }}</dd>
                 	<hr>
                 	<dt>Course Code</dt>
                 	<dd>{{ $course->code }}</dd>
@@ -70,7 +70,7 @@
                 	<dt>Course Language</dt>
                 	<dd>{{ $course->language }}  </dd>
                 	<hr>
-                	<dt>Course Price</dt>
+                	<dt>Course Fee</dt>
                 	<dd>{{ $course->price }}  </dd>
                 	<hr>
                 	<dt>Course Exam Fee</dt>
@@ -93,7 +93,7 @@
             <div class="box-footer">
                 <div class="col-md-offset-10">
                 	<a href="{!! route('short.course.view') !!}" class="btn btn-warning">Cancel</a>
-                	<a href="{!! route('short.course.edit') !!}" class="btn btn-primary">Edit</a>
+                	<a href="{!! route('short.course.edit', $course->id) !!}" class="btn btn-primary">Edit</a>
                 </div>
             </div>
         </div>

@@ -170,7 +170,7 @@
         <div class="row">
           <div class="col-md-2">
           <label>
-              Start Date
+              Start Time
           </label>
           </div>
           <div class="col-md-10 col-sm-12 col-xs-12">

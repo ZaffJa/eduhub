@@ -69,7 +69,7 @@
         </a>
       </div>
       <div class="col-lg-6">
-        <a href="/client-dashboard/facilities">
+        <a href="{!! route('short.course.view') !!}">
           <div class="box-body">
             <div class="demo-card-image mdl-card mdl-shadow--1dp" style="background-image: url('/img/default/sijil-02.png'); background-size: 40%; background-color:white;">
               <div class="mdl-card__title mdl-card--expand"  >
