@@ -36,6 +36,7 @@
         <div class="row">
           <div class="col-md-2">
           <label>
+            <br>
             Description
           </label>
           </div>
@@ -47,6 +48,7 @@
         <div class="row">
           <div class="col-md-2">
           <label>
+            <br>
               Period MIN
           </label>
           </div>
@@ -57,6 +59,7 @@
         <div class="row">
           <div class="col-md-2">
           <label>
+            <br>
               Period MAX
           </label>
           </div>
@@ -67,6 +70,7 @@
         <div class="row">
           <div class="col-md-2">
           <label>
+            <br>
               Period Type
           </label>
           </div>
@@ -78,6 +82,7 @@
         <div class="row">
           <div class="col-md-2">
           <label>
+            <br>
               Credit Hours
           </label>
           </div>
@@ -88,6 +93,7 @@
         <div class="row">
           <div class="col-md-2">
           <label>
+            <br>
               Approved
           </label>
           </div>
@@ -98,6 +104,7 @@
         <div class="row">
           <div class="col-md-2">
           <label>
+            <br>
               Accredited
           </label>
           </div>
@@ -108,6 +115,7 @@
         <div class="row">
           <div class="col-md-2">
           <label>
+            <br>
               Commencement
           </label>
           </div>
@@ -118,6 +126,7 @@
         <div class="row">
           <div class="col-md-2">
           <label>
+            <br>
               Qualification
           </label>
           </div>
@@ -128,6 +137,7 @@
         <div class="row">
           <div class="col-md-2">
           <label>
+            <br>
               MQA reference number
           </label>
           </div>
@@ -138,6 +148,7 @@
         <div class="row">
           <div class="col-md-2">
           <label>
+            <br>
               Course Level
           </label>
           </div>
@@ -149,17 +160,24 @@
         <div class="row">
           <div class="col-md-2">
           <label>
+            <br>
               Course Field
           </label>
           </div>
           <div class="col-md-10 col-sm-12 col-xs-12">
               </br>
-              {{ Form::select('field_id', $fieldType) }}
+              {{ Form::select('field_id', $fieldType,null,["class='test'"]) }}
+          </div>
+        </div>
+        <div class="row" id="others">
+          <div class="col-md-10 col-md-offset-2 col-sm-12 col-xs-12">
+              <input type="text" value="" name="others" placeholder="Other type of field">
           </div>
         </div>
         <div class="row">
           <div class="col-md-2">
           <label>
+            <br>
               Course Code
           </label>
           </div>
@@ -170,6 +188,7 @@
         <div class="row">
           <div class="col-md-2">
           <label>
+            <br>
               Start Time
           </label>
           </div>
@@ -180,6 +199,7 @@
         <div class="row">
           <div class="col-md-2">
           <label>
+            <br>
               Course Length
           </label>
           </div>
@@ -190,6 +210,7 @@
         <div class="row">
           <div class="col-md-2">
           <label>
+            <br>
               Attendance
           </label>
           </div>
@@ -200,6 +221,7 @@
         <div class="row">
           <div class="col-md-2">
           <label>
+            <br>
               Class Size
           </label>
           </div>
@@ -210,6 +232,7 @@
         <div class="row">
           <div class="col-md-2">
           <label>
+            <br>
               Fee
           </label><span class="required">*</span>
           </div>
@@ -220,6 +243,7 @@
         <div class="row">
           <div class="col-md-2">
           <label>
+            <br>
               Exam fee
           </label>
           </div>
@@ -230,6 +254,7 @@
         <div class="row">
           <div class="col-md-2">
           <label>
+            <br>
               Additional Note
           </label>
           </div>
@@ -240,6 +265,7 @@
         <div class="row">
           <div class="col-md-2">
           <label>
+            <br>
               Language
           </label>
           </div>
@@ -250,6 +276,7 @@
         <div class="row">
           <div class="col-md-2">
           <label>
+            <br>
               HRDF Scheme
           </label>
           </div>
@@ -260,6 +287,7 @@
         <div class="row">
           <div class="col-md-2">
           <label>
+            <br>
               Location
           </label><span class="required">*</span>
           </div>
@@ -270,6 +298,7 @@
         <div class="row">
           <div class="col-md-2">
           <label>
+            <br>
               Learning Outcome
           </label>
           </div>
@@ -298,4 +327,23 @@
     </div>
 </div>
 </div>
+<script>
+$("#others").hide();
+
+$(document).ready(function(){
+
+    $('.test').on('change',function(){
+      console.log($(this).val());
+      if ($(this).val()=="3"){
+      $("#others").show();
+
+    }
+    else {
+      $("#others").hide();
+
+    }
+    });
+
+});
+</script>
 @endsection
