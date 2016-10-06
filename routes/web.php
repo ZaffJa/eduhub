@@ -40,14 +40,15 @@ Route::group(['prefix'=>'short'],function(){
 
     Route::get('/course', 'ShortController@viewCourse')->name('short.course.view');
     Route::get('/course/add', 'ShortController@addCourse')->name('short.course.add');
-    Route::get('/course/edit', 'ShortController@editCourse')->name('short.course.edit');
+    Route::post('/course/add', 'ShortController@storeCourse')->name('short.course.store');
+    Route::get('/course/{id}/edit', 'ShortController@editCourse')->name('short.course.edit');
+    Route::post('/course/{id}/edit', 'ShortController@updateCourse')->name('short.course.update');
+    Route::get('/course/{id}/course-view', 'ShortController@viewCourseInfo')->name('short.course.view.info');
 
     Route::get('/activate-institution/{user_id}', 'ShortController@activateInstitutionUser');
     Route::get('/institution-short-course', 'ShortController@institutionShortCourse');
 
 });
-
-
 
 
 Route::group(['prefix'=>'client-dashboard'],function(){
