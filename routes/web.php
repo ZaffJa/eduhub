@@ -42,6 +42,9 @@ Route::group(['prefix'=>'short'],function(){
     Route::get('/course/add', 'ShortController@addCourse')->name('short.course.add');
     Route::get('/course/edit', 'ShortController@editCourse')->name('short.course.edit');
 
+    Route::get('/activate-institution/{user_id}', 'ShortController@activateInstitutionUser');
+    Route::get('/institution-short-course', 'ShortController@institutionShortCourse');
+
 });
 
 

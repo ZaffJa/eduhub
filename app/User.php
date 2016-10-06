@@ -27,10 +27,6 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function institution()
-    {
-        return $this->belongsTo('App\Models\Institution','id','client_id');
-    }
 
     public function client()
     {

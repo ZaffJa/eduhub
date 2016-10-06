@@ -187,13 +187,21 @@
 
                     <!-- Short Course -->
                     <li class="header">Other</li>
-
+                    @if(Auth::user()->short_provider == null)
                     <li class="treeview">
-                        <a href="/client-dashboard/course" class="not-active"><i class="fa fa-certificate"></i> <span>Short Courses(Coming Soon)</span>
+                        <a href="{{action('ShortController@activateInstitutionUser',Auth::user()->id)}}"><i class="fa fa-certificate"></i>Register Short Course
                           <span class="pull-right-container">
                           </span>
                         </a>
                     </li>
+                    @else
+                    <li class="treeview">
+                        <a href="{{action('ShortController@institutionShortCourse')}}"><i class="fa fa-certificate"></i>Short Courses
+                          <span class="pull-right-container">
+                          </span>
+                        </a>
+                    </li>
+                    @endif
 
                     <!-- Settings -->
                     <li class="header">Settings</li>

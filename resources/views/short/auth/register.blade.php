@@ -14,6 +14,13 @@
                         </ul>
                     </div>
                     @endif
+                    @if ($errors->has('status'))
+                    <div class="alert alert-warning">
+                        <ul>
+                            <li>{{ $errors->first('status') }}</li>
+                        </ul>
+                    </div>
+                    @endif
                     <form class="form-horizontal" role="form" method="POST" action="{{ action('ShortController@postRegister') }}">
                         {{ csrf_field() }}
 

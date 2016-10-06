@@ -31,11 +31,23 @@ class ShortController extends Controller
                     $activate = ActivateShortProvider::whereEmail(Auth::user()->email)->first();
                     Auth::logout(); //must logout because Auth::attempt will automatically logged user when true
 
-                    return redirect()->back()
-                      ->withErrors([
-                        'password'=>'Your account has not been activated. Please  verify your email.',
-                        'activate'=>$activate->token]
-                    );
+                    if($activate == null){    // User has data in users table but did not register for short course
+
+                        $provider_types = \App\Models\ShortCourse\ProviderType::pluck('name','id');
+                        return view('short.auth.register')
+                            ->with(compact('provider_types'))
+                            ->withErrors([
+                                'status'=>'You have not registered yet. Please register first.'
+                            ]);
+                                                  
+                    }else {
+
+                        return redirect()->back()
+                          ->withErrors([
+                            'password'=>'Your account has not been activated. Please  verify your email.',
+                            'activate'=>$activate->token]
+                        );
+                    }
                 }
             }
         }
@@ -108,12 +120,6 @@ class ShortController extends Controller
         return view('short.dashboard');
     }
 
-    public function editprofile()
-    {
-
-
-    return view('short.profile.edit');
-    }
 
     public function activateAccount($token)
     {
@@ -170,7 +176,6 @@ class ShortController extends Controller
 
             return  redirect()->back()->with(['status'=>'The provider name '.$provider->name.' has been updated.']);
 
-
         }catch(\Illuminate\Database\QueryException $ex){
             return redirect()
                 ->back()
@@ -194,6 +199,40 @@ class ShortController extends Controller
             ->with('status','We have sent you an email. Please verify your email address to login.');
     }
 
+    public function activateInstitutionUser($user_id)
+    {
+        $user = User::find($user_id);
+
+        try{
+
+            $sp = new Provider;
+            $sp->type_id = 1;
+            $sp->parent_id = $user->id;
+            $sp->name = $user->name;
+            $sp->slug = $this->slugify($user->name);
+            $sp->abbreviation = $user->client->institution->abbreviation;
+            $sp->description = $user->client->institution->description;
+            $sp->established = $user->client->institution->established;
+            $sp->location = $user->client->institution->location;
+            $sp->website = $user->client->institution->website;
+            $sp->website = $user->client->institution->website;
+            $sp->status = 1;
+
+            $sp->save();
+
+            return view('short.dashboard');
+
+        }catch(\Illuminate\Database\QueryException $ex){
+
+            return redirect()->back()->withErrors('Something went wrong. We cannot register you to short courses');
+        }
+    }
+
+    public function institutionShortCourse()
+    {
+        return $this->dashboard();
+    }
+
     public function viewProfile()
     {
     	$provider = Auth::user()->short_provider;
@@ -209,7 +248,7 @@ class ShortController extends Controller
 
     public function addCourse()
     {
-    return view('short.course.add');
+        return view('short.course.add');
     }
 
     private function slugify($text)
