@@ -42,6 +42,7 @@ Route::group(['prefix'=>'short'],function(){
     Route::get('/course/add', 'ShortController@addCourse')->name('short.course.add');
     Route::post('/course/add', 'ShortController@storeCourse')->name('short.course.store');
     Route::get('/course/{id}/edit', 'ShortController@editCourse')->name('short.course.edit');
+    Route::post('/course/{id}/edit', 'ShortController@updateCourse')->name('short.course.update');
     Route::get('/course/{id}/course-view', 'ShortController@viewCourseInfo')->name('short.course.view.info');
 
 });
