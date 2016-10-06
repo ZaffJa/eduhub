@@ -35,7 +35,6 @@
           <div class="col-md-2">
           <label>
             <br>
-
             Description
           </label>
           </div>
@@ -171,7 +170,7 @@
         </div>
         <div class="row" id="others">
           <div class="col-md-10 col-md-offset-2 col-sm-12 col-xs-12">
-              <input type="text" value="" placeholder="Other type of field">
+              <input type="text" value="" name="others" placeholder="Other type of field">
           </div>
         </div>
         <div class="row">
@@ -319,7 +318,7 @@
         <div class="row">
           <div class="col-md-offset-9">
             <a href=" {!! route('short.course.view') !!} " class="btn btn-warning ">Cancel</a>
-            <a href=" {!! route('short.course.store') !!} "><button class='btn btn-success '>Add</button></a>
+            <a href=" {!! route('short.course.update',$course->id) !!} "><button class='btn btn-success'>Update</button></a>
           </form>
           </div>
         </div>
