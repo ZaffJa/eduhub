@@ -69,7 +69,7 @@
                 <div class="col-md-2">
                     Period Min
                 </div>
-                <div class="col-md-1">
+                <div class="col-md-3">
                     <input type="number" name="period_value_min" placeholder="Min credit hour">
                 </div>
             </div>
@@ -77,7 +77,7 @@
                 <div class="col-md-2">
                     Period Max
                 </div>
-                <div class="col-md-1">
+                <div class="col-md-3">
                     <input type="number" name="period_value_max" placeholder="Max credit hour">
                 </div>
             </div>
@@ -131,7 +131,7 @@
                 <div class="col-md-4">
                     <input type="text" name="commencement" placeholder="Commencement">
                 </div>
-            </div>            
+            </div>
             <div class="row">
                 <div class="col-md-2">
                     Field

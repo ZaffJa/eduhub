@@ -9,8 +9,7 @@
           <div class="box box-widget widget-user">
             <!-- Add the bg color to the header using any of the bg-* classes -->
             <div class="widget-user-header bg-red-active">
-              <i
-              <!-- <h3 class="widget-user-username">{{ $institution->name }}</h3><!--University name-->
+            <h3 class="widget-user-username">{{ $institution->name }}</h3><!--University name-->
               <h5 class="widget-user-desc">Skudai Johor</h5>
             </div>
             <div class="widget-user-image">

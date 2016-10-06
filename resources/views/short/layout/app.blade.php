@@ -43,7 +43,11 @@
 
     @yield('header-css')
 </head>
-
+<style media="screen">
+  select{
+        width: 100%;
+  }
+</style>
 <body class=" skin-red sidebar-toggle">
     <div class="wrapper">
 

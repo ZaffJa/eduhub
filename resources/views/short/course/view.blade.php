@@ -13,7 +13,7 @@
   <div class="box-body">
     <div class="row">
       <div class="col-sm-12">
-        <div class="table table-bordered table-striped">
+        <div class="box-body table-responsive no-padding">
           @if($course != null || $course != '')
           <table class="table table-bordered table-striped">
             <thead>
@@ -37,7 +37,7 @@
                       View
                     </a>
                   </td>
-                </tr>  
+                </tr>
                 @endforeach
             </tbody>
           </table>
