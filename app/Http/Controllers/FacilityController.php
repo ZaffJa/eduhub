@@ -63,11 +63,6 @@ class FacilityController extends Controller
         $faci_img->mime = $r->faci_img->extension();
         $faci_img->size = $r->faci_img->getSize();
 
-      $facility->institution_id = Auth::user()->client->institution->id;
-      $facility->type_id = $r->typeid;
-      $facility->name = $r->faci_name;
-      $facility->capacity = $r->faci_cap;
-
         $r->faci_img->move(public_path()."/img/facility",$r->faci_img->getClientOriginalName());
 
 

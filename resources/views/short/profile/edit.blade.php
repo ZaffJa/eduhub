@@ -23,7 +23,7 @@
         </div>
         <div class="row">
           <div class="col-md-4">
-          <input type="file" value="" name="name_last" placeholder="Last Name">
+          <input type="file" name="provider_pic">
           </div>
         </div>
       </div>

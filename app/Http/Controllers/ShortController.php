@@ -9,6 +9,7 @@ use App\Models\ShortCourse\ProviderType;
 use App\Models\ShortCourse\Course;
 use App\Models\ShortCourse\Level;
 use App\Models\ShortCourse\Field;
+use App\Models\ShortCourse\File;
 use App\Models\BankType;
 use App\Models\PeriodType;
 use Validator;
@@ -117,7 +118,7 @@ class ShortController extends Controller
             return redirect()->back()->withErrors($ex->errorInfo);
 
         }
-        return $input;
+
     }
 
     public function dashboard()
@@ -168,6 +169,17 @@ class ShortController extends Controller
 
     public function updateProfile(Request $r)
     {
+        $validator = Validator::make($r->all(), [
+             'provider_pic' => 'image|mimes:jpeg,png,jpg,gif,svg|max:20048',
+         ]);
+
+        if ($validator->fails()) {
+          return redirect()
+                      ->back()
+                      ->withErrors($validator)
+                      ->withInput();
+                  }
+
         try{
             $provider =  Provider::whereId(Auth::user()->short_provider->id)->firstOrFail();
 
@@ -186,7 +198,9 @@ class ShortController extends Controller
             $provider->bank_account = $r->bank_account;
             $provider->save();
 
-            return  redirect()->back()->with(['status'=>'The provider name '.$provider->name.' has been updated.']);
+            return  redirect()
+                        ->back()
+                        ->with(['status'=>'The provider name '.$provider->name.' has been updated.']);
 
         }catch(\Illuminate\Database\QueryException $ex){
             return redirect()
@@ -194,7 +208,48 @@ class ShortController extends Controller
                 ->withErrors($ex->errorInfo[2])
                 ->withInput();
         }
-        // return $provider->bank;
+
+        try{
+            $provider =  Provider::whereId(Auth::user()->short_provider->id)->firstOrFail();
+
+            $provider->name =  $r->name;
+            $provider->headline = $r->headline;
+            $provider->abbreviation = $r->abbreviation;
+            $provider->established = $r->established;
+            $provider->location =  $r->location;
+            $provider->type_id = $r->type_id;
+            $provider->website = $r->website;
+            $provider->facebook = $r->facebook;
+            $provider->instagram = $r->instagram;
+            $provider->phone = $r->phone;
+            $provider->description = $r->description;
+            $provider->bank_type = $r->bank_type;
+            $provider->bank_account = $r->bank_account;
+            $provider->save();
+
+            $provider_pic = new File;
+            $provider_pic->fileable_id = $provider->id;
+            $provider_pic->type_id = 1;
+            $provider_pic->category_id = 3;
+            $provider_pic->filename = $r->provider_pic->getClientOriginalName();
+            $provider_pic->path = 'provider'.$r->provider_pic->getClientOriginalName();
+            $provider_pic->mime = $r->provider_pic->extension();
+            $provider_pic->size = $r->provider_pic->getSize();
+
+            $r->provider_pic->(public_path()."/img/provider",$r->provider_pic->getClientOriginalName());
+
+
+            return  redirect()
+                        ->back()
+                        ->with(['status'=>'The provider name '.$provider->name.' has been updated.']);
+
+        }catch(\Illuminate\Database\QueryException $ex){
+            return redirect()
+                ->back()
+                ->withErrors($ex->errorInfo[2])
+                ->withInput();
+        }
+
     	return View::make('short.profile.view', compact('provider'));
     }
 
