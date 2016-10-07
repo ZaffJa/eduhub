@@ -55,7 +55,7 @@
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
         <a href="/client-dashboard/institution">
           <div class="box-body">
-            <div class="demo-card-image mdl-card mdl-shadow--2dp" style="background-image: url('/img/default/institution-05.png'); background-size: 30%; background-color:white;">
+            <div class="demo-card-image mdl-card  " style="background-image: url('/img/default/institution-05.png'); background-size: 30%; background-color:white;">
               <div class="mdl-card__title mdl-card--expand"  >
               </div>
                 <div class="mdl-card__actions  " >
@@ -68,7 +68,7 @@
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
         <a href="/client-dashboard/faculty">
           <div class="box-body">
-            <div class="demo-card-image mdl-card mdl-shadow--2dp" style="background-image: url('/img/default/faculty-04.png'); background-size: 30%; background-color:white;">
+            <div class="demo-card-image mdl-card  " style="background-image: url('/img/default/faculty-04.png'); background-size: 30%; background-color:white;">
               <div class="mdl-card__title mdl-card--expand"  >
               </div>
                 <div class="mdl-card__actions  " >
@@ -87,7 +87,7 @@
       <div class="col-lg-3 col-md-6 col-sm-3 col-xs-12">
         <a href="/client-dashboard/course">
           <div class="box-body">
-            <div class="demo-card-image mdl-card mdl-shadow--2dp" style="background-image: url('/img/default/BOOK-06.png'); background-size: 30%; background-color:white;">
+            <div class="demo-card-image mdl-card  " style="background-image: url('/img/default/BOOK-06.png'); background-size: 30%; background-color:white;">
               <div class="mdl-card__title mdl-card--expand"  >
               </div>
                 <div class="mdl-card__actions  " >
@@ -100,7 +100,7 @@
       <div class="col-lg-3 col-md-6 col-sm-3 col-xs-12">
         <a href="/client-dashboard/institution">
           <div class="box-body">
-            <div class="demo-card-image mdl-card mdl-shadow--2dp" style="background-image: url('/img/default/sijil-02.png'); background-size: 30%; background-color:white;">
+            <div class="demo-card-image mdl-card  " style="background-image: url('/img/default/sijil-02.png'); background-size: 30%; background-color:white;">
               <div class="mdl-card__title mdl-card--expand"  >
               </div>
                 <div class="mdl-card__actions  " >
@@ -116,7 +116,7 @@
       <div class="col-lg-3 col-md-6 col-sm-3 col-xs-12">
         <a href="/client-dashboard/facilities">
           <div class="box-body">
-            <div class="demo-card-image mdl-card mdl-shadow--2dp" style="background-image: url('/img/default/dumbbell-03.png'); background-size: 45%; background-color:white;">
+            <div class="demo-card-image mdl-card  " style="background-image: url('/img/default/dumbbell-03.png'); background-size: 45%; background-color:white;">
               <div class="mdl-card__title mdl-card--expand"  >
               </div>
                 <div class="mdl-card__actions  " >
@@ -129,7 +129,7 @@
       <div class="col-lg-3 col-md-6 col-sm-3 col-xs-12">
         <a href="/client-dashboard/scholarship/view">
           <div class="box-body">
-            <div class="demo-card-image mdl-card mdl-shadow--2dp" style="background-image: url('/img/default/scholar-02.png'); background-size: 30%; background-color:white;">
+            <div class="demo-card-image mdl-card  " style="background-image: url('/img/default/scholar-02.png'); background-size: 30%; background-color:white;">
               <div class="mdl-card__title mdl-card--expand"  >
               </div>
                 <div class="mdl-card__actions  " >
