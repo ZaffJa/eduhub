@@ -14,9 +14,8 @@
     .small {
         font-size: 0.8em;
     }
-    /** LIGHTBOX MARKUP **/
 
-    .lightbox {
+ .lightbox {
         /** Default lightbox to hidden */
         display: none;
         /** Position and style */
@@ -61,7 +60,7 @@
       <div class="col-md-4">
         <div class="row">
           <a class="profile-link" href="#" >
-            <img class="profile-pic" src="/img/{!! $profilePic->path !!}"  class="clickImg"/></a>
+            <img class="profile-pic" id="clickImg" src="/img/{!! $profilePic->path !!}" val="{!! $profilePic->path !!}" /></a>
         </div>
         <div class="row">
           <div class="col-md-4">
@@ -217,13 +216,16 @@
   </div>
   </form>
 </div>
+
 <a href="#_" class="lightbox" id="imgBox">
   <img class="imgSrc">
 </a>
+
 <script type="text/javascript">
-  $('.clickImg').on('click',function(){
-    $('.imgSrc').prop('src','/img/'+$('.clickImg').attr('src') );
-    console.log($(this).attr('src'));
+  $('#clickImg').on('click',function(){
+    $('.imgSrc').prop('src','/img/'+$(this).attr('val') );
+    console.log($(this).attr('val'));
+    console.log($('.imgSrc').attr('src'));
   });
 </script>
 @endsection

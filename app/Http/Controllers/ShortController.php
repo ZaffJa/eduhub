@@ -203,7 +203,13 @@ class ShortController extends Controller
         {
             try{
 
-            $provider_pic = new File;
+            if(!$provider_pic = File::whereFileableId(Auth::user()->short_provider->id)->first())
+            {
+                $provider_pic = new File;
+            }else{
+             $provider_pic = File::whereFileableId(Auth::user()->short_provider->id)->first();   
+            }
+            
             $provider_pic->fileable_id = $provider->id;
             $provider_pic->type_id = 1;
             $provider_pic->category_id = 3;
