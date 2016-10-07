@@ -2,6 +2,48 @@
 @section('title', 'Profile')
 @section('headbar', 'Edit Profile')
 @section('content2')
+<style media="screen">
+    .thumbnail {
+        max-width: 40%;
+    }
+
+    .italic {
+        font-style: italic;
+    }
+
+    .small {
+        font-size: 0.8em;
+    }
+    /** LIGHTBOX MARKUP **/
+
+    .lightbox {
+        /** Default lightbox to hidden */
+        display: none;
+        /** Position and style */
+        position: fixed;
+        z-index: 999;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        top: 0;
+        left: 0;
+        background: rgba(0, 0, 0, 0.8);
+    }
+
+    .lightbox img {
+        /** Pad the lightbox image */
+        max-width: 90%;
+        max-height: 80%;
+        margin-top: 10%;
+    }
+
+    .lightbox:target {
+        /** Remove default browser outline */
+        outline: none;
+        /** Unhide lightbox **/
+        display: block;
+    }
+</style>
 <div class="box box-primary">
   <div class="box-header">
     <div class="col-md-2">
@@ -19,7 +61,7 @@
       <div class="col-md-4">
         <div class="row">
           <a class="profile-link" href="#" >
-            <img class="profile-pic" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/91525/AmeliaBR.jpg"/></a>
+            <img class="profile-pic" src="/img/{!! $profilePic->path !!}"  class="clickImg"/></a>
         </div>
         <div class="row">
           <div class="col-md-4">
@@ -175,4 +217,13 @@
   </div>
   </form>
 </div>
+<a href="#_" class="lightbox" id="imgBox">
+  <img class="imgSrc">
+</a>
+<script type="text/javascript">
+  $('.clickImg').on('click',function(){
+    $('.imgSrc').prop('src','/img/'+$('.clickImg').attr('src') );
+    console.log($(this).attr('src'));
+  });
+</script>
 @endsection

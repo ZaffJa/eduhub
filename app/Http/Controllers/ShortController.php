@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Requests;
+use Illuminate\Support\Facades\Storage;
+
 use App\Models\ShortCourse\Provider;
 use App\Models\ShortCourse\ActivateShortProvider;
 use App\Models\ShortCourse\ProviderType;
@@ -164,8 +165,10 @@ class ShortController extends Controller
         $providerType = ProviderType::pluck('name','id');
         $bankType = BankType::pluck('name','id');
         $provider = Auth::user()->short_provider;
+        $profilePic = File::whereFileableId(Auth::user()->short_provider->id)->firstOrFail();
 
-        return View::make('short.profile.edit',compact('providerType','bankType','provider'));
+
+        return View::make('short.profile.edit',compact('providerType','bankType','provider','profilePic'));
     }
 
     public function updateProfile(Request $r)
@@ -201,7 +204,7 @@ class ShortController extends Controller
             try{
 
             $provider_pic = new File;
-            $provider_pic->short_provider_id = $provider->id;
+            $provider_pic->fileable_id = $provider->id;
             $provider_pic->type_id = 1;
             $provider_pic->category_id = 3;
             $provider_pic->filename = $r->provider_pic->getClientOriginalName();
@@ -210,6 +213,9 @@ class ShortController extends Controller
             $provider_pic->size = $r->provider_pic->getSize();
 
             $r->provider_pic->move(public_path()."/img/provider",$r->provider_pic->getClientOriginalName());
+
+            // $s3 = Storage::disk('s3');
+            // $s3->put($r->provider_pic->getClientOriginalName(),public_path()."img/provider");            
 
             $provider_pic->save();
             
