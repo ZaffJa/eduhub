@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests;
 use App\Models\ShortCourse\Provider;
 use App\Models\ShortCourse\ActivateShortProvider;
 use App\Models\ShortCourse\ProviderType;
 use App\Models\ShortCourse\Course;
 use App\Models\ShortCourse\Level;
 use App\Models\ShortCourse\Field;
+use App\Models\ShortCourse\File;
 use App\Models\BankType;
 use App\Models\PeriodType;
 use Validator;
@@ -117,7 +119,7 @@ class ShortController extends Controller
             return redirect()->back()->withErrors($ex->errorInfo);
 
         }
-        return $input;
+
     }
 
     public function dashboard()
@@ -186,7 +188,6 @@ class ShortController extends Controller
             $provider->bank_account = $r->bank_account;
             $provider->save();
 
-            return  redirect()->back()->with(['status'=>'The provider name '.$provider->name.' has been updated.']);
 
         }catch(\Illuminate\Database\QueryException $ex){
             return redirect()
@@ -194,8 +195,37 @@ class ShortController extends Controller
                 ->withErrors($ex->errorInfo[2])
                 ->withInput();
         }
-        // return $provider->bank;
-    	return View::make('short.profile.view', compact('provider'));
+
+        if($r->provider_pic)
+        {
+            try{
+
+            $provider_pic = new File;
+            $provider_pic->short_provider_id = $provider->id;
+            $provider_pic->type_id = 1;
+            $provider_pic->category_id = 3;
+            $provider_pic->filename = $r->provider_pic->getClientOriginalName();
+            $provider_pic->path = 'provider/'.$r->provider_pic->getClientOriginalName();
+            $provider_pic->mime = $r->provider_pic->extension();
+            $provider_pic->size = $r->provider_pic->getSize();
+
+            $r->provider_pic->move(public_path()."/img/provider",$r->provider_pic->getClientOriginalName());
+
+            $provider_pic->save();
+            
+            }catch(\Illuminate\Database\QueryException $ex){
+                return redirect()
+                    ->back()
+                    ->withErrors($ex->errorInfo[2])
+                    ->withInput();
+            }
+
+        }
+
+    	return  redirect()
+                ->back()
+                ->with(['status'=>'The provider name '.$provider->name.' has been updated.']);
+
     }
 
     public function resendActivateAccount($token)
