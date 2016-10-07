@@ -27,7 +27,7 @@ class ShortController extends Controller
 
             if($user->short_provider != null){
 
-                if($user->short_provider->status !=null){   //  User exist and has verify email
+                if($user->short_provider->status != null){   //  User exist and has verify email
 
                     return view('short.dashboard');
 
@@ -139,16 +139,17 @@ class ShortController extends Controller
         if($activateUser)
         {
             $user = User::whereEmail($activateUser->email)->first();
+            $sp = Provider::whereParentId($user->id)->first();
 
             $activateUser->status = 1;
-            $user->short_provider->status = 1;
+            $sp->status = 1;
 
             $activateUser->save();
-            $user->save();
+            $sp->save();
 
             Auth::login($user);
 
-            return view('short.dashboard');
+            return $this->dashboard();
 
         }else{
 

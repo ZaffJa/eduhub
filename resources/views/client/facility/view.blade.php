@@ -70,7 +70,7 @@
           @else
             @foreach($facility_img as $faci_img)
               @if( $faci_img->facility_id == $facility->id)
-                <td> 
+                <td>
                   <a href="#imgBox" class="clickImg">{{$faci_img->filename}}</a>
                 </td>
               @endif
@@ -101,8 +101,8 @@
 
 <script type="text/javascript">
   $('.clickImg').on('click',function(){
-
-    $('.imgSrc').prop('src','/img/facility/'+$(this).text() );
+    var $filePath = 'https://s3-ap-southeast-1.amazonaws.com/amr-eduhub-upoads/';
+    $('.imgSrc').prop('src',$filePath+$(this).text() );
     console.log($(this).text());
   });
 </script>

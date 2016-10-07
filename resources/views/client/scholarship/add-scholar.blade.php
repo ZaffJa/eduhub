@@ -52,12 +52,13 @@
   $('#type-id').on('change',function(){
     $val = $(this).val();
     $only = $('#only-accept');
+
     if($val == 1){
-      $only.html('jpeg,png,jpg,gif,svg');
-      $('#file-type').val('jpeg,png,jpg,gif,svg');
+        $only.html('jpeg,png,jpg,gif,svg');
+        $('#file-type').val('jpeg,png,jpg,gif,svg');
     }else if($val == 3){
-      $only.html('doc,docx,pdf');
-      $('#file-type').val('doc,docx,pdf');
+        $only.html('doc,docx,pdf');
+        $('#file-type').val('doc,docx,pdf');
     }
   });
 </script>
