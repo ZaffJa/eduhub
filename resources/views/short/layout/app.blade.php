@@ -48,7 +48,7 @@
         width: 100%;
   }
 </style>
-<body class=" skin-red-light sidebar-toggle">
+<body class=" skin-green sidebar-toggle">
     <div class="wrapper">
 
         <!-- Main Header -->
