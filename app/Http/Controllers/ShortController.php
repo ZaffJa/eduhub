@@ -30,7 +30,7 @@ class ShortController extends Controller
 
             if($user->short_provider != null){
 
-                if($user->short_provider->status !=null){   //  User exist and has verify email
+                if($user->short_provider->status != null){   //  User exist and has verify email
 
                     return view('short.dashboard');
 
@@ -142,16 +142,17 @@ class ShortController extends Controller
         if($activateUser)
         {
             $user = User::whereEmail($activateUser->email)->first();
+            $sp = Provider::whereParentId($user->id)->first();
 
             $activateUser->status = 1;
-            $user->short_provider->status = 1;
+            $sp->status = 1;
 
             $activateUser->save();
-            $user->save();
+            $sp->save();
 
             Auth::login($user);
 
-            return view('short.dashboard');
+            return $this->dashboard();
 
         }else{
 
@@ -165,7 +166,7 @@ class ShortController extends Controller
         $providerType = ProviderType::pluck('name','id');
         $bankType = BankType::pluck('name','id');
         $provider = Auth::user()->short_provider;
-        $profilePic = File::whereFileableId(Auth::user()->short_provider->id)->firstOrFail();
+        $profilePic = File::whereFileableId(Auth::user()->short_provider->id)->first();
 
 
         return View::make('short.profile.edit',compact('providerType','bankType','provider','profilePic'));
@@ -221,10 +222,10 @@ class ShortController extends Controller
             $r->provider_pic->move(public_path()."/img/provider",$r->provider_pic->getClientOriginalName());
 
             // $s3 = Storage::disk('s3');
-            // $s3->put($r->provider_pic->getClientOriginalName(),public_path()."img/provider");            
+            // $s3->put($r->provider_pic->getClientOriginalName(),public_path()."img/provider");
 
             $provider_pic->save();
-            
+
             }catch(\Illuminate\Database\QueryException $ex){
                 return redirect()
                     ->back()

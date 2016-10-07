@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Models\Facility;
 use App\Models\FacilityType;
 use App\Models\File;
+use Storage;
 use Validator;
 use Auth;
 use View;
@@ -102,16 +103,15 @@ class FacilityController extends Controller
         $validator = Validator::make($r->all(), [
              'faci_name' => 'required|max:255',
              'faci_cap' => 'required|max:255',
-             'faci_img' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:20048',
+             'faci_img' => 'required|image|max:4096',
          ]);
 
         if ($validator->fails()) {
-          return redirect()
+            return redirect()
                       ->back()
                       ->withErrors($validator)
                       ->withInput();
-                  }
-
+        }
     	$facility = new Facility;
 
     	$facility->institution_id = Auth::user()->client->institution->id;
@@ -125,18 +125,25 @@ class FacilityController extends Controller
             return $ex->errorInfo;
         }
 
+        $file = $r->file('faci_img');
+        $fileName = time().'___'.$file->getClientOriginalName();
+
         $faci_img = new File;
         $faci_img->institution_id = Auth::user()->client->institution->id;
         $faci_img->facility_id = $facility->id;
         $faci_img->facility_type = $typeid;
         $faci_img->type_id = 1;
         $faci_img->category_id = 2;
-        $faci_img->filename = $r->faci_img->getClientOriginalName();
+        $faci_img->filename = $fileName;
         $faci_img->path = 'facility/'.$r->faci_img->getClientOriginalName();
         $faci_img->mime = $r->faci_img->extension();
         $faci_img->size = $r->faci_img->getSize();
 
-        $r->faci_img->move(public_path()."/img/facility",$r->faci_img->getClientOriginalName());
+        // Move to public folder in local
+        // $r->faci_img->move(public_path()."/img/facility",$r->faci_img->getClientOriginalName());
+
+        // Push to aws
+        Storage::disk('s3')->put($fileName,file_get_contents($file),'public');
 
         try {
             $facility->save();
@@ -192,17 +199,22 @@ class FacilityController extends Controller
             {
                 $faci_img = new File;
             }
+            $file = $r->file('faci_img');
+            $fileName = time().'___'.$file->getClientOriginalName();
+
             $faci_img->institution_id = Auth::user()->client->institution->id;
             $faci_img->facility_id = $fid;
             $faci_img->facility_type = $typeid;
             $faci_img->type_id = 1;
             $faci_img->category_id = 2;
-            $faci_img->filename = $r->faci_img->getClientOriginalName();
-            $faci_img->path = 'facility/'.$r->faci_img->getClientOriginalName();
-            $faci_img->mime = $r->faci_img->extension();
-            $faci_img->size = $r->faci_img->getSize();
+            $faci_img->filename = $fileName;
+            $faci_img->path = 'facility/'.$file->getClientOriginalName();
+            $faci_img->mime = $file->extension();
+            $faci_img->size = $file->getSize();
 
-            $r->faci_img->move(public_path()."/img/facility",$r->faci_img->getClientOriginalName());    
+            // $r->faci_img->move(public_path()."/img/facility",$r->faci_img->getClientOriginalName());
+            Storage::disk('s3')->put($fileName,file_get_contents($file),'public');
+
 
             try {
                 $faci_img->save();
@@ -210,7 +222,7 @@ class FacilityController extends Controller
                 return $ex->errorInfo;
             }
         }
-        
+
     	return redirect()
                 ->back()
                 ->with('facility',$facility)
@@ -220,7 +232,7 @@ class FacilityController extends Controller
 
     }
 
-     public function delete($typeid,$fid)
+    public function delete($typeid,$fid)
     {
         $facility = Facility::whereId($fid)->whereType_id($typeid)->firstOrFail();
 

@@ -64,7 +64,11 @@
                     @foreach($scholarship as $is)
                     <tr>
                         <td><a href="#img1" class="clickImg" val="{{$is->filename}}">{{$is->name}}</a></td>
-                        <td><a href="{{route('client.download.scholarship',$is->id)}}">{{$is->filename}}</a></td>
+                        @if(Storage::disk('s3')->exists($is->filename))
+                            <td><a href="https://s3-ap-southeast-1.amazonaws.com/amr-eduhub-upoads/{{$is->filename}}">{{$is->filename}}</a></td>
+                        @else
+                            <td><a href="#">{{$is->filename}}</a></td>
+                        @endif
                         <td><a href="{{$is->website}}" target='_blank'>{{$is->website}}</a></td>
                         <td>{{$is->updated_at->diffForHumans()}}</td>
                         <td>

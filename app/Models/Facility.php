@@ -23,4 +23,9 @@ class Facility extends Model
     {
         return $this->belongsTo('App\Models\FacilityType');
     }
+
+    public function file()
+    {
+        return $this->hasOne('App\Models\File','facility_id','id');
+    }
 }

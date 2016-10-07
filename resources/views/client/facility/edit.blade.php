@@ -34,7 +34,7 @@
       </div>
       <div class="col-md-10">
         <input type="file" name="faci_img">
-        <p class="help-block">File only accept jpg and png file format</p>
+        <p class="help-block">File only accept jpeg, png, bmp, gif, or svg</p>
       </div>
     </div>
     <input type="hidden" name="_token" value="{!! csrf_token() !!}">
