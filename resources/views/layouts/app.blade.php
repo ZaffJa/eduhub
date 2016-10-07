@@ -9,7 +9,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>eduhub.my</title>
-
+    <link rel="icon" sizes="192x192" href="/img/logo/LOGO-U.png">
     <!-- Styles -->
     <!-- Bootstrap 3.3.6 -->
     <link rel="stylesheet" href="/client/bootstrap/css/bootstrap.min.css">

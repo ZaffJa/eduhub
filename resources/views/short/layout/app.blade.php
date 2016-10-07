@@ -48,7 +48,7 @@
         width: 100%;
   }
 </style>
-<body class=" skin-red sidebar-toggle">
+<body class=" skin-green sidebar-toggle">
     <div class="wrapper">
 
         <!-- Main Header -->
@@ -146,7 +146,7 @@
                         </a>
                     </li>
 
-                    @if( Auth::user()->institution)
+                    @if( Auth::user()->client->institution)
                     <!-- Other -->
                     <li class="header">Other</li>
 
