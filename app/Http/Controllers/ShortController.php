@@ -125,7 +125,9 @@ class ShortController extends Controller
 
     public function dashboard()
     {
-        return view('short.dashboard');
+        $profilePic = File::whereFileableId(Auth::user()->short_provider->id)->first();
+
+        return View::make('short.dashboard',compact('profilePic'));
     }
 
     public function viewCourse()
@@ -167,7 +169,6 @@ class ShortController extends Controller
         $bankType = BankType::pluck('name','id');
         $provider = Auth::user()->short_provider;
         $profilePic = File::whereFileableId(Auth::user()->short_provider->id)->first();
-
 
         return View::make('short.profile.edit',compact('providerType','bankType','provider','profilePic'));
     }
@@ -290,8 +291,9 @@ class ShortController extends Controller
     {
     	$provider = Auth::user()->short_provider;
     	$providerType = Auth::user()->short_provider->type;
+        $profilePic = File::whereFileableId(Auth::user()->short_provider->id)->first();
 
-    	return View::make('short.profile.view', compact('provider','providerType'));
+    	return View::make('short.profile.view', compact('provider','providerType','profilePic'));
     }
 
     public function addCourse()
