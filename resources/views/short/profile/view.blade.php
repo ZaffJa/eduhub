@@ -54,7 +54,7 @@
                     </a>
 				</div>
 				<i class="fa fa-book"></i>
-				<h1 class="box-title"> {{ $provider->name }} </h1>
+				<h1 class="box-title"> {{ $provider->name != null ? $provider->name : "No provider name" }} </h1>
 			</div>
 
 			<div class="box-body" style="margin-left:2%; font-size:125%">
@@ -68,7 +68,7 @@
 					<dt>Established</dt>
 					<dd> {{$provider->established !=  null ? $provider->established : "Established not added"}} </dd>
 					<hr>
-					<dt>Location</dt>
+					<dt>Address</dt>
 					<dd> {{$provider->location != null ? $provider->location : "Location not added"}} </dd>
 					<hr>
 					<dt>Type</dt>

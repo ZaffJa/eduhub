@@ -23,12 +23,12 @@
           <label>Course Name<span class="required">*</span></label><br>
           </div>
           <div class="col-md-10">
-            <input type="text" value="{{ $course->name_en }} " name="name_en" placeholder="English Name">
+            <input type="text" value="{{ $course->name_en }}" name="name_en" placeholder="English Name">
           </div>
         </div>
         <div class="row">
           <div class="col-md-10 col-md-offset-2">
-            <input type="text" value="{{ $course->name_ms}} " name="name_ms" placeholder="Malay Name">
+            <input type="text" value="{{ $course->name_ms}}" name="name_ms" placeholder="Malay Name">
           </div>
         </div>
         <div class="row">
@@ -97,7 +97,7 @@
           </label>
           </div>
           <div class="col-md-10 col-sm-12 col-xs-12">
-            <input type="text" name="approved" placeholder="Approved"  value="{{$course->approved}} ">
+            <input type="text" name="approved" placeholder="Approved"  value="{{$course->approved}}">
           </div>
         </div>
         <div class="row">
@@ -130,7 +130,7 @@
           </label>
           </div>
           <div class="col-md-10 col-sm-12 col-xs-12">
-            <input type="text" name="qualification" placeholder="Qualification" value="{{$course->qualification}} " >
+            <input type="text" name="qualification" placeholder="Qualification" value="{{$course->qualification}}" >
           </div>
         </div>
         <div class="row">
@@ -141,7 +141,7 @@
           </label>
           </div>
           <div class="col-md-10 col-sm-12 col-xs-12">
-            <input type="text" name="mqa_reference_no" placeholder="MQA No" value="{{$course->mqa_reference_no }} " >
+            <input type="text" name="mqa_reference_no" placeholder="MQA No" value="{{$course->mqa_reference_no }}" >
           </div>
         </div>
         <div class="row">
@@ -181,7 +181,7 @@
           </label>
           </div>
           <div class="col-md-10 col-sm-12 col-xs-12">
-            <input type="text" name="code" placeholder="Course code" value="{{ $course->code }} " >
+            <input type="text" name="code" placeholder="Course code" value="{{ $course->code }}" >
           </div>
         </div>
         <div class="row">
@@ -192,7 +192,7 @@
           </label>
           </div>
           <div class="col-md-10 col-sm-12 col-xs-12">
-            <input type="text" name="start_date" placeholder="Start Date" value="{{ $course->start_date }} " >
+            <input type="text" name="start_date" placeholder="Start Date" value="{{ $course->start_date }}" >
           </div>
         </div>
         <div class="row">
@@ -203,7 +203,7 @@
           </label>
           </div>
           <div class="col-md-10 col-sm-12 col-xs-12">
-            <input type="text" name="length" placeholder="Course Length" value="{{ $course->length }} " >
+            <input type="text" name="length" placeholder="Course Length" value="{{ $course->length }}" >
           </div>
         </div>
         <div class="row">
@@ -214,7 +214,7 @@
           </label>
           </div>
           <div class="col-md-10 col-sm-12 col-xs-12">
-            <input type="text" name="attendance" placeholder="Attendance" value="{{ $course->attendance }} ">
+            <input type="text" name="attendance" placeholder="Attendance" value="{{ $course->attendance }}">
           </div>
         </div>
         <div class="row">
@@ -225,7 +225,7 @@
           </label>
           </div>
           <div class="col-md-10 col-sm-12 col-xs-12">
-            <input type="text" name="class_size" placeholder="Class Size" value="{{ $course->class_size }} ">
+            <input type="text" name="class_size" placeholder="Class Size" value="{{ $course->class_size }}">
           </div>
         </div>
         <div class="row">
@@ -258,7 +258,7 @@
           </label>
           </div>
           <div class="col-md-10 col-sm-12 col-xs-12">
-            <input type="text" name="note" placeholder="Note" value="{{ $course->note }} " >
+            <input type="text" name="note" placeholder="Note" value="{{ $course->note }}" >
           </div>
         </div>
         <div class="row">
@@ -269,7 +269,7 @@
           </label>
           </div>
           <div class="col-md-10 col-sm-12 col-xs-12">
-            <input type="text" name="language" placeholder="Language" value="{{ $course->language }} " >
+            <input type="text" name="language" placeholder="Language" value="{{ $course->language }}" >
           </div>
         </div>
         <div class="row">
@@ -317,7 +317,7 @@
         </div>
         <div class="row">
           <div class="col-md-offset-9">
-            <a href=" {!! route('short.course.view') !!} " class="btn btn-warning ">Cancel</a>
+            <a href=" {!! route('short.course.view.info', $course->id) !!} " class="btn btn-warning ">Cancel</a>
             <a href=" {!! route('short.course.update',$course->id) !!} "><button class='btn btn-success'>Update</button></a>
           </form>
           </div>

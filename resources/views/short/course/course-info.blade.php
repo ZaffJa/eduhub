@@ -11,9 +11,9 @@
                 <i class="fa fa-book"></i>
                 <h1 class="box-title"> Course name</h1>
             </br>
-                <h2 class="box-title"> {{ $course->name_en }} </h2>
+                <h2 class="box-title"> {{ $course->name_en != null ? $course->name_en : '' }} </h2>
              </br>
-                <h2 class="box-title"> {{ $course->name_ms }} </h2>
+                <h2 class="box-title"> {{ $course->name_ms != null ? $course->name_en : '' }} </h2>
             </div>
             
             <!-- /.box-header -->
@@ -32,58 +32,58 @@
                 	<dd>{{ $course->period_value_min }} - {{ $course->period_value_max }} {{ $course->periodType != null ? $course->periodType->name : 'No course period' }}</dd>
                 	<hr>
                 	<dt>Course Code</dt>
-                	<dd>{{ $course->code }}</dd>
+                	<dd>{{ $course->code != null ? $course->code : 'No course code'}}</dd>
                 	<hr>
                 	<dt>Credit Hours</dt>
-                	<dd>{{ $course->credit_hours }}  </dd>
+                	<dd>{{ $course->credit_hours != null ? $course->credit_hours : 'No course credit hours' }}  </dd>
                 	<hr>
                 	<dt>Course Description</dt>
-                	<dd>{{ $course->description }}  </dd>
+                	<dd>{{ $course->description != null ? $course->description : "No course description"}}  </dd>
                 	<hr>
                 	<dt>Approved</dt>
-                	<dd>{{ $course->approved }} </dd>
+                	<dd>{{ $course->approved != null ? $course->approved : "No course approved"}} </dd>
                 	<hr>
                 	<dt>Accredited</dt>
-                	<dd>{{ $course->accredited }}  </dd>
+                	<dd>{{ $course->accredited != null ? $course->accredited : "No course accredited" }}  </dd>
                 	<hr>
                 	<dt>Commencement</dt>
-                	<dd>{{ $course->commencement }}  </dd>
+                	<dd>{{ $course->commencement != null ? $course->commencement : "No course commencement" }}  </dd>
                 	<hr>
                 	<dt>Qualification</dt>
-                	<dd>{{ $course->qualification}}  </dd>
+                	<dd>{{ $course->qualification != null ? $course->qualification : "No course qualification" }}  </dd>
                 	<hr>
                 	<dt>MQA Reference No.</dt>
-                	<dd>{{ $course->mqa_reference_no}}  </dd>
+                	<dd>{{ $course->mqa_reference_no != null ? $course->mqa_reference_no : "No mqa reference no" }}  </dd>
                 	<hr>
                 	<dt>Course Start Time</dt>
-                	<dd>{{ $course->start_date }} </dd>
+                	<dd>{{ $course->start_date != null ? $course->start_date : "No course start date" }} </dd>
                 	<hr>
                 	<dt>Course Length</dt>
-                	<dd>{{ $course->length }}  </dd>
+                	<dd>{{ $course->length != null ? $course->length : "No course length"}}  </dd>
                 	<hr>
                 	<dt>Course Attendance</dt>
-                	<dd>{{ $course->attendance }}  </dd>
+                	<dd>{{ $course->attendance != null ? $course->attendance : "No course attendance"}}  </dd>
                 	<hr>
                 	<dt>Course Class Size</dt>
-                	<dd>{{ $course->class_size }}  </dd>
+                	<dd>{{ $course->class_size != null ? $course->class_size : "No course class size"}}  </dd>
                 	<hr>
                 	<dt>Course Language</dt>
-                	<dd>{{ $course->language }}  </dd>
+                	<dd>{{ $course->language != null ? $course->language : "No course language"}}  </dd>
                 	<hr>
                 	<dt>Course Fee</dt>
-                	<dd>{{ $course->price }}  </dd>
+                	<dd>{{ $course->price != null ? $course->price : "No course price"}}  </dd>
                 	<hr>
                 	<dt>Course Exam Fee</dt>
-                	<dd>{{ $course->exam_fee }}  </dd>
+                	<dd>{{ $course->exam_fee != null ? $course->exam_fee : "No exam fee"}}</dd>
                 	<hr>
                 	<dt>Course HRDF Scheme</dt>
-                	<dd>{{ $course->hrdf_scheme }}  </dd>
+                	<dd>{{ $course->hrdf_scheme != null ? $course->hrdf_scheme : "No HRDF scheme"}}</dd>
                 	<hr>
                 	<dt>Course Learning Outcome</dt>
-                	<dd>{{ $course->learning_outcome }}  </dd>
+                	<dd>{{ $course->learning_outcome != null ? $course->learning_outcome : "No learning outcome"}}  </dd>
                 	<hr>
                 	<dt>Course Location</dt>
-                	<dd>{{ $course->location }}  </dd>
+                	<dd>{{ $course->location != null ? $course->location : "No course location"}}  </dd>
                 	<hr>
                 	<dt>Course Additional Notes</dt>
                 	<dd>{{ $course->note }}  </dd>

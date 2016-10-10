@@ -32,7 +32,9 @@ class ShortController extends Controller
 
                 if($user->short_provider->status != null){   //  User exist and has verify email
 
-                    return view('short.dashboard');
+                    $profilePic = File::whereFileableId(Auth::user()->short_provider->id)->first();
+
+                    return View::make('short.dashboard',compact('profilePic'));
 
                 }else{  // User has not verify email yet
 
@@ -175,6 +177,13 @@ class ShortController extends Controller
 
     public function updateProfile(Request $r)
     {
+        $validator = Validator::make($r->all(), [
+            'name' => 'required|max:255',
+            'bank_account' => 'required',
+            'phone' => 'required',
+            'location' => 'required',
+        ]);
+
         try{
             $provider =  Provider::whereId(Auth::user()->short_provider->id)->firstOrFail();
 
