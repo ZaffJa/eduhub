@@ -168,7 +168,6 @@ class ShortController extends Controller
         $provider = Auth::user()->short_provider;
         $profilePic = File::whereFileableId(Auth::user()->short_provider->id)->first();
 
-
         return View::make('short.profile.edit',compact('providerType','bankType','provider','profilePic'));
     }
 

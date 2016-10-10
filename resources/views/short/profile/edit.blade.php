@@ -57,7 +57,7 @@
                 <div class="col-md-4">
                     <div class="row">
                         <a class="profile-link" href="#">
-                            <img class="profile-pic" id="clickImg" src="https://lh3.googleusercontent.com/-Y2IJzlUUV70/AAAAAAAAAAI/AAAAAAAAAAA/HMC3aK1S30o/photo.jpg" />
+                            <img class="profile-pic" id="clickImg" src="../img/{{$profilePic->path}}" onerror="this.onerror=null;this.src='/img/avatar/boy-512-03.png'" />
                         </a>
                     </div>
                     <div class="row">
