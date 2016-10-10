@@ -2917,7 +2917,9 @@ button.btn-floating {
 .alert {
     border-radius: 3px
 }
-
+.alert {
+text-align:center;
+}
 .alert h4 {
     font-weight: 600
 }
@@ -5743,7 +5745,13 @@ table.text-center th {
 }
 
 .img-circle{
+  display: inline-block;
+width: 150px;
+height: 150px;
 border-radius: 50%;
+background-repeat: no-repeat;
+background-position: center center;
+background-size: cover;
 background-color: #fff;
 }
 
