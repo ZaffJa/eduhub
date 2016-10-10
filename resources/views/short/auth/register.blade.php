@@ -21,7 +21,7 @@
                         </ul>
                     </div>
                     @endif
-                    <form class="form-horizontal" role="form" method="POST" action="{{ action('ShortController@postRegister') }}">
+                    <form class="form-horizontal" role="form" method="POST" action="{{ action('ShortController@postRegister') }}" autocomplete="off">
                         {{ csrf_field() }}
 
                         <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">

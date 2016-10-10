@@ -13,7 +13,7 @@ class CreateRegisterInstitutionTable extends Migration
      */
     public function up()
     {
-        Schema::create('register_institution', function (Blueprint $table) {
+        Schema::create('register_institutions', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->integer('institution_id')->unsigned();
@@ -21,7 +21,7 @@ class CreateRegisterInstitutionTable extends Migration
             $table->timestamps();
         });
 
-        Schema::table('register_institution',function(Blueprint $table){
+        Schema::table('register_institutions',function(Blueprint $table){
           $table->foreign('user_id')
                 ->references('id')->on('users')
                 ->onDelete('cascade');

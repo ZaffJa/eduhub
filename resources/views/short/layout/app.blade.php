@@ -146,7 +146,7 @@
                         </a>
                     </li>
 
-                    @if( Auth::user()->client->institution)
+                    @if( isset(Auth::user()->client) ? Auth::user()->client->institution : false)
                     <!-- Other -->
                     <li class="header">Other</li>
 
