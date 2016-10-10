@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
     @section('content')
-
+<div class="col-lg-12">
     <div class="flex-center position-ref full-height">
 
         <div class="content">
@@ -12,7 +12,17 @@
                     </div>
                 </div>
             </div>
+            <div class="row">
+              <br>
+              <div class=" col-md-6 ">
+                <a type="button" href="/client-dashboard" class="btn btn-default btn-block btn-lg">Institution Dashboard</a>
+              </div>
 
+              <div class=" col-md-6 ">
+                <a type="button" href="/short/login" class="btn btn-default btn-block btn-lg">ShortCourse Dashboard</a>
+              </div>
+            </div>
         </div>
     </div>
+</div>
 @endsection

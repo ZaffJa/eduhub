@@ -18,6 +18,9 @@ Route::get('/home', 'HomeController@index');
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/reg', function () {
+    return view('layouts.header');
+});
 
 Route::get('/agent', 'AgentController@dashboard')->name('agent.dashboard');
 
@@ -48,7 +51,7 @@ Route::group(['prefix'=>'short'],function(){
     Route::get('/activate-institution/{user_id}', 'ShortController@activateInstitutionUser');
     Route::get('/institution-short-course', 'ShortController@institutionShortCourse');
 
-});
+    });
 
 
 Route::group(['prefix'=>'client-dashboard'],function(){
