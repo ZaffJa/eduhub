@@ -47,7 +47,7 @@
         </div>
     </div>
     <div class="box-body">
-        <form method="post" class="confirmLeaveBeforeSave">
+        <form method="post" class="confirmLeaveBeforeSave" enctype="multipart/form-data">
             <div class="row">
                 <div class="col-md-2">
                     <label>
@@ -62,7 +62,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-4">
-                            <input type="file" id="profile_pic" name="name_last" placeholder="Last Name">
+                            <input type="file" id="profile_pic" name="provider_pic">
                         </div>
                     </div>
                 </div>
@@ -74,7 +74,7 @@
                     </label>
                 </div>
                 <div class="col-md-10">
-                    <input type="text" value=" {!! $provider->name !!} " name="name" placeholder="Providers Name">
+                    <input type="text" value="{!! $provider->name !!} " name="name" placeholder="Providers Name">
                 </div>
             </div>
             <div class="row">
@@ -84,7 +84,7 @@
                     </label>
                 </div>
                 <div class="col-md-10">
-                    <input type="text" value=" {!! $provider->headline !!} " name="headline" placeholder="Providers Headline">
+                    <input type="text" value="{!! $provider->headline !!} " name="headline" placeholder="Providers Headline">
                 </div>
             </div>
             <div class="row">

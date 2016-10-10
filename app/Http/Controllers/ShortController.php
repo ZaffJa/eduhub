@@ -125,7 +125,9 @@ class ShortController extends Controller
 
     public function dashboard()
     {
-        return view('short.dashboard');
+        $profilePic = File::whereFileableId(Auth::user()->short_provider->id)->first();
+
+        return View::make('short.dashboard',compact('profilePic'));
     }
 
     public function viewCourse()
