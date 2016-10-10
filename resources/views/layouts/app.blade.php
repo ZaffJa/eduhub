@@ -86,8 +86,34 @@
             </div>
         </div>
     </nav>
+    <div class="row">
+        <div class="col-lg-12">
+            <div class='row'>
+                @if (count($errors) > 0)
+                <div class="alert alert-danger alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                    @endforeach
 
-    @yield('content')
+                                </ul>
+
+                </div>
+                @endif @if (session('status'))
+                <div class="alert alert-success alert-dismissible">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                                <h4><i class="icon fa fa-check"></i> Success!</h4>
+                                {{ session('status') }}
+
+                </div>
+                @endif
+            </div>
+            @yield('content')
+        </div>
+    </div>
+
 
     <!-- Scripts -->
     <script src="/js/app.js"></script>
