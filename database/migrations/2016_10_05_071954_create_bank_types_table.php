@@ -14,12 +14,15 @@ class CreateBankTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('bank_types', function (Blueprint $table) {
-            $table->increments('id');
-            $table->timestamps();
-            $table->softDeletes();
-            $table->string('name',255);
-        });
+        if (!Schema::hasTable('bank_types')) {
+            
+            Schema::create('bank_types', function (Blueprint $table) {
+                $table->increments('id');
+                $table->timestamps();
+                $table->softDeletes();
+                $table->string('name',255);
+            });
+        }
     }
 
     /**

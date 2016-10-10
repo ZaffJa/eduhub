@@ -32,7 +32,7 @@ class ShortController extends Controller
 
                 if($user->short_provider->status != null){   //  User exist and has verify email
 
-                    return view('short.dashboard');
+                    return redirect()->action('ShortController@dashboard');
 
                 }else{  // User has not verify email yet
 
@@ -50,7 +50,7 @@ class ShortController extends Controller
 
                     }else {
 
-                        return redirect()->back()
+                        return redirect()->action('ShortController@getLogin')
                           ->withErrors([
                             'password'=>'Your account has not been activated. Please  verify your email.',
                             'activate'=>$activate->token]
@@ -81,7 +81,7 @@ class ShortController extends Controller
         $input = $request->except(['password_confirmation','_token']);
 
         $this->validate($request, [
-            'name' => 'required|unique:users|max:75|alpha',
+            'name' => 'required|unique:users|max:75',
             'email' => 'required|unique:users|max:45|email',
             'description' => 'required|max:455',
             'established' => 'required|max:255',
@@ -108,7 +108,8 @@ class ShortController extends Controller
 
             $activate = ActivateShortProvider::create([
                 'email' => $user->email,
-                'token' => str_random(64)
+                'token' => str_random(64),
+                'status'=> 0
             ]);
 
             $user->notify(new \App\Notifications\RegisterConsultant($user->name,$activate->token));
@@ -139,7 +140,7 @@ class ShortController extends Controller
 
     public function activateAccount($token)
     {
-        $activateUser = ActivateShortProvider::whereToken($token)->first();
+        $activateUser = ActivateShortProvider::whereTokenAndStatus($token,0)->first();
 
         if($activateUser)
         {
@@ -152,13 +153,15 @@ class ShortController extends Controller
             $activateUser->save();
             $sp->save();
 
+            return $sp;
             Auth::login($user);
 
             return $this->dashboard();
 
         }else{
 
-        return view('errors.503');
+            return view('errors.404');
+
         }
     }
 
@@ -189,7 +192,7 @@ class ShortController extends Controller
             $provider->instagram = $r->instagram;
             $provider->phone = $r->phone;
             $provider->description = $r->description;
-            $provider->bank_type = $r->bank_type;
+            $provider->bank_type_id = $r->bank_type;
             $provider->bank_account = $r->bank_account;
             $provider->save();
 
@@ -209,9 +212,9 @@ class ShortController extends Controller
             {
                 $provider_pic = new File;
             }else{
-             $provider_pic = File::whereFileableId(Auth::user()->short_provider->id)->first();   
+             $provider_pic = File::whereFileableId(Auth::user()->short_provider->id)->first();
             }
-            
+
             $provider_pic->fileable_id = $provider->id;
             $provider_pic->type_id = 1;
             $provider_pic->category_id = 3;
@@ -235,7 +238,6 @@ class ShortController extends Controller
             }
 
         }
-
     	return  redirect()
                 ->back()
                 ->with(['status'=>'The provider name '.$provider->name.' has been updated.']);
@@ -323,90 +325,89 @@ class ShortController extends Controller
 
         try{
             $course = new Course;
+            $course->provider_id = Auth::user()->short_provider->id;
+            $course->name_en = $r->name_en;
+            $course->name_ms = $r->name_ms;
+            $course->mode_id = 2;
 
-        $course->provider_id = Auth::user()->short_provider->id;
-        $course->name_en = $r->name_en;
-        $course->name_ms = $r->name_ms;
-        $course->mode_id = 2;
+            if($r->description)
+              $course->description = $r->description;
 
-        if($r->description)
-          $course->description = $r->description;
+            if($r->period_value_min)
+              $course->period_value_min = $r->period_value_min;
 
-        if($r->period_value_min)
-          $course->period_value_min = $r->period_value_min;
+            if($r->period_value_max)
+              $course->period_value_max = $r->period_value_max;
 
-        if($r->period_value_max)
-          $course->period_value_max = $r->period_value_max;
+            $course->period_type_id =  $r->period_type_id;
 
-        $course->period_type_id =  $r->period_type_id;
+            if($r->credit_hours)
+              $course->credit_hours = $r->credit_hours;
 
-        if($r->credit_hours)
-          $course->credit_hours = $r->credit_hours;
+            if($r->accredited)
+              $course->accredited = $r->accredited;
 
-        if($r->accredited)
-          $course->accredited = $r->accredited;
+            if($r->commencement)
+              $course->commencement = $r->commencement;
 
-        if($r->commencement)
-          $course->commencement = $r->commencement;
+            if($r->qualification)
+              $course->qualification = $r->qualification;
 
-        if($r->qualification)
-          $course->qualification = $r->qualification;
+            if($r->mqa_reference_no)
+              $course->mqa_reference_no = $r->mqa_reference_no;
 
-        if($r->mqa_reference_no)
-          $course->mqa_reference_no = $r->mqa_reference_no;
+            if($r->field_id == 3)
+            {
 
-        if($r->field_id == 3)
-        {
+                $field = new Field;
 
-            $field = new Field;
+                $field->name = $r->others;
+                $field->slug = $this->slugify($r->others);
 
-            $field->name = $r->others;
-            $field->slug = $this->slugify($r->others);
+                $field->save();
 
-            $field->save();
+                $course->field_id = $field->id;
 
-            $course->field_id = $field->id;
+            }else {
 
-        }else {
+                $course->field_id = $r->field_id;
+            }
 
-            $course->field_id = $r->field_id;
-        }
+            if($r->code)
+              $course->code = $r->code;
 
-        if($r->code)
-          $course->code = $r->code;
+            if($r->start_date)
+              $course->start_date = $r->start_date;
 
-        if($r->start_date)
-          $course->start_date = $r->start_date;
+            if($r->length)
+              $course->length = $r->length;
 
-        if($r->length)
-          $course->length = $r->length;
+            if($r->attendance)
+              $course->attendance = $r->attendance;
 
-        if($r->attendance)
-          $course->attendance = $r->attendance;
+            if($r->class_size)
+              $course->class_size = $r->class_size;
 
-        if($r->class_size)
-          $course->class_size = $r->class_size;
+            $course->price = $r->price;
 
-        $course->price = $r->price;
+            if($r->exam_fee)
+              $course->exam_fee = $r->exam_fee;
 
-        if($r->exam_fee)
-          $course->exam_fee = $r->exam_fee;
+            if($r->note)
+              $course->note = $r->note;
 
-        if($r->note)
-          $course->note = $r->note;
+            if($r->language)
+              $course->language = $r->language;
 
-        if($r->language)
-          $course->language = $r->language;
+            if($r->hrdf_scheme)
+              $course->hrdf_scheme = $r->hrdf_scheme;
 
-        if($r->hrdf_scheme)
-          $course->hrdf_scheme = $r->hrdf_scheme;
+            if($r->learning_outcome)
+              $course->learning_outcome = $r->learning_outcome;
 
-        if($r->learning_outcome)
-          $course->learning_outcome = $r->learning_outcome;
+            $course->location = $r->location;
 
-        $course->location = $r->location;
-
-        $course->save();
+            $course->save();
 
         }catch(\Illuminate\Database\QueryException $e){
             return $e->errorInfo;
@@ -437,7 +438,7 @@ class ShortController extends Controller
     public function updateCourse(Request $r,$id)
     {
         $validator = Validator::make($r->all(), [
-            'name_en' => 'required|max:255',
+            'name_en' => 'required|min:15|max:255',
             'name_ms' => 'required|max:255',
             'location' => 'required',
             'price' => 'required',
@@ -493,7 +494,10 @@ class ShortController extends Controller
         $course->save();
 
         }catch(\Illuminate\Database\QueryException $e){
-            return $e->errorInfo;
+            return ;
+            return redirect()
+                    ->back()
+                    ->withErrors([$e->errorInfo[2]]);
         }
 
         return redirect()

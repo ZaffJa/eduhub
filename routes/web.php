@@ -24,15 +24,17 @@ Route::get('/reg', function () {
 
 Route::get('/agent', 'AgentController@dashboard')->name('agent.dashboard');
 
-Route::group(['prefix'=>'short'],function(){
+
+Route::get('/register', 'ShortController@getRegister')->name('short.register.view');
+Route::post('/register', 'ShortController@postRegister')->name('short.register');
+
+Route::get('/login', 'ShortController@getLogin')->name('short.login.view');
+Route::post('/login', 'ShortController@postLogin')->name('short.login');
+
+Route::group(['prefix'=>'short',
+              'middleware'=>'auth'],function(){
 
     Route::get('/', 'ShortController@dashboard')->name('short.dashboard');
-
-    Route::get('/register', 'ShortController@getRegister')->name('short.register.view');
-    Route::post('/register', 'ShortController@postRegister')->name('short.register');
-
-    Route::get('/login', 'ShortController@getLogin')->name('short.login.view');
-    Route::post('/login', 'ShortController@postLogin')->name('short.login');
 
     Route::get('/activate-account/{token}', 'ShortController@activateAccount');
     Route::get('/resend-activate-account/{token}', 'ShortController@resendActivateAccount');

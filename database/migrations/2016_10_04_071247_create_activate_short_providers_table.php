@@ -13,13 +13,17 @@ class CreateActivateShortProvidersTable extends Migration
      */
     public function up()
     {
-        Schema::create('activate_short_providers', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('email');
-            $table->string('token',64);
-            $table->tinyInteger('status')->default('0');
-            $table->timestamps();
-        });
+        if (!Schema::hasTable('activate_short_providers')) {
+            Schema::create('activate_short_providers', function (Blueprint $table) {
+                $table->increments('id');
+                $table->string('email');
+                $table->string('token',64);
+                $table->tinyInteger('status')->default('0');
+                $table->timestamps();
+            });
+        }
+
+
     }
 
     /**
