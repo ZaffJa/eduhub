@@ -289,8 +289,9 @@ class ShortController extends Controller
     {
     	$provider = Auth::user()->short_provider;
     	$providerType = Auth::user()->short_provider->type;
+        $profilePic = File::whereFileableId(Auth::user()->short_provider->id)->first();
 
-    	return View::make('short.profile.view', compact('provider','providerType'));
+    	return View::make('short.profile.view', compact('provider','providerType','profilePic'));
     }
 
     public function addCourse()

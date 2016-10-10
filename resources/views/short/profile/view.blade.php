@@ -3,11 +3,56 @@
 @section('title', 'Profile')
 @section('headbar', 'Your Profile')
 @section('content2')
+<style media="screen">
+    .thumbnail {
+        max-width: 40%;
+    }
 
+    .italic {
+        font-style: italic;
+    }
+
+    .small {
+        font-size: 0.8em;
+    }
+
+    .lightbox {
+        /** Default lightbox to hidden */
+        display: none;
+        /** Position and style */
+        position: fixed;
+        z-index: 999;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        top: 0;
+        left: 0;
+        background: rgba(0, 0, 0, 0.8);
+    }
+
+    .lightbox img {
+        /** Pad the lightbox image */
+        max-width: 90%;
+        max-height: 80%;
+        margin-top: 10%;
+    }
+
+    .lightbox:target {
+        /** Remove default browser outline */
+        outline: none;
+        /** Unhide lightbox **/
+        display: block;
+    }
+</style>
 <div>
 	<div class="col-lg-12">
 		<div class="box box-solid">
 			<div class="box-header with-border" style="margin-left: 2%">
+				<div class="row">
+					<a class="profile-link" href="#">
+                        <img class="profile-pic" id="clickImg" src="../img/{{$profilePic->path}}" onerror="this.onerror=null;this.src='/img/avatar/boy-512-03.png'" />
+                    </a>
+				</div>
 				<i class="fa fa-book"></i>
 				<h1 class="box-title"> {{ $provider->name }} </h1>
 			</div>
@@ -57,5 +102,20 @@
 	</div>
 </div>
 
+<a href="#_" class="lightbox" id="imgBox">
+    <img class="imgSrc" src="#">
+</a>
 
+<script type="text/javascript">
+    $('#clickImg').on('click', function() {
+        var $src = $(this).prop('src');
+
+        $('.imgSrc').prop('src',$src);
+        $('.lightbox').show();
+    });
+
+    $('.imgSrc').on('click',function(){
+        $('#imgBox').hide();
+    });
+</script>
 @endsection
