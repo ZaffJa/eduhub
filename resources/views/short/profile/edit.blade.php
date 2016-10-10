@@ -61,7 +61,7 @@
                 <div class="col-md-4">
                     <div class="row">
                         <a class="profile-link" href="#">
-                            <img class="profile-pic" id="clickImg" src="../img/{{$profilePic->path}}" onerror="this.onerror=null;this.src='/img/avatar/boy-512-03.png'" />
+                            <img class="profile-pic" id="clickImg" src="../img/{{isset($profilePic) ? $profilePic->path : ''}}" onerror="this.onerror=null;this.src='/img/avatar/boy-512-03.png'" />
                         </a>
                     </div>
                     <div class="row">
@@ -174,6 +174,7 @@
                     <input type="text" value="{{ $provider->phone !=  null ? $provider->phone : '' }}" name="phone" placeholder="Contact">
                 </div>
             </div>
+            <br>
             <div class="row">
                 <div class="col-md-2">
                     <label>
@@ -197,7 +198,7 @@
                         </label>
                     </div>
                     <div class="col-md-10 col-sm-12 col-xs-12">
-                        {{ Form::select('bank_type', $bankType) }}
+                        {{ Form::select('bank_type',$bankType,Auth::user()->short_provider->bank_type_id) }}
                     </div>
                 </div>
                 <div class="row">
@@ -209,6 +210,7 @@
                     </div>
                     <div class="col-md-10 col-sm-12 col-xs-12">
                         <input type="text" value="{{ $provider->bank_account != null ? $provider->bank_account : '' }}" name="bank_account" placeholder="Providers Bank Account">
+                        <input type="number" value="{{ $provider->bank_account != null ? $provider->bank_account : '0' }}" name="bank_account" placeholder="Providers Bank Account">
                     </div>
                 </div>
             </div>
