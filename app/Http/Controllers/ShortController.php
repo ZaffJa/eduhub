@@ -312,7 +312,7 @@ class ShortController extends Controller
     {
         $periodType = PeriodType::pluck('name','id');
         $levelType = Level::pluck('name','id');
-        $fieldType = Field::pluck('name','id');
+        $fieldType = Field::orderBy('name')->pluck('name','id')->toArray();
 
         return View::make('short.course.add', compact('periodType','levelType','fieldType'));
     }
@@ -351,22 +351,7 @@ class ShortController extends Controller
 
             $course->period_type_id =  $r->period_type_id;
 
-            if($r->credit_hours)
-              $course->credit_hours = $r->credit_hours;
-
-            if($r->accredited)
-              $course->accredited = $r->accredited;
-
-            if($r->commencement)
-              $course->commencement = $r->commencement;
-
-            if($r->qualification)
-              $course->qualification = $r->qualification;
-
-            if($r->mqa_reference_no)
-              $course->mqa_reference_no = $r->mqa_reference_no;
-
-            if($r->field_id == 3)
+            if($r->field_id == 0)
             {
 
                 $field = new Field;
@@ -415,6 +400,9 @@ class ShortController extends Controller
             if($r->learning_outcome)
               $course->learning_outcome = $r->learning_outcome;
 
+            if($r->inclusive)
+              $course->inclusive = $r->inclusive;
+
             $course->location = $r->location;
 
             $course->save();
@@ -440,7 +428,7 @@ class ShortController extends Controller
         $course = Course::whereId($id)->firstOrFail();
         $periodType = PeriodType::pluck('name','id');
         $levelType = Level::pluck('name','id');
-        $fieldType = Field::pluck('name','id');
+        $fieldType = Field::orderBy('name')->pluck('name','id')->toArray();
 
         return View::make('short.course.edit',compact('course','periodType','levelType','fieldType'));
     }
@@ -464,12 +452,6 @@ class ShortController extends Controller
             $course->period_value_min = $r->period_value_min;
             $course->period_value_max = $r->period_value_max;
             $course->period_type_id = $r->period_type_id;
-            $course->credit_hours = $r->credit_hours;
-            $course->approved = $r->approved;
-            $course->accredited = $r->accredited;
-            $course->commencement = $r->commencement;
-            $course->qualification = $r->qualification;
-            $course->mqa_reference_no = $r->mqa_reference_no;
             $course->level_id = $r->level_id;
             $course->code = $r->code;
             $course->start_date = $r->start_date;
@@ -479,13 +461,14 @@ class ShortController extends Controller
             $course->exam_fee = $r->exam_fee;
             $course->note = $r->note;
             $course->language = $r->language;
+            $course->inclusive = $r->inclusive;
 
             if($r->hrdf_scheme)
                 $course->hrdf_scheme = $r->hrdf_scheme;
 
             $course->learning_outcome = $r->learning_outcome;
 
-            if($r->field_id == 3)
+            if($r->field_id == 0)
             {
                 $field = new Field;
 

@@ -34,27 +34,6 @@
                 	<dt>Course Code</dt>
                 	<dd>{{ $course->code != null ? $course->code : 'No course code'}}</dd>
                 	<hr>
-                	<dt>Credit Hours</dt>
-                	<dd>{{ $course->credit_hours != null ? $course->credit_hours : 'No course credit hours' }}  </dd>
-                	<hr>
-                	<dt>Course Description</dt>
-                	<dd>{{ $course->description != null ? $course->description : "No course description"}}  </dd>
-                	<hr>
-                	<dt>Approved</dt>
-                	<dd>{{ $course->approved != null ? $course->approved : "No course approved"}} </dd>
-                	<hr>
-                	<dt>Accredited</dt>
-                	<dd>{{ $course->accredited != null ? $course->accredited : "No course accredited" }}  </dd>
-                	<hr>
-                	<dt>Commencement</dt>
-                	<dd>{{ $course->commencement != null ? $course->commencement : "No course commencement" }}  </dd>
-                	<hr>
-                	<dt>Qualification</dt>
-                	<dd>{{ $course->qualification != null ? $course->qualification : "No course qualification" }}  </dd>
-                	<hr>
-                	<dt>MQA Reference No.</dt>
-                	<dd>{{ $course->mqa_reference_no != null ? $course->mqa_reference_no : "No mqa reference no" }}  </dd>
-                	<hr>
                 	<dt>Course Start Time</dt>
                 	<dd>{{ $course->start_date != null ? $course->start_date : "No course start date" }} </dd>
                 	<hr>

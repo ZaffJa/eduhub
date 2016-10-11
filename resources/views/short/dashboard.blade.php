@@ -13,7 +13,6 @@
             </div>
             <div class="widget-user-image">
               <img class="img-circle hidden-xs" src="../img/{{$profilePic != null ? $profilePic->path : ''}}" onerror="this.onerror=null;this.src='/img/avatar/boy-512-03.png'">
-              <img class="img-circle hidden-xs" src="../img/{{isset($profilePic) ? $profilePic->path : ''}}" onerror="this.onerror=null;this.src='/img/avatar/boy-512-03.png'">
             </div>
             <div class="box-footer">
               <div class="row">

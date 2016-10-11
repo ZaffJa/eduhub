@@ -78,72 +78,6 @@
                         <div class="col-md-2">
                             <label>
                                 <br>
-                                Credit Hours
-                            </label>
-                        </div>
-                        <div class="col-md-3">
-                            <input type="number" name="credit_hours" placeholder="Credit Hours">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-2">
-                            <label>
-                            <br>
-                                Approved
-                            </label>
-                        </div>
-                        <div class="col-md-10 col-sm-12 col-xs-12">
-                            <input type="text" name="approved" placeholder="Approved">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-2">
-                            <label>
-                                <br>
-                                Accredited
-                            </label>
-                        </div>
-                        <div class="col-md-10 col-sm-12 col-xs-12">
-                            <input type="text" name="accredited" placeholder="Accredited">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-2">
-                            <label>
-                                <br>
-                                Commencement
-                            </label>
-                        </div>
-                        <div class="col-md-10 col-sm-12 col-xs-12">
-                            <input type="text" name="commencement" placeholder="Commencement">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-2">
-                            <label>
-                                <br>
-                                Qualification
-                            </label>
-                        </div>
-                        <div class="col-md-10 col-sm-12 col-xs-12">
-                            <input type="text" name="qualification" placeholder="Qualification">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-2">
-                            <label>
-                                <br>
-                                MQA reference number
-                            </label>
-                        </div>
-                        <div class="col-md-10 col-sm-12 col-xs-12">
-                            <input type="text" name="mqa_reference_no" placeholder="MQA No">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-2">
-                            <label>
-                                <br>
                                 Course Level
                             </label>
                         </div>
@@ -161,7 +95,7 @@
                         </div>
                         <div class="col-md-10 col-sm-12 col-xs-12">
                             </br>
-                            {{ Form::select('field_id', $fieldType,null,["class='test'"]) }}
+                            {{ Form::select('field_id', $fieldType + array(0 =>'Others'),null,["class='test'"]) }}
                         </div>
                     </div>
                     <div class="row" id="others">
@@ -302,6 +236,18 @@
                             <textarea type="text" name="learning_outcome" placeholder="Learning outcome"></textarea>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label>
+                            <br>
+                              Inclusive of
+                            </label>
+                        </div>
+                        <div class="col-md-10 col-sm-12 col-xs-12">
+                            <br>
+                            <textarea type="text" name="inclusive" placeholder="Eg: breakfast and dinner, accomodation"></textarea>
+                        </div>
+                    </div>
                 </div>
                 <div class="box-footer">
                     <div class="row">
@@ -327,7 +273,7 @@
 
         $('.test').on('change', function() {
             console.log($(this).val());
-            if ($(this).val() == "3") {
+            if ($(this).val() == "0") {
                 $("#others").show();
 
             } else {
