@@ -4,7 +4,47 @@
 @section('title', 'Short Course')
 @section('headbar', 'Add Course')
 @section('content2')
+<style type="text/css">
+    .thumbnail {
+        max-width: 15vw;
+    }
 
+    .italic {
+        font-style: italic;
+    }
+
+    .small {
+        font-size: 0.8em;
+    }
+
+    .lightbox {
+        /** Default lightbox to hidden */
+        display: none;
+        /** Position and style */
+        position: fixed;
+        z-index: 999;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        top: 0;
+        left: 0;
+        background: rgba(0, 0, 0, 0.8);
+    }
+
+    .lightbox img {
+        /** Pad the lightbox image */
+        max-width: 90%;
+        max-height: 80%;
+        margin-top: 10%;
+    }
+
+    .lightbox:target {
+        /** Remove default browser outline */
+        outline: none;
+        /** Unhide lightbox **/
+        display: block;
+    }
+</style>
     <div class="col-lg-12">
         <div class="box box-solid">
             <div class="box-header with-border" style="margin-left:2%">
@@ -67,6 +107,17 @@
                 	<dt>Course Additional Notes</dt>
                 	<dd>{{ $course->note }}  </dd>
                 	<hr>
+                    <dt>Short Course Picture</dt>
+                    <dd>@if($picture)
+                        @foreach($picture as $pic)
+                        <a class="profile-link" href="#">
+                            <img src="/img/shortCourse/{{isset($pic) ? $pic->filename : ''}}" class="thumbnail" onerror="this.onerror=null;this.src='/img/avatar/picture.png'" >
+                        </a>
+                        @endforeach @else
+                        No picture added
+                        @endif
+                    </dd>
+                    <hr>
                 </dl>
             </div>
             <div class="box-footer">
@@ -78,4 +129,21 @@
         </div>
          <!-- /.box-body -->
 	</div>
+
+<a href="#_" class="lightbox" id="imgBox">
+    <img class="imgSrc" src="#">
+</a>
+
+<script type="text/javascript">
+    $('.thumbnail').on('click', function() {
+        var $src = $(this).prop('src');
+
+        $('.imgSrc').prop('src',$src);
+        $('.lightbox').show();
+    });
+
+    $('.imgSrc').on('click',function(){
+        $('#imgBox').hide();
+    });
+</script>
 @endsection
