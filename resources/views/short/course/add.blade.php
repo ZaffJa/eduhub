@@ -20,12 +20,12 @@
                             <label>Course Name<span class="required">*</span></label>
                         </div>
                         <div class="col-md-10">
-                            <input type="text" value="" name="name_en" placeholder="English Name">
+                            <input type="text" value="" name="name_en" placeholder="English Name" required>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-10 col-md-offset-2">
-                            <input type="text" value="" name="name_ms" placeholder="Malay Name">
+                            <input type="text" value="" name="name_ms" placeholder="Malay Name" required>
                         </div>
                     </div>
                     <div class="row">
@@ -37,10 +37,10 @@
                         </div>
                         <div class="col-md-10">
                             <br>
-                            <textarea type="text" name="description" placeholder="Short Course Description"></textarea>
+                            <textarea type="text" name="description" placeholder="Eg :- This course provides basic yoga movements"></textarea>
                         </div>
                     </div>
-                    <div class="row">
+                    <!-- <div class="row">
                         <div class="col-md-2">
                             <label>
                                 <br>
@@ -61,7 +61,7 @@
                         <div class="col-md-3">
                             <input type="number" name="period_value_max" placeholder="Period MAX">
                         </div>
-                    </div>
+                    </div> -->
                     <div class="row">
                         <div class="col-md-2">
                             <label>
