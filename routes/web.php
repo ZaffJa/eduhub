@@ -28,6 +28,7 @@ Route::get('/agent', 'AgentController@dashboard')->name('agent.dashboard');
 Route::get('/register', 'ShortController@getRegister')->name('short.register.view');
 Route::get('/short/register', 'ShortController@getRegister')->name('short.register.view');
 Route::post('/register', 'ShortController@postRegister')->name('short.register');
+Route::post('/short/register', 'ShortController@postRegister')->name('short.register');
 
 Route::get('/login', 'ShortController@getLogin')->name('short.login.view');
 Route::post('/login', 'ShortController@postLogin')->name('short.login');
@@ -52,6 +53,7 @@ Route::group(['prefix'=>'short',
     Route::get('/course/{id}/edit', 'ShortController@editCourse')->name('short.course.edit');
     Route::post('/course/{id}/edit', 'ShortController@updateCourse')->name('short.course.update');
     Route::get('/course/{id}/course-view', 'ShortController@viewCourseInfo')->name('short.course.view.info');
+    Route::get('/course/delete/{id}', 'ShortController@destroy');
 
     Route::get('/activate-institution/{user_id}', 'ShortController@activateInstitutionUser');
     Route::get('/institution-short-course', 'ShortController@institutionShortCourse');
