@@ -7,7 +7,7 @@
 
 <div class="row">
     <div class="col-lg-8 col-lg-offset-2">
-        <form method="post" class="confirmLeaveBeforeSave">
+        <form method="post" class="confirmLeaveBeforeSave" enctype="multipart/form-data">
             <div class="box box-primary">
                 <div class="box-header">
                     <div class="col-md-2">
@@ -246,6 +246,48 @@
                         <div class="col-md-10 col-sm-12 col-xs-12">
                             <br>
                             <textarea type="text" name="inclusive" placeholder="Eg: breakfast and dinner, accomodation"></textarea>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label>
+                            <br>
+                              Inclusive of
+                            </label>
+                        </div>
+                        <div class="col-md-10 col-sm-12 col-xs-12">
+                            <br>
+                            <textarea type="text" name="inclusive" placeholder="Eg: breakfast and dinner, accomodation"></textarea>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="row">
+                            <div class="col-md-3 col-md-offset-2">
+                                <a class="profile-link" href="#">
+                                    <img class="profile-pic" id="clickImg" onerror="this.onerror=null;this.src='/img/avatar/boy-512-03.png'"/>
+                                </a>
+                            </div>
+                            <div class="col-md-3">
+                                <a class="profile-link" href="#">
+                                    <img class="profile-pic" id="clickImg" onerror="this.onerror=null;this.src='/img/avatar/boy-512-03.png'"/>
+                                </a>
+                            </div>
+                            <div class="col-md-3">
+                                <a class="profile-link" href="#">
+                                    <img class="profile-pic" id="clickImg" onerror="this.onerror=null;this.src='/img/avatar/boy-512-03.png'"/>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3 col-md-offset-2">
+                                <input type="file" id="profile_pic" name="provider_pic">
+                            </div>
+                            <div class="col-md-3">
+                                <input type="file" id="profile_pic" name="provider_pic">
+                            </div>
+                            <div class="col-md-3">
+                                <input type="file" id="profile_pic" name="provider_pic">
+                            </div>
                         </div>
                     </div>
                 </div>
