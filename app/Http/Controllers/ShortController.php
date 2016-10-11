@@ -497,6 +497,28 @@ class ShortController extends Controller
                 ->with(['status'=>'The course '.$course->name_en.' has been updated']);
     }
 
+
+    public function destroy($id)
+    {
+        $shortcourse = Course::find($id);
+
+        try {
+
+            $shortcourse->delete();
+
+            return redirect()
+                ->action('ShortController@viewCourse')
+                ->with('status','Successfully delete the record');
+
+        }catch(\Illuminate\Database\QueryException $ex){
+
+            return redirect()
+                ->action('ShortController@viewCourse')
+                ->withErrors($ex->errorInfo[2])
+                ->withInput();
+        }
+    }
+
     private function slugify($text)
     {
         // replace non letter or digits by -

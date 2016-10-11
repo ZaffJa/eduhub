@@ -19,7 +19,7 @@
               </div>
 
               <div class=" col-md-6 ">
-                <a type="button" href="/short/login" class="btn btn-default btn-block btn-lg">ShortCourse Dashboard</a>
+                <a type="button" href="/short/login" class="btn btn-default btn-block btn-lg">Short Course Dashboard</a>
               </div>
             </div>
         </div>
