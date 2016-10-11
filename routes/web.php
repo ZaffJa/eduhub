@@ -25,36 +25,38 @@ Route::get('/reg', function () {
 Route::get('/agent', 'AgentController@dashboard')->name('agent.dashboard');
 
 
-Route::get('/short/register', 'ShortController@getRegister')->name('short.register.view');
-Route::post('/short/register', 'ShortController@postRegister')->name('short.register');
-
-Route::get('/short/login', 'ShortController@getLogin')->name('short.login.view');
-Route::post('/short/login', 'ShortController@postLogin')->name('short.login');
-
-Route::group(['prefix'=>'short',
-              'middleware'=>'auth'],function(){
-
-    Route::get('/', 'ShortController@dashboard')->name('short.dashboard');
+Route::group(['prefix'=>'short'],function(){
 
     Route::get('/activate-account/{token}', 'ShortController@activateAccount');
     Route::get('/resend-activate-account/{token}', 'ShortController@resendActivateAccount');
 
-    Route::get('/view-profile', 'ShortController@viewProfile')->name('short.profile.view');
-    Route::get('/edit-profile', 'ShortController@editprofile')->name('short.profile.edit');
-    Route::post('/edit-profile','ShortController@updateProfile')->name('short.profile.update');
+    Route::get('/register', 'ShortController@getRegister')->name('short.register.view');
+    Route::post('/register', 'ShortController@postRegister')->name('short.register');
 
-    Route::get('/course', 'ShortController@viewCourse')->name('short.course.view');
-    Route::get('/course/add', 'ShortController@addCourse')->name('short.course.add');
-    Route::post('/course/add', 'ShortController@storeCourse')->name('short.course.store');
-    Route::get('/course/{id}/edit', 'ShortController@editCourse')->name('short.course.edit');
-    Route::post('/course/{id}/edit', 'ShortController@updateCourse')->name('short.course.update');
-    Route::get('/course/{id}/course-view', 'ShortController@viewCourseInfo')->name('short.course.view.info');
-    Route::get('/course/delete/{id}', 'ShortController@destroy');
+    Route::get('/login', 'ShortController@getLogin')->name('short.login.view');
+    Route::post('/login', 'ShortController@postLogin')->name('short.login');
 
-    Route::get('/activate-institution/{user_id}', 'ShortController@activateInstitutionUser');
-    Route::get('/institution-short-course', 'ShortController@institutionShortCourse');
+    Route::group(['middleware'=>'auth'],function(){
+
+        Route::get('/', 'ShortController@dashboard')->name('short.dashboard');
+
+        Route::get('/view-profile', 'ShortController@viewProfile')->name('short.profile.view');
+        Route::get('/edit-profile', 'ShortController@editprofile')->name('short.profile.edit');
+        Route::post('/edit-profile','ShortController@updateProfile')->name('short.profile.update');
+
+        Route::get('/course', 'ShortController@viewCourse')->name('short.course.view');
+        Route::get('/course/add', 'ShortController@addCourse')->name('short.course.add');
+        Route::post('/course/add', 'ShortController@storeCourse')->name('short.course.store');
+        Route::get('/course/{id}/edit', 'ShortController@editCourse')->name('short.course.edit');
+        Route::post('/course/{id}/edit', 'ShortController@updateCourse')->name('short.course.update');
+        Route::get('/course/{id}/course-view', 'ShortController@viewCourseInfo')->name('short.course.view.info');
+        Route::get('/course/delete/{id}', 'ShortController@destroy');
+
+        Route::get('/activate-institution/{user_id}', 'ShortController@activateInstitutionUser');
+        Route::get('/institution-short-course', 'ShortController@institutionShortCourse');
 
     });
+});
 
 
 Route::group(['prefix'=>'client-dashboard'],function(){

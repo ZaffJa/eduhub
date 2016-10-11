@@ -53,7 +53,7 @@
         <form method="post" class="confirmLeaveBeforeSave" enctype="multipart/form-data">
             <div class="box box-primary">
                 <div class="box-header">
-                    <div class="col-md-2">
+                    <div class="col-md-4">
                         <h3>Add Short Course</h3>
                     </div>
                 </div>
@@ -63,12 +63,12 @@
                             <label>Course Name<span class="required">*</span></label>
                         </div>
                         <div class="col-md-10">
-                            <input type="text" value="" name="name_en" placeholder="English Name" required>
+                            <input type="text" value="" name="name_en" placeholder="English Name" required value="{{ old('name_en') }}">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-10 col-md-offset-2">
-                            <input type="text" value="" name="name_ms" placeholder="Malay Name" required>
+                            <input type="text" value="" name="name_ms" placeholder="Malay Name" required value="{{ old('name_ms') }}">
                         </div>
                     </div>
                     <div class="row">
@@ -80,7 +80,9 @@
                         </div>
                         <div class="col-md-10">
                             <br>
-                            <textarea type="text" name="description" placeholder="Eg :- This course provides basic yoga movements"></textarea>
+                            <textarea type="text" name="description" placeholder="Eg :- This course provides basic yoga movements">
+                                {{ old('description') }}
+                            </textarea>
                         </div>
                     </div>
                     <!-- <div class="row">
@@ -154,7 +156,7 @@
                             </label>
                         </div>
                         <div class="col-md-10 col-sm-12 col-xs-12">
-                            <input type="text" name="code" placeholder="Course code">
+                            <input type="text" name="code" placeholder="Course code" value="{{ old('code') }}">
                         </div>
                     </div>
                     <div class="row">
@@ -165,7 +167,7 @@
                             </label>
                         </div>
                         <div class="col-md-10 col-sm-12 col-xs-12">
-                            <input type="text" name="start_date" placeholder="Start Date">
+                            <input type="text" name="start_date" placeholder="Start Date" value="{{ old('start_date') }}">
                         </div>
                     </div>
                     <div class="row">
@@ -176,7 +178,7 @@
                             </label>
                         </div>
                         <div class="col-md-10 col-sm-12 col-xs-12">
-                            <input type="text" name="length" placeholder="Course Length">
+                            <input type="text" name="length" placeholder="Course Length" value="{{ old('length') }}">
                         </div>
                     </div>
                     <div class="row">
@@ -187,7 +189,7 @@
                             </label>
                         </div>
                         <div class="col-md-10 col-sm-12 col-xs-12">
-                            <input type="text" name="attendance" placeholder="Attendance">
+                            <input type="text" name="attendance" placeholder="Attendance" value="{{ old('attendance') }}">
                         </div>
                     </div>
                     <div class="row">
@@ -198,7 +200,7 @@
                             </label>
                         </div>
                         <div class="col-md-10 col-sm-12 col-xs-12">
-                            <input type="text" name="class_size" placeholder="Class Size">
+                            <input type="text" name="class_size" placeholder="Class Size" value="{{ old('class_size') }}">
                         </div>
                     </div>
                     <div class="row">
@@ -209,7 +211,7 @@
                             </label><span class="required">*</span>
                         </div>
                         <div class="col-md-10 col-sm-12 col-xs-12">
-                            <input name="price" type="number" value="" placeholder="Fee">
+                            <input name="price" type="number" value="" placeholder="Fee" value="{{ old('price') }}" required>
                         </div>
                     </div>
                     <div class="row">
@@ -220,7 +222,7 @@
                             </label>
                         </div>
                         <div class="col-md-10 col-sm-12 col-xs-12">
-                            <input type="number" name="exam_fee" placeholder="Exam Fee">
+                            <input type="number" name="exam_fee" placeholder="Exam Fee" value="{{ old('exam_fee') }}">
                         </div>
                     </div>
                     <div class="row">
@@ -231,7 +233,7 @@
                             </label>
                         </div>
                         <div class="col-md-10 col-sm-12 col-xs-12">
-                            <input type="text" name="note" placeholder="Note">
+                            <input type="text" name="note" placeholder="Note" value="{{ old('note') }}">
                         </div>
                     </div>
                     <div class="row">
@@ -242,7 +244,7 @@
                             </label>
                         </div>
                         <div class="col-md-10 col-sm-12 col-xs-12">
-                            <input type="text" name="language" placeholder="Language">
+                            <input type="text" name="language" placeholder="Language" value="{{ old('language') }}">
                         </div>
                     </div>
                     <div class="row">
@@ -253,7 +255,7 @@
                             </label>
                         </div>
                         <div class="col-md-10 col-sm-12 col-xs-12">
-                            <input type="number" name="hrdf_scheme" placeholder="HRDF Scheme">
+                            <input type="number" name="hrdf_scheme" placeholder="HRDF Scheme" value="{{ old('hrdf_scheme') }}">
                         </div>
                     </div>
                     <div class="row">
@@ -264,7 +266,7 @@
                             </label><span class="required">*</span>
                         </div>
                         <div class="col-md-10 col-sm-12 col-xs-12">
-                            <input name="location" type="text" value="" placeholder="Location">
+                            <input name="location" type="text" value="" placeholder="Location" value="{{ old('location') }}" required>
                         </div>
                     </div>
                     <div class="row">
@@ -276,7 +278,9 @@
                         </div>
                         <div class="col-md-10 col-sm-12 col-xs-12">
                             <br>
-                            <textarea type="text" name="learning_outcome" placeholder="Learning outcome"></textarea>
+                            <textarea type="text" name="learning_outcome" placeholder="Learning outcome">
+                                {{ old('learning_outcome') }}
+                            </textarea>
                         </div>
                     </div>
                     <div class="row">
@@ -288,7 +292,9 @@
                         </div>
                         <div class="col-md-10 col-sm-12 col-xs-12">
                             <br>
-                            <textarea type="text" name="inclusive" placeholder="Eg: breakfast and dinner, accomodation"></textarea>
+                            <textarea type="text" name="inclusive" placeholder="Eg: breakfast and dinner, accomodation">
+                                {{ old('inclusive') }}
+                            </textarea>
                         </div>
                     </div>
                     <div class="row">

@@ -70,6 +70,7 @@ class ShortController extends Controller
 
     public function getLogin()
     {
+        $hello = 'helo';
         return view('short.auth.login');
     }
 
@@ -84,12 +85,12 @@ class ShortController extends Controller
         $input = $request->except(['password_confirmation','_token']);
 
         $this->validate($request, [
-            'name' => 'required|unique:users|max:75',
+            'name' => 'required|max:75',
             'email' => 'required|unique:users|max:45|email',
             'description' => 'required|max:455',
             'established' => 'required|max:255',
             'location' => 'required|max:255',
-            'type' => 'required|boolean',
+            'type' => 'required',
             'password' => 'required|alpha_num|max:20|min:6',
             'password_confirmation' => 'required|same:password',
         ]);
@@ -130,8 +131,8 @@ class ShortController extends Controller
     public function dashboard()
     {
         $profilePic = File::whereFileableId(Auth::user()->short_provider->id)->first();
-
-        return View::make('short.dashboard',compact('profilePic'));
+        $status = 'hello';
+        return View::make('short.dashboard',compact('profilePic','status'));
     }
 
     public function viewCourse()
@@ -156,14 +157,13 @@ class ShortController extends Controller
             $activateUser->save();
             $sp->save();
 
-            return $sp;
             Auth::login($user);
 
-            return $this->dashboard();
+            return redirect()->action('ShortController@dashboard')->with('status','Welcome '.Auth::user()->name.'!');
 
         }else{
 
-            return view('errors.404');
+            return view('errors.503');
 
         }
     }
@@ -333,22 +333,19 @@ class ShortController extends Controller
                        ->withInput();
         }
 
+
+        return redirect()
+                    ->back()
+                    ->withInput();
         try{
             $course = new Course;
             $course->provider_id = Auth::user()->short_provider->id;
             $course->name_en = $r->name_en;
             $course->name_ms = $r->name_ms;
             $course->mode_id = 2;
-
-            if($r->description)
-              $course->description = $r->description;
-
-            if($r->period_value_min)
-              $course->period_value_min = $r->period_value_min;
-
-            if($r->period_value_max)
-              $course->period_value_max = $r->period_value_max;
-
+            $course->description = $r->description;
+            $course->period_value_min = $r->period_value_min;
+            $course->period_value_max = $r->period_value_max;
             $course->period_type_id =  $r->period_type_id;
 
             if($r->field_id == 0)
@@ -368,41 +365,20 @@ class ShortController extends Controller
                 $course->field_id = $r->field_id;
             }
 
-            if($r->code)
-              $course->code = $r->code;
+            Course::create($r->all());
 
-            if($r->start_date)
-              $course->start_date = $r->start_date;
-
-            if($r->length)
-              $course->length = $r->length;
-
-            if($r->attendance)
-              $course->attendance = $r->attendance;
-
-            if($r->class_size)
-              $course->class_size = $r->class_size;
-
+            $course->code = $r->code;
+            $course->start_date = $r->start_date;
+            $course->length = $r->length;
+            $course->attendance = $r->attendance;
+            $course->class_size = $r->class_size;
             $course->price = $r->price;
-
-            if($r->exam_fee)
-              $course->exam_fee = $r->exam_fee;
-
-            if($r->note)
-              $course->note = $r->note;
-
-            if($r->language)
-              $course->language = $r->language;
-
-            if($r->hrdf_scheme)
-              $course->hrdf_scheme = $r->hrdf_scheme;
-
-            if($r->learning_outcome)
-              $course->learning_outcome = $r->learning_outcome;
-
-            if($r->inclusive)
-              $course->inclusive = $r->inclusive;
-
+            $course->exam_fee = $r->exam_fee;
+            $course->note = $r->note;
+            $course->language = $r->language;
+            $course->hrdf_scheme = $r->hrdf_scheme;
+            $course->learning_outcome = $r->learning_outcome;
+            $course->inclusive = $r->inclusive;
             $course->location = $r->location;
 
             $course->save();
