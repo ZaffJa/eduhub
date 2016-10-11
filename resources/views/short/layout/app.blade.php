@@ -75,7 +75,6 @@
                         <!-- User Account: style can be found in dropdown.less -->
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-
                                 <i class="fa fa-cog"></i><span class="hidden-xs">Hello, {{Auth::user()->name}} </span>
                             </a>
                             <ul class="dropdown-menu">
@@ -103,7 +102,6 @@
                             </ul>
                         </li>
                         <!-- Control Sidebar Toggle Button -->
-
                     </ul>
                 </div>
             </nav>
