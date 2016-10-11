@@ -73,7 +73,6 @@ class ShortController extends Controller
         return view('short.auth.login');
     }
 
-
     public function getRegister()
     {
         $provider_types = \App\Models\ShortCourse\ProviderType::pluck('name','id');

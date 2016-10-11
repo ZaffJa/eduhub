@@ -25,9 +25,6 @@ Route::get('/reg', function () {
 Route::get('/agent', 'AgentController@dashboard')->name('agent.dashboard');
 
 
-
-
-
 Route::group(['prefix'=>'short'],function(){
 
     Route::get('/activate-account/{token}', 'ShortController@activateAccount');
@@ -40,7 +37,7 @@ Route::group(['prefix'=>'short'],function(){
     Route::post('/login', 'ShortController@postLogin')->name('short.login');
 
     Route::group(['middleware'=>'auth'],function(){
-        
+
         Route::get('/', 'ShortController@dashboard')->name('short.dashboard');
 
         Route::get('/view-profile', 'ShortController@viewProfile')->name('short.profile.view');
