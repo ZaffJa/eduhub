@@ -25,13 +25,12 @@ Route::get('/reg', function () {
 Route::get('/agent', 'AgentController@dashboard')->name('agent.dashboard');
 
 
-Route::get('/register', 'ShortController@getRegister')->name('short.register.view');
+
 Route::get('/short/register', 'ShortController@getRegister')->name('short.register.view');
-Route::post('/register', 'ShortController@postRegister')->name('short.register');
+
 Route::post('/short/register', 'ShortController@postRegister')->name('short.register');
 
-Route::get('/login', 'ShortController@getLogin')->name('short.login.view');
-Route::post('/login', 'ShortController@postLogin')->name('short.login');
+
 Route::get('/short/login', 'ShortController@getLogin')->name('short.login.view');
 Route::post('/short/login', 'ShortController@postLogin')->name('short.login');
 
