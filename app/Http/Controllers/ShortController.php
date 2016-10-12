@@ -12,6 +12,7 @@ use App\Models\ShortCourse\Course;
 use App\Models\ShortCourse\Level;
 use App\Models\ShortCourse\Field;
 use App\Models\ShortCourse\File;
+use App\Models\ShortCourse\Picture;
 use App\Models\BankType;
 use App\Models\PeriodType;
 use Validator;
@@ -269,18 +270,18 @@ class ShortController extends Controller
         $user = User::find($user_id);
 
         try{
-
+            $institution = $user->client->institution;
             $sp = new Provider;
             $sp->type_id = 1;
             $sp->parent_id = $user->id;
             $sp->name = $user->name;
             $sp->slug = $this->slugify($user->name);
-            $sp->abbreviation = $user->client->institution->abbreviation;
-            $sp->description = $user->client->institution->description;
-            $sp->established = $user->client->institution->established;
-            $sp->location = $user->client->institution->location;
-            $sp->website = $user->client->institution->website;
-            $sp->website = $user->client->institution->website;
+            $sp->abbreviation = $institution->abbreviation;
+            $sp->description = $institution->description;
+            $sp->established = $institution->established;
+            $sp->location = $institution->location;
+            $sp->website = $institution->website;
+            $sp->website = $institution->website;
             $sp->status = 1;
 
             $sp->save();
@@ -332,20 +333,10 @@ class ShortController extends Controller
                        ->withInput();
         }
 
-
-        return redirect()
-                    ->back()
-                    ->withInput();
         try{
-            $course = new Course;
-            $course->provider_id = Auth::user()->short_provider->id;
-            $course->name_en = $r->name_en;
-            $course->name_ms = $r->name_ms;
-            $course->mode_id = 2;
-            $course->description = $r->description;
-            $course->period_value_min = $r->period_value_min;
-            $course->period_value_max = $r->period_value_max;
-            $course->period_type_id =  $r->period_type_id;
+
+            $r['provider_id'] = Auth::user()->short_provider->id;
+            $r['mode_id'] = 2;
 
             if($r->field_id == 0)
             {
@@ -357,30 +348,66 @@ class ShortController extends Controller
 
                 $field->save();
 
-                $course->field_id = $field->id;
+                $r['field_id'] = $field->id;
 
-            }else {
-
-                $course->field_id = $r->field_id;
             }
 
-            Course::create($r->all());
+            $course = Course::create($r->all());
 
-            $course->code = $r->code;
-            $course->start_date = $r->start_date;
-            $course->length = $r->length;
-            $course->attendance = $r->attendance;
-            $course->class_size = $r->class_size;
-            $course->price = $r->price;
-            $course->exam_fee = $r->exam_fee;
-            $course->note = $r->note;
-            $course->language = $r->language;
-            $course->hrdf_scheme = $r->hrdf_scheme;
-            $course->learning_outcome = $r->learning_outcome;
-            $course->inclusive = $r->inclusive;
-            $course->location = $r->location;
+            if($r->short_pic1){
+                $short_pic1 = new Picture;
+                $short_pic1->course_id = $course->id;
+                $short_pic1->filename = $r->short_pic1->getClientOriginalName();
+                $short_pic1->picture_number = 1;
 
-            $course->save();
+                $r->short_pic1->move(public_path()."/img/shortCourse",$r->short_pic1->getClientOriginalName());
+
+                $short_pic1->save();
+            }
+
+            if($r->short_pic2){
+                $short_pic2 = new Picture;
+                $short_pic2->course_id = $course->id;
+                $short_pic2->filename = $r->short_pic2->getClientOriginalName();
+                $short_pic2->picture_number = 2;
+
+                $r->short_pic2->move(public_path()."/img/shortCourse",$r->short_pic2->getClientOriginalName());
+
+                $short_pic2->save();
+            }
+
+            if($r->short_pic3){
+                $short_pic3 = new Picture;
+                $short_pic3->course_id = $course->id;
+                $short_pic3->filename = $r->short_pic3->getClientOriginalName();
+                $short_pic3->picture_number = 3;
+
+                $r->short_pic3->move(public_path()."/img/shortCourse",$r->short_pic3->getClientOriginalName());
+
+                $short_pic3->save();
+            }
+
+            if($r->short_pic4){
+                $short_pic4 = new Picture;
+                $short_pic4->course_id = $course->id;
+                $short_pic4->filename = $r->short_pic4->getClientOriginalName();
+                $short_pic4->picture_number = 4;
+
+                $r->short_pic4->move(public_path()."/img/shortCourse",$r->short_pic4->getClientOriginalName());
+
+                $short_pic4->save();
+            }
+
+            if($r->short_pic5){
+                $short_pic5 = new Picture;
+                $short_pic5->course_id = $course->id;
+                $short_pic5->filename = $r->short_pic5->getClientOriginalName();
+                $short_pic5->picture_number = 5;
+
+                $r->short_pic5->move(public_path()."/img/shortCourse",$r->short_pic5->getClientOriginalName());
+
+                $short_pic5->save();
+            }
 
         }catch(\Illuminate\Database\QueryException $e){
             return $e->errorInfo;
@@ -394,8 +421,9 @@ class ShortController extends Controller
     public function viewCourseInfo($id)
     {
         $course = Course::whereId($id)->firstOrFail();
+        $picture  = Picture::whereCourseId($id)->get();
 
-        return View::make('short.course.course-info',compact('course'));
+        return View::make('short.course.course-info',compact('course','picture'));
     }
 
     public function editCourse($id)
@@ -404,8 +432,9 @@ class ShortController extends Controller
         $periodType = PeriodType::pluck('name','id');
         $levelType = Level::pluck('name','id');
         $fieldType = Field::orderBy('name')->pluck('name','id')->toArray();
+        $picture = Picture::whereCourseId($id)->get();
 
-        return View::make('short.course.edit',compact('course','periodType','levelType','fieldType'));
+        return View::make('short.course.edit',compact('picture','course','periodType','levelType','fieldType'));
     }
 
     public function updateCourse(Request $r,$id)
@@ -433,13 +462,19 @@ class ShortController extends Controller
             $course->length = $r->length;
             $course->class_size = $r->class_size;
             $course->price = $r->price;
+
+            if($r->exam_fee)
+            {
             $course->exam_fee = $r->exam_fee;
+            }
+
             $course->note = $r->note;
             $course->language = $r->language;
             $course->inclusive = $r->inclusive;
 
-            if($r->hrdf_scheme)
-                $course->hrdf_scheme = $r->hrdf_scheme;
+            if($r->hrdf_scheme){
+            $course->hrdf_scheme = $r->hrdf_scheme;
+            }
 
             $course->learning_outcome = $r->learning_outcome;
 
@@ -459,18 +494,101 @@ class ShortController extends Controller
                 $course->field_id = $r->field_id;
             }
 
-        $course->save();
+            $course->save();
+
+            if($r->short_pic1){
+
+                $short_pic1 = Picture::whereCourseIdAndPictureNumber($course->id,1)->first();
+                if($short_pic1 == null)
+                {
+                $short_pic1 = new Picture;
+                $short_pic1->picture_number = 1;
+                }
+
+                $short_pic1->course_id = $course->id;
+                $short_pic1->filename = $r->short_pic1->getClientOriginalName();
+
+                $r->short_pic1->move(public_path()."/img/shortCourse",$r->short_pic1->getClientOriginalName());
+
+                $short_pic1->save();
+            }
+            if($r->short_pic2){
+
+                $short_pic2 = Picture::whereCourseIdAndPictureNumber($course->id,2)->first();
+                if($short_pic2 == null)
+                {
+                $short_pic2 = new Picture;
+                $short_pic2->picture_number = 2;
+                }
+
+                $short_pic2->course_id = $course->id;
+                $short_pic2->filename = $r->short_pic2->getClientOriginalName();
+
+                $r->short_pic2->move(public_path()."/img/shortCourse",$r->short_pic2->getClientOriginalName());
+
+                $short_pic2->save();
+            }
+            if($r->short_pic4){
+
+                $short_pic4 = Picture::whereCourseIdAndPictureNumber($course->id,4)->first();
+                if($short_pic4 == null)
+                {
+                $short_pic4 = new Picture;
+                $short_pic4->picture_number = 4;
+                }
+
+                $short_pic4->course_id = $course->id;
+                $short_pic4->filename = $r->short_pic4->getClientOriginalName();
+
+                $r->short_pic4->move(public_path()."/img/shortCourse",$r->short_pic4->getClientOriginalName());
+
+                $short_pic4->save();
+            }
+            if($r->short_pic3){
+
+                $short_pic3 = Picture::whereCourseIdAndPictureNumber($course->id,3)->first();
+                if($short_pic3 == null)
+                {
+                $short_pic3 = new Picture;
+                $short_pic3->picture_number = 3;
+                }
+
+                $short_pic3->course_id = $course->id;
+                $short_pic3->filename = $r->short_pic3->getClientOriginalName();
+
+                $r->short_pic3->move(public_path()."/img/shortCourse",$r->short_pic3->getClientOriginalName());
+
+                $short_pic3->save();
+            }
+            if($r->short_pic5){
+
+                $short_pic5 = Picture::whereCourseIdAndPictureNumber($course->id,5)->first();
+                if($short_pic5 == null)
+                {
+                $short_pic5 = new Picture;
+                $short_pic5->picture_number = 5;
+                }
+
+                $short_pic5->course_id = $course->id;
+                $short_pic5->filename = $r->short_pic5->getClientOriginalName();
+
+                $r->short_pic5->move(public_path()."/img/shortCourse",$r->short_pic5->getClientOriginalName());
+
+                $short_pic5->save();
+            }
+
 
         }catch(\Illuminate\Database\QueryException $e){
-            return ;
             return redirect()
                     ->back()
                     ->withErrors([$e->errorInfo[2]]);
         }
 
-        return redirect()
+                return redirect()
                 ->back()
                 ->with(['status'=>'The course '.$course->name_en.' has been updated']);
+
+
     }
 
 

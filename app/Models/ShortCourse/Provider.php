@@ -45,4 +45,9 @@ class Provider extends Model
         return $this->belongsTo('App\Models\BankType','bank_type','id');
     }
 
+    public function profilePic()
+    {
+        return $this->belongsTo('App\Models\ShortCourse\File','id','fileable_id');
+    }
+
 }

@@ -3,11 +3,55 @@
     .required {
         color: red;
     }
+
+    .thumbnail {
+        max-width: 40%;
+    }
+
+    .italic {
+        font-style: italic;
+    }
+
+    .small {
+        font-size: 0.8em;
+    }
+
+    .lightbox {
+        /** Default lightbox to hidden */
+        display: none;
+        /** Position and style */
+        position: fixed;
+        z-index: 999;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        top: 0;
+        left: 0;
+        background: rgba(0, 0, 0, 0.8);
+    }
+
+    .lightbox img {
+        /** Pad the lightbox image */
+        max-width: 90%;
+        max-height: 80%;
+        margin-top: 10%;
+    }
+
+    .lightbox:target {
+        /** Remove default browser outline */
+        outline: none;
+        /** Unhide lightbox **/
+        display: block;
+    }
+
+    .required {
+        color: red;
+    }
 </style>
 
 <div class="row">
     <div class="col-lg-8 col-lg-offset-2">
-        <form method="post" class="confirmLeaveBeforeSave" enctype="multipart/form-data">
+        <form method="post" class="confirmLeaveBeforeSave" enctype="multipart/form-data" action="{!! route('short.course.store') !!}" autocomplete="off">
             <div class="box box-primary">
                 <div class="box-header">
                     <div class="col-md-4">
@@ -20,12 +64,12 @@
                             <label>Course Name<span class="required">*</span></label>
                         </div>
                         <div class="col-md-10">
-                            <input type="text" value="" name="name_en" placeholder="English Name" required value="{{ old('name_en') }}">
+                            <input type="text" name="name_en" placeholder="English Name" value="{{old('name_en') }}" required>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-10 col-md-offset-2">
-                            <input type="text" value="" name="name_ms" placeholder="Malay Name" required value="{{ old('name_ms') }}">
+                            <input type="text" name="name_ms" placeholder="Malay Name" value="{{ old('name_ms') }}">
                         </div>
                     </div>
                     <div class="row">
@@ -37,9 +81,7 @@
                         </div>
                         <div class="col-md-10">
                             <br>
-                            <textarea type="text" name="description" placeholder="Eg :- This course provides basic yoga movements">
-                                {{ old('description') }}
-                            </textarea>
+                            <textarea type="text" name="description" placeholder="Eg :- This course provides basic yoga movements">{{ old('description') }}</textarea>
                         </div>
                     </div>
                     <!-- <div class="row">
@@ -102,7 +144,7 @@
                     </div>
                     <div class="row" id="others">
                         <div class="col-md-10 col-md-offset-2 col-sm-12 col-xs-12">
-                            <input type="text" value="" name="others" placeholder="Other type of field">
+                            <input type="text" name="others" placeholder="Other type of field">
                         </div>
                     </div>
                     <div class="row">
@@ -168,7 +210,7 @@
                             </label><span class="required">*</span>
                         </div>
                         <div class="col-md-10 col-sm-12 col-xs-12">
-                            <input name="price" type="number" value="" placeholder="Fee" value="{{ old('price') }}" required>
+                            <input name="price" type="number" placeholder="Fee" value="{{ old('price') }}" required>
                         </div>
                     </div>
                     <div class="row">
@@ -223,7 +265,7 @@
                             </label><span class="required">*</span>
                         </div>
                         <div class="col-md-10 col-sm-12 col-xs-12">
-                            <input name="location" type="text" value="" placeholder="Location" value="{{ old('location') }}" required>
+                            <input name="location" type="text" placeholder="Location" value="{{ old('location') }}" required>
                         </div>
                     </div>
                     <div class="row">
@@ -235,9 +277,7 @@
                         </div>
                         <div class="col-md-10 col-sm-12 col-xs-12">
                             <br>
-                            <textarea type="text" name="learning_outcome" placeholder="Learning outcome">
-                                {{ old('learning_outcome') }}
-                            </textarea>
+                            <textarea type="text" name="learning_outcome" placeholder="Learning outcome">{{old('learning_outcome')}}</textarea>
                         </div>
                     </div>
                     <div class="row">
@@ -249,50 +289,58 @@
                         </div>
                         <div class="col-md-10 col-sm-12 col-xs-12">
                             <br>
-                            <textarea type="text" name="inclusive" placeholder="Eg: breakfast and dinner, accomodation">
-                                {{ old('inclusive') }}
-                            </textarea>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-2">
-                            <label>
-                            <br>
-                              Inclusive of
-                            </label>
-                        </div>
-                        <div class="col-md-10 col-sm-12 col-xs-12">
-                            <br>
-                            <textarea type="text" name="inclusive" placeholder="Eg: breakfast and dinner, accomodation"></textarea>
+                            <textarea type="text" name="inclusive" placeholder="Eg: breakfast and dinner, accomodation">{{ old('inclusive') }}</textarea>
                         </div>
                     </div>
                     <div class="row">
                         <div class="row">
                             <div class="col-md-3 col-md-offset-2">
                                 <a class="profile-link" href="#">
-                                    <img class="profile-pic" id="clickImg" onerror="this.onerror=null;this.src='/img/avatar/boy-512-03.png'"/>
+                                    <img class="profile-pic" id="clickImg" src='/img/avatar/picture.png' />
                                 </a>
                             </div>
                             <div class="col-md-3">
                                 <a class="profile-link" href="#">
-                                    <img class="profile-pic" id="clickImg" onerror="this.onerror=null;this.src='/img/avatar/boy-512-03.png'"/>
+                                    <img class="profile-pic" id="clickImg" src='/img/avatar/picture.png' />
                                 </a>
                             </div>
                             <div class="col-md-3">
                                 <a class="profile-link" href="#">
-                                    <img class="profile-pic" id="clickImg" onerror="this.onerror=null;this.src='/img/avatar/boy-512-03.png'"/>
+                                    <img class="profile-pic" id="clickImg" src='/img/avatar/picture.png' />
                                 </a>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-3 col-md-offset-2">
-                                <input type="file" id="profile_pic" name="provider_pic">
+                                <input type="file" id="profile_pic" name="short_pic1">
                             </div>
                             <div class="col-md-3">
-                                <input type="file" id="profile_pic" name="provider_pic">
+                                <input type="file" id="profile_pic" name="short_pic2">
                             </div>
                             <div class="col-md-3">
-                                <input type="file" id="profile_pic" name="provider_pic">
+                                <input type="file" id="profile_pic" name="short_pic3">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="row">
+                            <div class="col-md-3 col-md-offset-3">
+                                <a class="profile-link" href="#">
+                                    <img class="profile-pic" id="clickImg" src='/img/avatar/picture.png' />
+                                </a>
+                            </div>
+                            <div class="col-md-3">
+                                <a class="profile-link" href="#">
+                                    <img class="profile-pic" id="clickImg" src='/img/avatar/picture.png' />
+                                </a>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3 col-md-offset-3">
+                                <input type="file" id="profile_pic" name="short_pic4">
+                            </div>
+                            <div class="col-md-3">
+                                <input type="file" id="profile_pic" name="short_pic5">
                             </div>
                         </div>
                     </div>
@@ -302,18 +350,37 @@
                         <div class="col-md-10 col-md-offset-2">
                             {{csrf_field()}} The fields with a red asterix (<span class="required">*</span>) are required to be fill.
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-offset-9">
-                            <a href=" {!! route('short.course.view') !!} " class="btn btn-warning ">Cancel</a>
-                            <a href=" {!! route('short.course.store') !!} "><button class='btn btn-success '>Add</button></a>
+                        <div class="row">
+                            <div class="col-md-offset-9">
+                                <a href=" {!! route('short.course.view') !!} " class="btn btn-warning ">Cancel</a>
+                                <button class='btn btn-success' type="submit">Add</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </form>
-        </div>
+            </div>
+        </form>
     </div>
 </div>
+
+
+<a href="#_" class="lightbox" id="imgBox">
+    <img class="imgSrc" src="#">
+</a>
+
+<script type="text/javascript">
+    $('.profile-pic').on('click', function() {
+        var $src = $(this).prop('src');
+
+        $('.imgSrc').prop('src', $src);
+        $('.lightbox').show();
+    });
+
+    $('.imgSrc').on('click', function() {
+        $('#imgBox').hide();
+    });
+</script>
+
 <script>
     $("#others").hide();
 

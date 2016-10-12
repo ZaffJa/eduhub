@@ -13,7 +13,8 @@ class Course extends Model
     protected $fillable = [
         'name_en', 'name_ms','description', 'period_type_id', 'level_id',
         'field_id', 'code', 'start_date', 'length','attendance', 'class_size', 'price',
-        'exam_fee', 'note', 'language','hrdf_scheme','location','learning_outcome','inclusive'];
+        'exam_fee', 'note', 'language','hrdf_scheme','location','learning_outcome','inclusive',
+        'provider_id','mode_id'];
 
     public function provider()
     {

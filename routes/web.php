@@ -36,7 +36,7 @@ Route::group(['prefix'=>'short'],function(){
     Route::get('/login', 'ShortController@getLogin')->name('short.login.view');
     Route::post('/login', 'ShortController@postLogin')->name('short.login');
 
-    Route::group(['middleware'=>'auth'],function(){
+    Route::group(['middleware'=>['auth','web','empty.null']],function(){
 
         Route::get('/', 'ShortController@dashboard')->name('short.dashboard');
 
@@ -60,7 +60,7 @@ Route::group(['prefix'=>'short'],function(){
 
 
 Route::group(['prefix'=>'client-dashboard'],function(){
-  Route::group(['middleware'=>'auth'],function(){
+  Route::group(['middleware'=>['auth','short.auth']],function(){
 
     Route::get('/', 'DashboardController@dashboard')->name('client.dashboard');
     Route::get('/edit-profile', 'DashboardController@profile')->name('client.profile');
