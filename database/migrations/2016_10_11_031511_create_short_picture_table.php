@@ -18,6 +18,7 @@ class CreateShortPictureTable extends Migration
                 $table->increments('id');
                 $table->integer('course_id')->unsigned();
                 $table->string('filename');
+                $table->integer('picture_number');
                 $table->timestamps();
                 $table->softDeletes();
 

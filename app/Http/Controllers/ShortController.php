@@ -337,6 +337,7 @@ class ShortController extends Controller
 
             $r['provider_id'] = Auth::user()->short_provider->id;
             $r['mode_id'] = 2;
+            $r['slug'] = $this->slugify($r->name_en);
 
             if($r->field_id == 0)
             {

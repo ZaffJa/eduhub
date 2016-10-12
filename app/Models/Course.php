@@ -52,4 +52,9 @@ class Course extends Model
     {
         return $this->hasMany('App\Models\File');
     }
+
+    public function institution()
+    {
+        return $this->belongsTo('App\Models\InstitutionCourse','id','course_id');
+    }
 }

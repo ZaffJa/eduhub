@@ -10,11 +10,7 @@ class Course extends Model
     use SoftDeletes;
 
     protected $table = 'short_courses';
-    protected $fillable = [
-        'name_en', 'name_ms','description', 'period_type_id', 'level_id',
-        'field_id', 'code', 'start_date', 'length','attendance', 'class_size', 'price',
-        'exam_fee', 'note', 'language','hrdf_scheme','location','learning_outcome','inclusive',
-        'provider_id','mode_id'];
+    protected $guarded  = [];
 
     public function provider()
     {
