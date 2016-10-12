@@ -270,18 +270,18 @@ class ShortController extends Controller
         $user = User::find($user_id);
 
         try{
-
+            $institution = $user->client->institution;
             $sp = new Provider;
             $sp->type_id = 1;
             $sp->parent_id = $user->id;
             $sp->name = $user->name;
             $sp->slug = $this->slugify($user->name);
-            $sp->abbreviation = $user->client->institution->abbreviation;
-            $sp->description = $user->client->institution->description;
-            $sp->established = $user->client->institution->established;
-            $sp->location = $user->client->institution->location;
-            $sp->website = $user->client->institution->website;
-            $sp->website = $user->client->institution->website;
+            $sp->abbreviation = $institution->abbreviation;
+            $sp->description = $institution->description;
+            $sp->established = $institution->established;
+            $sp->location = $institution->location;
+            $sp->website = $institution->website;
+            $sp->website = $institution->website;
             $sp->status = 1;
 
             $sp->save();
@@ -333,20 +333,10 @@ class ShortController extends Controller
                        ->withInput();
         }
 
-
-        return redirect()
-                    ->back()
-                    ->withInput();
         try{
-            $course = new Course;
-            $course->provider_id = Auth::user()->short_provider->id;
-            $course->name_en = $r->name_en;
-            $course->name_ms = $r->name_ms;
-            $course->mode_id = 2;
-            $course->description = $r->description;
-            $course->period_value_min = $r->period_value_min;
-            $course->period_value_max = $r->period_value_max;
-            $course->period_type_id =  $r->period_type_id;
+
+            $r['provider_id'] = Auth::user()->short_provider->id;
+            $r['mode_id'] = 2;
 
             if($r->field_id == 0)
             {
@@ -358,30 +348,11 @@ class ShortController extends Controller
 
                 $field->save();
 
-                $course->field_id = $field->id;
+                $r['field_id'] = $field->id;
 
-            }else {
-
-                $course->field_id = $r->field_id;
             }
 
-            Course::create($r->all());
-
-            $course->code = $r->code;
-            $course->start_date = $r->start_date;
-            $course->length = $r->length;
-            $course->attendance = $r->attendance;
-            $course->class_size = $r->class_size;
-            $course->price = $r->price;
-            $course->exam_fee = $r->exam_fee;
-            $course->note = $r->note;
-            $course->language = $r->language;
-            $course->hrdf_scheme = $r->hrdf_scheme;
-            $course->learning_outcome = $r->learning_outcome;
-            $course->inclusive = $r->inclusive;
-            $course->location = $r->location;
-
-            $course->save();
+            $course = Course::create($r->all());
 
             if($r->short_pic1){
                 $short_pic1 = new Picture;
@@ -491,12 +462,12 @@ class ShortController extends Controller
             $course->length = $r->length;
             $course->class_size = $r->class_size;
             $course->price = $r->price;
-            
+
             if($r->exam_fee)
             {
             $course->exam_fee = $r->exam_fee;
             }
-            
+
             $course->note = $r->note;
             $course->language = $r->language;
             $course->inclusive = $r->inclusive;
@@ -606,7 +577,7 @@ class ShortController extends Controller
                 $short_pic5->save();
             }
 
-            
+
         }catch(\Illuminate\Database\QueryException $e){
             return redirect()
                     ->back()
@@ -617,7 +588,7 @@ class ShortController extends Controller
                 ->back()
                 ->with(['status'=>'The course '.$course->name_en.' has been updated']);
 
-        
+
     }
 
 

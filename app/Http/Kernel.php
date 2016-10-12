@@ -53,5 +53,6 @@ class Kernel extends HttpKernel
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'short.auth' => \App\Http\Middleware\ShortProviderAuth::class,
+        'empty.null' => \App\Http\Middleware\EmptyToNull::class,
     ];
 }
