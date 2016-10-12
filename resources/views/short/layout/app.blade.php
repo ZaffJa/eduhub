@@ -80,7 +80,7 @@
                             <ul class="dropdown-menu">
                                 <!-- User image -->
                                 <li class="user-header">
-                                    <img class="profile-pic" id="clickImg" src="../img/{{isset(Auth::user()->short_provider->profilePic->path) ? $profilePic->path : ''}}" onerror="this.onerror=null;this.src='/img/avatar/boy-512-03.png'" />
+                                    <img class="profile-pic" id="clickImg" src="../img/{{isset(Auth::user()->short_provider->profilePic) ? Auth::user()->short_provider->profilePic->path : ''}}" onerror="this.onerror=null;this.src='/img/avatar/boy-512-03.png'" />
                                     <p>
                                         {{Auth::user()->name}}
                                         <small>Member since {{Auth::user()->short_provider != null ? Auth::user()->short_provider->created_at->diffForHumans() : ''}}</small>
@@ -120,7 +120,7 @@
                 <!-- Sidebar user panel (optional) -->
                 <div class="user-panel">
                     <div class="pull-left image" >
-                        <img style="border-radius:5px" src="../img/{{isset(Auth::user()->short_provider->profilePic->path) ? $profilePic->path : ''}}" onerror="this.onerror=null;this.src='/img/avatar/boy-512-03.png'" alt="User Image">
+                        <img style="border-radius:5px" src="../img/{{isset(Auth::user()->short_provider->profilePic) ? Auth::user()->short_provider->profilePic->path : ''}}" onerror="this.onerror=null;this.src='/img/avatar/boy-512-03.png'" alt="User Image">
                     </div>
                     <div class="pull-left info">
                         <p>{{ ucfirst(Auth::user()->name)}}</p>
