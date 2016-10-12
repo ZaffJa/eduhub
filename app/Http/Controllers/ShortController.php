@@ -538,7 +538,7 @@ class ShortController extends Controller
                 }
 
                 $short_pic4->course_id = $course->id;
-                $short_pic24->filename = $r->short_pic4->getClientOriginalName();
+                $short_pic4->filename = $r->short_pic4->getClientOriginalName();
 
                 $r->short_pic4->move(public_path()."/img/shortCourse",$r->short_pic4->getClientOriginalName());
 

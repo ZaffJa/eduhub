@@ -105,6 +105,7 @@
                     <div class="row">
                         <div class="col-md-2">
                             <label>
+
             <br>
               Period Type
           </label>
@@ -191,9 +192,9 @@
                     <div class="row">
                         <div class="col-md-2">
                             <label>
-            <br>
-              Class Size
-          </label>
+                                <br>
+                                Class Size
+                            </label>
                         </div>
                         <div class="col-md-10 col-sm-12 col-xs-12">
                             <input type="text" name="class_size" placeholder="Class Size" value="{{ $course->class_size }}">
@@ -202,9 +203,9 @@
                     <div class="row">
                         <div class="col-md-2">
                             <label>
-            <br>
-              Fee
-          </label><span class="required">*</span>
+                                <br>
+                                Fee
+                            </label><span class="required">*</span>
                         </div>
                         <div class="col-md-10 col-sm-12 col-xs-12">
                             <input name="price" type="text" placeholder="Fee" value="{{$course->price}}">
@@ -213,9 +214,9 @@
                     <div class="row">
                         <div class="col-md-2">
                             <label>
-            <br>
-              Exam fee
-          </label>
+                                <br>
+                                Exam fee
+                            </label>
                         </div>
                         <div class="col-md-10 col-sm-12 col-xs-12">
                             <input type="number" name="exam_fee" placeholder="Exam Fee" value="{{ $course->exam_fee}}">
@@ -224,9 +225,9 @@
                     <div class="row">
                         <div class="col-md-2">
                             <label>
-            <br>
-              Additional Note
-          </label>
+                                <br>
+                                Additional Note
+                            </label>
                         </div>
                         <div class="col-md-10 col-sm-12 col-xs-12">
                             <input type="text" name="note" placeholder="Note" value="{{ $course->note }}">
@@ -235,9 +236,9 @@
                     <div class="row">
                         <div class="col-md-2">
                             <label>
-            <br>
-              Language
-          </label>
+                                <br>
+                                Language
+                            </label>
                         </div>
                         <div class="col-md-10 col-sm-12 col-xs-12">
                             <input type="text" name="language" placeholder="Language" value="{{ $course->language }}">
@@ -246,9 +247,9 @@
                     <div class="row">
                         <div class="col-md-2">
                             <label>
-            <br>
-              HRDF Scheme
-          </label>
+                                <br>
+                                HRDF Scheme
+                            </label>
                         </div>
                         <div class="col-md-10 col-sm-12 col-xs-12">
                             <input type="number" name="hrdf_scheme" placeholder="HRDF Scheme" value="{{ $course->hrdf_scheme }}">
@@ -257,9 +258,9 @@
                     <div class="row">
                         <div class="col-md-2">
                             <label>
-            <br>
-              Location
-          </label><span class="required">*</span>
+                                <br>
+                                Location
+                            </label><span class="required">*</span>
                         </div>
                         <div class="col-md-10 col-sm-12 col-xs-12">
                             <input name="location" type="text" placeholder="Location" value="{{$course->location}}">
@@ -268,9 +269,9 @@
                     <div class="row">
                         <div class="col-md-2">
                             <label>
-            <br>
-              Learning Outcome
-          </label>
+                                <br>
+                                Learning Outcome
+                            </label>
                         </div>
                         <div class="col-md-10 col-sm-12 col-xs-12">
                             <br>
@@ -280,9 +281,9 @@
                     <div class="row">
                         <div class="col-md-2">
                             <label>
-            <br>
-              Inclusive
-          </label>
+                                <br>
+                                Inclusive
+                            </label>
                         </div>
                         <div class="col-md-10 col-sm-12 col-xs-12">
                             <br>
@@ -340,6 +341,7 @@
                                 </div>
                             </div>
                         </div>
+
                     </div>
                     <div class="box-footer">
                         <a href=" {!! route('short.course.view.info', $course->id) !!} " class="btn btn-warning ">Cancel</a>
