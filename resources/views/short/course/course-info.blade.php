@@ -110,9 +110,11 @@
                     <dt>Short Course Picture</dt>
                     <dd>@if($picture)
                         @foreach($picture as $pic)
-                        <a class="profile-link" href="#">
-                            <img src="/img/shortCourse/{{isset($pic) ? $pic->filename : ''}}" class="thumbnail" onerror="this.onerror=null;this.src='/img/avatar/picture.png'" >
-                        </a>
+                        <div class="col-md-3">
+                            <a class="profile-link" href="#">
+                                <img src="/img/shortCourse/{{isset($pic) ? $pic->filename : ''}}" class="thumbnail" onerror="this.onerror=null;this.src='/img/avatar/picture.png'" >
+                            </a>
+                        </div>
                         @endforeach @else
                         No picture added
                         @endif
