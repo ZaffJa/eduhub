@@ -376,6 +376,7 @@
 
     $(document).ready(function() {
 
+
         $('.test').on('change', function() {
             console.log($(this).val());
             if ($(this).val() == "0") {
@@ -386,6 +387,7 @@
 
             }
         });
+
 
     });
 </script>
