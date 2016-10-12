@@ -39,8 +39,6 @@
     <script src="/js/jquery.are-you-sure.js"></script>
 
     <script src="/client/dist/js/app.min.js"></script>
-
-
     @yield('header-css')
 </head>
 <style media="screen">
@@ -50,7 +48,6 @@
 </style>
 <body class=" skin-green sidebar-toggle">
     <div class="wrapper">
-
         <!-- Main Header -->
         <header class="main-header">
             <a href="{!! action('ShortController@dashboard')  !!}" class="logo">
@@ -68,9 +65,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </a>
-
                 <div class="navbar-custom-menu">
-
                     <ul class="nav navbar-nav">
                         <!-- User Account: style can be found in dropdown.less -->
                         <li class="dropdown user user-menu">
@@ -86,7 +81,6 @@
                                         <small>Member since {{Auth::user()->short_provider != null ? Auth::user()->short_provider->created_at->diffForHumans() : ''}}</small>
                                     </p>
                                 </li>
-
                                 <li class="user-footer">
                                     <div class="pull-left">
                                         <a href="" class="btn btn-default btn-flat" ><font color="black"><i class="fa fa-user"></i> Profile</font></a>
@@ -106,17 +100,12 @@
                 </div>
             </nav>
             <!-- Logo -->
-
-
             <!-- Header Navbar -->
-
         </header>
         <!-- Left side column. contains the logo and sidebar -->
         <aside class="main-sidebar">
-
             <!-- sidebar: style can be found in sidebar.less -->
             <section class="sidebar">
-
                 <!-- Sidebar user panel (optional) -->
                 <div class="user-panel">
                     <div class="pull-left image" >
@@ -126,28 +115,21 @@
                         <p>{{ ucfirst(Auth::user()->name)}}</p>
                     </div>
                 </div>
-
                 <!-- search form (Optional) -->
-
                 <!-- /.search form -->
-
                 <!-- Sidebar Menu -->
                 <ul class="sidebar-menu">
-
                     <!-- Dashboard -->
                     <li class="header">Dashboard</li>
-
                     <li class="treeview">
                         <a href=" {!! route('short.course.view') !!} "><i class="fa fa-certificate"></i> <span>Short Course</span>
                           <span class="pull-right-container">
                           </span>
                         </a>
                     </li>
-
                     @if( isset(Auth::user()->client) ? Auth::user()->client->institution : false)
                     <!-- Other -->
                     <li class="header">Other</li>
-
                     <li class="treeview">
                         <a href="/client-dashboard/"><i class="fa fa-university"></i> <span>Institution</span>
                           <span class="pull-right-container">
@@ -155,17 +137,14 @@
                         </a>
                     </li>
                     @endif
-
                     <!-- Settings -->
                     <li class="header">Settings</li>
-
                     <li class="treeview">
                         <a href="{!! route('short.profile.edit') !!}"><i class="fa fa-cog"></i> <span>Edit Profile</span>
                           <span class="pull-right-container">
                           </span>
                         </a>
                     </li>
-
                     <li class="treeview">
                         <a href="#" onclick="event.preventDefault();
                                  document.getElementById('logout-form').submit();"><i class="fa fa-sign-out"></i> <span>Logout</span>
@@ -176,31 +155,25 @@
                             {{ csrf_field() }}
                         </form>
                     </li>
-
                 </ul>
                 <!-- /.sidebar-menu -->
             </section>
             <!-- /.sidebar -->
         </aside>
-
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper" style="min-height: 864px;">
             <section class="content-header">
-
-
                 <section class="content">
-
                     <main class="mdl-layout__content mdl-color--grey-100">
                         <div class="mdl-grid">
                             @yield('content')
                         </div>
                     </main>
                     <!-- Your Page Content Here -->
-
                 </section>
+            </section>
         </div>
         <!-- /.content-wrapper -->
-
         <!-- Main Footer -->
         <footer class="main-footer">
             <!-- To the right -->
@@ -210,7 +183,6 @@
             <!-- Default to the left -->
             <strong>Copyright © 2016 <a href="#">eduhub.my</a>™.</strong>
         </footer>
-
         <script type="text/javascript">
             $(function() {
                 $('.confirmLeaveBeforeSave').areYouSure({
@@ -220,7 +192,7 @@
             });
         </script>
     <!-- ./wrapper -->
-
+</div>
     <!-- REQUIRED JS SCRIPTS -->
 
     <!-- Optionally, you can add Slimscroll and FastClick plugins.

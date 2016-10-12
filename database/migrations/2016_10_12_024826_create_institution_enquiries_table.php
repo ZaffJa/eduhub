@@ -15,7 +15,8 @@ class CreateInstitutionEnquiriesTable extends Migration
     {
         Schema::create('enquiries', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('institution_course_id')->unsigned();
+            $table->integer('institution_id')->unsigned();
+            $table->string('course_name');
             $table->string('name');
             $table->string('phone');
             $table->string('email');
@@ -26,8 +27,8 @@ class CreateInstitutionEnquiriesTable extends Migration
 
         Schema::table('enquiries', function ($table){
 
-            $table->foreign('institution_course_id')
-                  ->references('id')->on('institution_courses')
+            $table->foreign('institution_id')
+                  ->references('id')->on('institutions')
                   ->onDelete('cascade')
                   ->onUpdate('restrict');
 

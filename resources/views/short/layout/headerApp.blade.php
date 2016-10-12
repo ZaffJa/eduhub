@@ -1,7 +1,5 @@
-@extends('short.layout.app')
- @section('content')
+@extends('short.layout.app') @section('content')
 <div class="row">
-
     <div class="row">
         <div class="col-lg-12">
             <div class="box">
@@ -17,31 +15,23 @@
             <div class='row'>
                 @if (count($errors) > 0)
                 <div class="alert alert-danger alert-dismissible">
-                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                                <h4><i class="icon fa fa-ban"></i> Alert!</h4>
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                    @endforeach
-
-                                </ul>
-
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                    <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
                 </div>
                 @endif @if (session('status'))
                 <div class="alert alert-success alert-dismissible">
-                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true"><strong>X</strong></button>
-                                <h4><i class="icon fa fa-check"></i> Success!</h4>
-                                {{ session('status') }}
-
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true"><strong>X</strong></button>
+                    <h4><i class="icon fa fa-check"></i> Success!</h4> {{ session('status') }}
                 </div>
                 @endif
             </div>
             @yield('content2')
         </div>
-
-
-
-
     </div>
     <div class="modal fade" tabindex="-1" role="dialog" id="confirmDelete">
         <div class="modal-dialog" role="document">

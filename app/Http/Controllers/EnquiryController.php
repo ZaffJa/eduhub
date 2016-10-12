@@ -12,6 +12,7 @@ use App\Models\Institution;
 use App\Models\Course;
 use App\Models\Enquiry;
 use App\User;
+use Auth;
 
 class EnquiryController extends Controller
 {
@@ -21,26 +22,49 @@ class EnquiryController extends Controller
         $institution_user = InstitutionUser::whereInstitutionId($institution->id)->first();
         $institution_courses = InstitutionCourse::whereInstitutionId($institution->id)->get();
 
-        foreach($institution_courses as $ic){
-
-            if($ic->course->name_en == $course || $ic->course->name_en){
-                $input =  $ic;
-                break;
-            }
-
-        }
-        $request['institution_course_id'] = $input->id;
+        $request['institution_id'] = $institution->id;
+        $request['course_name'] = $course;
 
         $enquiry = Enquiry::create($request->all());
 
         $institution_user->user->notify(new \App\Notifications\CustomerEnquiry(
-            $user->name,
+            $institution_user->user->name,
             $enquiry->name,
             $enquiry->email,
             $course
         ));
 
         return 'dok';
+    }
 
+    public function getNotifications()
+    {
+        $institution = Auth::user()->client->institution;
+        $enquiry = Enquiry::whereInstitutionIdAndNotificationStatus($institution->id,0)->get();
+
+        return response()->json([
+            'count' => $enquiry->count(),
+            'notifications' => $enquiry
+        ]); ;
+    }
+
+    public function view(Request $request)
+    {
+        $enquiry = Enquiry::find($request->id);
+
+
+        return view('client.enquiries')->with(compact('enquiry'));
+    }
+
+    public function reset(Request $request)
+    {
+        $enquiry = Enquiry::whereInstitutionIdAndNotificationStatus(Auth::user()->client->institution->id,0)->get();
+
+        foreach ($enquiry as $e) {
+            $e->notification_status = 1;
+            $e->save();
+        }
+
+        return 'ok';
     }
 }

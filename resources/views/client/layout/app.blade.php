@@ -44,10 +44,11 @@
     @yield('header-css')
 </head>
 <style media="screen">
-  select{
+    select {
         width: 100%;
-  }
+    }
 </style>
+
 <body class=" skin-red sidebar-toggle">
     <div class="wrapper">
         <!-- Main Header -->
@@ -59,7 +60,6 @@
                 <span class="logo-lg"><b>Client</b>Dashboard</span>
             </a>
             <nav class="navbar navbar-static-top">
-
                 <!-- Sidebar toggle button-->
                 <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
                     <span class="sr-only">Toggle navigation</span>
@@ -68,51 +68,28 @@
                     <span class="icon-bar"></span>
 
                 </a>
-
                 <div class="navbar-custom-menu">
-
                     <ul class="nav navbar-nav">
                         <!-- User Account: style can be found in dropdown.less -->
-                        <li class="dropdown notifications-menu open">
-                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true">
-                            <i class="fa fa-bell-o"></i>
-                            <span class="label label-warning">10</span>
-                          </a>
-                          <ul class="dropdown-menu">
-                            <li class="header">You have 10 notifications</li>
-                            <li>
-                              <!-- inner menu: contains the actual data -->
-                              <ul class="menu">
+                        <li class="dropdown notifications-menu" id="notifications_dropdown">
+                            <a href="_#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-bell-o"></i>
+                                <span class="label label-warning" id="label_notification_counts"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="header"><span id="notification_message"></span></li>
                                 <li>
-                                  <a href="#">
-                                    <i class="fa fa-users text-aqua"></i> 5 new members joined today
-                                  </a>
+                                    <!-- inner menu: contains the actual data -->
+                                    <ul class="menu" id="notifications_menu">
+                                        <li>
+                                            <a href="#">
+                                                <i class="fa fa-users text-aqua"></i> 5 new members joined today
+                                            </a>
+                                        </li>
+                                    </ul>
                                 </li>
-                                <li>
-                                  <a href="#">
-                                    <i class="fa fa-warning text-yellow"></i> Very long description here that may not fit into the
-                                    page and may cause design problems
-                                  </a>
-                                </li>
-                                <li>
-                                  <a href="#">
-                                    <i class="fa fa-users text-red"></i> 5 new members joined
-                                  </a>
-                                </li>
-                                <li>
-                                  <a href="#">
-                                    <i class="fa fa-shopping-cart text-green"></i> 25 sales made
-                                  </a>
-                                </li>
-                                <li>
-                                  <a href="#">
-                                    <i class="fa fa-user text-red"></i> You changed your username
-                                  </a>
-                                </li>
-                              </ul>
-                            </li>
-                            <li class="footer"><a href="#">View all</a></li>
-                          </ul>
+                                <li class="footer"><a href="#">View all</a></li>
+                            </ul>
                         </li>
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -177,15 +154,10 @@
                         <p style="-webkit-transform">{{ Auth::user() != null ? Auth::user()->name : ''}}</p>
                     </div>
                 </div>
-
                 <!-- search form (Optional) -->
-
                 <!-- /.search form -->
-
                 <!-- Sidebar Menu -->
-
                 <ul class="sidebar-menu">
-
                     <!-- Dashboard -->
                     @if(Auth::user()->client != null ? Auth::user()->client->institution != null : '')
                     <li class="header">Dashboard</li>
@@ -196,21 +168,18 @@
                           </span>
                         </a>
                     </li>
-
                     <li class="treeview">
                         <a href="/client-dashboard/faculty"><i class="fa fa-building"></i> <span>Faculties</span>
                           <span class="pull-right-container">
                           </span>
                         </a>
                     </li>
-
                     <li class="treeview">
                         <a href="/client-dashboard/course"><i class="fa fa-book"></i> <span>Courses</span>
                           <span class="pull-right-container">
                           </span>
                         </a>
                     </li>
-
                     <li class="treeview">
                         <a href="/client-dashboard/facilities"><i class="fa fa-building-o"></i> <span>Facilities</span>
                           <span class="pull-right-container">
@@ -218,14 +187,12 @@
                           </span>
                         </a>
                     </li>
-
                     <li class="treeview">
                         <a href="/client-dashboard/scholarship/view"><i class="fa fa-usd"></i> <span>Scholarship</span>
                           <span class="pull-right-container">
                           </span>
                         </a>
                     </li>
-
                     <!-- Short Course -->
                     <li class="header">Other</li>
                     @if(Auth::user()->short_provider == null)
@@ -243,17 +210,14 @@
                         </a>
                     </li>
                     @endif
-
                     <!-- Settings -->
                     <li class="header">Settings</li>
-
                     <li class="treeview">
                         <a href="{!! route('client.institution.edit',Auth::user()->client->institution->id) !!}"><i class="fa fa-cog"></i> <span>Edit Profile</span>
                           <span class="pull-right-container">
                           </span>
                         </a>
                     </li>
-
                     <li class="treeview">
                         <a href="#" onclick="event.preventDefault();
                                  document.getElementById('logout-form').submit();"><i class="fa fa-sign-out"></i> <span>Logout</span>
@@ -264,7 +228,6 @@
                             {{ csrf_field() }}
                         </form>
                     </li>
-
                     @else
                     <li class="treeview">
                         <a href="{!!route('client.request.institution')!!}"><i class="fa fa-building-o"></i> <span>Request Institution</span>
@@ -272,7 +235,6 @@
 
                           </span>
                         </a>
-
                     </li>
                     @endif
                 </ul>
@@ -280,7 +242,6 @@
             </section>
             <!-- /.sidebar -->
         </aside>
-
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper" style="min-height: 864px;">
             <section class="content-header">
@@ -292,6 +253,7 @@
                     </main>
                     <!-- Your Page Content Here -->
                 </section>
+            </section>
         </div>
         <!-- /.content-wrapper -->
         <!-- Main Footer -->
@@ -303,26 +265,50 @@
             <!-- Default to the left -->
             <strong>Copyright © 2016 <a href="#">eduhub.my</a>™.</strong>
         </footer>
+    </div>
+    <!-- ./wrapper -->
+</body>
+<!-- REQUIRED JS SCRIPTS -->
+<script type="text/javascript">
+    $(function() {
+        $('.confirmLeaveBeforeSave').areYouSure({
+            message: 'It looks like you have been editing something. ' +
+                'If you leave before saving, your changes will be lost.'
+        });
 
-        <script type="text/javascript">
-            $(function() {
-                $('.confirmLeaveBeforeSave').areYouSure({
-                    message: 'It looks like you have been editing something. ' +
-                        'If you leave before saving, your changes will be lost.'
+        var $institution = null;
+        $.getJSON("{{action('EnquiryController@getNotifications')}}", function (data) {
+
+            $('#notification_message').text('You have '+data.count+' notifications');
+            $('#label_notification_counts').text(data.count);
+
+            var $menu = $('#notifications_menu');
+            console.log(data);
+            $.each(data.notifications, function (count,object) {
+                $menu.append('<li><a href="{{action("EnquiryController@view")}}?id='+object.id+'"><i class="fa fa-users text-aqua"></i>'+object.name+' sent an enquiry '+object.created_at+' ago</a></li>');
+                //  console.log(object);
+                $institution = object.institution_id;
+            });
+
+            $('#notifications_dropdown').on('click',function(){
+                $.ajax({
+                    type: "POST",
+                    url: "{{action('EnquiryController@reset')}}",
+                    data: {id:$institution},
+                    success: function(data, textStatus, jqXHR){
+                        console.log(data);
+                    },
+                    error: function (jqXHR, textStatus, errorThrown){
+
+                    }
                 });
             });
-        </script>
 
 
-        <!-- ./wrapper -->
+        });
 
-        <!-- REQUIRED JS SCRIPTS -->
 
-        <!-- Optionally, you can add Slimscroll and FastClick plugins.
-   Both of these plugins are recommended to enhance the
-   user experience. Slimscroll is required when using the
-   fixed layout. -->
-
-</body>
+    });
+</script>
 
 </html>
