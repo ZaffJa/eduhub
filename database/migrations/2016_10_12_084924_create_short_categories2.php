@@ -4,9 +4,8 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBankTypesTable extends Migration
+class CreateShortCategories2 extends Migration
 {
-
     /**
      * Run the migrations.
      *
@@ -14,13 +13,12 @@ class CreateBankTypesTable extends Migration
      */
     public function up()
     {
-        if (!Schema::hasTable('bank_types')) {
-            
-            Schema::create('bank_types', function (Blueprint $table) {
+        if(!Schema::hasTable('short_categories')){
+            Schema::create('short_categories', function (Blueprint $table){
                 $table->increments('id');
+                $table->string('category');
                 $table->timestamps();
                 $table->softDeletes();
-                $table->string('name',255);
             });
         }
     }
@@ -32,6 +30,6 @@ class CreateBankTypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bank_types');
+        Schema::dropIfExists('short_categories');
     }
 }

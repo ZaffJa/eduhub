@@ -13,7 +13,7 @@ class Provider extends Model
     protected $fillable = [
         'type_id', 'parent_id', 'name', 'slug', 'abbreviation',
         'description', 'established', 'location', 'bank_name','website',
-        'facebook','instagram','phone','bank_account'
+        'facebook','instagram','phone','bank_account','bank_type_id'
     ];
 
     protected $hidden = [
@@ -42,7 +42,7 @@ class Provider extends Model
 
     public function bank()
     {
-        return $this->belongsTo('App\Models\BankType','bank_type','id');
+        return $this->belongsTo('App\Models\BankType','bank_type_id','id');
     }
 
     public function profilePic()

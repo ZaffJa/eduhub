@@ -80,7 +80,7 @@
                             <ul class="dropdown-menu">
                                 <!-- User image -->
                                 <li class="user-header">
-                                    <img class="profile-pic" id="clickImg" src="../img/{{isset(Auth::user()->short_provider->profilePic->path) ? $profilePic->path : ''}}" onerror="this.onerror=null;this.src='/img/avatar/boy-512-03.png'" />
+                                    <img class="profile-pic" id="clickImg" src="../img/{{isset(Auth::user()->short_provider->profilePic->path) ? Auth::user()->short_provider->profilePic->path : ''}}" onerror="this.onerror=null;this.src='/img/avatar/boy-512-03.png'" />
                                     <p>
                                         {{Auth::user()->name}}
                                         <small>Member since {{Auth::user()->short_provider != null ? Auth::user()->short_provider->created_at->diffForHumans() : ''}}</small>
