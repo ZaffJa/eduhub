@@ -12,7 +12,6 @@ use App\Models\ShortCourse\Course;
 use App\Models\ShortCourse\Level;
 use App\Models\ShortCourse\Field;
 use App\Models\ShortCourse\File;
-use App\Models\ShortCourse\Picture;
 use App\Models\BankType;
 use App\Models\PeriodType;
 use Validator;
