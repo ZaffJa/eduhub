@@ -10,7 +10,7 @@ class Course extends Model
     use SoftDeletes;
 
     protected $table = 'short_courses';
-    protected $guarded  = [];
+    protected $guarded  = ['others','short_pic1','short_pic2','short_pic3','short_pic4','short_pic5'];
 
     public function provider()
     {

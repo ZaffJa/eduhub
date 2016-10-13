@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class RemoveBankNameFromShortProviders extends Migration
+class AddForeignBankTypeIdShortProvidersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,12 @@ class RemoveBankNameFromShortProviders extends Migration
      */
     public function up()
     {
-        if(Schema::hasColumn('short_providers', 'bank_name')){
+        if(Schema::hasTable('short_providers')){
             Schema::table('short_providers', function ($table){
-                $table->dropColumn('bank_name');
+                $table->foreign('bank_type_id')
+                        ->references('id')->on('bank_types')
+                        ->onDelete('cascade')
+                        ->onUpdate('restrict');
             });
         }
     }
@@ -27,9 +30,9 @@ class RemoveBankNameFromShortProviders extends Migration
      */
     public function down()
     {
-        if(!Schema::hasColumn('short_providers', 'bank_name')){
+        if(Schema::hasTable('short_providers')){
             Schema::table('short_providers', function ($table){
-                $table->string('bank_name')->nullable();
+                $table->dropForeign(['bank_type_id']);
             });
         }
     }
