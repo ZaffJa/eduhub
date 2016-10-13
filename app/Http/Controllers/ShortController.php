@@ -15,6 +15,7 @@ use App\Models\ShortCourse\File;
 use App\Models\ShortCourse\Picture;
 use App\Models\BankType;
 use App\Models\PeriodType;
+use App\Models\Role;
 use Validator;
 use View;
 use Auth;
@@ -33,9 +34,9 @@ class ShortController extends Controller
 
                 if($user->short_provider->status != null){   //  User exist and has verify email
 
-                    $profilePic = File::whereFileableId(Auth::user()->short_provider->id)->first();
-
-                    return View::make('short.dashboard',compact('profilePic'));
+                    // $profilePic = File::whereFileableId(Auth::user()->short_provider->id)->first();
+                    //
+                    // return View::make('short.dashboard',compact('profilePic'));
                     return redirect()->action('ShortController@dashboard');
 
                 }else{  // User has not verify email yet
@@ -114,6 +115,11 @@ class ShortController extends Controller
                 'email' => $user->email,
                 'token' => str_random(64),
                 'status'=> 0
+            ]);
+
+            $role = Role::create([
+                'user_id'=>$user->id,
+                'role_id'=>3
             ]);
 
             $user->notify(new \App\Notifications\RegisterConsultant($user->name,$activate->token));

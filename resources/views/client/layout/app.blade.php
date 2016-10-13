@@ -269,7 +269,7 @@
     <!-- ./wrapper -->
 </body>
 <!-- REQUIRED JS SCRIPTS -->
-<script type="text/javascript">
+<script>
     $(function() {
         $('.confirmLeaveBeforeSave').areYouSure({
             message: 'It looks like you have been editing something. ' +
@@ -280,17 +280,30 @@
         $.getJSON("{{action('EnquiryController@getNotifications')}}", function (data) {
 
             $('#notification_message').text('You have '+data.count+' notifications');
-            $('#label_notification_counts').text(data.count);
+
+            if(data.count == 0){
+                $('#label_notification_counts').text('');
+            }else{
+                $('#label_notification_counts').text(data.count);
+            }
 
             var $menu = $('#notifications_menu');
-            console.log(data);
+            // console.log(data);
             $.each(data.notifications, function (count,object) {
-                $menu.append('<li><a href="{{action("EnquiryController@view")}}?id='+object.id+'"><i class="fa fa-users text-aqua"></i>'+object.name+' sent an enquiry '+object.created_at+' ago</a></li>');
-                //  console.log(object);
+                if(object.user_click == 0){
+                    $menu.append('<li><a href="{{action("EnquiryController@view")}}?id='+object.id+'"><i class="fa fa-circle text-aqua"></i>'+object.name+' sent an enquiry '+object.created_at+' ago</a></li>');
+                }else{
+                    $menu.append('<li><a href="{{action("EnquiryController@view")}}?id='+object.id+'"><i class="fa fa-circle-thin text-aqua user_click"></i>'+object.name+' sent an enquiry '+object.created_at+' ago</a></li>');
+                }
+
+
                 $institution = object.institution_id;
             });
 
             $('#notifications_dropdown').on('click',function(){
+
+                $('#label_notification_counts').text('');
+
                 $.ajax({
                     type: "POST",
                     url: "{{action('EnquiryController@reset')}}",
@@ -303,11 +316,7 @@
                     }
                 });
             });
-
-
         });
-
-
     });
 </script>
 

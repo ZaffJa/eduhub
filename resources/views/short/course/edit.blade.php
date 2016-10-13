@@ -341,8 +341,8 @@
                                 </div>
                             </div>
                         </div>
-
                     </div>
+                    {{csrf_field()}}
                     <div class="box-footer">
                         <a href=" {!! route('short.course.view.info', $course->id) !!} " class="btn btn-warning ">Cancel</a>
                         <a href=" {!! route('short.course.update',$course->id) !!} "><button class='btn btn-success'>Update</button></a>

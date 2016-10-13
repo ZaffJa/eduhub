@@ -40,17 +40,20 @@ class EnquiryController extends Controller
     public function getNotifications()
     {
         $institution = Auth::user()->client->institution;
-        $enquiry = Enquiry::whereInstitutionIdAndNotificationStatus($institution->id,0)->get();
+        $count = Enquiry::whereInstitutionIdAndNotificationStatus($institution->id,0)->count();
+        $enquiry = Enquiry::whereInstitutionId($institution->id)->get();
 
         return response()->json([
-            'count' => $enquiry->count(),
-            'notifications' => $enquiry
+            'count' => $count,
+            'notifications' => $enquiry->sortByDesc('id')
         ]); ;
     }
 
     public function view(Request $request)
     {
         $enquiry = Enquiry::find($request->id);
+        $enquiry->user_click = 1;
+        $enquiry->save();
 
 
         return view('client.enquiries')->with(compact('enquiry'));
@@ -67,4 +70,5 @@ class EnquiryController extends Controller
 
         return 'ok';
     }
+
 }

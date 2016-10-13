@@ -37,4 +37,22 @@ class User extends Authenticatable
     {
         return $this->belongsTo('App\Models\ShortCourse\Provider','id','parent_id');
     }
+
+    public function roles()
+    {
+        return $this->hasMany('App\Models\Role');
+    }
+
+    public function hasRole($roleName)
+    {
+        foreach ($this->roles()->get() as $role)
+        {
+            if ($role->user_role->name == $roleName)
+            {
+                return true;
+            }
+        }
+
+        return false;
+    }
 }

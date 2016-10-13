@@ -209,7 +209,6 @@
                         </label>
                     </div>
                     <div class="col-md-10 col-sm-12 col-xs-12">
-                        <input type="text" value="{{ $provider->bank_account != null ? $provider->bank_account : '' }}" name="bank_account" placeholder="Providers Bank Account">
                         <input type="number" value="{{ $provider->bank_account != null ? $provider->bank_account : '0' }}" name="bank_account" placeholder="Providers Bank Account">
                     </div>
                 </div>

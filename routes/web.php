@@ -24,7 +24,19 @@ Route::get('/reg', function () {
 
 Route::post('institutions/v/{slug}/enquiry/{course}','EnquiryController@store');
 
+Route::get('test',function(){
+    if(Auth::user()->hasRole('admin')){
+        return 'ok';
+    }else{
+        return Auth::user()->roles;
+        return 'not';
+    }
+});
+
 Route::get('/agent', 'AgentController@dashboard')->name('agent.dashboard');
+Route::get('/permission-error',function(){
+    return view('errors.403');
+});
 
 
 Route::group(['prefix'=>'short'],function(){
@@ -38,7 +50,7 @@ Route::group(['prefix'=>'short'],function(){
     Route::get('/login', 'ShortController@getLogin')->name('short.login.view');
     Route::post('/login', 'ShortController@postLogin')->name('short.login');
 
-    Route::group(['middleware'=>['auth','empty.null']],function(){
+    Route::group(['middleware'=>['auth','empty.null','role.auth']],function(){
 
         Route::get('/', 'ShortController@dashboard')->name('short.dashboard');
 
@@ -62,26 +74,24 @@ Route::group(['prefix'=>'short'],function(){
 
 
 Route::group(['prefix'=>'client-dashboard'],function(){
-  Route::group(['middleware'=>['auth']],function(){
-
-    Route::get('/notifications', 'EnquiryController@getNotifications');
-    Route::get('/notifications/view', 'EnquiryController@view');
-    Route::post('/notifications/reset', 'EnquiryController@reset');
-
-
-    Route::get('/', 'DashboardController@dashboard')->name('client.dashboard');
-    Route::get('/edit-profile', 'DashboardController@profile')->name('client.profile');
-    Route::get('/request-institution','InstitutionController@requestInstitution')->name('client.request.institution');
-    Route::post('/request-institution','InstitutionController@requestAddInstitution')->name('client.request.add.institution');
+  Route::group(['middleware'=>['auth','empty.null','role.auth']],function(){
 
     Route::get('/all-institution','InstitutionController@viewAllInstitution')->name('admin.view.all.institution');
     Route::get('/edit-institution/{id}','InstitutionController@editInstitution')->name('admin.edit.institution');
     Route::get('/view-institution-request','InstitutionController@viewInstitutionRequest')->name('admin.view.institution.request');
     Route::get('/approve-institution/{id}','InstitutionController@approveInstitutionRequest')->name('admin.approve.institution.request');
     Route::get('/reject-institution/{id}','InstitutionController@rejectInstitutionRequest')->name('admin.reject.institution.request');
-
     Route::get('/new-institution', 'InstitutionController@index');
     Route::post('/new-institution', 'InstitutionController@create')->name('client.post.institution');
+
+    Route::get('/notifications', 'EnquiryController@getNotifications');
+    Route::get('/notifications/view', 'EnquiryController@view');
+    Route::post('/notifications/reset', 'EnquiryController@reset');
+
+    Route::get('/', 'DashboardController@dashboard')->name('client.dashboard');
+    Route::get('/edit-profile', 'DashboardController@profile')->name('client.profile');
+    Route::get('/request-institution','InstitutionController@requestInstitution')->name('client.request.institution');
+    Route::post('/request-institution','InstitutionController@requestAddInstitution')->name('client.request.add.institution');
 
     Route::get('/course','CourseController@view')->name('client.course.view');
     Route::get('/course/{id}/course-view','CourseController@viewCourse')->name('client.course.view.course');

@@ -11,6 +11,7 @@ use App\Models\ContactType;
 use App\Models\InstitutionContact;
 use App\Models\InstitutionUser;
 use App\Models\RegisterInstitution;
+use App\Models\Role;
 use Auth;
 use Validator;
 
@@ -101,25 +102,25 @@ class InstitutionController extends Controller
     public function create(Request $r)
     {
       $validator = Validator::make($r->all(), [
-             'institution_name' => 'required|max:255',
-             'institution_abbreviation' => 'required|max:255',
-             'institution_description' => 'required',
-             'institution_established_date' => 'required',
-             'country' => 'required',
-             'state' => 'required',
-             'city' => 'required',
-             'institution_type' => 'required',
-             'contact_no' => 'required',
-             'fax_no' => 'required',
-             'emails' => 'required',
-             'public_relations_department_emails' => 'required',
-             'student_enrollment_department_emails' => 'required',
-             'corporate_communications_department_emails' => 'required',
-             'marketing_department_emails' => 'required',
-             'campus_location' => 'required',
-             'examination_board' => 'required',
-             'campus_location' => 'required',
-             'remarks' => 'required',
+            'institution_name' => 'required|max:255',
+            'institution_abbreviation' => 'required|max:255',
+            'institution_description' => 'required',
+            'institution_established_date' => 'required',
+            'country' => 'required',
+            'state' => 'required',
+            'city' => 'required',
+            'institution_type' => 'required',
+            'contact_no' => 'required',
+            'fax_no' => 'required',
+            'emails' => 'required',
+            'public_relations_department_emails' => 'required',
+            'student_enrollment_department_emails' => 'required',
+            'corporate_communications_department_emails' => 'required',
+            'marketing_department_emails' => 'required',
+            'campus_location' => 'required',
+            'examination_board' => 'required',
+            'campus_location' => 'required',
+            'remarks' => 'required',
          ]);
 
        if ($validator->fails()) {
@@ -154,13 +155,14 @@ class InstitutionController extends Controller
         $contact_type->save();
         $institution->save();
 
-
         $institution_contact = new InstitutionContact;
         $institution_contact->institution_id = $institution->id;
         $institution_contact->contact_type_id = $contact_type->id;
 
         $institution_contact->save();
+
       }catch(\Illuminate\Database\QueryException $e){
+
         return $e->errorInfo;
       }
       return redirect()->back()->with('status','Succesfully added a new institution');
@@ -225,11 +227,21 @@ class InstitutionController extends Controller
             ]);
 
             $ri->save();
-            return  redirect()->back()
-                                 ->with('status','Succesfully approve client request');
+
+            Role::create([
+                'user_id'=>$ri->user_id,
+                'role_id'=>2
+            ]);
+            
+            return  redirect()
+                        ->back()
+                        ->with('status','Succesfully approve client request');
+
         }catch (\Illuminate\Database\QueryException $ex) {
-          return  redirect()->back()
-                               ->with('status','Error - '.$ex->errorInfo[2]);
+
+          return  redirect()
+                        ->back()
+                        ->with('status','Error - '.$ex->errorInfo[2]);
         }
     }
 
@@ -240,11 +252,15 @@ class InstitutionController extends Controller
 
       try{
           $ri->save();
-          return  redirect()->back()
-                               ->with('status','Succesfully reject client request');
+          return  redirect()
+                        ->back()
+                        ->with('status','Succesfully reject client request');
+
       }catch (\Illuminate\Database\QueryException $ex) {
-        return  redirect()->back()
-                             ->with('status','Error - '.$ex->errorInfo[2]);
+
+        return  redirect()
+                        ->back()
+                        ->with('status','Error - '.$ex->errorInfo[2]);
       }
     }
 
