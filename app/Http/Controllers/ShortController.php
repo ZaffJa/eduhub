@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-
+use Illuminate\Support\Facades\DB;
 use App\Models\ShortCourse\Provider;
 use App\Models\ShortCourse\ActivateShortProvider;
 use App\Models\ShortCourse\ProviderType;
@@ -323,6 +323,11 @@ class ShortController extends Controller
             'name_ms' => 'required|max:255',
             'location' => 'required',
             'price' => 'required',
+            'short_pic1' => 'image|mimes:jpeg,png,jpg,gif,svg|max:20048',
+            'short_pic2' => 'image|mimes:jpeg,png,jpg,gif,svg|max:20048',
+            'short_pic3' => 'image|mimes:jpeg,png,jpg,gif,svg|max:20048',
+            'short_pic4' => 'image|mimes:jpeg,png,jpg,gif,svg|max:20048',
+            'short_pic5' => 'image|mimes:jpeg,png,jpg,gif,svg|max:20048',
         ]);
 
         if ($validator->fails()) {
@@ -348,63 +353,83 @@ class ShortController extends Controller
 
                 $field->save();
 
-                $r['field_id'] = $field->id;
+                $r['field_id'] = $field->id; 
 
             }
 
             $course = Course::create($r->all());
 
             if($r->short_pic1){
-                $short_pic1 = new Picture;
-                $short_pic1->course_id = $course->id;
-                $short_pic1->filename = $r->short_pic1->getClientOriginalName();
-                $short_pic1->picture_number = 1;
+                $short_pic1 = new File;
+                $short_pic1->fileable_id = Auth::user()->short_provider->id;
+                $short_pic1->filename = $course->id."short_pic1";
+                $short_pic1->category_id = 4;
+                $short_pic1->type_id = 2;
+                $short_pic1->path = "/img/shortCourse/".$course->id."short_pic1";
+                $short_pic1->mime = $r->short_pic1->extension();
+                $short_pic1->size = $r->short_pic1->getSize();
 
-                $r->short_pic1->move(public_path()."/img/shortCourse",$r->short_pic1->getClientOriginalName());
+                $r->short_pic1->move(public_path()."/img/shortCourse",$course->id."short_pic1");
 
                 $short_pic1->save();
             }
 
             if($r->short_pic2){
-                $short_pic2 = new Picture;
-                $short_pic2->course_id = $course->id;
-                $short_pic2->filename = $r->short_pic2->getClientOriginalName();
-                $short_pic2->picture_number = 2;
+                $short_pic2= new File;
+                $short_pic2->fileable_id = Auth::user()->short_provider->id;
+                $short_pic2->filename = $course->id."short_pic2";
+                $short_pic2->category_id = 4;
+                $short_pic2->type_id = 2;
+                $short_pic2->path = "/img/shortCourse/".$course->id."short_pic2";
+                $short_pic2->mime = $r->short_pic2->extension();
+                $short_pic2->size = $r->short_pic2->getSize();
 
-                $r->short_pic2->move(public_path()."/img/shortCourse",$r->short_pic2->getClientOriginalName());
+                $r->short_pic2->move(public_path()."/img/shortCourse",$course->id."short_pic2");
 
                 $short_pic2->save();
             }
 
             if($r->short_pic3){
-                $short_pic3 = new Picture;
-                $short_pic3->course_id = $course->id;
-                $short_pic3->filename = $r->short_pic3->getClientOriginalName();
-                $short_pic3->picture_number = 3;
+                $short_pic3 = new File;
+                $short_pic3->fileable_id = Auth::user()->short_provider->id;
+                $short_pic3->filename = $course->id."short_pic3";
+                $short_pic3->category_id = 4;
+                $short_pic3->type_id = 2;
+                $short_pic3->path = "/img/shortCourse/".$course->id."short_pic3";
+                $short_pic3->mime = $r->short_pic3->extension();
+                $short_pic3->size = $r->short_pic3->getSize();
 
-                $r->short_pic3->move(public_path()."/img/shortCourse",$r->short_pic3->getClientOriginalName());
-
+                $r->short_pic3->move(public_path()."/img/shortCourse",$course->id."short_pic3");
+                
                 $short_pic3->save();
             }
 
             if($r->short_pic4){
-                $short_pic4 = new Picture;
-                $short_pic4->course_id = $course->id;
-                $short_pic4->filename = $r->short_pic4->getClientOriginalName();
-                $short_pic4->picture_number = 4;
+                $short_pic4 = new File;
+                $short_pic4->fileable_id = Auth::user()->short_provider->id;
+                $short_pic4->filename = $course->id."short_pic4";
+                $short_pic4->category_id = 4;
+                $short_pic4->type_id = 2;
+                $short_pic4->path = "/img/shortCourse/".$course->id."short_pic4";
+                $short_pic4->mime = $r->short_pic4->extension();
+                $short_pic4->size = $r->short_pic4->getSize();
 
-                $r->short_pic4->move(public_path()."/img/shortCourse",$r->short_pic4->getClientOriginalName());
+                $r->short_pic4->move(public_path()."/img/shortCourse",$course->id."short_pic4");
 
                 $short_pic4->save();
             }
 
             if($r->short_pic5){
-                $short_pic5 = new Picture;
-                $short_pic5->course_id = $course->id;
-                $short_pic5->filename = $r->short_pic5->getClientOriginalName();
-                $short_pic5->picture_number = 5;
+                $short_pic5 = new File;
+                $short_pic5->fileable_id = Auth::user()->short_provider->id;
+                $short_pic5->filename = $course->id."short_pic5";
+                $short_pic5->category_id = 4;
+                $short_pic5->type_id = 2;
+                $short_pic5->path = "/img/shortCourse/".$course->id."short_pic5";
+                $short_pic5->mime = $r->short_pic5->extension();
+                $short_pic5->size = $r->short_pic5->getSize();
 
-                $r->short_pic5->move(public_path()."/img/shortCourse",$r->short_pic5->getClientOriginalName());
+                $r->short_pic5->move(public_path()."/img/shortCourse",$course->id."short_pic5");
 
                 $short_pic5->save();
             }
@@ -421,7 +446,10 @@ class ShortController extends Controller
     public function viewCourseInfo($id)
     {
         $course = Course::whereId($id)->firstOrFail();
-        $picture  = Picture::whereCourseId($id)->get();
+        $picture  = DB::table('short_files')
+                        ->where('category_id',4)
+                        ->where('filename','like',$id.'%')
+                        ->get();
 
         return View::make('short.course.course-info',compact('course','picture'));
     }
@@ -432,7 +460,10 @@ class ShortController extends Controller
         $periodType = PeriodType::pluck('name','id');
         $levelType = Level::pluck('name','id');
         $fieldType = Field::orderBy('name')->pluck('name','id')->toArray();
-        $picture = Picture::whereCourseId($id)->get();
+        $picture = DB::table('short_files')
+                        ->where('category_id',4)
+                        ->where('filename','like',$id.'%')
+                        ->get();
 
         return View::make('short.course.edit',compact('picture','course','periodType','levelType','fieldType'));
     }
@@ -444,6 +475,11 @@ class ShortController extends Controller
             'name_ms' => 'required|max:255',
             'location' => 'required',
             'price' => 'required',
+            'short_pic1' => 'image|mimes:jpeg,png,jpg,gif,svg|max:20048',
+            'short_pic2' => 'image|mimes:jpeg,png,jpg,gif,svg|max:20048',
+            'short_pic3' => 'image|mimes:jpeg,png,jpg,gif,svg|max:20048',
+            'short_pic4' => 'image|mimes:jpeg,png,jpg,gif,svg|max:20048',
+            'short_pic5' => 'image|mimes:jpeg,png,jpg,gif,svg|max:20048',
         ]);
 
         try{
@@ -498,83 +534,144 @@ class ShortController extends Controller
 
             if($r->short_pic1){
 
-                $short_pic1 = Picture::whereCourseIdAndPictureNumber($course->id,1)->first();
+                $short_pic1 = DB::table('short_files')
+                                ->where('category_id',4)
+                                ->where('filename',$id.'short_pic1')
+                                ->first();
+
                 if($short_pic1 == null)
                 {
-                $short_pic1 = new Picture;
-                $short_pic1->picture_number = 1;
+                $short_pic1 = new File;
+                $short_pic1->fileable_id = Auth::user()->short_provider->id;
+                $short_pic1->filename = $id."short_pic1";
+                $short_pic1->path = "/img/shortCourse/".$id."short_pic1";
+                $short_pic1->category_id = 4;
+                $short_pic1->type_id = 2;
+                $short_pic1->mime = $r->short_pic1->getClientOriginalExtension();
+                $short_pic1->size = $r->short_pic1->getSize();
+                $short_pic1->save();
                 }
 
-                $short_pic1->course_id = $course->id;
-                $short_pic1->filename = $r->short_pic1->getClientOriginalName();
+                
+                $r->short_pic1->move(public_path()."/img/shortCourse",$id."short_pic1");
 
-                $r->short_pic1->move(public_path()."/img/shortCourse",$r->short_pic1->getClientOriginalName());
+                DB::table('short_files')
+                    ->where('category_id',4)
+                    ->where('filename',$id.'short_pic1')
+                    ->update(['size' => $r->short_pic1->getSize(), 'mime' => $r->short_pic1->getClientOriginalExtension() ]);
 
-                $short_pic1->save();
             }
             if($r->short_pic2){
 
-                $short_pic2 = Picture::whereCourseIdAndPictureNumber($course->id,2)->first();
+                $short_pic2 = DB::table('short_files')
+                                ->where('category_id',4)
+                                ->where('filename',$id.'short_pic2')
+                                ->first();
+
                 if($short_pic2 == null)
                 {
-                $short_pic2 = new Picture;
-                $short_pic2->picture_number = 2;
+                $short_pic2 = new File;
+                $short_pic2->fileable_id = Auth::user()->short_provider->id;
+                $short_pic2->filename = $id."short_pic2";
+                $short_pic2->path = "/img/shortCourse/".$id."short_pic2";
+                $short_pic2->category_id = 4;
+                $short_pic2->type_id = 2;
+                $short_pic2->mime = $r->short_pic2->getClientOriginalExtension();
+                $short_pic2->size = $r->short_pic2->getSize();
+                $short_pic2->save();
                 }
 
-                $short_pic2->course_id = $course->id;
-                $short_pic2->filename = $r->short_pic2->getClientOriginalName();
+                
+                $r->short_pic2->move(public_path()."/img/shortCourse",$id."short_pic2");
 
-                $r->short_pic2->move(public_path()."/img/shortCourse",$r->short_pic2->getClientOriginalName());
-
-                $short_pic2->save();
+                DB::table('short_files')
+                    ->where('category_id',4)
+                    ->where('filename',$id.'short_pic2')
+                    ->update(['size' => $r->short_pic2->getSize(), 'mime' => $r->short_pic2->getClientOriginalExtension() ]);
             }
             if($r->short_pic4){
 
-                $short_pic4 = Picture::whereCourseIdAndPictureNumber($course->id,4)->first();
+                $short_pic4 = DB::table('short_files')
+                                ->where('category_id',4)
+                                ->where('filename',$id.'short_pic4')
+                                ->first();
+
                 if($short_pic4 == null)
                 {
-                $short_pic4 = new Picture;
-                $short_pic4->picture_number = 4;
+                $short_pic4 = new File;
+                $short_pic4->fileable_id = Auth::user()->short_provider->id;
+                $short_pic4->filename = $id."short_pic4";
+                $short_pic4->path = "/img/shortCourse/".$id."short_pic4";
+                $short_pic4->category_id = 4;
+                $short_pic4->type_id = 2;
+                $short_pic4->mime = $r->short_pic4->getClientOriginalExtension();
+                $short_pic4->size = $r->short_pic4->getSize();
+                $short_pic4->save();
                 }
 
-                $short_pic4->course_id = $course->id;
-                $short_pic4->filename = $r->short_pic4->getClientOriginalName();
+                
+                $r->short_pic4->move(public_path()."/img/shortCourse",$id."short_pic4");
 
-                $r->short_pic4->move(public_path()."/img/shortCourse",$r->short_pic4->getClientOriginalName());
-
-                $short_pic4->save();
+                DB::table('short_files')
+                    ->where('category_id',4)
+                    ->where('filename',$id.'short_pic4')
+                    ->update(['size' => $r->short_pic4->getSize(), 'mime' => $r->short_pic4->getClientOriginalExtension() ]);
             }
             if($r->short_pic3){
 
-                $short_pic3 = Picture::whereCourseIdAndPictureNumber($course->id,3)->first();
+                $short_pic3 = DB::table('short_files')
+                                ->where('category_id',4)
+                                ->where('filename',$id.'short_pic3')
+                                ->first();
+
                 if($short_pic3 == null)
                 {
-                $short_pic3 = new Picture;
-                $short_pic3->picture_number = 3;
+                $short_pic3 = new File;
+                $short_pic3->fileable_id = Auth::user()->short_provider->id;
+                $short_pic3->filename = $id."short_pic3";
+                $short_pic3->path = "/img/shortCourse/".$id."short_pic3";
+                $short_pic3->category_id = 4;
+                $short_pic3->type_id = 2;
+                $short_pic3->mime = $r->short_pic3->getClientOriginalExtension();
+                $short_pic3->size = $r->short_pic3->getSize();
+                $short_pic3->save();
                 }
 
-                $short_pic3->course_id = $course->id;
-                $short_pic3->filename = $r->short_pic3->getClientOriginalName();
+                
+                $r->short_pic3->move(public_path()."/img/shortCourse",$id."short_pic3");
 
-                $r->short_pic3->move(public_path()."/img/shortCourse",$r->short_pic3->getClientOriginalName());
-
-                $short_pic3->save();
+                DB::table('short_files')
+                    ->where('category_id',4)
+                    ->where('filename',$id.'short_pic3')
+                    ->update(['size' => $r->short_pic3->getSize(), 'mime' => $r->short_pic3->getClientOriginalExtension() ]);
             }
             if($r->short_pic5){
 
-                $short_pic5 = Picture::whereCourseIdAndPictureNumber($course->id,5)->first();
+                $short_pic5 = DB::table('short_files')
+                                ->where('category_id',4)
+                                ->where('filename',$id.'short_pic5')
+                                ->first();
+
                 if($short_pic5 == null)
                 {
-                $short_pic5 = new Picture;
-                $short_pic5->picture_number = 5;
+                $short_pic5 = new File;
+                $short_pic5->fileable_id = Auth::user()->short_provider->id;
+                $short_pic5->filename = $id."short_pic5";
+                $short_pic5->path = "/img/shortCourse/".$id."short_pic5";
+                $short_pic5->category_id = 4;
+                $short_pic5->type_id = 2;
+                $short_pic5->mime = $r->short_pic5->getClientOriginalExtension();
+                $short_pic5->size = $r->short_pic5->getSize();
+                $short_pic5->save();
                 }
 
-                $short_pic5->course_id = $course->id;
-                $short_pic5->filename = $r->short_pic5->getClientOriginalName();
+                
+                $r->short_pic5->move(public_path()."/img/shortCourse",$id."short_pic5");
 
-                $r->short_pic5->move(public_path()."/img/shortCourse",$r->short_pic5->getClientOriginalName());
-
-                $short_pic5->save();
+                DB::table('short_files')
+                    ->where('category_id',4)
+                    ->where('filename',$id.'short_pic5')
+                    ->update(['size' => $r->short_pic5->getSize(), 'mime' => $r->short_pic5->getClientOriginalExtension() ]);
             }
 
 

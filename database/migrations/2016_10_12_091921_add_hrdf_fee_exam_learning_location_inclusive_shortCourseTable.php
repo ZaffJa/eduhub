@@ -15,12 +15,12 @@ class AddHrdfFeeExamLearningLocationInclusiveShortCourseTable extends Migration
     {
         if(Schema::hasTable('short_courses')){
             Schema::table('short_courses', function (Blueprint $table){
-                $table->integer('hrdf_scheme');
-                $table->double('fee', 15, 8);
-                $table->double('exam_fee',15,8 );
-                $table->string('learning_outcome');
+                $table->integer('hrdf_scheme')->nullable();
+                $table->double('fee', 15, 8)->nullable();
+                $table->double('exam_fee',15,8 )->nullable();
+                $table->string('learning_outcome')->nullable();
                 $table->string('location');
-                $table->string('inclusive');
+                $table->string('inclusive')->nullable();
             });
         }
     }

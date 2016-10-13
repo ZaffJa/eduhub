@@ -344,8 +344,17 @@
 
                     </div>
                     <div class="box-footer">
-                        <a href=" {!! route('short.course.view.info', $course->id) !!} " class="btn btn-warning ">Cancel</a>
-                        <a href=" {!! route('short.course.update',$course->id) !!} "><button class='btn btn-success'>Update</button></a>
+                        <div class="row">
+                            <div class="col-md-10 col-md-offset-2">
+                                {{csrf_field()}} The fields with a red asterix (<span class="required">*</span>) are required to be fill.
+                            </div>
+                            <div class="row">
+                                <div class="col-md-offset-9">
+                                    <a href=" {!! route('short.course.view.info', $course->id) !!} " class="btn btn-warning ">Cancel</a>
+                                    <a href=" {!! route('short.course.update',$course->id) !!} "><button class='btn btn-success'>Update</button></a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </form>
             </div>

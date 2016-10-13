@@ -109,7 +109,7 @@
                 <!-- Sidebar user panel (optional) -->
                 <div class="user-panel">
                     <div class="pull-left image" >
-                        <img style="border-radius:5px" src="../img/{{isset(Auth::user()->short_provider->profilePic->path) ? $profilePic->path : ''}}" onerror="this.onerror=null;this.src='/img/avatar/boy-512-03.png'" alt="User Image">
+                        <img style="border-radius:5px" src="../img/{{isset(Auth::user()->short_provider->profilePic->path) ? Auth::user()->short_provider->profilePic->path : ''}}" onerror="this.onerror=null;this.src='/img/avatar/boy-512-03.png'" alt="User Image">
                     </div>
                     <div class="pull-left info">
                         <p>{{ ucfirst(Auth::user()->name)}}</p>
