@@ -230,6 +230,7 @@ body.hold-transition .main-header .logo {
 .content::after {
   content: "";
   background: url(\img\logo\LOGO-U.svg);
+  background-repeat: no-repeat;
   opacity: 0.5;
   top: 0;
   left: 0;

@@ -15,7 +15,7 @@ class EditShortFilesFileableIdFk extends Migration
     {
         if(Schema::hasTable('short_files')){
             Schema::table('short_files', function ($table){
-                $table->dropForeign('short_files_ibfk_2');
+                // $table->dropForeign('short_files_ibfk_2');
                 $table->foreign('fileable_id')
                         ->references('id')->on('short_providers')
                         ->onDelete('cascade')
