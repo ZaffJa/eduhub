@@ -1,4 +1,7 @@
-@extends('client.layout.headerLayout') @section('title', 'Course') @section('headbar', 'Institution Form') @section('content2')
+@extends('admin.layout.app') 
+@section('title', 'Course')
+@section('headbar', 'Institution Form')
+@section('content')
 <div class="col-lg-10">
     <div class="row">
         <div class="col-lg-12">

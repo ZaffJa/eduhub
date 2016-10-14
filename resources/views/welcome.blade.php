@@ -17,7 +17,6 @@
               <div class=" col-md-6 ">
                 <a type="button" href="/client-dashboard" class="btn btn-default btn-block btn-lg">Institution Dashboard</a>
               </div>
-
               <div class=" col-md-6 ">
                 <a type="button" href="/short/login" class="btn btn-default btn-block btn-lg">Short Course Dashboard</a>
               </div>

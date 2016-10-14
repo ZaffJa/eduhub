@@ -18,7 +18,7 @@ class RoleTableSeeder extends Seeder
                 'name' => 'client',
             ]);
         DB::table('user_roles')->insert([
-                'name' => 'short course provider',
+                'name' => 'short',
             ]);
         DB::table('user_roles')->insert([
                 'name' => 'student',

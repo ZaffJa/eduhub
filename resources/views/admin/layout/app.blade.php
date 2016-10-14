@@ -39,80 +39,111 @@
     <script src="/js/jquery.are-you-sure.js"></script>
 
     <script src="/client/dist/js/app.min.js"></script>
+
+
     @yield('header-css')
 </head>
 <style media="screen">
-  select{
+    select {
         width: 100%;
-  }
+    }
 </style>
-<body class=" skin-green sidebar-toggle">
+
+<body class=" skin-red sidebar-toggle">
     <div class="wrapper">
         <!-- Main Header -->
         <header class="main-header">
-            <a href="{!! action('ShortController@dashboard')  !!}" class="logo">
+            <a href="/all-institution" class="logo">
                 <!-- mini logo for sidebar mini 50x50 pixels -->
                 <span class="logo-mini"><b>A</b>LT</span>
                 <!-- logo for regular state and mobile devices -->
-                <span class="logo-lg"><b>Short Courses</b> Dashboard</span>
+                <span class="logo-lg"><b>Admin</b>Dashboard</span>
             </a>
             <nav class="navbar navbar-static-top">
-
                 <!-- Sidebar toggle button-->
                 <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
+
                 </a>
                 <div class="navbar-custom-menu">
                     <ul class="nav navbar-nav">
                         <!-- User Account: style can be found in dropdown.less -->
+                        <li class="dropdown notifications-menu" id="notifications_dropdown">
+                            <a href="_#" class="dropdown-toggle" data-toggle="dropdown">
+                                <i class="fa fa-bell-o"></i>
+                                <span class="label label-warning" id="label_notification_counts"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li class="header"><span id="notification_message"></span></li>
+                                <li>
+                                    <!-- inner menu: contains the actual data -->
+                                    <ul class="menu" id="notifications_menu">
+                                        <li>
+                                            <!-- <a href="#">
+                                                <i class="fa fa-users text-aqua"></i> Notifications
+                                            </a> -->
+                                        </li>
+                                    </ul>
+                                </li>
+                                <!-- <li class="footer"><a href="#">View all</a></li> -->
+                            </ul>
+                        </li>
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <i class="fa fa-cog"></i><span class="hidden-xs">Hello, {{Auth::user()->name}} </span>
+                                <!-- <img src="../../dist/img/user2-160x160.jpg" class="user-image" alt="User Image"> -->
+                                <i class="fa fa-cog"></i><span class=""><b>Hello,</b> {{Auth::user()->name}}</span>
                             </a>
                             <ul class="dropdown-menu">
                                 <!-- User image -->
                                 <li class="user-header">
-                                    <img class="profile-pic" id="clickImg" src="../img/{{isset(Auth::user()->short_provider) ? Auth::user()->short_provider->path : ''}}" onerror="this.onerror=null;this.src='/img/avatar/boy-512-03.png'" />
+                                    <!-- <img src="http://www.iiwas.org/conferences/iiwas2011/img/logos/UTM.jpg" class="img-circle" alt="User Image"> -->
                                     <p>
-                                        {{Auth::user()->name}}
-                                        <small>Member since {{Auth::user()->short_provider != null ? Auth::user()->short_provider->created_at->diffForHumans() : ''}}</small>
+                                        <small>Member since {{Auth::user() != null? Auth::user()->created_at->diffForHumans() : ''}}</small>
                                     </p>
                                 </li>
+
                                 <li class="user-footer">
-                                    <div class="pull-left">
-                                        <a href="" class="btn btn-default btn-flat" ><font color="black"><i class="fa fa-user"></i> Profile</font></a>
-                                    </div>
                                     <div class="pull-right">
                                         <a href="#" class="btn btn-default btn-flat" onclick="event.preventDefault();
-                                                 document.getElementById('logout-form').submit();"><font color="black"><i class="fa fa-sign-out"></i> Sign out</font></a>
+                                                 document.getElementById('logout-form').submit();">
+                                            <font color="black"><i class="fa fa-sign-out"></i> Sign out</font>
+                                        </a>
                                         <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-                                            <!-- {{ csrf_field() }} -->
+                                            {{ csrf_field() }}
                                         </form>
                                     </div>
                                 </li>
                             </ul>
                         </li>
                         <!-- Control Sidebar Toggle Button -->
+
                     </ul>
                 </div>
             </nav>
             <!-- Logo -->
+
+
             <!-- Header Navbar -->
+
         </header>
         <!-- Left side column. contains the logo and sidebar -->
         <aside class="main-sidebar">
+
             <!-- sidebar: style can be found in sidebar.less -->
             <section class="sidebar">
+
                 <!-- Sidebar user panel (optional) -->
                 <div class="user-panel">
-                    <div class="pull-left image" >
-                        <img style="border-radius:5px" src="../img/{{isset(Auth::user()->short_provider->profilePic) ? Auth::user()->short_provider->profilePic->path : ''}}" onerror="this.onerror=null;this.src='/img/avatar/boy-512-03.png'" alt="User Image">
+                    <div class="pull-left image">
+                        <img src="/img/logo/LOGO-U.svg" class="img-circle" alt="User Image">
                     </div>
                     <div class="pull-left info">
-                        <p>{{ ucfirst(Auth::user()->name)}}</p>
+
+
+                        <p style="-webkit-transform">{{ Auth::user() != null ? Auth::user()->name : ''}}</p>
                     </div>
                 </div>
                 <!-- search form (Optional) -->
@@ -121,30 +152,26 @@
                 <ul class="sidebar-menu">
                     <!-- Dashboard -->
                     <li class="header">Dashboard</li>
+                    @if(Auth::user()->hasRole('admin'))
                     <li class="treeview">
-                        <a href=" {!! route('short.course.view') !!} "><i class="fa fa-certificate"></i> <span>Short Course</span>
+                        <a href="{{action('InstitutionController@viewAllInstitution')}}"><i class="fa fa-university"></i> <span>All Institution</span>
                           <span class="pull-right-container">
                           </span>
                         </a>
                     </li>
-                    @if( isset(Auth::user()->client) ? Auth::user()->client->institution : false)
-                    <!-- Other -->
-                    <li class="header">Other</li>
                     <li class="treeview">
-                        <a href="/client-dashboard/"><i class="fa fa-university"></i> <span>Institution</span>
+                        <a href="{{action('InstitutionController@viewInstitutionRequest')}}"><i class="fa fa-university"></i> <span>View Request</span>
+                          <span class="pull-right-container">
+                          </span>
+                        </a>
+                    </li>
+                    <li class="treeview">
+                        <a href="{{action('InstitutionController@index')}}"><i class="fa fa-university"></i> <span>Create Institution</span>
                           <span class="pull-right-container">
                           </span>
                         </a>
                     </li>
                     @endif
-                    <!-- Settings -->
-                    <li class="header">Settings</li>
-                    <li class="treeview">
-                        <a href="{!! route('short.profile.edit') !!}"><i class="fa fa-cog"></i> <span>Edit Profile</span>
-                          <span class="pull-right-container">
-                          </span>
-                        </a>
-                    </li>
                     <li class="treeview">
                         <a href="#" onclick="event.preventDefault();
                                  document.getElementById('logout-form').submit();"><i class="fa fa-sign-out"></i> <span>Logout</span>
@@ -183,24 +210,8 @@
             <!-- Default to the left -->
             <strong>Copyright © 2016 <a href="#">eduhub.my</a>™.</strong>
         </footer>
-        <script type="text/javascript">
-            $(function() {
-                $('.confirmLeaveBeforeSave').areYouSure({
-                    message: 'It looks like you have been editing something. ' +
-                        'If you leave before saving, your changes will be lost.'
-                });
-            });
-        </script>
+    </div>
     <!-- ./wrapper -->
-</div>
-    <!-- REQUIRED JS SCRIPTS -->
-
-    <!-- Optionally, you can add Slimscroll and FastClick plugins.
-   Both of these plugins are recommended to enhance the
-   user experience. Slimscroll is required when using the
-   fixed layout. -->
-
-
 </body>
-
+<!-- REQUIRED JS SCRIPTS -->
 </html>

@@ -162,13 +162,18 @@ class ShortController extends Controller
             $activateUser->save();
             $sp->save();
 
+            Role::create([
+                'user_id'=>$user->id,
+                'role_id'=>3
+            ]);
+
             Auth::login($user);
 
             return redirect()->action('ShortController@dashboard')->with('status','Welcome '.Auth::user()->name.'!');
 
         }else{
 
-            return view('errors.503');
+            return view('errors.token-verified');
 
         }
     }
@@ -291,6 +296,11 @@ class ShortController extends Controller
 
             $sp->save();
 
+            Role::create([
+                'user_id'=>$user->id,
+                'role_id'=>3
+            ]);
+
             return view('short.dashboard');
 
         }catch(\Illuminate\Database\QueryException $ex){
@@ -359,7 +369,7 @@ class ShortController extends Controller
 
                 $field->save();
 
-                $r['field_id'] = $field->id; 
+                $r['field_id'] = $field->id;
 
             }
 
@@ -406,7 +416,7 @@ class ShortController extends Controller
                 $short_pic3->size = $r->short_pic3->getSize();
 
                 $r->short_pic3->move(public_path()."/img/shortCourse",$course->id."short_pic3");
-                
+
                 $short_pic3->save();
             }
 
@@ -558,7 +568,7 @@ class ShortController extends Controller
                 $short_pic1->save();
                 }
 
-                
+
                 $r->short_pic1->move(public_path()."/img/shortCourse",$id."short_pic1");
 
                 DB::table('short_files')
@@ -587,7 +597,7 @@ class ShortController extends Controller
                 $short_pic2->save();
                 }
 
-                
+
                 $r->short_pic2->move(public_path()."/img/shortCourse",$id."short_pic2");
 
                 DB::table('short_files')
@@ -615,7 +625,7 @@ class ShortController extends Controller
                 $short_pic4->save();
                 }
 
-                
+
                 $r->short_pic4->move(public_path()."/img/shortCourse",$id."short_pic4");
 
                 DB::table('short_files')
@@ -643,7 +653,7 @@ class ShortController extends Controller
                 $short_pic3->save();
                 }
 
-                
+
                 $r->short_pic3->move(public_path()."/img/shortCourse",$id."short_pic3");
 
                 DB::table('short_files')
@@ -671,7 +681,7 @@ class ShortController extends Controller
                 $short_pic5->save();
                 }
 
-                
+
                 $r->short_pic5->move(public_path()."/img/shortCourse",$id."short_pic5");
 
                 DB::table('short_files')

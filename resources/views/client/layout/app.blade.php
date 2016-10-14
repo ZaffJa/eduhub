@@ -82,13 +82,13 @@
                                     <!-- inner menu: contains the actual data -->
                                     <ul class="menu" id="notifications_menu">
                                         <li>
-                                            <a href="#">
-                                                <i class="fa fa-users text-aqua"></i> 5 new members joined today
-                                            </a>
+                                            <!-- <a href="#">
+                                                <i class="fa fa-users text-aqua"></i> Notifications
+                                            </a> -->
                                         </li>
                                     </ul>
                                 </li>
-                                <li class="footer"><a href="#">View all</a></li>
+                                <!-- <li class="footer"><a href="#">View all</a></li> -->
                             </ul>
                         </li>
                         <li class="dropdown user user-menu">
@@ -161,7 +161,26 @@
                     <!-- Dashboard -->
                     @if(Auth::user()->client != null ? Auth::user()->client->institution != null : '')
                     <li class="header">Dashboard</li>
-
+                    @if(Auth::user()->hasRole('admin'))
+                    <li class="treeview">
+                        <a href="{{action('InstitutionController@viewAllInstitution')}}"><i class="fa fa-university"></i> <span>All Institution</span>
+                          <span class="pull-right-container">
+                          </span>
+                        </a>
+                    </li>
+                    <li class="treeview">
+                        <a href="{{action('InstitutionController@viewInstitutionRequest')}}"><i class="fa fa-university"></i> <span>View Request</span>
+                          <span class="pull-right-container">
+                          </span>
+                        </a>
+                    </li>
+                    <li class="treeview">
+                        <a href="{{action('InstitutionController@index')}}"><i class="fa fa-university"></i> <span>Create Institution</span>
+                          <span class="pull-right-container">
+                          </span>
+                        </a>
+                    </li>
+                    @elseif(Auth::user()->hasRole('client'))
                     <li class="treeview">
                         <a href="/client-dashboard/institution"><i class="fa fa-university"></i> <span>Institution</span>
                           <span class="pull-right-container">
@@ -193,23 +212,23 @@
                           </span>
                         </a>
                     </li>
+                    @endif
                     <!-- Short Course -->
                     <li class="header">Other</li>
-                    @if(Auth::user()->short_provider == null)
+                    @if(Auth::user()->hasRole('short') && !Auth::user()->hasRole('admin'))
                     <li class="treeview">
                         <a href="{{action('ShortController@activateInstitutionUser',Auth::user()->id)}}"><i class="fa fa-certificate"></i>Register Short Course
                           <span class="pull-right-container">
                           </span>
                         </a>
                     </li>
-                    @else
+                    @elseif(!Auth::user()->hasRole('admin'))
                     <li class="treeview">
                         <a href="{{action('ShortController@institutionShortCourse')}}"><i class="fa fa-certificate"></i>Short Courses
                           <span class="pull-right-container">
                           </span>
                         </a>
                     </li>
-                    @endif
                     <!-- Settings -->
                     <li class="header">Settings</li>
                     <li class="treeview">
@@ -218,6 +237,7 @@
                           </span>
                         </a>
                     </li>
+                    @endif
                     <li class="treeview">
                         <a href="#" onclick="event.preventDefault();
                                  document.getElementById('logout-form').submit();"><i class="fa fa-sign-out"></i> <span>Logout</span>

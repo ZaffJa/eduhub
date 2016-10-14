@@ -1,6 +1,6 @@
-@extends('client.layout.headerLayout') @section('title', 'All Institution')
+@extends('admin.layout.app') @section('title', 'All Institution')
 
-@section('headbar', 'All Institution') @section('content2')
+@section('headbar', 'All Institution') @section('content')
 @if ($i->isEmpty())
 <p> There is no request from client at the moment. </p>
 @else

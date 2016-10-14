@@ -211,6 +211,7 @@ class InstitutionController extends Controller
     public function viewInstitutionRequest()
     {
       $ri = RegisterInstitution::whereStatus(1)->get();
+
       return view('admin.request-institution')
                   ->with(compact('ri'));
     }
@@ -232,7 +233,7 @@ class InstitutionController extends Controller
                 'user_id'=>$ri->user_id,
                 'role_id'=>2
             ]);
-            
+
             return  redirect()
                         ->back()
                         ->with('status','Succesfully approve client request');

@@ -15,7 +15,7 @@ class AddBankAccountHeadlineProfilePicLocationStatusBankTypeIdShortProvidersTabl
     {
         if(Schema::hasTable('short_providers')){
             Schema::table('short_providers', function ($table){
-                $table->integer('bank_account')->unsigned();
+                $table->integer('bank_account')->unsigned()->nullable();
                 $table->string('headline')->nullable();
                 $table->integer('short_file_id')->nullable()->unsigned();
                 $table->tinyInteger('status')->nullable();
