@@ -15,6 +15,7 @@ class DatabaseSeeder extends Seeder
         $this->call(BankTypesTableSeeder::class);
         $this->call(ShortFieldsTableSeeder::class);
         $this->call(FileCategoryTableSeeder::class);
+        $this->call(AdminRoleSeeder::class);
 
     }
 }

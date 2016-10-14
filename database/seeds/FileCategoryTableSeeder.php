@@ -12,14 +12,13 @@ class FileCategoryTableSeeder extends Seeder
     public function run()
     {
         DB::table('file_categories')->insert([
-        		'name' => 'Facility Image',
-        	]);
+                'name' => 'Facility Image',
+            ]);
         DB::table('file_categories')->insert([
-        		'name' => 'Provider Profile Pic',
-        	]);
-		DB::table('file_categories')->insert([
-        		'name' => 'Short Course Pic',
-        	]);
-
+                'name' => 'Provider Profile Pic',
+            ]);
+        DB::table('file_categories')->insert([
+                'name' => 'Short Course Pic',
+            ]);
     }
 }
