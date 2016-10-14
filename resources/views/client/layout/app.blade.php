@@ -215,14 +215,14 @@
                     @endif
                     <!-- Short Course -->
                     <li class="header">Other</li>
-                    @if(Auth::user()->hasRole('short') && !Auth::user()->hasRole('admin'))
+                    @if(!Auth::user()->hasRole('short'))
                     <li class="treeview">
                         <a href="{{action('ShortController@activateInstitutionUser',Auth::user()->id)}}"><i class="fa fa-certificate"></i>Register Short Course
                           <span class="pull-right-container">
                           </span>
                         </a>
                     </li>
-                    @elseif(!Auth::user()->hasRole('admin'))
+                    @else
                     <li class="treeview">
                         <a href="{{action('ShortController@institutionShortCourse')}}"><i class="fa fa-certificate"></i>Short Courses
                           <span class="pull-right-container">
