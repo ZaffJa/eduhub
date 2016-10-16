@@ -43,6 +43,7 @@
             </div>
         </div>
     </div>
+    @endif
     <a href="{!! route('client.faculty.add') !!}" class="float">
         <i class="fa fa-plus my-float"></i>
     </a>
@@ -51,7 +52,6 @@
         <i class="fa fa-arrow- label-arrow"></i>
     </div>
 </div>
-</div>
 
 
 <script type="text/javascript">
@@ -59,4 +59,4 @@
         source: "{{route('client.faculty.search')}}"
     });
 </script>
-@endif @endsection
+ @endsection

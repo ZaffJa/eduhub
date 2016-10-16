@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class ChangeLanguageShortCourses extends Migration
+class ChangeBankAccountColShortProvidersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class ChangeLanguageShortCourses extends Migration
      */
     public function up()
     {
-        Schema::table('short_courses', function (Blueprint $table) {
-            $table->string('language')->nullable()->change();
+        Schema::table('short_providers', function (Blueprint $table) {
+            $table->bigInteger('bank_account')->change();
         });
     }
 
@@ -25,8 +25,8 @@ class ChangeLanguageShortCourses extends Migration
      */
     public function down()
     {
-        Schema::table('short_courses', function (Blueprint $table) {
-            $table->string('language')->change();
+        Schema::table('short_providers', function (Blueprint $table) {
+            $table->integer('bank_account')->change();
         });
     }
 }

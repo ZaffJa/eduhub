@@ -47,12 +47,12 @@ try{
 
     $institutionScholarship = new InstitutionScholarship;
     $institutionScholarship->name = $r->scholarship_name;
-    $institutionScholarship->fileable_type = 'file';
+    $institutionScholarship->fileable_type = 2;
     $institutionScholarship->fileable_id = Auth::user()->client->institution->id;
     $institutionScholarship->type_id = $r->type_id;
     $institutionScholarship->category_id = 1;
     $institutionScholarship->filename = $fileName;
-    $institutionScholarship->path = 'file/';
+    $institutionScholarship->path = 'scholarship/'.$fileName;
     $institutionScholarship->mime = $file->extension();
     $institutionScholarship->size = $file->getSize();
     $institutionScholarship->description = 'description';
@@ -63,7 +63,7 @@ try{
     // $filePath = public_path('uploads/scholarship');
     // $file->move($filePath,$file->getClientOriginalName());
 
-    Storage::disk('s3')->put($fileName,file_get_contents($file),'public');
+    Storage::disk('s3')->put('scholarship/'.$fileName,file_get_contents($file),'public');
 
     $institutionScholarship->save();
 

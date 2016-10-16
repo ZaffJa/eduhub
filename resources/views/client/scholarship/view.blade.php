@@ -65,7 +65,7 @@
                     <tr>
                         <td><a href="#img1" class="clickImg" val="{{$is->filename}}">{{$is->name}}</a></td>
                         @if(Storage::disk('s3')->exists($is->filename))
-                            <td><a href="https://s3-ap-southeast-1.amazonaws.com/amr-eduhub-upoads/{{$is->filename}}">{{$is->filename}}</a></td>
+                            <td><a href="{{env('AWS_URL')}}{{$is->path}}">{{$is->filename}}</a></td>
                         @else
                             <td><a href="#">{{$is->filename}}</a></td>
                         @endif
@@ -81,7 +81,7 @@
           </div>
         </div>
         @endif
-        <i>Click on the file name column to download the associated file</i>
+        <i>Click on the file name column to download the associated file {{ env('DB_CONNECTION') }}</i>
     </div>
     <a href="{!! route('client.view.add.scholarship') !!}" class="float">
       <i class="fa fa-plus my-float"></i>
