@@ -56,7 +56,7 @@
 
                 <div class="box-body">
                 <div class="box-header">
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <h3>Course Name & Description</h3>
                     </div>
                 </div>
@@ -88,7 +88,7 @@
 
 
                     <div class="box-header">
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <h3>Course Length, Date, Attendance & Size</h3>
                         </div>
                     </div>
@@ -173,7 +173,7 @@
 
 
                     <div class="box-header">
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <h3>Course Location & Information</h3>
                         </div>
                     </div>
@@ -254,7 +254,7 @@
 
 
                     <div class="box-header">
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <h3>Course Fees & Early Bird</h3>
                         </div>
                     </div>
@@ -284,17 +284,17 @@
                         <div class="col-md-2">
                             <label>
                                 <br>
-                                Early Birs Promotions
+                                Early Birds Promotions
                             </label>
                         </div>
                         <div class="col-md-10 col-sm-12 col-xs-12">
-                            <input type="text" name="early_birds" placeholder="Eg: Register the first 5 day after registration open gets discount" value="{{ old('exam_fee') }}">
+                            <input type="text" name="early_birds" placeholder="Eg: Register the first 5 day after registration open and get discounts" value="{{ old('exam_fee') }}">
                         </div>
                     </div>
                     
 
                     <div class="box-header">
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <h3>Course Additional Information</h3>
                         </div>
                     </div>
@@ -358,7 +358,7 @@
                     
 
                     <div class="box-header">
-                        <div class="col-md-4">
+                        <div class="col-md-6">
                             <h3>Course Pictures (5 max)</h3>
                         </div>
                     </div>
