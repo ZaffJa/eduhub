@@ -92,7 +92,7 @@
                             </label>
                         </div>
                         <div class="col-md-3">
-                            <input type="number" name="period_value_min" placeholder="Period MIN">
+                            <input type="number" name="period_value_min" placeholder="Period MIN" id="period_min" value="{{old('period_value_min')}}">
                         </div>
                     </div>
                     <div class="row">
@@ -103,7 +103,7 @@
                             </label>
                         </div>
                         <div class="col-md-3">
-                            <input type="number" name="period_value_max" placeholder="Period MAX">
+                            <input type="number" name="period_value_max" placeholder="Period MAX" id="period_max" value="{{old('period_value_max')}}">
                         </div>
                     </div>
                     <div class="row">
@@ -115,7 +115,13 @@
                         </div>
                         <div class="col-md-3">
                             </br>
-                            {{ Form::select('period_type_id', $periodType) }}
+                            {{ Form::select('period_type_id', $periodType,null,['id'=>'period_type','value'=>old('period_type_id')]) }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3" style="font-style:italic;">
+                            </br>Period Min,Max and Type will be combined and displayed as :
+                            <b><span id="display_period_min"></span> - <span id="display_period_max"> </span> <span id="display_period_type">Year</span></b>
                         </div>
                     </div>
                     <div class="row">
@@ -369,22 +375,20 @@
 </a>
 
 <script type="text/javascript">
-    $('.profile-pic').on('click', function() {
-        var $src = $(this).prop('src');
-
-        $('.imgSrc').prop('src', $src);
-        $('.lightbox').show();
-    });
-
-    $('.imgSrc').on('click', function() {
-        $('#imgBox').hide();
-    });
-</script>
-
-<script>
-    $("#others").hide();
-
     $(document).ready(function() {
+
+        $('.profile-pic').on('click', function() {
+            var $src = $(this).prop('src');
+
+            $('.imgSrc').prop('src', $src);
+            $('.lightbox').show();
+        });
+
+        $('.imgSrc').on('click', function() {
+            $('#imgBox').hide();
+        });
+
+        $("#others").hide();
 
         $('.test').on('change', function() {
             console.log($(this).val());
@@ -395,6 +399,17 @@
                 $("#others").hide();
 
             }
+        });
+
+
+        $('#period_min').keyup(function() {
+            $('#display_period_min').text($(this).val());
+        });
+        $('#period_max').keyup(function() {
+            $('#display_period_max').text($(this).val());
+        });
+        $('#period_type').on('change', function() {
+            $('#display_period_type').text($(this).find("option:selected").text());
         });
 
     });

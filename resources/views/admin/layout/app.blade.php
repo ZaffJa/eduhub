@@ -39,8 +39,6 @@
     <script src="/js/jquery.are-you-sure.js"></script>
 
     <script src="/client/dist/js/app.min.js"></script>
-
-
     @yield('header-css')
 </head>
 <style media="screen">
@@ -53,7 +51,7 @@
     <div class="wrapper">
         <!-- Main Header -->
         <header class="main-header">
-            <a href="/all-institution" class="logo">
+            <a href="/admin/all-institution" class="logo">
                 <!-- mini logo for sidebar mini 50x50 pixels -->
                 <span class="logo-mini"><b>A</b>LT</span>
                 <!-- logo for regular state and mobile devices -->
@@ -173,6 +171,12 @@
                     </li>
                     <li class="treeview">
                         <a href="{{action('InstitutionController@index')}}"><i class="fa fa-university"></i> <span>Create Institution</span>
+                          <span class="pull-right-container">
+                          </span>
+                        </a>
+                    </li>
+                    <li class="treeview">
+                        <a href="{{action('InstitutionController@getNotifications')}}"><i class="fa fa-university"></i> <span>Notifications</span>
                           <span class="pull-right-container">
                           </span>
                         </a>

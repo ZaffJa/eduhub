@@ -282,4 +282,30 @@ class InstitutionController extends Controller
 
         return view('admin.request-history')->with(compact('i'));
     }
+
+    public function getNotifications()
+    {
+        $an  = \App\Models\AdminNotification::paginate(20);
+
+        return view('admin.notifications')->with(compact('an'));
+    }
+
+    public function postNotifications(Request $request)
+    {
+        try{
+            $notifications = \App\Models\AdminNotification::find($request->id);
+            $notifications->action = $request->action;
+            $notifications->save();
+
+            return 'Succesfully updated action';
+
+        }catch(Illuminate\Database\QueryException $ex){
+
+            return 'Error'.$ex->errorInfo[2];
+
+        }
+
+
+
+    }
 }

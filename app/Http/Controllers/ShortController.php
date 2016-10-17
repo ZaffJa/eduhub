@@ -334,24 +334,24 @@ class ShortController extends Controller
 
     public function storeCourse(Request $r)
     {
-        $validator = Validator::make($r->all(), [
-            'name_en' => 'required|max:255',
-            'name_ms' => 'required|max:255',
-            'location' => 'required',
-            'price' => 'required',
-            'short_pic1' => 'image|mimes:jpeg,png,jpg,gif,svg|max:20048',
-            'short_pic2' => 'image|mimes:jpeg,png,jpg,gif,svg|max:20048',
-            'short_pic3' => 'image|mimes:jpeg,png,jpg,gif,svg|max:20048',
-            'short_pic4' => 'image|mimes:jpeg,png,jpg,gif,svg|max:20048',
-            'short_pic5' => 'image|mimes:jpeg,png,jpg,gif,svg|max:20048',
-        ]);
-
-        if ($validator->fails()) {
-           return redirect()
-                       ->back()
-                       ->withErrors($validator)
-                       ->withInput();
-        }
+        // $validator = Validator::make($r->all(), [
+        //     'name_en' => 'required|max:255',
+        //     'name_ms' => 'required|max:255',
+        //     'location' => 'required',
+        //     'price' => 'required',
+        //     'short_pic1' => 'image|mimes:jpeg,png,jpg,gif,svg|max:20048',
+        //     'short_pic2' => 'image|mimes:jpeg,png,jpg,gif,svg|max:20048',
+        //     'short_pic3' => 'image|mimes:jpeg,png,jpg,gif,svg|max:20048',
+        //     'short_pic4' => 'image|mimes:jpeg,png,jpg,gif,svg|max:20048',
+        //     'short_pic5' => 'image|mimes:jpeg,png,jpg,gif,svg|max:20048',
+        // ]);
+        //
+        // if ($validator->fails()) {
+        //    return redirect()
+        //                ->back()
+        //                ->withErrors($validator)
+        //                ->withInput();
+        // }
 
         try{
 
@@ -368,6 +368,33 @@ class ShortController extends Controller
                 $field->slug = $this->slugify($r->others);
 
                 $field->save();
+
+
+                // Send notification to admin
+                $roles = Role::all();
+
+
+                $an = new \App\Models\AdminNotification;
+                $an->message = 'A user named '.Auth::user()->short_provider->name.' with id '.Auth::user()->short_provider->id.' has created a new field name called '. $r->others.'.';
+                $an->action = 1;
+                $an->user_id = Auth::user()->id;
+                $an->click = 0;
+                $an->save();
+
+                //Send email to admin
+                foreach ($roles as $role) {
+                    if($role->user_role->name == "admin")
+                    {
+                        $admin = User::find($role->user_id);
+
+                        $admin->notify(new \App\Notifications\ShortCreateOther(
+                                        Auth::user()->short_provider->name,
+                                        $r->others,
+                                        Auth::user()->id));
+                    }
+                }
+                return $role;
+
 
                 $r['field_id'] = $field->id;
 
