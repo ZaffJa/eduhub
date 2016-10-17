@@ -148,7 +148,7 @@ class InstitutionController extends Controller
         $institution->file_id = $file->id;
         $institution->save();
 
-        Storage::disk('s3')->put('logo/'.$image,file_get_contents($image),'public');
+        Storage::disk('s3')->put('logo/'.$image->getClientOriginalName(),file_get_contents($image),'public');
 
         return redirect()->back()->with('status','Succesfully added a new institution');
 
@@ -276,15 +276,10 @@ class InstitutionController extends Controller
               ->with(compact(('i')));
     }
 
-    public function customMergeArray($data){
-      if($data != null){
-          $str = "";
-        foreach($data as $d){
-          $str = $str.'---'.$d;
-        }
-        return $str;
-      }else{
-        return 'You supplied a null value';
-      }
+    public function requestHistory()
+    {
+        $i = \App\Models\RegisterInstitution::paginate(20);
+
+        return view('admin.request-history')->with(compact('i'));
     }
 }

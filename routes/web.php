@@ -44,6 +44,7 @@ Route::group(['prefix'=>'admin'],function(){
         Route::get('/reject-institution/{id}','InstitutionController@rejectInstitutionRequest')->name('admin.reject.institution.request');
         Route::get('/new-institution', 'InstitutionController@index');
         Route::post('/new-institution', 'InstitutionController@create')->name('client.post.institution');
+        Route::get('/request-history', 'InstitutionController@requestHistory');
     });
 });
 
