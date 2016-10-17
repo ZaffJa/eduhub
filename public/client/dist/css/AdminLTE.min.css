@@ -148,10 +148,10 @@ body {
 
 .content-wrapper {
     background-color: #ecf0f5;
-    background-image: url(/img/logo/LOGO-U.svg);
+    background-image: url(/img/logo/LOGO-U-opa.svg);
     background-position: center;
-    background-size: contain;
-    background-repeat: no-repeat;
+    background-size: 10% 10%;
+    background-repeat: repeat;
     background-attachment: fixed;
 }
 

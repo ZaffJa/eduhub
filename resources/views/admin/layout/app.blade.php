@@ -166,6 +166,12 @@
                         </a>
                     </li>
                     <li class="treeview">
+                        <a href="{{action('InstitutionController@requestHistory')}}"><i class="fa fa-university"></i> <span>Approval History</span>
+                          <span class="pull-right-container">
+                          </span>
+                        </a>
+                    </li>
+                    <li class="treeview">
                         <a href="{{action('InstitutionController@index')}}"><i class="fa fa-university"></i> <span>Create Institution</span>
                           <span class="pull-right-container">
                           </span>

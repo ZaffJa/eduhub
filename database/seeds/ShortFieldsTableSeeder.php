@@ -17,7 +17,7 @@ class ShortFieldsTableSeeder extends Seeder
         	]);
        DB::table('short_fields')->insert([
         		'name' => 'Herbs Production',
-        		'slug' => 'hers-production',
+        		'slug' => 'herbs-production',
         	]);
        DB::table('short_fields')->insert([
         		'name' => 'Extension',

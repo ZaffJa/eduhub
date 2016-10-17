@@ -99,7 +99,7 @@
                             <ul class="dropdown-menu">
                                 <!-- User image -->
                                 <li class="user-header">
-                                    <img src="http://www.iiwas.org/conferences/iiwas2011/img/logos/UTM.jpg" class="img-circle" alt="User Image">
+                                    <img class="profile-pic" id="clickImg" src="../img/{{isset($profilePic) ? $profilePic->path : ''}}" onerror="this.onerror=null;this.src='/img/avatar/picture.png'" />
                                     <p>
                                         {{ Auth::user()->client != null ? Auth::user()->client->institution->name : 'Not Associated with Instititution'}}
                                         <small>Member since {{Auth::user()->client != null ? Auth::user()->client->user->created_at->diffForHumans() : ''}}</small>
