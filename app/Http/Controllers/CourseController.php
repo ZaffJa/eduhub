@@ -23,9 +23,9 @@ class CourseController extends Controller
 
     public function add()
     {
-      $institution = Institution::whereClientId(Auth::user()->client->user->id)->firstOrFail();
+      $institutionId = Auth::user()->client->institution->id;
 
-      $faculties = Faculty::whereInstitutionId($institution->id)->pluck('name','id');
+      $faculties = Faculty::whereInstitutionId($institutionId)->pluck('name','id');
       $levels = StudyLevel::pluck('name','id');
       $modes = StudyMode::pluck('name','id');
       $nec = Nec::pluck('field','code');

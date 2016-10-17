@@ -1,7 +1,7 @@
 @extends('client.layout.headerLayout') @section('title', 'Course') @section('headbar', 'Courses') @section('content2')
 <div class="box box-primary">
     @if ($institutionCourses->isEmpty())
-    <p> There are no facilities. </p>
+    <p> There are no courses. </p>
     @else
     <div class="box-body">
         <form action="{{route('client.course.search.result')}}" method="post">
