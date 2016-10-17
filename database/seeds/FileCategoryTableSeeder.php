@@ -20,5 +20,8 @@ class FileCategoryTableSeeder extends Seeder
         DB::table('file_categories')->insert([
                 'name' => 'Short Course Pic',
             ]);
+        DB::table('file_categories')->insert([
+                'name' => 'Faculty Image',
+            ]);
     }
 }

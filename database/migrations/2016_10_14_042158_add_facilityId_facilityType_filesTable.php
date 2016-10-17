@@ -15,8 +15,8 @@ class AddFacilityIdFacilityTypeFilesTable extends Migration
     {
         if(Schema::hasTable('files')) {
             Schema::table('files', function ($table){
-                $table->integer('facility_id')->unsigned();
-                $table->integer('facility_type')->unsigned();
+                $table->integer('facility_id')->unsigned()->unsigned();
+                $table->integer('facility_type')->unsigned()->unsigned();
             });
         }
     }

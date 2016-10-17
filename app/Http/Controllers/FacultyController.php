@@ -7,8 +7,8 @@ use App\Http\Requests;
 use App\Http\Requests\FacultyFormRequest;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Faculty;
+use App\Models\File;
 use Auth;
-use File;
 use Validator;
 use View;
 
@@ -37,16 +37,30 @@ class FacultyController extends Controller
 
       if($r->hasFile('fac_file') && $r->file('fac_file')->isValid())
       {
+        try{
         $imageName = time().'___'.$r->fac_file->getClientOriginalName();
         $faculty = new Faculty;
         $faculty->institution_id = Auth::user()->client->institution->id;
         $faculty->name = $r->fac_name;
-        $faculty->img_url = $imageName;
+        $faculty->save();
 
-        $r->fac_file->move(public_path('img/faculty'),$imageName);
 
-        try{
-         $faculty->save();
+        $facultyImg = new File;
+        $file = $r->file('fac_file');
+        $facultyImg->user_id = Auth::user()->client->id;
+        $facultyImg->institution_id = Auth::user()->client->institution->id;
+        $facultyImg->faculty_id = $faculty->id;
+        $facultyImg->type_id = 1;
+        $facultyImg->category_id = 5;
+        $facultyImg->filename = $imageName;
+        $facultyImg->path = 'faculty/'.$imageName;
+        $facultyImg->mime = $r->fac_file->extension();
+        $facultyImg->size = $r->fac_file->getSize();
+        $facultyImg->save();
+
+        Storage::disk('s3')->put('faculty/'.$imageName,file_get_contents($file),'public');
+
+
         }catch(\Illuminate\Database\QueryException $ex) {
           return redirect()
                       ->back()
@@ -119,7 +133,6 @@ class FacultyController extends Controller
         try {
             $fileName = $faculty->img_url;
 
-            File::delete(public_path().'/img/faculty/'.$fileName);
             $faculty->delete();
 
         } catch(\Illuminate\Database\QueryException $ex) {
