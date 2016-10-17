@@ -393,8 +393,6 @@ class ShortController extends Controller
                                         Auth::user()->id));
                     }
                 }
-                return $role;
-
 
                 $r['field_id'] = $field->id;
 
