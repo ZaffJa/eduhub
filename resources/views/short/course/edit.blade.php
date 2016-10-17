@@ -48,12 +48,13 @@
 <div class="row">
     <div class="col-lg-8 col-lg-offset-2">
         <div class="box box-primary">
-            <div class="box-header">
-                <div class="col-md-2">
-                    <h3>Edit Short Course</h3>
-                </div>
-            </div>
+
             <div class="box-body">
+            <div class="box-header">
+                <div class="col-md-6">
+                    <h3>Course Name & Description</h3>
+                </div>
+            </div>   
                 <form method="post" class="confirmLeaveBeforeSave" enctype="multipart/form-data">
                     <div class="row">
                         <div class="col-md-2">
@@ -71,21 +72,27 @@
                     <div class="row">
                         <div class="col-md-2">
                             <label>
-            <br>
-            Description
-          </label>
+                            <br>
+                            Description
+                            </label>
                         </div>
                         <div class="col-md-10">
                             <br>
                             <textarea type="text" name="description" placeholder="Short Course Description">{{$course->description}}</textarea>
                         </div>
                     </div>
+
+                    <div class="box-header">
+                    <div class="col-md-6">
+                        <h3>Course Length, Date, Attendance & Size</h3>
+                    </div>
+                    </div>   
                     <div class="row">
                         <div class="col-md-2">
                             <label>
-            <br>
-              Period MIN
-          </label>
+                            <br>
+                              Period MIN
+                            </label>
                         </div>
                         <div class="col-md-3">
                             <input type="number" name="period_value_min" placeholder="Period MIN" value="{{$course->period_value_min}}">
@@ -94,9 +101,9 @@
                     <div class="row">
                         <div class="col-md-2">
                             <label>
-            <br>
-              Period MAX
-          </label>
+                            <br>
+                              Period MAX
+                            </label>
                         </div>
                         <div class="col-md-3">
                             <input type="number" name="period_value_max" placeholder="Period MAX" value="{{$course->period_value_max}}">
@@ -105,11 +112,9 @@
                     <div class="row">
                         <div class="col-md-2">
                             <label>
-
-            <br>
-              Period Type
-          </label>
-
+                            <br>
+                              Period Type
+                            </label>
                         </div>
                         <div class="col-md-3">
                             </br>
@@ -119,9 +124,71 @@
                     <div class="row">
                         <div class="col-md-2">
                             <label>
-            <br>
-              Course Level
-          </label>
+                            <br>
+                              Course Length per Session
+                            </label>
+                        </div>
+                        <div class="col-md-10 col-sm-12 col-xs-12">
+                            <input type="text" name="length" placeholder="Eg: 5 hours per session" value="{{ $course->length }}">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label>
+                            <br>
+                              Start Date
+                            </label>
+                        </div>
+                        <div class="col-md-10 col-sm-12 col-xs-12">
+                            <input type="text" name="start_date" placeholder="Start Date" value="{{ $course->start_date }}">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label>
+                            <br>
+                              Attendance
+                            </label>
+                        </div>
+                        <div class="col-md-10 col-sm-12 col-xs-12">
+                            <input type="text" name="attendance" placeholder="Eg: 3 days a week" value="{{ $course->attendance }}">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label>
+                                <br>
+                                Class Size
+                            </label>
+                        </div>
+                        <div class="col-md-10 col-sm-12 col-xs-12">
+                            <input type="text" name="class_size" placeholder="Eg: 1 - 5 people per class" value="{{ $course->class_size }}">
+                        </div>
+                    </div>
+
+
+                    <div class="box-header">
+                    <div class="col-md-6">
+                        <h3>Course Location & Information</h3>
+                    </div>
+                    </div>  
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label>
+                                <br>
+                                Location
+                            </label><span class="required">*</span>
+                        </div>
+                        <div class="col-md-10 col-sm-12 col-xs-12">
+                            <input name="location" type="text" placeholder="Location" value="{{$course->location}}">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label>
+                            <br>
+                              Course Level
+                            </label>
                         </div>
                         <div class="col-md-10 col-sm-12 col-xs-12">
                             </br>
@@ -131,9 +198,9 @@
                     <div class="row">
                         <div class="col-md-2">
                             <label>
-            <br>
-              Course Field
-          </label>
+                            <br>
+                              Course Field
+                          </label>
                         </div>
                         <div class="col-md-10 col-sm-12 col-xs-12">
                             </br>
@@ -148,9 +215,9 @@
                     <div class="row">
                         <div class="col-md-2">
                             <label>
-            <br>
-              Course Code
-          </label>
+                            <br>
+                              Course Code
+                          </label>
                         </div>
                         <div class="col-md-10 col-sm-12 col-xs-12">
                             <input type="text" name="code" placeholder="Course code" value="{{ $course->code }}">
@@ -159,47 +226,31 @@
                     <div class="row">
                         <div class="col-md-2">
                             <label>
-            <br>
-              Start Time
-          </label>
+                            <br>
+                              Course CPD/CDC Credit Hours
+                          </label>
                         </div>
                         <div class="col-md-10 col-sm-12 col-xs-12">
-                            <input type="text" name="start_date" placeholder="Start Date" value="{{ $course->start_date }}">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-2">
-                            <label>
-            <br>
-              Course Length
-          </label>
-                        </div>
-                        <div class="col-md-10 col-sm-12 col-xs-12">
-                            <input type="text" name="length" placeholder="Course Length" value="{{ $course->length }}">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-2">
-                            <label>
-            <br>
-              Attendance
-          </label>
-                        </div>
-                        <div class="col-md-10 col-sm-12 col-xs-12">
-                            <input type="text" name="attendance" placeholder="Attendance" value="{{ $course->attendance }}">
+                            <input type="text" name="credit_hours" placeholder="Course CPD/CDC Credit Hours" value="{{ $course->credit_hours }}">
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-2">
                             <label>
                                 <br>
-                                Class Size
+                                HRDF Scheme
                             </label>
                         </div>
                         <div class="col-md-10 col-sm-12 col-xs-12">
-                            <input type="text" name="class_size" placeholder="Class Size" value="{{ $course->class_size }}">
+                            <input type="number" name="hrdf_scheme" placeholder="HRDF Scheme" value="{{ $course->hrdf_scheme }}">
                         </div>
                     </div>
+                    
+                    <div class="box-header">
+                    <div class="col-md-6">
+                        <h3>Course Fees & Early Bird</h3>
+                    </div>
+                    </div>  
                     <div class="row">
                         <div class="col-md-2">
                             <label>
@@ -226,13 +277,21 @@
                         <div class="col-md-2">
                             <label>
                                 <br>
-                                Additional Note
+                                Early Birds
                             </label>
                         </div>
                         <div class="col-md-10 col-sm-12 col-xs-12">
-                            <input type="text" name="note" placeholder="Note" value="{{ $course->note }}">
+                            <input type="text" name="early_birds" placeholder="Eg: Register the first 5 day after registration open and get discounts" value="{{ $course->early_birds}}">
                         </div>
                     </div>
+
+
+                    <div class="box-header">
+                    <div class="col-md-6">
+                        <h3>Course Location & Information</h3>
+                    </div>
+                    </div>
+                    
                     <div class="row">
                         <div class="col-md-2">
                             <label>
@@ -248,22 +307,11 @@
                         <div class="col-md-2">
                             <label>
                                 <br>
-                                HRDF Scheme
+                                Who Should Attend
                             </label>
                         </div>
                         <div class="col-md-10 col-sm-12 col-xs-12">
-                            <input type="number" name="hrdf_scheme" placeholder="HRDF Scheme" value="{{ $course->hrdf_scheme }}">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-2">
-                            <label>
-                                <br>
-                                Location
-                            </label><span class="required">*</span>
-                        </div>
-                        <div class="col-md-10 col-sm-12 col-xs-12">
-                            <input name="location" type="text" placeholder="Location" value="{{$course->location}}">
+                            <input type="text" name="who_should_att" placeholder="Eg: people who wants to be a yoga instructor" value="{{ $course->who_should_att }}">
                         </div>
                     </div>
                     <div class="row">
@@ -289,6 +337,23 @@
                             <br>
                             <textarea type="text" name="inclusive" placeholder="Eg: breakfast and dinner, accomodation">{{ $course->inclusive }}</textarea>
                         </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label>
+                                <br>
+                                Additional Note
+                            </label>
+                        </div>
+                        <div class="col-md-10 col-sm-12 col-xs-12">
+                            <input type="text" name="note" placeholder="Note" value="{{ $course->note }}">
+                        </div>
+                    </div>
+
+                    <div class="box-header">
+                    <div class="col-md-6">
+                        <h3>Course Pictures (5 max)</h3>
+                    </div>
                     </div>
                     <div class="row">
                         <div class="row">

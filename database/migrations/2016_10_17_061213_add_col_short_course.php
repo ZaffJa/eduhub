@@ -13,8 +13,8 @@ class AddColShortCourse extends Migration
      */
     public function up()
     {
-        if(Schema::hasTable('short_course')) {
-            Schema::table('short_course', function ($table){
+        if(Schema::hasTable('short_courses')) {
+            Schema::table('short_courses', function ($table){
                 $table->integer('credit_hours')->nullable()->unsigned();
                 $table->string('early_birds')->nullable();
                 $table->string('who_should_att')->nullable();
@@ -29,7 +29,7 @@ class AddColShortCourse extends Migration
      */
     public function down()
     {
-        if(Schema::hasColumn('short_course','who_should_att')) {
+        if(Schema::hasColumn('short_courses','who_should_att')) {
             Schema::table('short_course', function ($table){
                 $table->dropColumn(['who_should_att',
                                     'early_birds',
