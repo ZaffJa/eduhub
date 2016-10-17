@@ -33,9 +33,9 @@
 </head>
 
 <body class="hold-transition skin-red sidebar-mini">
-    <nav class="navbar navbar-default navbar-static-top">
-        <div class="container">
-            <div class="main-header">
+    <nav class="navbar navbar-inverse navbar-static-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
 
                 <!-- Collapsed Hamburger -->
                 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
@@ -46,8 +46,8 @@
                 </button>
 
                 <!-- Branding Image -->
-                <a class="navbar-brand " href="{{ url('/') }}">
-                    <span style="color:black;">eduhub.my - Dashboard</span>
+                <a class="navbar-brand " href="{{ url('/') }}" type="button">
+                    <img alt="Brand" src="/img/logo/LOGO-U.svg" height="150%" weight="150%">
                 </a>
             </div>
 
@@ -61,8 +61,8 @@
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Authentication Links -->
                     @if (Auth::guest())
-                    <li><a href="{{ url('/login') }}">Login</a></li>
-                    <li><a href="{{ url('/register') }}">Register</a></li>
+                    <li><a href="{{ url('/login') }}" type="button" class="btn btn-outline">Login</a></li>
+                    <li><a href="{{ url('/register') }}" type="button" class="btn btn-outline">Register</a></li>
                     @else
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -87,6 +87,7 @@
             </div>
         </div>
     </nav>
+    <div class="content">
     <div class="row">
         <div class="col-lg-12">
             <div class='row'>
@@ -109,10 +110,13 @@
                 @endif
             </div>
             <div class='row'>
+
                 <div class=" col-md-8 col-md-offset-2">
                     @yield('content')
                 </div>
+
             </div>
+        </div>
         </div>
 
         <!-- Scripts -->
