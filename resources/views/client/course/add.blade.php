@@ -16,8 +16,12 @@
           box-sizing: border-box;
         }
     </style>
+
     <div class="box-body">
-        <form class="" action="{{route('client.course.store')}}" method="post" autocomplete="off">
+        @if($faculties->isEmpty())
+        There is no any faculties available. Please add new faculties.
+    @else
+            <form class="" action="{{route('client.course.store')}}" method="post" autocomplete="off">
             <div class="row">
                 <div class="col-md-2">
                     Course Name
@@ -203,6 +207,7 @@
                 </div>
             </div>
         </form>
+    @endif
     </div>
 </div>
 
