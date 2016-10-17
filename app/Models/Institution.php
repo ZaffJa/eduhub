@@ -11,10 +11,7 @@ class Institution extends Model
     use SoftDeletes;
     use AuditingTrait;
 
-    protected $fillable = [
-        'type_id', 'parent_id', 'name', 'slug', 'abbreviation',
-        'description', 'established', 'location', 'name', 'website'
-    ];
+    protected $guarded = [];
 
     public function faculties()
     {
@@ -63,6 +60,18 @@ class Institution extends Model
 
     public function scholarship()
     {
-        return $this->hasMany('App\Models\institutionScholarship','fileable_id');
+        return $this->hasMany('App\Models\InstitutionScholarship','fileable_id');
+    }
+
+    public function contacts()
+    {
+        return $this->belongsTo('App\Models\InstitutionContact','id','institution_id');
+    }
+
+    public function list($mail)
+    {
+        $input = explode('---',$mail);
+
+        return $input;
     }
 }

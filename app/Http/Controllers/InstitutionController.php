@@ -12,8 +12,10 @@ use App\Models\InstitutionContact;
 use App\Models\InstitutionUser;
 use App\Models\RegisterInstitution;
 use App\Models\Role;
+use App\Models\File;
 use Auth;
 use Validator;
+use Illuminate\Support\Facades\Storage;
 
 class InstitutionController extends Controller
 {
@@ -102,25 +104,22 @@ class InstitutionController extends Controller
     public function create(Request $r)
     {
       $validator = Validator::make($r->all(), [
-            'institution_name' => 'required|max:255',
-            'institution_abbreviation' => 'required|max:255',
-            'institution_description' => 'required',
-            'institution_established_date' => 'required',
-            'country' => 'required',
-            'state' => 'required',
-            'city' => 'required',
-            'institution_type' => 'required',
+            'name' => 'required|max:255',
+            'abbreviation' => 'required|max:255',
+            'description' => 'required',
+            'established' => 'required',
+            'type_id' => 'required',
             'contact_no' => 'required',
             'fax_no' => 'required',
-            'emails' => 'required',
-            'public_relations_department_emails' => 'required',
-            'student_enrollment_department_emails' => 'required',
-            'corporate_communications_department_emails' => 'required',
-            'marketing_department_emails' => 'required',
-            'campus_location' => 'required',
+            'email' => 'required',
+            'public_relations_department_email' => 'required',
+            'student_enrollment_department_email' => 'required',
+            'corporate_communications_department_email' => 'required',
+            'marketing_department_email' => 'required',
+            'location' => 'required',
             'examination_board' => 'required',
-            'campus_location' => 'required',
             'remarks' => 'required',
+            'file_image' => 'image|max:2048|required',
          ]);
 
        if ($validator->fails()) {
@@ -131,39 +130,33 @@ class InstitutionController extends Controller
        }
       try{
 
-        $institution = new Institution;
-        $slug = str_replace(' ', '-', strtolower($r->institution_name));
-        $institution->name = $r->institution_name;
-        $institution->abbreviation = $r->institution_abbreviation;
-        $institution->slug = $slug;
-        $institution->type_id = $r->institution_type;
-        $institution->description = $r->institution_description;
-        $institution->established = $r->institution_established_date;
-        $institution->location = $r->city.'/'.$r->state;
-        $institution->address = $r->campus_location;
-        $institution->website = $r->website;
+        $r['slug'] = str_replace(' ', '-', strtolower($r->institution_name));
 
-        $contact_type = new ContactType;
-        $contact_type->public_relations_department_email= $this->customMergeArray($r->public_relations_department_emails);
-        $contact_type->student_enrollment_department_email= $this->customMergeArray($r->student_enrollment_department_emails);
-        $contact_type->corporate_communications_department_email= $this->customMergeArray($r->corporate_communications_department_emails);
-        $contact_type->marketing_department_email= $this->customMergeArray($r->marketing_department_emails);
-        $contact_type->email= $this->customMergeArray($r->emails);
-        $contact_type->remarks = $r->remarks;
-        $contact_type->examination_board = $r->examination_board;
+        $institution = Institution::create($r->except('file_image'));   //mass assign
 
-        $contact_type->save();
+        $image = $r->file('file_image');
+        $file = new File;
+        $file->institution_id = $institution->id;
+        $file->type_id = 1;
+        $file->category_id = 1;
+        $file->filename = $image->getClientOriginalName();
+        $file->path = 'logo/'.$image->getClientOriginalName();
+        $file->mime = $image->getMimeType();
+        $file->size = $image->getSize();
+        $file->save();
+
+        $institution->file_id = $file->id;
         $institution->save();
 
-        $institution_contact = new InstitutionContact;
-        $institution_contact->institution_id = $institution->id;
-        $institution_contact->contact_type_id = $contact_type->id;
+        Storage::disk('s3')->put('logo/'.$image->getClientOriginalName(),file_get_contents($image),'public');
 
-        $institution_contact->save();
+        return redirect()->back()->with('status','Succesfully added a new institution');
 
-      }catch(\Illuminate\Database\QueryException $e){
+    }catch(\Illuminate\Database\QueryException $ex){
 
-        return $e->errorInfo;
+          return  redirect()->back()
+                               ->withErrors($ex->errorInfo[2])
+                               ->withInput();
       }
       return redirect()->back()->with('status','Succesfully added a new institution');
 
@@ -203,7 +196,8 @@ class InstitutionController extends Controller
                           ->with('status','Successfully request an institution. Please wait for the admin to approve your request.');
         }catch (\Illuminate\Database\QueryException $ex) {
           return  redirect()->back()
-                               ->with('status','Error - '.$ex->errorInfo[2]);
+                               ->with('status','Error - '.$ex->errorInfo[2])
+                               ->withInput();
         }
     }
 
@@ -282,15 +276,10 @@ class InstitutionController extends Controller
               ->with(compact(('i')));
     }
 
-    public function customMergeArray($data){
-      if($data != null){
-          $str = "";
-        foreach($data as $d){
-          $str = $str.'---'.$d;
-        }
-        return $str;
-      }else{
-        return 'You supplied a null value';
-      }
+    public function requestHistory()
+    {
+        $i = \App\Models\RegisterInstitution::paginate(20);
+
+        return view('admin.request-history')->with(compact('i'));
     }
 }

@@ -25,7 +25,7 @@ class FacultyController extends Controller
     {
       $validator = Validator::make($r->all(), [
              'fac_name' => 'required|max:255',
-             'fac_file' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:20048',
+             'fac_file' => 'image|mimes:jpeg,png,jpg,gif,svg|max:20048',
          ]);
 
       if ($validator->fails()) {
