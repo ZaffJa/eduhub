@@ -169,7 +169,7 @@
 
                     <div class="box-header">
                     <div class="col-md-6">
-                        <h3>Course Length, Date, Attendance & Size</h3>
+                        <h3>Course Location & Information</h3>
                     </div>
                     </div>  
                     <div class="row">
