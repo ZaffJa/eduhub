@@ -1,5 +1,7 @@
-@extends('client.layout.headerLayout') @section('title', 'Course') @section('headbar', 'Institution Form') @section('content2')
-<div class="col-lg-10">
+@extends('admin.layout.app')
+@section('title', 'Course')
+@section('headbar', 'Institution Form')
+@section('content')<div class="col-lg-10">
     <div class="row">
         <div class="col-lg-12">
             <div class="row">
@@ -29,20 +31,11 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Institution Location</label><br>
-                                    <select name="country" class="countries" id="countryId">
-                                        <option value="132">Malaysia</option>
-                                    </select>
-                                    <select name="state" class="states" id="stateId">
-                                        <option value="">Select State</option>
-                                    </select>
-                                    <select name="city" class="cities" id="cityId">
-                                        <option value="">Select City</option>
-                                    </select>
-                                    <script src="http://iamrohit.in/lab/js/location.js"></script>
+                                    <input type="text" name="location" value="{{$i->location}}">
                                 </div>
                                 <div class="form-group">
                                   <label>Institution Type</label>
-                                  <input type="text" class="form-control" name="institution_type">
+                                  <input type="text" class="form-control" name="institution_type" value="{{isset($i->type) ? $i->type->name : ''}}">
                                 </div>
                                 <div class="form-group">
                                     <label>Contact No</label>
@@ -54,37 +47,57 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Institution Website</label>
-                                    <input type="text" class="form-control" name="website">
+                                    <input type="text" class="form-control" name="website" value="{{$i->website}}">
                                 </div>
                                 <div class="form-group">
                                     <label>Email</label>
-                                    <input type="email" class="form-control" name="emails[]">
+                                    @foreach($i->list($i->contacts->contact->email) as $val)
+                                        @if(!empty($val))
+                                            <input type="email" class="form-control" name="emails[]" value="{{$val}}">
+                                        @endif
+                                    @endforeach
                                 </div>
                                 <div class="form-group">
                                     <label>Public Relation Department Email</label>
-                                    <input type="email" class="form-control" name="public_relations_department_emails[]">
+                                    @foreach($i->list($i->contacts->contact->public_relations_department_emails) as $val)
+                                        @if(!empty($val))
+                                            <input type="email" class="form-control" name="public_relations_department_emails[]">
+                                        @endif
+                                    @endforeach
                                 </div>
                                 <div class="form-group">
                                     <label>Student Enrollment Department Email</label>
-                                    <input type="email" class="form-control" name="student_enrollment_department_emails[]">
+                                    @foreach($i->list($i->contacts->contact->student_enrollment_department_emails) as $val)
+                                        @if(!empty($val))
+                                            <input type="email" class="form-control" name="student_enrollment_department_emails[]">
+                                        @endif
+                                    @endforeach
                                 </div>
                                 <div class="form-group">
                                     <div>
                                         <label>Corporate Communication Department Email</label>
-                                        <input type="email" class="form-control" name="corporate_communications_department_emails[]">
+                                        @foreach($i->list($i->contacts->contact->corporate_communications_department_emails) as $val)
+                                            @if(!empty($val))
+                                                <input type="email" class="form-control" name="corporate_communications_department_emails[]">
+                                            @endif
+                                        @endforeach
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label>Marketing Department Email</label>
-                                    <input type="email" class="form-control" name="marketing_department_emails[]">
-                                </div>
-                                <div class="form-group">
-                                    <label>Campus Location</label>
-                                    <input type="text" class="form-control" name="campus_location">
+                                    @foreach($i->list($i->contacts->contact->marketing_department_emails) as $val)
+                                        @if(!empty($val))
+                                            <input type="email" class="form-control" name="marketing_department_emails[]">
+                                        @endif
+                                    @endforeach
                                 </div>
                                 <div class="form-group">
                                     <label>Examination Board</label>
-                                    <input type="text" class="form-control" name="examination_board">
+                                    @foreach($i->list($i->contacts->contact->email) as $val)
+                                        @if(!empty($val))
+                                            <input type="text" class="form-control" name="examination_board" value="{{$i->established}}">
+                                        @endif
+                                    @endforeach
                                 </div>
                                 <div class="form-group">
                                     <label>Remarks</label>
