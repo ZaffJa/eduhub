@@ -84,7 +84,7 @@
                             <textarea type="text" name="description" placeholder="Eg :- This course provides basic yoga movements">{{ old('description') }}</textarea>
                         </div>
                     </div>
-                    <!-- <div class="row">
+                    <div class="row">
                         <div class="col-md-2">
                             <label>
                                 <br>
@@ -105,7 +105,7 @@
                         <div class="col-md-3">
                             <input type="number" name="period_value_max" placeholder="Period MAX">
                         </div>
-                    </div> -->
+                    </div>
                     <div class="row">
                         <div class="col-md-2">
                             <label>
