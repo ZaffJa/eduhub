@@ -67,7 +67,7 @@
                         @if(Storage::disk('s3')->exists($is->filename))
                             <td><a href="{{env('AWS_URL')}}{{$is->path}}">{{$is->filename}}</a></td>
                         @else
-                            <td><a href="#">{{$is->filename}}</a></td>
+                            <td><a href="{{env('AWS_S3').$is->path}}" download>{{$is->filename}}</a></td>
                         @endif
                         <td><a href="{{$is->website}}" target='_blank'>{{$is->website}}</a></td>
                         <td>{{$is->updated_at->diffForHumans()}}</td>
@@ -100,7 +100,7 @@
 <script type="text/javascript">
   $('.clickImg').on('click',function(){
     console.log($(this).attr('val'));
-    $('.imgSrc').prop('src','/uploads/scholarship/'+$(this).attr('val'));
+    $('.imgSrc').prop('src','{{env("AWS_S3")}}scholarship/'+$(this).attr('val'));
     console.log($(this).text());
   });
 </script>
