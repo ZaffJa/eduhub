@@ -50,7 +50,7 @@
 			<div class="box-header with-border" style="margin-left: 2%">
 				<div class="row">
 					<a class="profile-link" href="#">
-                        <img class="profile-pic" id="clickImg" src="../img/{{isset($profilePic) ? $profilePic->path : ''}}" onerror="this.onerror=null;this.src='/img/avatar/boy-512-03.png'" />
+                        <img class="profile-pic" id="clickImg" src=" {{isset($profilePic) ? env('AWS_S3').$profilePic->path : ''}}" onerror="this.onerror=null;this.src='/img/avatar/boy-512-03.png'" />
                     </a>
 				</div>
 				<i class="fa fa-book"></i>
