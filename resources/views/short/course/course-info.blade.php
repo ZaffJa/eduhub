@@ -64,7 +64,6 @@
                     </div>
                     <dd>{{ isset($course->description) ? $course->description : "No description added" }}  </dd>
                     <hr>
-                    
                     <div class="box-header">
                         Course Length, Date, Attendance & Size
                     </div>
