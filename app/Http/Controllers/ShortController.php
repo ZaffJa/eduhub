@@ -242,11 +242,13 @@ class ShortController extends Controller
             $provider_pic->path = 'provider/'.$r->provider_pic->getClientOriginalName();
             $provider_pic->mime = $r->provider_pic->extension();
             $provider_pic->size = $r->provider_pic->getSize();
+            $file =  $r->file('provider_pic');
 
-            $r->provider_pic->move(public_path()."/img/provider",$r->provider_pic->getClientOriginalName());
+            // Save to public path
+            // $r->provider_pic->move(public_path()."/img/provider",$r->provider_pic->getClientOriginalName());
 
-            // $s3 = Storage::disk('s3');
-            // $s3->put($r->provider_pic->getClientOriginalName(),public_path()."img/provider");
+            Storage::disk('s3')->put('shortProvider/'.$r->provider_pic->getClientOriginalName(),file_get_contents($file),'public');
+
 
             $provider_pic->save();
 
@@ -402,6 +404,7 @@ class ShortController extends Controller
 
             if($r->short_pic1){
                 $short_pic1 = new File;
+                $file = $r->file('short_pic1');
                 $short_pic1->fileable_id = Auth::user()->short_provider->id;
                 $short_pic1->filename = $course->id."short_pic1";
                 $short_pic1->category_id = 4;
@@ -410,13 +413,15 @@ class ShortController extends Controller
                 $short_pic1->mime = $r->short_pic1->extension();
                 $short_pic1->size = $r->short_pic1->getSize();
 
-                $r->short_pic1->move(public_path()."/img/shortCourse",$course->id."short_pic1");
+                Storage::disk('s3')->put('shortPic/'.$course->id.'short_pic1',file_get_contents($file),'public');
+
 
                 $short_pic1->save();
             }
 
             if($r->short_pic2){
                 $short_pic2= new File;
+                $file = $r->file('short_pic2');
                 $short_pic2->fileable_id = Auth::user()->short_provider->id;
                 $short_pic2->filename = $course->id."short_pic2";
                 $short_pic2->category_id = 4;
@@ -425,13 +430,16 @@ class ShortController extends Controller
                 $short_pic2->mime = $r->short_pic2->extension();
                 $short_pic2->size = $r->short_pic2->getSize();
 
-                $r->short_pic2->move(public_path()."/img/shortCourse",$course->id."short_pic2");
+                // $r->short_pic2->move(public_path()."/img/shortCourse",$course->id."short_pic2");
+                Storage::disk('s3')->put('shortPic/'.$course->id.'short_pic2',file_get_contents($file),'public');
+
 
                 $short_pic2->save();
             }
 
             if($r->short_pic3){
                 $short_pic3 = new File;
+                $file = $r->file('short_pic3');
                 $short_pic3->fileable_id = Auth::user()->short_provider->id;
                 $short_pic3->filename = $course->id."short_pic3";
                 $short_pic3->category_id = 4;
@@ -440,13 +448,16 @@ class ShortController extends Controller
                 $short_pic3->mime = $r->short_pic3->extension();
                 $short_pic3->size = $r->short_pic3->getSize();
 
-                $r->short_pic3->move(public_path()."/img/shortCourse",$course->id."short_pic3");
+                // $r->short_pic3->move(public_path()."/img/shortCourse",$course->id."short_pic3");
+                Storage::disk('s3')->put('shortPic/'.$course->id.'short_pic3',file_get_contents($file),'public');
+
 
                 $short_pic3->save();
             }
 
             if($r->short_pic4){
                 $short_pic4 = new File;
+                $file = $r->file('short_pic4');
                 $short_pic4->fileable_id = Auth::user()->short_provider->id;
                 $short_pic4->filename = $course->id."short_pic4";
                 $short_pic4->category_id = 4;
@@ -455,13 +466,16 @@ class ShortController extends Controller
                 $short_pic4->mime = $r->short_pic4->extension();
                 $short_pic4->size = $r->short_pic4->getSize();
 
-                $r->short_pic4->move(public_path()."/img/shortCourse",$course->id."short_pic4");
+                // $r->short_pic4->move(public_path()."/img/shortCourse",$course->id."short_pic4");
+                Storage::disk('s3')->put('shortPic/'.$course->id.'short_pic4',file_get_contents($file),'public');
+
 
                 $short_pic4->save();
             }
 
             if($r->short_pic5){
                 $short_pic5 = new File;
+                $file = $r->file('short_pic5');
                 $short_pic5->fileable_id = Auth::user()->short_provider->id;
                 $short_pic5->filename = $course->id."short_pic5";
                 $short_pic5->category_id = 4;
@@ -470,7 +484,9 @@ class ShortController extends Controller
                 $short_pic5->mime = $r->short_pic5->extension();
                 $short_pic5->size = $r->short_pic5->getSize();
 
-                $r->short_pic5->move(public_path()."/img/shortCourse",$course->id."short_pic5");
+                // $r->short_pic5->move(public_path()."/img/shortCourse",$course->id."short_pic5");
+                Storage::disk('s3')->put('shortPic/'.$course->id.'short_pic5',file_get_contents($file),'public');
+
 
                 $short_pic5->save();
             }
@@ -592,9 +608,11 @@ class ShortController extends Controller
                 $short_pic1->size = $r->short_pic1->getSize();
                 $short_pic1->save();
                 }
+                $file = $r->file('short_pic1');
 
+                // $r->short_pic1->move(public_path()."/img/shortCourse",$id."short_pic1");
+                Storage::disk('s3')->put('shortPic/'.$id.'short_pic1',file_get_contents($file),'public');
 
-                $r->short_pic1->move(public_path()."/img/shortCourse",$id."short_pic1");
 
                 DB::table('short_files')
                     ->where('category_id',4)
@@ -621,9 +639,11 @@ class ShortController extends Controller
                 $short_pic2->size = $r->short_pic2->getSize();
                 $short_pic2->save();
                 }
+                $file = $r->file('short_pic2');
 
+                // $r->short_pic2->move(public_path()."/img/shortCourse",$id."short_pic2");
+                Storage::disk('s3')->put('shortPic/'.$id.'short_pic2',file_get_contents($file),'public');
 
-                $r->short_pic2->move(public_path()."/img/shortCourse",$id."short_pic2");
 
                 DB::table('short_files')
                     ->where('category_id',4)
@@ -649,9 +669,10 @@ class ShortController extends Controller
                 $short_pic4->size = $r->short_pic4->getSize();
                 $short_pic4->save();
                 }
+                $file = $r->file('short_pic4');
+                Storage::disk('s3')->put('shortPic/'.$id.'short_pic4',file_get_contents($file),'public');
 
-
-                $r->short_pic4->move(public_path()."/img/shortCourse",$id."short_pic4");
+                // $r->short_pic4->move(public_path()."/img/shortCourse",$id."short_pic4");
 
                 DB::table('short_files')
                     ->where('category_id',4)
@@ -678,8 +699,10 @@ class ShortController extends Controller
                 $short_pic3->save();
                 }
 
+                $file = $r->file('short_pic3');
+                // $r->short_pic3->move(public_path()."/img/shortCourse",$id."short_pic3");
+                Storage::disk('s3')->put('shortPic/'.$id.'short_pic3',file_get_contents($file),'public');
 
-                $r->short_pic3->move(public_path()."/img/shortCourse",$id."short_pic3");
 
                 DB::table('short_files')
                     ->where('category_id',4)
@@ -688,6 +711,7 @@ class ShortController extends Controller
             }
             if($r->short_pic5){
 
+                $file = $r->file('short_pic5');
                 $short_pic5 = DB::table('short_files')
                                 ->where('category_id',4)
                                 ->where('filename',$id.'short_pic5')
@@ -707,7 +731,9 @@ class ShortController extends Controller
                 }
 
 
-                $r->short_pic5->move(public_path()."/img/shortCourse",$id."short_pic5");
+                // $r->short_pic5->move(public_path()."/img/shortCourse",$id."short_pic5");
+                Storage::disk('s3')->put('shortPic/'.$id.'short_pic5',file_get_contents($file),'public');
+
 
                 DB::table('short_files')
                     ->where('category_id',4)

@@ -129,6 +129,7 @@ class FacilityController extends Controller
         $fileName = time().'___'.$file->getClientOriginalName();
 
         $faci_img = new File;
+        $file = $r->file('faci_img');
         $faci_img->institution_id = Auth::user()->client->institution->id;
         $faci_img->facility_id = $facility->id;
         $faci_img->facility_type = $typeid;
@@ -143,7 +144,7 @@ class FacilityController extends Controller
         // $r->faci_img->move(public_path()."/img/facility",$r->faci_img->getClientOriginalName());
 
         // Push to aws
-        Storage::disk('s3')->put($fileName,file_get_contents($file),'public');
+        Storage::disk('s3')->put('facility/'.$r->faci_img->getClientOriginalName(),file_get_contents($file),'public');
 
         try {
             $facility->save();
@@ -201,7 +202,6 @@ class FacilityController extends Controller
             }
             $file = $r->file('faci_img');
             $fileName = time().'___'.$file->getClientOriginalName();
-
             $faci_img->institution_id = Auth::user()->client->institution->id;
             $faci_img->facility_id = $fid;
             $faci_img->facility_type = $typeid;
@@ -213,7 +213,7 @@ class FacilityController extends Controller
             $faci_img->size = $file->getSize();
 
             // $r->faci_img->move(public_path()."/img/facility",$r->faci_img->getClientOriginalName());
-            Storage::disk('s3')->put($fileName,file_get_contents($file),'public');
+            Storage::disk('s3')->put('facility/'.$r->faci_img->getClientOriginalName(),file_get_contents($file),'public');
 
 
             try {
