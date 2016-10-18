@@ -33,10 +33,7 @@ class ShortController extends Controller
 
                 if($user->short_provider->status != null){   //  User exist and has verify email
 
-                    // $profilePic = File::whereFileableId(Auth::user()->short_provider->id)->first();
-                    //
-                    // return View::make('short.dashboard',compact('profilePic'));
-                    return redirect()->action('ShortController@dashboard');
+                    return redirect()->action('ShortController@dashboard')->with(compact('ShortCoursesCount'));
 
                 }else{  // User has not verify email yet
 
@@ -137,7 +134,9 @@ class ShortController extends Controller
     {
         $profilePic = File::whereFileableId(Auth::user()->short_provider->id)->first();
         $status = 'hello';
-        return View::make('short.dashboard',compact('profilePic','status'));
+        $ShortCoursesCount =  Course::whereProviderId(Auth::user()->short_provider->id)->count();
+        
+        return View::make('short.dashboard',compact('profilePic','status','ShortCoursesCount'));
     }
 
     public function viewCourse()
