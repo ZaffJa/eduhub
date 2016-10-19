@@ -150,7 +150,7 @@
                     </label>
                 </div>
                 <div class="col-md-10">
-                    <input type="text" value="{{ $provider->facebook != null ? $provider->facebook : '' }} " name="facebook" placeholder="Providers Facebook">
+                    <input type="text" value="{{ $provider->facebook != null ? $provider->facebook : '' }}" name="facebook" placeholder="Providers Facebook">
                 </div>
             </div>
             <div class="row">
