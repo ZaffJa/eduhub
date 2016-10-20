@@ -64,7 +64,6 @@
                     </div>
                     <dd>{{ isset($course->description) ? $course->description : "No description added" }}  </dd>
                     <hr>
-                    
                     <div class="box-header">
                         Course Length, Date, Attendance & Size
                     </div>
@@ -142,17 +141,12 @@
                     <div class="box-header">
                         Course Pictures (5 max)
                     </div>
-                	
-                	
-                	
-                	
-                	
                     <dt>Short Course Picture</dt>
                     <dd>@if($picture)
                         @foreach($picture as $pic)
                         <div class="col-md-3">
                             <a class="profile-link" href="#">
-                                <img src="/img/shortCourse/{{isset($pic) ? $pic->filename : ''}}" class="thumbnail" onerror="this.onerror=null;this.src='/img/avatar/picture.png'" >
+                                <img src="{{isset($pic) ? env('AWS_S3').$pic->path : ''}}" class="thumbnail" onerror="this.onerror=null;this.src='/img/avatar/picture.png'" >
                             </a>
                         </div>
                         @endforeach @else

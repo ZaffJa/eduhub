@@ -3,9 +3,9 @@
 @section('title', 'Profile')
 @section('headbar', 'Your Profile')
 @section('content2')
-<style media="screen">
+<style type="text/css">
     .thumbnail {
-        max-width: 40%;
+        max-width: 15vw;
     }
 
     .italic {
@@ -50,7 +50,7 @@
 			<div class="box-header with-border" style="margin-left: 2%">
 				<div class="row">
 					<a class="profile-link" href="#">
-                        <img class="profile-pic" id="clickImg" src="../img/{{isset($profilePic) ? $profilePic->path : ''}}" onerror="this.onerror=null;this.src='/img/avatar/boy-512-03.png'" />
+                        <img class="profile-pic" id="clickImg" src="{{isset($profilePic) ? env('AWS_S3').$profilePic->path : ''}}" onerror="this.onerror=null;this.src='/img/avatar/boy-512-03.png'" />
                     </a>
 				</div>
 				<i class="fa fa-book"></i>
@@ -107,15 +107,15 @@
 </a>
 
 <script type="text/javascript">
-    $('#clickImg').on('click', function() {
+    $('.profile-pic').on('click', function() {
         var $src = $(this).prop('src');
-
+        console.log('watakoyo');
         $('.imgSrc').prop('src',$src);
         $('.lightbox').show();
     });
 
     $('.imgSrc').on('click',function(){
-        $('#imgBox').hide();
+        $('.lightbox').hide();
     });
 </script>
 @endsection

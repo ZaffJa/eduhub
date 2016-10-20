@@ -55,6 +55,7 @@ class FacilityController extends Controller
         $path = 'facility/'.Auth::user()->client->institution->id.'/';
         $faci_img = new File;
         $file = $r->file('faci_img');
+        $fileName = time().'___'.$file->getClientOriginalName();
         $faci_img->institution_id = Auth::user()->client->institution->id;
         $faci_img->facility_id = $facility->id;
         $faci_img->facility_type = $facility->type_id;
@@ -210,7 +211,6 @@ class FacilityController extends Controller
             $faci_img->size = $file->getSize();
 
             Storage::disk('s3')->put($faci_img->path,file_get_contents($file),'public');
-
 
             try {
                 $faci_img->save();

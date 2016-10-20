@@ -127,7 +127,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-3" style="font-style:italic;">
+                        <div class="col-md-6" style="font-style:italic;">
                             </br>Period Min,Max and Type will be combined and displayed as :
                             <b><span id="display_period_min"></span> - <span id="display_period_max"> </span> <span id="display_period_type">Year</span></b>
                         </div>

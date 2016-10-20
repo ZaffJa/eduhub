@@ -15,9 +15,16 @@
           width:100%;
           box-sizing: border-box;
         }
+        .required {
+        color: red;
+        }
     </style>
 
     <div class="box-body">
+        <div class="row">
+            <div class="col-md-6">
+                The field name with <span class="required">*</span> symbol are compulsary</div>
+            </div>
         @if($faculties->isEmpty())
         There is no any faculties available. Please add new faculties.
     @else
@@ -25,6 +32,7 @@
             <div class="row">
                 <div class="col-md-2">
                     Course Name
+                    <span class="required">*</span>
                 </div>
                 <div class="col-md-10">
                     <input type="text" name="name_eng" placeholder="English Name" >
@@ -88,6 +96,7 @@
             <div class="row">
                 <div class="col-md-2">
                     Credit Hour
+                    <span class="required">*</span>
                 </div>
                 <div class="col-md-4">
                     <input type="number" name="credit_hours" placeholder="Credit hour needed to pass this course">
@@ -107,6 +116,7 @@
             <div class="row">
                 <div class="col-md-2">
                     Qualification Entry
+                    <span class="required">*</span>
                 </div>
                 <div class="col-md-4">
                     <input type="text" name="qualification" placeholder="Min qualification">
@@ -115,6 +125,7 @@
             <div class="row">
                 <div class="col-md-2">
                     Approved
+                    <span class="required">*</span>
                 </div>
                 <div class="col-md-4">
                     <input type="text" name="approved" placeholder="Approved">
@@ -123,6 +134,7 @@
             <div class="row">
                 <div class="col-md-2">
                     Accredited
+                    <span class="required">*</span>
                 </div>
                 <div class="col-md-4">
                     <input type="text" name="accredited" placeholder="Accredit">
@@ -131,6 +143,7 @@
             <div class="row">
                 <div class="col-md-2">
                     Commencement
+                    <span class="required">*</span>
                 </div>
                 <div class="col-md-4">
                     <input type="text" name="commencement" placeholder="Commencement">
@@ -138,15 +151,8 @@
             </div>
             <div class="row">
                 <div class="col-md-2">
-                    Field
-                </div>
-                <div class="col-md-4">
-                    {{ Form::select('nec', $nec) }}
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-2">
                     MQA Reference No
+                    <span class="required">*</span>
                 </div>
                 <div class="col-md-4">
                     <input type="text" name="mqa" placeholder="MQA Reference No">

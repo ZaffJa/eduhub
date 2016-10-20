@@ -58,9 +58,6 @@ class CourseController extends Controller
              'commencement' => 'required',
              'mqa' => 'required',
              'nec' => 'required',
-             'alumni' => 'required',
-             'coq' => 'required',
-             'residential' => 'required',
          ]);
 
          if ($validator->fails()) {
@@ -187,8 +184,15 @@ class CourseController extends Controller
 
       $courseFee = CourseFee::whereCourseId($id)->get();
 
+        // return $faculties;
 
-      return View::make('client.course.edit',compact('course','faculties','levels','modes','period_type','nec','courseFee'));
+      if($course->faculty == null ){
+        $faculties = Faculty::whereInstitution_id(Auth::user()->client->institution->id)->paginate(10);
+        return View::make('client.faculty.view',compact('faculties'));
+      }else {
+        return View::make('client.course.edit',compact('course','faculties','levels','modes','period_type','nec','courseFee'));
+
+      }
 
      }
 

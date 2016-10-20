@@ -3,9 +3,9 @@
 @section('title', 'Facility')
 @section('headbar', 'Facility')
 @section('content2')
-<style media="screen">
+<style type="text/css">
     .thumbnail {
-        max-width: 40%;
+        max-width: 15vw;
     }
 
     .italic {
@@ -16,7 +16,7 @@
         font-size: 0.8em;
     }
 
- .lightbox {
+    .lightbox {
         /** Default lightbox to hidden */
         display: none;
         /** Position and style */
@@ -95,7 +95,7 @@
   <i class="fa fa-arrow- label-arrow"></i>
 </div>
 
-<a href="#_" class="lightbox" id="imgBox">
+<a href="#" class="lightbox" id="imgBox">
   <img class="imgSrc">
 </a>
 
@@ -105,6 +105,7 @@
     $('.imgSrc').prop('src',$filePath+$(this).attr('src') );
     console.log($(this).text());
   });
+
 </script>
 
 @endsection

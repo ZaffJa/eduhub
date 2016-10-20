@@ -11,31 +11,26 @@
                 <h5 class="widget-user-desc">{{Auth::user()->short_provider->headline != null ? Auth::user()->short_provider->headline : ""}}</h5>
             </div>
             <div class="widget-user-image">
-                <img class="img-circle hidden-xs" src="../img/{{isset(Auth::user()->short_provider) ? Auth::user()->short_provider->path : ''}}" onerror="this.onerror=null;this.src='/img/avatar/boy-512-03.png'">
+                <img class="img-circle hidden-xs" src="{{isset(Auth::user()->short_provider) ? env('AWS_S3').Auth::user()->short_provider->profilePic->path : ''}}" onerror="this.onerror=null;this.src='/img/avatar/boy-512-03.png'">
             </div>
             <div class="box-footer">
                 <div class="row">
                     <div class="col-sm-4 border-right">
                         <div class="description-block">
-                            <h5 class="description-header">100</h5>
-                            <span class="description-text">Students</span>
                         </div>
                         <!-- /.description-block -->
                     </div>
                     <!-- /.col -->
                     <div class="col-sm-4 border-right">
                         <div class="description-block">
-                            <h5 class="description-header">20</h5>
-                            <span class="description-text">Facility</span>
-
+                            <h5 class="description-header"> {{ $ShortCoursesCount }} </h5>
+                            <span class="description-text">Short Courses</span>
                         </div>
                         <!-- /.description-block -->
                     </div>
                     <!-- /.col -->
                     <div class="col-sm-4">
                         <div class="description-block">
-                            <h5 class="description-header"> 90 </h5>
-                            <span class="description-text">Course</span>
                         </div>
                         <!-- /.description-block -->
                     </div>
