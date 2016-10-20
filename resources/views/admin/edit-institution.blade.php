@@ -33,6 +33,10 @@
                                         <input type="text" name="location" value="{{$i->location}}">
                                     </div>
                                     <div class="form-group">
+                                        <label>Campus Location</label><br>
+                                        <input type="text" name="address" value="{{$i->address}}">
+                                    </div>
+                                    <div class="form-group">
                                         <label>Institution Type</label>
                                         <input type="text" class="form-control" name="institution_type" value="{{isset($i->type) ? $i->type->name : ''}}">
                                     </div>

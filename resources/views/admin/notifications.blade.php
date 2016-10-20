@@ -47,7 +47,7 @@
             action: $action
         };
 
-        $.post("{{action('InstitutionController@postNotifications')}}", formData)
+        $.post("{{action('NotificationController@postAdminNotifications')}}", formData)
             .done(function(data) {
                 console.log("Data Loaded: " + data);
             });

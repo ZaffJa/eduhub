@@ -174,6 +174,7 @@ return [
         /*
          * Application Service Providers...
          */
+        App\Providers\ViewComposerServiceProvider::class,
         OwenIt\Auditing\AuditingServiceProvider::class,
         App\Providers\AppServiceProvider::class,
         // App\Providers\BroadcastServiceProvider::class,

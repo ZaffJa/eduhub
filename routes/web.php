@@ -45,8 +45,9 @@ Route::group(['prefix'=>'admin'],function(){
         Route::get('/new-institution', 'InstitutionController@index');
         Route::post('/new-institution', 'InstitutionController@create')->name('client.post.institution');
         Route::get('/request-history', 'InstitutionController@requestHistory');
-        Route::get('/notifications', 'InstitutionController@getNotifications');
-        Route::post('/notifications', 'InstitutionController@postNotifications');
+        Route::get('/notifications', 'NotificationController@getAdminNotifications');
+        Route::post('/notifications', 'NotificationController@postAdminNotifications');
+        Route::post('/reset-notifications', 'NotificationController@reset');
     });
 });
 

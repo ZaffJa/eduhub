@@ -319,23 +319,6 @@
 
                 $institution = object.institution_id;
             });
-
-            $('#notifications_dropdown').on('click',function(){
-
-                $('#label_notification_counts').text('');
-
-                $.ajax({
-                    type: "POST",
-                    url: "{{action('EnquiryController@reset')}}",
-                    data: {id:$institution},
-                    success: function(data, textStatus, jqXHR){
-                        console.log(data);
-                    },
-                    error: function (jqXHR, textStatus, errorThrown){
-
-                    }
-                });
-            });
         });
     });
 </script>

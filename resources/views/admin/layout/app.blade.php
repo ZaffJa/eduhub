@@ -72,21 +72,23 @@
                         <li class="dropdown notifications-menu" id="notifications_dropdown">
                             <a href="_#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="fa fa-bell-o"></i>
-                                <span class="label label-warning" id="label_notification_counts"></span>
+                                <span class="label label-warning" id="label_notification_counts">{{$admin_notifications->count() > 0 ? $admin_notifications->count() : ''}}</span>
                             </a>
                             <ul class="dropdown-menu">
                                 <li class="header"><span id="notification_message"></span></li>
                                 <li>
                                     <!-- inner menu: contains the actual data -->
                                     <ul class="menu" id="notifications_menu">
+                                        @foreach($admin_notifications as $notification)
                                         <li>
-                                            <!-- <a href="#">
-                                                <i class="fa fa-users text-aqua"></i> Notifications
-                                            </a> -->
+                                            <a href="#">
+                                                <i class="fa fa-users text-aqua"></i>{{ $notification->message}}
+                                            </a>
                                         </li>
+                                        @endforeach
                                     </ul>
                                 </li>
-                                <!-- <li class="footer"><a href="#">View all</a></li> -->
+                                <li class="footer"><a href="{{action('NotificationController@getAdminNotifications')}}">View all</a></li>
                             </ul>
                         </li>
                         <li class="dropdown user user-menu">
@@ -122,7 +124,6 @@
                 </div>
             </nav>
             <!-- Logo -->
-
 
             <!-- Header Navbar -->
 
@@ -171,12 +172,6 @@
                     </li>
                     <li class="treeview">
                         <a href="{{action('InstitutionController@index')}}"><i class="fa fa-university"></i> <span>Create Institution</span>
-                          <span class="pull-right-container">
-                          </span>
-                        </a>
-                    </li>
-                    <li class="treeview">
-                        <a href="{{action('InstitutionController@getNotifications')}}"><i class="fa fa-university"></i> <span>Notifications</span>
                           <span class="pull-right-container">
                           </span>
                         </a>
@@ -243,5 +238,26 @@
     <!-- ./wrapper -->
 </body>
 <!-- REQUIRED JS SCRIPTS -->
+<script type="text/javascript">
+$(function(){
+    $('#notifications_dropdown').on('click',function(){
+
+        $('#label_notification_counts').text('');
+
+        $.ajax({
+            type: "POST",
+            url: "{{action('NotificationController@reset')}}",
+            data: {},
+            success: function(data, textStatus, jqXHR){
+                console.log(data);
+            },
+            error: function (jqXHR, textStatus, errorThrown){
+
+            }
+        });
+    });
+});
+
+</script>
 
 </html>
