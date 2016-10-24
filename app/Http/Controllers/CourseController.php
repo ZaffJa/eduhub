@@ -168,7 +168,7 @@ class CourseController extends Controller
 
      public function edit($id)
      {
-      $faculties = Faculty::pluck('name','id');
+      $faculties = Faculty::whereInstitutionId(Auth::user()->client->institution->id)->pluck('name','id');
 
       $levels = StudyLevel::pluck('name','id');
 
@@ -186,13 +186,13 @@ class CourseController extends Controller
 
         // return $faculties;
 
-      if($course->faculty == null ){
-        $faculties = Faculty::whereInstitution_id(Auth::user()->client->institution->id)->paginate(10);
-        return View::make('client.faculty.view',compact('faculties'));
-      }else {
-        return View::make('client.course.edit',compact('course','faculties','levels','modes','period_type','nec','courseFee'));
+        if($faculties == null ){
+          $faculties = Faculty::whereInstitution_id(Auth::user()->client->institution->id)->paginate(10);
+          return View::make('client.faculty.view',compact('faculties'));
+        }else {
+          return View::make('client.course.edit',compact('course','faculties','levels','modes','period_type','nec','courseFee'));
 
-      }
+        }
 
      }
 
