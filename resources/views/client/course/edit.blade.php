@@ -43,7 +43,7 @@
             Faculty
         </div>
         <div class="col-md-4 col-sm-12 col-xs-12">
-            {{ Form::select('faculty_id', $faculties,$course->faculty->id) }}
+            {{ Form::select('faculty_id', $faculties, isset($course->faculty) ? $course->faculty->id : 0) }}
         </div>
     </div>
     <div class="row">

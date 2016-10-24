@@ -11,92 +11,164 @@
                             <fieldset disabled>
                                 {{ csrf_field() }}
                                 <div class="box-body">
-                                    <div class="form-group">
+                                    <div class="row">
+                                        <div class="col-md-4">
                                         <label>Institution Name</label>
-                                        <input type="text" class="form-control" name="institution_name" value="{{$i->name}}">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Institution Abbreviation</label>
-                                        <input type="text" class="form-control" name="institution_abbreviation" value="{{$i->abbreviation}}">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Institution Description</label>
-                                        <textarea class='form-control' rows="10" style="padding:10px;">{{$i->description}}</textarea>
-
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Established date</label>
-                                        <input type="text" class="form-control" name="institution_established_date" value="{{$i->established}}" id="datepicker">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Institution Location</label><br>
-                                        <input type="text" name="location" value="{{$i->location}}">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Campus Location</label><br>
-                                        <input type="text" name="address" value="{{$i->address}}">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Institution Type</label>
-                                        <input type="text" class="form-control" name="institution_type" value="{{isset($i->type) ? $i->type->name : ''}}">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Contact No</label>
-                                        <input type="text" class="form-control" name="contact_no" value="{{$i->contact_no}}">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Fax No</label>
-                                        <input type="text" class="form-control" name="fax_no" value="{{$i->fax_no}}">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Institution Website</label>
-                                        <input type="text" class="form-control" name="website" value="{{$i->website}}">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Email</label>
-                                        <input type="email" class="form-control" name="email" value="{{$i->email}}">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Public Relation Department Email</label>
-                                        <input type="email" class="form-control" name="public_relations_department_email" value="{{$i->public_relations_department_email}}">
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Student Enrollment Department Email</label>
-
-                                        <input type="email" class="form-control" name="student_enrollment_department_email" value="{{$i->student_enrollment_department_email}}">
-
-                                    </div>
-                                    <div class="form-group">
-                                        <div>
-                                            <label>Corporate Communication Department Email</label>
-
-                                            <input type="email" class="form-control" name="corporate_communications_department_email" value="{{$i->corporate_communications_department_email}}">
-
+                                        </div>
+                                        <div class="col-md-6">
+                                        {{$i->name}}
                                         </div>
                                     </div>
-                                    <div class="form-group">
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                        <label>Institution Abbreviation</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                        {{$i->abbreviation}}
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                        <label>Institution Description</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                        <p>
+                                            {{$i->description}}
+                                        </p>
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                        <label>Established date</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                        {{$i->established}}
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                        <label>Institution Location</label><br>
+                                        </div>
+                                        <div class="col-md-6">
+                                        {{$i->location}}
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                        <label>Campus Location</label><br>
+                                        </div>
+                                        <div class="col-md-6">
+                                        {{$i->address}}
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                        <label>Institution Type</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                        {{isset($i->type) ? $i->type->name : ''}}
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                        <label>Contact No</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                        {{$i->contact_no}}
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                        <label>Fax No</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                        {{$i->fax_no}}
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                        <label>Institution Website</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                        {{$i->website}}
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                        <label>Email</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                        {{$i->email}}
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                        <label>Public Relation Department Email</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                        {{$i->public_relations_department_email}}
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                        <label>Student Enrollment Department Email</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                        {{$i->student_enrollment_department_email}}
+                                        </div>
+                                    </div>
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                        <label>Corporate Communication Department Email</label>
+                                        </div>
+                                        <div class="col-md-6">
+                                        {{$i->corporate_communications_department_email}}
+                                        </div>
+                                    </div>
+                                    <hr>
+                                        
+                                    <div class="row">
+                                        <div class="col-md-4">
                                         <label>Marketing Department Email</label>
-
-                                        <input type="email" class="form-control" name="marketing_department_email" value="{{$i->marketing_department_email}}">
-
+                                        </div>
+                                        <div class="col-md-6">
+                                        {{$i->marketing_department_email}}
+                                        </div>
                                     </div>
-                                    <div class="form-group">
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-md-4">
                                         <label>Examination Board</label>
-
-                                        <input type="text" class="form-control" name="examination_board" value="{{$i->examination_board}}">
-
+                                        </div>
+                                        <div class="col-md-6">
+                                        {{$i->examination_board}}
+                                        </div>
                                     </div>
-                                    <div class="form-group">
+                                    <hr>
+                                    <div class="row">
+                                        <div class="col-md-4">
                                         <label>Remarks</label>
-                                        <input type="text" class="form-control" name="remarks" placeholder="Remarks" value="{{$i->remarks}}">
+                                        </div>
+                                        <div class="col-md-6">
+                                        {{$i->remarks}}
+                                        </div>
                                     </div>
-                                    <div class="checkbox">
-                                    </div>
+                                    <hr>
                                 </div>
                                 <!-- /.box-body -->
-                                <!-- <div class="box-footer">
-                                    <button type="submit" class="btn btn-primary">Submit</button>
-                                </div> -->
                             </fieldset>
                         </form>
                     </div>
