@@ -4,10 +4,11 @@ namespace App\Models\ShortCourse;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use OwenIt\Auditing\AuditingTrait;
 
 class Provider extends Model
 {
-    use SoftDeletes;
+    use AuditingTrait, SoftDeletes;
 
     protected $table = 'short_providers';
     protected $fillable = [

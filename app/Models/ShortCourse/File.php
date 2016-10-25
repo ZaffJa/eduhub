@@ -3,9 +3,13 @@
 namespace App\Models\ShortCourse;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use OwenIt\Auditing\AuditingTrait;
 
 class File extends Model
 {
+    use AuditingTrait, SoftDeletes;
+        
     protected $table = 'short_files';
     protected $fillable = [
         'fileable_type', 'fileable_id', 'type_id',

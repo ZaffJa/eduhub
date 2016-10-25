@@ -8,8 +8,7 @@ use OwenIt\Auditing\AuditingTrait;
 
 class Scholarship extends Model
 {
-    use SoftDeletes;
-    use AuditingTrait;
+    use AuditingTrait, SoftDeletes;
 
     protected $table = 'fundings';
     protected $fillable = ['name', 'abbreviation', 'website', 'description', 'deadline'];

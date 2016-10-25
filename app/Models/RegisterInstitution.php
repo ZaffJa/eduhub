@@ -3,11 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use OwenIt\Auditing\AuditingTrait;
 
 class RegisterInstitution extends Model
 {
-	use AuditingTrait;
+    use AuditingTrait, SoftDeletes;
 
     public function user()
     {

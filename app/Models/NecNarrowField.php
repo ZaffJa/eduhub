@@ -3,9 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use OwenIt\Auditing\AuditingTrait;
 
 class NecNarrowField extends Model
 {
+    use AuditingTrait, SoftDeletes;
+        
     protected $table = 'nec_narrow_fields';
     protected $primaryKey = 'code';
     public $incrementing = false;

@@ -3,11 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use OwenIt\Auditing\AuditingTrait;
 
 class OrganisationFile extends Model
 {
-    use AuditingTrait;
+    use AuditingTrait, SoftDeletes;
 
     protected $fillable = [
         'fileable_type', 'fileable_id', 'type_id',
