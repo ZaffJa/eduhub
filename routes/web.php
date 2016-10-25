@@ -17,8 +17,8 @@ Auth::routes();
 
 
 Route::post('institutions/v/{slug}/enquiry/{course}','EnquiryController@store');
-Route::get('/student', 'StudentController@dashboard');
 Route::get('/agent', 'AgentController@dashboard')->name('agent.dashboard');
+Route::get('/students', 'Student\DashboardController@view');
 Route::get('/permission-error',function(){
     return view('errors.403');
 });
