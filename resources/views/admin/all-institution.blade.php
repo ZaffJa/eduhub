@@ -13,7 +13,6 @@
                     <thead>
                         <tr>
                             <th style="width:40%">Institution Name</th>
-                            <th>Client Name</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -21,9 +20,9 @@
                         @foreach($i as $r)
                         <tr>
                             <td>{!! $r->name !!}</td>
-                            <td>{!! $r->client != null ? $r->client->name : '' !!}</td>
                             <td>
                                 <a class='btn btn-sm btn-primary' href="{{route('admin.edit.institution',$r->id)}}">View</a>
+                                <a class='btn btn-sm btn-danger' href="{{action('InstitutionController@delete',$r->id)}}" onclick="return confirm('Are you sure you want to delete this record?');">Delete</a>
                             </td>
                         </tr>
                         @endforeach

@@ -40,6 +40,7 @@ Route::group(['prefix'=>'admin'],function(){
         Route::get('/reject-institution/{id}','InstitutionController@rejectInstitutionRequest')->name('admin.reject.institution.request');
         Route::get('/new-institution', 'InstitutionController@index');
         Route::post('/new-institution', 'InstitutionController@create')->name('client.post.institution');
+        Route::get('/delete-institution/{id}', 'InstitutionController@delete');
         Route::get('/request-history', 'InstitutionController@requestHistory');
         Route::get('/notifications', 'NotificationController@getAdminNotifications');
         Route::post('/notifications', 'NotificationController@postAdminNotifications');

@@ -196,7 +196,7 @@ class InstitutionController extends Controller
                           ->with('status','Successfully request an institution. Please wait for the admin to approve your request.');
         }catch (\Illuminate\Database\QueryException $ex) {
           return  redirect()->back()
-                               ->with('status','Error - '.$ex->errorInfo[2])
+                               ->withErrors($ex->errorInfo[2])
                                ->withInput();
         }
     }
@@ -236,7 +236,7 @@ class InstitutionController extends Controller
 
           return  redirect()
                         ->back()
-                        ->with('status','Error - '.$ex->errorInfo[2]);
+                        ->withErrors($ex->errorInfo[2]);
         }
     }
 
@@ -255,7 +255,7 @@ class InstitutionController extends Controller
 
         return  redirect()
                         ->back()
-                        ->with('status','Error - '.$ex->errorInfo[2]);
+                        ->withErrors($ex->errorInfo[2]);
       }
     }
 
@@ -281,5 +281,26 @@ class InstitutionController extends Controller
         $i = \App\Models\RegisterInstitution::paginate(20);
 
         return view('admin.request-history')->with(compact('i'));
+    }
+
+    public function delete($id)
+    {
+        $institution = Institution::find($id);
+
+        try{
+
+            $institution->delete();
+
+            return redirect()
+                    ->back()
+                    ->with('status','Succesfully deleted the record');
+
+        }catch(Illuminate\Database\QueryException $ex){
+            return redirect()
+                    ->back()
+                    ->withErrors('Error in deleting the record');
+        }
+
+        return $institution;
     }
 }
