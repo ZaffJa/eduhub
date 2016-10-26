@@ -2,12 +2,14 @@
 
 namespace App\Models;
 
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Notifications\Notifiable;
+use OwenIt\Auditing\AuditingTrait;
 
 class Enquiry extends Model
 {
-    use Notifiable;
+    use AuditingTrait, Notifiable, SoftDeletes;
 
     protected $guarded = [];
 

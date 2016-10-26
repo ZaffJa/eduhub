@@ -76,38 +76,7 @@
                                     <label>Marketing Department Email</label>
                                     <input type="text" class="form-control" name="marketing_department_email" placeholder="To add more emails just add ';' between email. eg: test@email.com;test2@email.com" value="{{old('marketing_department_email')}}">
                                 </div>
-                                <!-- <div class="form-group" id='TextBoxesGroupEmail'>
-                                    <label>Email</label>
-                                    <input type='button' value='Add' id='addEmail' class="btn btn-success size">
-                                    <input type='button' value='Remove' id='removeEmail' class="btn btn-danger size">
-                                    <input type="email" class="form-control" name="emails[]" placeholder="Official institution email address" value="{{old('emails[]')}}">
-                                </div>
-                                <div class="form-group" id='TextBoxesGroupPublicRelationDepartment'>
-                                    <label>Public Relation Department Email</label>
-                                    <input type='button' value='Add' id='addButtonPublicRelationDepartment' class="btn btn-success size">
-                                    <input type='button' value='Remove' id='removeButtonPublicRelationDepartment' class="btn btn-danger size">
-                                    <input type="email" class="form-control" name="public_relations_department_emails[]" placeholder="Official public relations email address" value="{{old('public_relations_department_emails[]')}}">
-                                </div>
-                                <div class="form-group" id='TextBoxesGroupStudentEnrollMentDepartment'>
-                                    <label>Student Enrollment Department Email</label>
-                                    <input type='button' value='Add' id='addButtonStudentEnrollMentDepartment' class="btn btn-success size">
-                                    <input type='button' value='Remove' id='removeButtonStudentEnrollMentDepartment' class="btn btn-danger size">
-                                    <input type="email" class="form-control" name="student_enrollment_department_emails[]" placeholder="Official enrollment department email address" value="{{old('student_enrollment_department_emails[]')}}">
-                                </div>
-                                <div id='TextBoxesGroupCorporateCommunication' class="form-group">
-                                    <div id="TextBoxDivCorporateCommunication1">
-                                        <label>Corporate Communication Department Email</label>
-                                        <input type='button' value='Add' id='addButtonCorporateCommunication' class="btn btn-success size">
-                                        <input type='button' value='Remove' id='removeButtonCorporateCommunication' class="btn btn-danger size">
-                                        <input type="email" class="form-control" name="corporate_communications_department_emails[]" placeholder="Official corporate communication email address" value="{{old('corporate_communications_department_emails')}}">
-                                    </div>
-                                </div>
-                                <div class="form-group" id='TextBoxesGroupMarketingDepartment'>
-                                    <label>Marketing Department Email</label>
-                                    <input type='button' value='Add' id='addButtonMarketingDepartment' class="btn btn-success size">
-                                    <input type='button' value='Remove' id='removeButtonMarketingDepartment' class="btn btn-danger size">
-                                    <input type="email" class="form-control" name="marketing_department_emails[]" placeholder="Official marketing department email address" value="{{old('marketing_department_emails[]')}}">
-                                </div> -->
+                                
                                 <div class="form-group">
                                     <label>Examination Board</label>
                                     <input type="text" class="form-control" name="examination_board" placeholder="Examination board" value="{{old('examination_board')}}">
@@ -128,7 +97,7 @@
         </div>
     </div>
 </div>
-</div>
+
 <script type="text/javascript">
     $(document).ready(function() {
     //     var EmailCounter = 2;

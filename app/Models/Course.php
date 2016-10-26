@@ -8,8 +8,7 @@ use OwenIt\Auditing\AuditingTrait;
 
 class Course extends Model
 {
-    use SoftDeletes;
-    use AuditingTrait;
+    use AuditingTrait, SoftDeletes;
 
     protected $fillable = ['faculty_id', 'nec_code', 'level_id','period_type_id', 'mode_id', 'field_id', 'name_en', 'name_ms', 'period_value_min', 'period_value_max', 'credit_hours', 'approved', 'accredited', 'commencement', 'qualification', 'mqa_reference_no'];
 

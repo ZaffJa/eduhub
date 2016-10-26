@@ -3,11 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use OwenIt\Auditing\AuditingTrait;
 
 class ContactType extends Model
 {
-	use AuditingTrait;
+    use AuditingTrait, SoftDeletes;
 
     protected $fillable = ['public_relations_department_email',
                            'student_enrollment_department_email',

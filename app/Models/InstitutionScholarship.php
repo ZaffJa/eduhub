@@ -8,8 +8,7 @@ use OwenIt\Auditing\AuditingTrait;
 
 class InstitutionScholarship extends Model
 {
-  use SoftDeletes;
-  use AuditingTrait;
+    use AuditingTrait, SoftDeletes;
 
   public function institutions()
   {

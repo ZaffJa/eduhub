@@ -8,8 +8,7 @@ use OwenIt\Auditing\AuditingTrait;
 
 class InstitutionType extends Model
 {
-    use SoftDeletes;
-    use AuditingTrait;
+    use AuditingTrait, SoftDeletes;
 
     protected $fillable = ['parent_id', 'name', 'slug'];
 

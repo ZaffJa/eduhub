@@ -3,11 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use OwenIt\Auditing\AuditingTrait;
 
 class CourseFee extends Model
 {
-	Use AuditingTrait;
+    use AuditingTrait, SoftDeletes;
 
     protected $fillable = ['course_id', 'fee_id', 'amount'];
 

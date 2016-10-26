@@ -8,8 +8,7 @@ use OwenIt\Auditing\AuditingTrait;
 
 class StudyLevel extends Model
 {
-    use SoftDeletes;
-    use AuditingTrait;
+    use AuditingTrait, SoftDeletes;
 
     protected $fillable = ['name'];
 }
