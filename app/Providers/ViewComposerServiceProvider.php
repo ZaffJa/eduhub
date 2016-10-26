@@ -17,6 +17,11 @@ class ViewComposerServiceProvider extends ServiceProvider
             'admin.layout.app',
             'App\Http\ViewComposers\NotificationComposer'
         );
+
+        view()->composer(
+            '*',
+            'App\Http\ViewComposers\S3Composer'
+        );
     }
 
     /**

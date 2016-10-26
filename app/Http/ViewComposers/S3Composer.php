@@ -5,16 +5,17 @@ namespace App\Http\ViewComposers;
 use Illuminate\View\View;
 use App\Models\AdminNotification;
 
-class NotificationComposer
+class S3Composer
 {
+    public $s3 = "";
     /**
-     * Constructor
+     * Create a movie composer.
      *
      * @return void
      */
     public function __construct()
     {
-        //
+        $this->s3 = "https://s3-ap-southeast-1.amazonaws.com/amr-eduhub-upoads/";
     }
 
     /**
@@ -25,7 +26,6 @@ class NotificationComposer
      */
     public function compose(View $view)
     {
-        $an  = AdminNotification::whereAction(1)->get();
-        $view->with('admin_notifications', $an);
+        $view->with('s3', $this->s3);
     }
 }

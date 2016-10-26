@@ -16,6 +16,7 @@ class DatabaseSeeder extends Seeder
         $this->call(ShortFieldsTableSeeder::class);
         $this->call(FileCategoryTableSeeder::class);
         $this->call(AdminRoleSeeder::class);
+        $this->call(SpmSubjectSeeder::class);
 
     }
 }

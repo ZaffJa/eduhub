@@ -56,22 +56,23 @@
                         <th>Scholarship Name</th>
                         <th>File Name</th>
                         <th>Website</th>
-                        <th>Posted On</th>
+                        <th>Status</th>
                         <th>Action</th>
                         <tr>
                 </thead>
                 <tbody>
                     @foreach($scholarship as $is)
                     <tr>
-                        <td><a href="#img1" class="clickImg" val="{{$is->filename}}">{{$is->name}}</a></td>
-                        @if(Storage::disk('s3')->exists($is->filename))
-                            <td><a href="{{env('AWS_URL')}}{{$is->path}}">{{$is->filename}}</a></td>
+                        <td><a href="#img1" class="clickImg" val="{{$s3.$is->path}}">{{$is->name}}</a></td>
+                        @if(Storage::disk('s3')->exists($is->path))
+                            <td><a href="{{$s3.$is->path}}" download>{{$is->filename}}</a></td>
                         @else
-                            <td><a href="{{env('AWS_S3').$is->path}}" download>{{$is->filename}}</a></td>
+                            <td><a href="#">{{$is->filename}}</a></td>
                         @endif
                         <td><a href="{{$is->website}}" target='_blank'>{{$is->website}}</a></td>
-                        <td>{{$is->updated_at->diffForHumans()}}</td>
+                        <td>{{$is->status == 0 ? 'Active' : 'Inactive' }}</td>
                         <td>
+                            <a href="{{action('ScholarshipController@edit',$is->id)}}" class='btn btn-default'>View</a>
                             <button value="{{route('client.delete.scholarship',$is->id)}}" class='btn btn-danger confirmDeleteBtn'>Delete</a>
                         </td>
                     </tr>
@@ -81,7 +82,7 @@
           </div>
         </div>
         @endif
-        <i>Click on the file name column to download the associated file {{ env('DB_CONNECTION') }}</i>
+        <i>Click on the file name column to download the associated file</i>
     </div>
     <a href="{!! route('client.view.add.scholarship') !!}" class="float">
       <i class="fa fa-plus my-float"></i>
@@ -100,7 +101,7 @@
 <script type="text/javascript">
   $('.clickImg').on('click',function(){
     console.log($(this).attr('val'));
-    $('.imgSrc').prop('src','{{env("AWS_S3")}}scholarship/'+$(this).attr('val'));
+    $('.imgSrc').prop('src',$(this).attr('val'));
     console.log($(this).text());
   });
 </script>

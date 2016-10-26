@@ -227,8 +227,9 @@
 <a href="#_" class="lightbox" id="imgBox">
     <img class="imgSrc" src="#">
 </a>
-
+<script src="//cdn.ckeditor.com/4.5.11/standard/ckeditor.js"></script>
 <script type="text/javascript">
+    CKEDITOR.replace( 'description' );
     $('#clickImg').on('click', function() {
         var $src = $(this).prop('src');
 

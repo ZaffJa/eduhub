@@ -101,6 +101,8 @@ Route::group(['prefix'=>'client-dashboard','middleware'=>['auth','empty.null']],
         Route::get('/scholarship/add', 'ScholarshipController@add')->name('client.view.add.scholarship');
         Route::post('/scholarship/add', 'ScholarshipController@postAdd')->name('client.add.scholarship');
         Route::get('/scholarship/view', 'ScholarshipController@view')->name('client.view.scholarship');
+        Route::get('/scholarship/view/{id}', 'ScholarshipController@edit')->name('client.view.scholarship');
+        Route::post('/scholarship/update/{id}', 'ScholarshipController@clientUpdate')->name('client.delete.scholarship');
         Route::get('/scholarship/delete/{id}', 'ScholarshipController@delete')->name('client.delete.scholarship');
         Route::get('/scholarship/download/{id}', 'ScholarshipController@clientDownload')->name('client.download.scholarship');
         Route::get('/faculty', 'FacultyController@view')->name('client.faculty.view');
