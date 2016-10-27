@@ -26,6 +26,10 @@ Route::get('/students', 'Student\DashboardController@view');
 Route::get('/personality','Student\PersonalityController@view');
 Route::get('/set1','Student\PersonalityController@set1');
 Route::get('/set2','Student\PersonalityController@set2');
+Route::get('/set3','Student\PersonalityController@set3');
+Route::get('/set4','Student\PersonalityController@set4');
+Route::get('/set5','Student\PersonalityController@set5');
+Route::get('/set6','Student\PersonalityController@set6');
 
 Route::get('/result','Student\PersonalityController@result');
 Route::get('/permission-error',function(){
