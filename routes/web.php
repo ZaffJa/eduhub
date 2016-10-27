@@ -12,6 +12,10 @@
 Auth::routes();
 
 
+Route::get('/students/spm', 'Student\SpmController@index');
+Route::get('/students/spm/create', 'Student\SpmController@create');
+Route::post('/students/spm/update', 'Student\SpmController@update');
+Route::post('/students/spm/create', 'Student\SpmController@store');
 
 
 
@@ -34,6 +38,7 @@ Route::get('/',function(){
 
 
 Route::group(['prefix'=>'admin'],function(){
+
     Route::get('/login','AdminController@login');
     Route::post('/login','AdminController@postLogin');
 
