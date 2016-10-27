@@ -313,8 +313,41 @@ class PersonalityController extends Controller
       }
     }
     session(['set6' => 1]);
+    $res = array
+    (
+    array('Realistic',session('r')),
+    array('Artistic',session('a')),
+    array('Investigative',session('i')),
+    array('Entreprising',session('e')),
+    array('Social',session('s')),
+    array('Conventional',session('c'))
+    );  
+    $res = $this->sort($res);
 
-    return View::make('student.personality.result');
+    return View::make('student.personality.result',compact('res'));
+  }
+
+  public function sort($res)
+  {
+    $n = count($res);
+    do
+    {
+      $swapped = false;
+      for($i = 1; $i < $n ; $i++)
+      {
+        if($res[$i-1][1] < $res[$i][1])
+        {
+
+          $temp = $res[$i-1][1];
+          $res[$i-1][1] = $res[$i][1];
+          $res[$i][1] = $temp;
+          $swapped = true;
+        }
+      }
+      $n -= 1;
+    }while($swapped != false);
+    
+    return $res;
   }
 
 }

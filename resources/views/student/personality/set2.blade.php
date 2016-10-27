@@ -1,5 +1,5 @@
-<h4>Instructions: click or tap the box to tick the box</h4>
-<h4>Tick the item that you would enjoy do most</h4>
+<h4>Instructions: click or tap the box to tick the box, tick as many box as you like</h4>
+<h4>Tick the item that you would enjoy do</h4>
 
 <form method="get" action="{{ action('Student\PersonalityController@set3') }}">
 	<input type="checkbox" name="a2" value="1">Build things with wood </br>
