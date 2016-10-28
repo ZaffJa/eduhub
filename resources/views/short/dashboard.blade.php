@@ -11,7 +11,7 @@
                 <h5 class="widget-user-desc">{{Auth::user()->short_provider->headline != null ? Auth::user()->short_provider->headline : ""}}</h5>
             </div>
             <div class="widget-user-image">
-                <img class="img-circle hidden-xs" src="{{isset(Auth::user()->short_provider) ? env('AWS_S3').Auth::user()->short_provider->profilePic->path : ''}}" onerror="this.onerror=null;this.src='/img/avatar/boy-512-03.png'">
+                <img class="img-circle hidden-xs" src="{{isset(Auth::user()->short_provider->profilePic) ? $s3.Auth::user()->short_provider->profilePic->path : ''}}" onerror="this.onerror=null;this.src='/img/avatar/boy-512-03.png'">
             </div>
             <div class="box-footer">
                 <div class="row">

@@ -8,8 +8,7 @@ use OwenIt\Auditing\AuditingTrait;
 
 class NecBroadField extends Model
 {
-    use SoftDeletes;
-    use AuditingTrait;
+    use AuditingTrait, SoftDeletes;
 
     protected $table = 'nec_broad_fields';
     protected $primaryKey = 'code';

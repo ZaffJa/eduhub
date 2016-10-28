@@ -43,7 +43,7 @@ if ($validator->fails()) {
 
 try{
     $file = $r->file('file_form');
-    $fileName = time().'___'.$file->getClientOriginalName();
+    $path = 'scholarship/'.time().'_'.$file->getClientOriginalName();
 
     $institutionScholarship = new InstitutionScholarship;
     $institutionScholarship->name = $r->scholarship_name;
@@ -51,19 +51,17 @@ try{
     $institutionScholarship->fileable_id = Auth::user()->client->institution->id;
     $institutionScholarship->type_id = $r->type_id;
     $institutionScholarship->category_id = 1;
-    $institutionScholarship->filename = $fileName;
-    $institutionScholarship->path = 'scholarship/'.$fileName;
+    $institutionScholarship->filename = $file->getClientOriginalName();
+    $institutionScholarship->path = $path;
     $institutionScholarship->mime = $file->extension();
     $institutionScholarship->size = $file->getSize();
-    $institutionScholarship->description = 'description';
+    $institutionScholarship->description = $r->description;
     $institutionScholarship->contact = $r->scholarship_contact;
     $institutionScholarship->website = $r->website;
+    $institutionScholarship->opening = $r->opening;
+    $institutionScholarship->closing = $r->closing;
 
-    /** Move the file to the public directory in local  **/
-    // $filePath = public_path('uploads/scholarship');
-    // $file->move($filePath,$file->getClientOriginalName());
-
-    Storage::disk('s3')->put('scholarship/'.$fileName,file_get_contents($file),'public');
+    Storage::disk('s3')->put($path,file_get_contents($file),'public');
 
     $institutionScholarship->save();
 
@@ -104,18 +102,50 @@ try{
 
 public function edit($id)
 {
- $s = InstitutionScholarship::find($id);
+    $scholarship = InstitutionScholarship::find($id);
 
- try{
-   return redirect()
+    return view('client.scholarship.edit',compact('scholarship'));
+
+}
+
+public function clientUpdate($id,Request $request)
+{
+    $scholarship = InstitutionScholarship::find($id);
+
+    if($request->hasFile('file_form') && $request->file('file_form')->isValid())
+    {
+        $file = $request->file('file_form');
+        $path = 'scholarship/'.time().'_'.$file->getClientOriginalName();
+
+        $scholarship->filename = $file->getClientOriginalName();
+        $scholarship->path = $path;
+        $scholarship->mime = $file->extension();
+        $scholarship->size = $file->getSize();
+
+        Storage::disk('s3')->put($path,file_get_contents($file),'public');
+
+    }
+    $scholarship->name = $request->name;
+    $scholarship->contact = $request->contact;
+    $scholarship->website = $request->website;
+    $scholarship->status = $request->status;
+    $scholarship->opening = $request->opening;
+    $scholarship->closing = $request->closing;
+
+    try{
+        $scholarship->save();
+
+        return redirect()
                ->back()
-               ->with(['status'=>'Succesfully deleted record',
-                       'scholarship'=>$s]);
- }catch(\Illuminate\Database\QueryException $ex){
+               ->with(['status'=>'Succesfully updated record']);
+    }catch(Illuminate\Database\QueryException $ex){
         return redirect()
                     ->back()
                     ->withErrors($ex);
-  }
+    }
+
+    return view('client.scholarship.edit',compact('scholarship'));
+
 }
 
 

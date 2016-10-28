@@ -8,10 +8,25 @@
 	<link rel="icon" type="image/png" href="/assets/img/favicon.png" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-	<title>eduhub.my - @yield('title')</title>
+	<title>Material Dashboard by Creative Tim | Free Material Bootstrap Admin</title>
 
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
+
+	<!-- Canonical SEO -->
+    <link rel="canonical" href="http://www.creative-tim.com/product/material-dashboard"/>
+
+    <!--  Social tags      -->
+    <meta name="keywords" content="material dashboard, bootstrap material admin, bootstrap material dashboard, material design admin, material design, creative tim, html dashboard, html css dashboard, web dashboard, freebie, free bootstrap dashboard, css3 dashboard, bootstrap admin, bootstrap dashboard, frontend, responsive bootstrap dashboard">
+
+    <meta name="description" content="Material Dashboard is a Free Material Bootstrap Admin with a fresh, new design inspired by Google's Material Design.">
+
+    <!-- Schema.org markup for Google+ -->
+    <meta itemprop="name" content="Material Dashboard by Creative Tim | Free Material Bootstrap Admin">
+    <meta itemprop="description" content="Material Dashboard is a Free Material Bootstrap Admin with a fresh, new design inspired by Google's Material Design.">
+    <meta itemprop="image" content="../../../s3.amazonaws.com/creativetim_bucket/products/50/opt_md_thumbnail.jpg">
+
+
 
     <!-- Bootstrap core CSS     -->
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet" />
@@ -23,9 +38,9 @@
     <link href="/assets/css/demo.css" rel="stylesheet" />
 
     <!--     Fonts and icons     -->
-    <link href="/assets/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../../maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
-    @yield('header-css')
+		@yield('header-css')
 </head>
 
 <body>
@@ -40,8 +55,8 @@
 		    -->
 
 			<div class="logo">
-				<a href="#" class="simple-text">
-					Eduhub.my
+				<a href="http://www.creative-tim.com/" class="simple-text">
+					Creative Tim
 				</a>
 			</div>
 
@@ -103,20 +118,15 @@
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-						<a class="navbar-brand" href="#">Student Dashboard</a>
+						<a class="navbar-brand" href="#">Material Dashboard</a>
 					</div>
 					<div class="collapse navbar-collapse">
 						<ul class="nav navbar-nav navbar-right">
 							<li>
-								<a href="/set1" class="dropdown-toggle" data-toggle="dropdown">
+								<a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
 									<i class="material-icons">dashboard</i>
 									<p class="hidden-lg hidden-md">Dashboard</p>
 								</a>
-                <ul class="dropdown-menu">
-									<li><a href="#">Institution Search</a></li>
-									<li><a href="#">Student Profile</a></li>
-									<li><a href="#">Personality Test</a></li>
-								</ul>
 							</li>
 							<li class="dropdown">
 								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
@@ -155,9 +165,7 @@
 
 			<div class="content">
 				<div class="container-fluid">
-          <div class="row">
-               @yield('content')
-          </div>
+  				@yield('content')
 				</div>
 			</div>
 
@@ -203,7 +211,7 @@
 			            <li class="adjustments-line">
 			                <a href="javascript:void(0)" class="switch-trigger">
 			                    <div class="text-center">
-									            <span class="badge filter badge-purple active" data-color="purple"></span>
+									<span class="badge filter badge-purple active" data-color="purple"></span>
 			                        <span class="badge filter badge-blue" data-color="blue"></span>
 			                        <span class="badge filter badge-green" data-color="green"></span>
 			                        <span class="badge filter badge-orange" data-color="orange"></span>
@@ -234,8 +242,21 @@
 			                </a>
 			            </li>
 
+			            <li class="button-container">
+			                <div class="">
+			                    <a href="http://www.creative-tim.com/product/material-dashboard" target="_blank" class="btn btn-primary btn-block">Get Free Demo</a>
+			                </div>
+			                <div class="">
+			                    <a href="http://demos.creative-tim.com/material-dashboard/documentation/tutorial-components.html" target="_blank" class="btn btn-default btn-block btn-fill">Documentation</a>
+			                </div>
+			            </li>
 
-			            
+			            <li class="header-title">Thank you for 52 shares!</li>
+
+			            <li class="button-container">
+			                <button id="twitter" class="btn btn-social btn-twitter btn-round"><i class="fa fa-twitter"></i> &middot; 12</button>
+			                <button id="facebook" class="btn btn-social btn-facebook btn-round"><i class="fa fa-facebook-square"> &middot; 40</i></button>
+			            </li>
 
 			        </ul>
 			    </div>
@@ -269,17 +290,6 @@
 	<!--   Sharrre Library    -->
     <script src="/assets/js/jquery.sharrre.js"></script>
 
-	<!-- Material Dashboard DEMO methods, don't include it in your project! -->
-	<script src="/assets/js/demo.js"></script>
-
-	<script type="text/javascript">
-    	$(document).ready(function(){
-
-			// Javascript method's body can be found in assets/js/demos.js
-        	demo.initDashboardPageCharts();
-
-    	});
-	</script>
 
 
 <!-- Mirrored from demos.creative-tim.com/material-dashboard/examples/dashboard.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 27 Oct 2016 07:41:19 GMT -->

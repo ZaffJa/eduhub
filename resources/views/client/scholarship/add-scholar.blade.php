@@ -2,6 +2,7 @@
  @section('title', 'Scholarship')
   @section('headbar', 'Add Scholarship')
    @section('content2')
+
 <div class=col-lg-12>
     <div class="box box-primary">
           <form role=form method=post action="{{route('client.add.scholarship')}}" autocomplete="off" enctype="multipart/form-data">
@@ -9,6 +10,10 @@
                 <div class=form-group>
                     <label>Name</label>
                     <input type="text" name="scholarship_name">
+                </div>
+                <div class=form-group>
+                    <label>Description</label>
+                    <textarea name="description" rows="12" required></textarea>
                 </div>
                 <div class=form-group>
                     <label>Address</label>
@@ -24,13 +29,20 @@
                 </div>
                 <div class=form-group>
                     <label>Website</label>
-                    <input name="website" type="text">
+                    <input name="website" type="text" required>
+                </div>
+                <div class=form-group>
+                    <label>Opening Date</label>
+                    <input name="opening" type="date" required>
+                </div>
+                <div class=form-group>
+                    <label>Closing Date</label>
+                    <input name="closing" type="date" required>
                 </div>
                 <div class=form-group>
                     <label>Upload Image</label>
                     </br>
                     <input name="file_form" type="file">
-                    <p>The filename has to be the same as the scholarship name</p>
                     <p>File &nbsp;only accept - <span id="only-accept">jpeg,png,jpg,gif,svg</span></p>
                 </div>
                 <input type="hidden" name="file_type" id="file-type" value="jpeg,png,jpg,gif,svg">
@@ -61,5 +73,7 @@
         $('#file-type').val('doc,docx,pdf');
     }
   });
+
+  $(".datepicker").datepicker();
 </script>
 @endsection
