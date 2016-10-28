@@ -1,3 +1,7 @@
+@extends('student.layout.app')
+
+@section('title', 'Dashboard')
+@section('content')
 <h4>Instructions: click or tap the box to tick the box, tick as many box as you like</h4>
 <h4>Tick the item that you would enjoy do</h4>
 
@@ -14,3 +18,4 @@
 	<input type="checkbox" name="f4" value="1">Take telephone messages </br>
 	<button> Next </button>
 </form>
+@endsection

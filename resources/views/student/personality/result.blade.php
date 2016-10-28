@@ -1,3 +1,8 @@
+@extends('student.layout.app')
+
+@section('title', 'Dashboard')
+@section('content')
+
 <h1>Here are your personality result</h1>
 <h3>You are a {{$res[0][0]}} person</h3>
 <table>
@@ -32,3 +37,5 @@
 
 <h3>Conventional</h3>
 <h4>The "Organizers." People who like to work with data, have clerical and/or numerical ability, and who enjoy work activites that follow set procedures and routines. Conventional types are people who are good at coordinating people, places, or events. Possible careers include accountant, secretary, bank teller, dental assistant, and math teacher.</h4>
+
+@endsection

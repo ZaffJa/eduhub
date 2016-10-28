@@ -1,158 +1,296 @@
 <!doctype html>
 <html lang="en">
 
+<!-- Mirrored from demos.creative-tim.com/material-dashboard/examples/dashboard.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 27 Oct 2016 07:40:02 GMT -->
 <head>
-    <meta charset="utf-8" />
-    <link rel="icon" type="image/png" href="/assets/img/favicon.ico">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta charset="utf-8" />
+	<link rel="apple-touch-icon" sizes="76x76" href="/assets/img/apple-icon.png" />
+	<link rel="icon" type="image/png" href="/assets/img/favicon.png" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-    <title>eduhub.my - @yield('title')</title>
+	<title>Material Dashboard by Creative Tim | Free Material Bootstrap Admin</title>
 
-    <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
+
+	<!-- Canonical SEO -->
+    <link rel="canonical" href="http://www.creative-tim.com/product/material-dashboard"/>
+
+    <!--  Social tags      -->
+    <meta name="keywords" content="material dashboard, bootstrap material admin, bootstrap material dashboard, material design admin, material design, creative tim, html dashboard, html css dashboard, web dashboard, freebie, free bootstrap dashboard, css3 dashboard, bootstrap admin, bootstrap dashboard, frontend, responsive bootstrap dashboard">
+
+    <meta name="description" content="Material Dashboard is a Free Material Bootstrap Admin with a fresh, new design inspired by Google's Material Design.">
+
+    <!-- Schema.org markup for Google+ -->
+    <meta itemprop="name" content="Material Dashboard by Creative Tim | Free Material Bootstrap Admin">
+    <meta itemprop="description" content="Material Dashboard is a Free Material Bootstrap Admin with a fresh, new design inspired by Google's Material Design.">
+    <meta itemprop="image" content="../../../s3.amazonaws.com/creativetim_bucket/products/50/opt_md_thumbnail.jpg">
+
+
 
     <!-- Bootstrap core CSS     -->
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet" />
 
-    <!-- Animation library for notifications   -->
-    <link href="/assets/css/animate.min.css" rel="stylesheet" />
+    <!--  Material Dashboard CSS    -->
+    <link href="/assets/css/material-dashboard.css" rel="stylesheet"/>
 
-    <!--  Light Bootstrap Table core CSS    -->
-    <link href="/assets/css/light-bootstrap-dashboard.css" rel="stylesheet" />
+    <!--  CSS for Demo Purpose, don't include it in your project     -->
+    <link href="/assets/css/demo.css" rel="stylesheet" />
 
     <!--     Fonts and icons     -->
-    <link href="http://maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300' rel='stylesheet' type='text/css'>
-
-    <link href="/assets/css/pe-icon-7-stroke.css" rel="stylesheet" />
-    <!--   Core JS Files   -->
-    <script src="/assets/js/jquery-1.10.2.js" type="text/javascript"></script>
-    <script src="/assets/js/bootstrap.min.js" type="text/javascript"></script>
-
-    <!--  Checkbox, Radio & Switch Plugins -->
-    <script src="/assets/js/bootstrap-checkbox-radio-switch.js"></script>
-
-    <!--  Charts Plugin -->
-    <script src="/assets/js/chartist.min.js"></script>
-
-    <!--  Notifications Plugin    -->
-    <script src="/assets/js/bootstrap-notify.js"></script>
-
-    <!--  Google Maps Plugin    -->
-    <!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script> -->
-
-    <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
-    <script src="/assets/js/light-bootstrap-dashboard.js"></script>
-
-    <!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
-    <script src="/assets/js/demo.js"></script>
-
-    @yield('header-css')
+    <link href="../../../maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
+		@yield('header-css')
 </head>
 
 <body>
 
-    <div class="wrapper">
-        <div class="sidebar" data-color="purple" data-image="/assets/img/sidebar-5.jpg">
+	<div class="wrapper">
 
-            <!--
+	    <div class="sidebar" data-color="purple" data-image="/assets/img/sidebar-1.jpg">
+			<!--
+		        Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
 
-        Tip 1: you can change the color of the sidebar using: data-color="blue | azure | green | orange | red | purple"
-        Tip 2: you can also add an image using data-image tag
+		        Tip 2: you can also add an image using data-image tag
+		    -->
 
-    -->
-            <div class="sidebar-wrapper">
-                <div class="logo">
-                    <a href="http://www.creative-tim.com" class="simple-text">
-                    Creative Tim
-                </a>
-                </div>
+			<div class="logo">
+				<a href="http://www.creative-tim.com/" class="simple-text">
+					Creative Tim
+				</a>
+			</div>
 
-                <ul class="nav">
-                    <li class="active">
-                        <a href="dashboard.html">
-                            <i class="pe-7s-graph"></i>
-                            <p>Dashboard</p>
-                        </a>
-                    </li>
+	    	<div class="sidebar-wrapper">
+	            <ul class="nav">
+	                <li class="active">
+	                    <a href="dashboard.html">
+	                        <i class="material-icons">dashboard</i>
+	                        <p>Dashboard</p>
+	                    </a>
+	                </li>
+	                <li>
+	                    <a href="user.html">
+	                        <i class="material-icons">person</i>
+	                        <p>User Profile</p>
+	                    </a>
+	                </li>
+	                <li>
+	                    <a href="table.html">
+	                        <i class="material-icons">content_paste</i>
+	                        <p>Table List</p>
+	                    </a>
+	                </li>
+	                <li>
+	                    <a href="typography.html">
+	                        <i class="material-icons">library_books</i>
+	                        <p>Typography</p>
+	                    </a>
+	                </li>
+	                <li>
+	                    <a href="icons.html">
+	                        <i class="material-icons">bubble_chart</i>
+	                        <p>Icons</p>
+	                    </a>
+	                </li>
+	                <li>
+	                    <a href="maps.html">
+	                        <i class="material-icons">location_on</i>
+	                        <p>Maps</p>
+	                    </a>
+	                </li>
+	                <li>
+	                    <a href="notifications.html">
+	                        <i class="material-icons text-gray">notifications</i>
+	                        <p>Notifications</p>
+	                    </a>
+	                </li>
+	            </ul>
+	    	</div>
+	    </div>
 
-                </ul>
-            </div>
-        </div>
-        <div class="main-panel">
-            <nav class="navbar navbar-default navbar-fixed">
-                <div class="container-fluid">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                        <a class="navbar-brand" href="#">Dashboard</a>
-                    </div>
-                    <div class="collapse navbar-collapse">
-                        <ul class="nav navbar-nav navbar-left">
-                            <li>
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="fa fa-dashboard"></i>
-                                </a>
-                            </li>
-                        </ul>
+	    <div class="main-panel">
+			<nav class="navbar navbar-transparent navbar-absolute">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle" data-toggle="collapse">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<a class="navbar-brand" href="#">Material Dashboard</a>
+					</div>
+					<div class="collapse navbar-collapse">
+						<ul class="nav navbar-nav navbar-right">
+							<li>
+								<a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
+									<i class="material-icons">dashboard</i>
+									<p class="hidden-lg hidden-md">Dashboard</p>
+								</a>
+							</li>
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+									<i class="material-icons">notifications</i>
+									<span class="notification">5</span>
+									<p class="hidden-lg hidden-md">Notifications</p>
+								</a>
+								<ul class="dropdown-menu">
+									<li><a href="#">Mike John responded to your email</a></li>
+									<li><a href="#">You have 5 new tasks</a></li>
+									<li><a href="#">You're now friend with Andrew</a></li>
+									<li><a href="#">Another Notification</a></li>
+									<li><a href="#">Another One</a></li>
+								</ul>
+							</li>
+							<li>
+								<a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
+	 							   <i class="material-icons">person</i>
+	 							   <p class="hidden-lg hidden-md">Profile</p>
+		 						</a>
+							</li>
+						</ul>
 
-                        <ul class="nav navbar-nav navbar-right">
-                            <li>
-                                <a href="">
-                               Account
-                            </a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
-            <div class="content">
-                <div class="container-fluid">
-                    <div class="row">
-                        @yield('content')
-                    </div>
-                </div>
-            </div>
-            <footer class="footer">
-                <div class="container-fluid">
-                    <nav class="pull-left">
-                        <ul>
-                            <li>
-                                <a href="#">
-                                Home
-                            </a>
-                            </li>
+						<form class="navbar-form navbar-right" role="search">
+							<div class="form-group  is-empty">
+								<input type="text" class="form-control" placeholder="Search">
+								<span class="material-input"></span>
+							</div>
+							<button type="submit" class="btn btn-white btn-round btn-just-icon">
+								<i class="material-icons">search</i><div class="ripple-container"></div>
+							</button>
+						</form>
+					</div>
+				</div>
+			</nav>
 
-                        </ul>
-                    </nav>
-                    <p class="copyright pull-right">
-                        &copy; 2016 <a href="http://www.creative-tim.com">Creative Tim</a>, made with love for a better web
-                    </p>
-                </div>
-            </footer>
-        </div>
-    </div>
+			<div class="content">
+				<div class="container-fluid">
+  				@yield('content')
+				</div>
+			</div>
 
-    <script>
-        var view = $('.index-view');
-        var edit = $('.edit-view');
+			<footer class="footer">
+				<div class="container-fluid">
+					<nav class="pull-left">
+						<ul>
+							<li>
+								<a href="#">
+									Home
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									Company
+								</a>
+							</li>
+							<li>
+								<a href="#">
+									Portfolio
+								</a>
+							</li>
+							<li>
+								<a href="#">
+								   Blog
+								</a>
+							</li>
+						</ul>
+					</nav>
+					<p class="copyright pull-right">
+						&copy; <script>document.write(new Date().getFullYear())</script> <a href="http://www.creative-tim.com/">Creative Tim</a>, made with love for a better web
+					</p>
+				</div>
+			</footer>
 
-        var btn_view = $('.btn_view');
-        var btn_edit = $('.btn_edit');
+			<div class="fixed-plugin">
+			    <div class="dropdown show-dropdown">
+			        <a href="#" data-toggle="dropdown">
+			        <i class="fa fa-cog fa-2x"> </i>
+			        </a>
+			        <ul class="dropdown-menu">
+						<li class="header-title"> Sidebar Filters</li>
+			            <li class="adjustments-line">
+			                <a href="javascript:void(0)" class="switch-trigger">
+			                    <div class="text-center">
+									<span class="badge filter badge-purple active" data-color="purple"></span>
+			                        <span class="badge filter badge-blue" data-color="blue"></span>
+			                        <span class="badge filter badge-green" data-color="green"></span>
+			                        <span class="badge filter badge-orange" data-color="orange"></span>
+			                        <span class="badge filter badge-red" data-color="red"></span>
+			                    </div>
+			                    <div class="clearfix"></div>
+			                </a>
+			            </li>
+			            <li class="header-title">Images</li>
+			            <li class="active">
+			                <a class="img-holder switch-trigger" href="javascript:void(0)">
+			                    <img src="/assets/img/sidebar-1.jpg">
+			                </a>
+			            </li>
+			            <li>
+			                <a class="img-holder switch-trigger" href="javascript:void(0)">
+			                    <img src="/assets/img/sidebar-2.jpg">
+			                </a>
+			            </li>
+			            <li>
+			                <a class="img-holder switch-trigger" href="javascript:void(0)">
+			                    <img src="/assets/img/sidebar-3.jpg">
+			                </a>
+			            </li>
+			            <li>
+			                <a class="img-holder switch-trigger" href="javascript:void(0)">
+			                    <img src="/assets/img/sidebar-4.jpg">
+			                </a>
+			            </li>
 
-        btn_edit.click(function() {
-            view.hide();
-            edit.show();
-        });
-        btn_view.click(function() {
-            view.show();
-            edit.hide();
-        });
-    </script>
+			            <li class="button-container">
+			                <div class="">
+			                    <a href="http://www.creative-tim.com/product/material-dashboard" target="_blank" class="btn btn-primary btn-block">Get Free Demo</a>
+			                </div>
+			                <div class="">
+			                    <a href="http://demos.creative-tim.com/material-dashboard/documentation/tutorial-components.html" target="_blank" class="btn btn-default btn-block btn-fill">Documentation</a>
+			                </div>
+			            </li>
+
+			            <li class="header-title">Thank you for 52 shares!</li>
+
+			            <li class="button-container">
+			                <button id="twitter" class="btn btn-social btn-twitter btn-round"><i class="fa fa-twitter"></i> &middot; 12</button>
+			                <button id="facebook" class="btn btn-social btn-facebook btn-round"><i class="fa fa-facebook-square"> &middot; 40</i></button>
+			            </li>
+
+			        </ul>
+			    </div>
+			</div>
+
+
+		</div>
+	</div>
+
+
+
 </body>
 
+	<!--   Core JS Files   -->
+	<script src="/assets/js/jquery-3.1.0.min.js" type="text/javascript"></script>
+	<script src="/assets/js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="/assets/js/material.min.js" type="text/javascript"></script>
+
+	<!--  Charts Plugin -->
+	<script src="/assets/js/chartist.min.js"></script>
+
+	<!--  Notifications Plugin    -->
+	<script src="/assets/js/bootstrap-notify.js"></script>
+
+	<!--  Google Maps Plugin    -->
+	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
+
+	<!-- Material Dashboard javascript methods -->
+	<script src="/assets/js/material-dashboard.js"></script>
+
+	<!--   Sharrre Library    -->
+    <script src="/assets/js/jquery.sharrre.js"></script>
+
+
+
+<!-- Mirrored from demos.creative-tim.com/material-dashboard/examples/dashboard.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 27 Oct 2016 07:41:19 GMT -->
 </html>
