@@ -24,8 +24,8 @@
     {!! Form::button('Edit',['type'=>'button','class'=>'btn btn-warning btn_edit']) !!}
 </div>
 @else
-<h1>You have not added your SPM resuls yet.</h1>
-<h5>Click {!! link_to_action('Student\SpmController@create','here') !!} to add your result.</h5>
+<h3>You have not added your SPM resuls yet.</h3>
+<button class="btn btn-default">{!! link_to_action('Student\SpmController@create','Add') !!}</button>
 @endif
 
 <div class="container edit-view" style="display:none">
