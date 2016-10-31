@@ -204,6 +204,28 @@
                 </div>
             </div>
             <div class="row">
+                <div class="col-md-2">
+                <h3>Course Type</h3>
+                <h4>*For student recomendation</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">
+                Type of person
+                </div>
+                <div class="col-md-4">
+                    {{ Form::select('personality_type', $personality_type, null, ['class' => 'my_class']) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">
+                Person Description
+                </div>
+                <div class="col-md-6" id='description'>
+
+                </div>
+            </div>
+            <div class="row">
                 {{ csrf_field() }}
                 <div class="col-md-10">
                 </div>
@@ -216,5 +238,20 @@
     @endif
     </div>
 </div>
+
+<script type="text/javascript">
+    $descriptions = [];
+    
+    @foreach($personality_description as $pd)
+        $descriptions.push('{{$pd}}');
+    @endforeach
+
+
+    $('.my_class').change(function () {
+        $val = $('.my_class').val() - 1;
+
+        $('#description').text($descriptions[$val]);
+    }).change();
+</script>
 
 @endsection

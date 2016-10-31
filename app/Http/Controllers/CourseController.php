@@ -13,14 +13,13 @@ use App\Models\Nec;
 use App\Models\PeriodType;
 use App\Models\InstitutionCourse;
 use App\Models\CourseFee;
+use App\Models\PersonalityType;
 use Validator;
 use Auth;
 use View;
 
 class CourseController extends Controller
 {
-
-
     public function add()
     {
       $institutionId = Auth::user()->client->institution->id;
@@ -30,20 +29,25 @@ class CourseController extends Controller
       $modes = StudyMode::pluck('name','id');
       $nec = Nec::pluck('field','code');
       $period_type = PeriodType::pluck('name','id');
+      $personality_type = PersonalityType::pluck('type','id');
+      $personality_description = PersonalityType::pluck('description','id');
+
 
       try{
         return view('client.course.add')
-                              ->with(compact('faculties','levels','modes','nec','period_type','fee_types'))
+                              ->with(compact('personality_type','personality_description','faculties','levels','modes','nec','period_type','fee_types'))
                               ->with(['status'=>'hahaha']);
       }catch(Error $x){
         return view('client.course.add')
-                              ->with(compact('faculties','levels','modes','nec','period_type','fee_types'))
+                              ->with(compact('personality_description','personality_type','faculties','levels','modes','nec','period_type','fee_types'))
                               ->withError(['status'=>'hahaha']);
       }
     }
 
     public function store(Request $r)
     {
+      return $r;
+
       $validator = Validator::make($r->all(), [
              'name_eng' => 'required|max:255',
              'name_ms' => 'required|max:255',
@@ -184,13 +188,17 @@ class CourseController extends Controller
 
       $courseFee = CourseFee::whereCourseId($id)->get();
 
+      $personality_type = PersonalityType::pluck('type','id')->toArray();
+
+      $personality_description = PersonalityType::pluck('description','id');
+
         // return $faculties;
 
         if($faculties == null ){
           $faculties = Faculty::whereInstitution_id(Auth::user()->client->institution->id)->paginate(10);
           return View::make('client.faculty.view',compact('faculties'));
         }else {
-          return View::make('client.course.edit',compact('course','faculties','levels','modes','period_type','nec','courseFee'));
+          return View::make('client.course.edit',compact('personality_type','personality_description','course','faculties','levels','modes','period_type','nec','courseFee'));
 
         }
 
