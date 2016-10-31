@@ -14,7 +14,7 @@
 				<form method="get" action="{{ action('Student\PersonalityController@set2') }}">
 					<div class="checkbox">
 						<label>
-										<input type="checkbox" name="a1" value="1"><span style="background-color : grey;">Repair a car </span></br>
+										<input type="checkbox" name="a1" value="1">Repair a car </br>
 									</label>
 					</div>
 					<div class="checkbox">
