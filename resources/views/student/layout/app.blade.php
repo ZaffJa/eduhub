@@ -8,7 +8,7 @@
 	<link rel="icon" type="image/png" href="/assets/img/favicon.png" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
-	<title>Material Dashboard by Creative Tim | Free Material Bootstrap Admin</title>
+	<title>Student Dashboard</title>
 
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
@@ -38,7 +38,7 @@
     <link href="/assets/css/demo.css" rel="stylesheet" />
 
     <!--     Fonts and icons     -->
-    <link href="../../../maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+    <link href="../../../assets/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
 		@yield('header-css')
 </head>
@@ -47,7 +47,7 @@
 
 	<div class="wrapper">
 
-	    <div class="sidebar" data-color="purple" data-image="/assets/img/sidebar-1.jpg">
+	    <div class="sidebar" data-color="red" data-image="/assets/img/sidebar-1.jpg">
 			<!--
 		        Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
 
@@ -55,8 +55,8 @@
 		    -->
 
 			<div class="logo">
-				<a href="http://www.creative-tim.com/" class="simple-text">
-					Creative Tim
+				<a href="#" class="simple-text">
+					 Eduhub.my
 				</a>
 			</div>
 
@@ -77,16 +77,16 @@
 	                <li>
 	                    <a href="table.html">
 	                        <i class="material-icons">content_paste</i>
-	                        <p>Table List</p>
+	                        <p>Personality Test</p>
 	                    </a>
 	                </li>
 	                <li>
 	                    <a href="typography.html">
-	                        <i class="material-icons">library_books</i>
-	                        <p>Typography</p>
+	                        <i class="material-icons">search</i>
+	                        <p>Find Institution</p>
 	                    </a>
 	                </li>
-	                <li>
+	                <!-- <li>
 	                    <a href="icons.html">
 	                        <i class="material-icons">bubble_chart</i>
 	                        <p>Icons</p>
@@ -97,7 +97,7 @@
 	                        <i class="material-icons">location_on</i>
 	                        <p>Maps</p>
 	                    </a>
-	                </li>
+	                </li> -->
 	                <li>
 	                    <a href="notifications.html">
 	                        <i class="material-icons text-gray">notifications</i>
@@ -118,7 +118,7 @@
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-						<a class="navbar-brand" href="#">Material Dashboard</a>
+						<a class="navbar-brand" href="#">Hello, <b>User!</b></a>
 					</div>
 					<div class="collapse navbar-collapse">
 						<ul class="nav navbar-nav navbar-right">
@@ -175,34 +175,34 @@
 						<ul>
 							<li>
 								<a href="#">
-									Home
+									Dashboard
 								</a>
 							</li>
 							<li>
 								<a href="#">
-									Company
+									Institutions
 								</a>
 							</li>
 							<li>
 								<a href="#">
-									Portfolio
+									Personality Test
 								</a>
 							</li>
 							<li>
 								<a href="#">
-								   Blog
+								   Contact Us
 								</a>
 							</li>
 						</ul>
 					</nav>
 					<p class="copyright pull-right">
-						&copy; <script>document.write(new Date().getFullYear())</script> <a href="http://www.creative-tim.com/">Creative Tim</a>, made with love for a better web
+						&copy; <script>document.write(new Date().getFullYear())</script> <a href="http://www.eduhub.my">eduhub.my</a>, made with love for a better future
 					</p>
 				</div>
 			</footer>
 
 			<div class="fixed-plugin">
-			    <div class="dropdown show-dropdown">
+			    <div class="dropdown hide-dropdown">
 			        <a href="#" data-toggle="dropdown">
 			        <i class="fa fa-cog fa-2x"> </i>
 			        </a>
@@ -242,21 +242,8 @@
 			                </a>
 			            </li>
 
-			            <li class="button-container">
-			                <div class="">
-			                    <a href="http://www.creative-tim.com/product/material-dashboard" target="_blank" class="btn btn-primary btn-block">Get Free Demo</a>
-			                </div>
-			                <div class="">
-			                    <a href="http://demos.creative-tim.com/material-dashboard/documentation/tutorial-components.html" target="_blank" class="btn btn-default btn-block btn-fill">Documentation</a>
-			                </div>
-			            </li>
 
-			            <li class="header-title">Thank you for 52 shares!</li>
 
-			            <li class="button-container">
-			                <button id="twitter" class="btn btn-social btn-twitter btn-round"><i class="fa fa-twitter"></i> &middot; 12</button>
-			                <button id="facebook" class="btn btn-social btn-facebook btn-round"><i class="fa fa-facebook-square"> &middot; 40</i></button>
-			            </li>
 
 			        </ul>
 			    </div>
@@ -290,6 +277,7 @@
 	<!--   Sharrre Library    -->
     <script src="/assets/js/jquery.sharrre.js"></script>
 
+<script src="/assets/js/demo.js"></script>
 
 
 <!-- Mirrored from demos.creative-tim.com/material-dashboard/examples/dashboard.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 27 Oct 2016 07:41:19 GMT -->
