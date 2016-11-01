@@ -9,7 +9,7 @@ use OwenIt\Auditing\AuditingTrait;
 class Role extends Model
 {
     use AuditingTrait, SoftDeletes;
-        
+
     protected $guarded = [];
     public function user()
     {

@@ -12,12 +12,22 @@
 Auth::routes();
 
 
-Route::get('/students/spm', 'Student\SpmController@index');
-Route::get('/students/spm/create', 'Student\SpmController@create');
-Route::post('/students/spm/update', 'Student\SpmController@update');
-Route::post('/students/spm/create', 'Student\SpmController@store');
 
 
+Route::group(['prefix'=>'student','namespace'=>'Student'],function(){
+
+    Route::get('register','RegisterController@create');
+    Route::post('register','RegisterController@store');
+
+    Route::get('spm', 'SpmController@index');
+    Route::get('spm/create', 'SpmController@create');
+    Route::post('spm/update', 'SpmController@update');
+    Route::post('spm/create', 'SpmController@store');
+
+    //Socialite
+    Route::get('/redirect/{provider}', 'SocialAuthController@redirect');
+    Route::get('/callback/{provider}', 'SocialAuthController@callback');
+});
 
 
 Route::post('institutions/v/{slug}/enquiry/{course}','EnquiryController@store');
