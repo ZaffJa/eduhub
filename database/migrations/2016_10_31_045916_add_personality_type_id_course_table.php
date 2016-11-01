@@ -15,10 +15,10 @@ class AddPersonalityTypeIdCourseTable extends Migration
     {
         if(Schema::hasTable('courses')) {
             Schema::table('courses', function ($table){
-                $table->integer('personality_type_id')->unsigned();
+                $table->integer('personality_type_id')->nullable()->unsigned();
             });
 
-            Schema::table('courses', function (Blueprint $table) {
+            Schema::table('courses', function ( $table) {
             $table->foreign('personality_type_id')
                     ->references('id')->on('personality_types')
                     ->onDelete('cascade')

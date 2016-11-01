@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Student;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Student\PersonalityResult;
+use App\Models\PersonalityType;
+use App\Models\Course;
 use View;
 
 
@@ -294,6 +296,7 @@ class PersonalityController extends Controller
 
     public function result(Request $r)
   {
+
     if(!session()->exists('set6'))
     {
       if($r->c6){
@@ -316,6 +319,8 @@ class PersonalityController extends Controller
     
     session(['set6' => 1]);
     
+
+
     //Storing result into array to sort using algorithm
     $res = array
     (
@@ -363,7 +368,11 @@ class PersonalityController extends Controller
         }
     }
 
-    return View::make('student.personality.result',compact('res'));
+    return $res;
+
+    $personalityType = PersonalityType::all();
+
+    return View::make('student.personality.result',compact('res','personalityType'));
   }
 
   public function sort($res)

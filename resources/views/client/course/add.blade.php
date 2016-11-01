@@ -214,7 +214,7 @@
                 Type of person
                 </div>
                 <div class="col-md-4">
-                    {{ Form::select('personality_type', $personality_type, null, ['class' => 'my_class']) }}
+                    {{ Form::select('personality_type_id', $personality_type, null, ['class' => 'my_class']) }}
                 </div>
             </div>
             <div class="row">

@@ -13,10 +13,14 @@
 	</tr>
 </thead>
 @foreach($res as $r)
-	<tr>
-		<td>{{$r[1]}}</td>
-		<td>{{$r[0]}} </td>
-	</tr>
+	@foreach($personalityType as $pt)
+		@if($r[1] == $pt->id)
+		<tr>
+			<td>{{$r[1]}}</td>
+			<td>{{$r[0]}} </td>
+		</tr>
+		@endif
+	@endforeach
 @endforeach
 </table>
 
