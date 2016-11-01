@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Student;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Student\PersonalityResult;
 use View;
 
 
@@ -24,8 +25,8 @@ class PersonalityController extends Controller
     session(['i' => 0]);
     session(['s' => 0]);
     session(['c' => 0]);
-    //Delete session set1 that is used for checking if set1 data is processed
-    //If user pressed back
+    //Set1 is used for checking if set1 data is processed
+    //If user pressed back Delete session set1
     session()->forget('set1');
 
   	return View::make('student.personality.set1');
@@ -80,8 +81,8 @@ class PersonalityController extends Controller
     }
     //Set session set1 to mark that set1 data is already process
     session(['set1' => 1]);
-    //Delete session set1 that is used for checking if set1 data is processed
-    //If user pressed back
+    //Set1 that is used for checking if set1 data is processed
+    //If user pressed back, delete session set1
     session()->forget('set2');
     
     return View::make('student.personality.set2');
@@ -312,17 +313,55 @@ class PersonalityController extends Controller
         session(['c' => $rea += 1]);
       }
     }
+    
     session(['set6' => 1]);
+    
+    //Storing result into array to sort using algorithm
     $res = array
     (
     array('Realistic',session('r')),
     array('Artistic',session('a')),
     array('Investigative',session('i')),
-    array('Entreprising',session('e')),
+    array('Enterprising',session('e')),
     array('Social',session('s')),
     array('Conventional',session('c'))
     );  
+    //Sorting result
     $res = $this->sort($res);
+
+    if(!PersonalityResult::whereUserId(9)->first())
+    {
+      PersonalityResult::create([
+            'user_id'=>9,
+            'realistic'=>session('r'),
+            'artistic'=>session('a'),
+            'investigative'=>session('i'),
+            'enterprising'=>session('e'),
+            'social'=>session('s'),
+            'conventional'=>session('c')
+        ]);
+    }
+    else
+    {
+      try{
+      $personality = PersonalityResult::whereUserId(9)->firstOrFail();
+      
+      $personality->realistic = session('r');
+      $personality->artistic = session('a');
+      $personality->investigative = session('i');
+      $personality->enterprising = session('e');
+      $personality->social = session('s');
+      $personality->conventional = session('c');
+      
+      $personality->save();
+      
+      }catch(\Illuminate\Database\QueryException $ex){
+                return redirect()
+                            ->back()
+                            ->withErrors($ex->errorInfo[2])
+                            ->withInput();
+        }
+    }
 
     return View::make('student.personality.result',compact('res'));
   }

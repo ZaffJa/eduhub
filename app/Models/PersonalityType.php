@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Models\Student;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use OwenIt\Auditing\AuditingTrait;
 
-class SpmSubject extends Model
+class PersonalityType extends Model
 {
     use AuditingTrait, SoftDeletes;
 }
