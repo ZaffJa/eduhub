@@ -40,6 +40,27 @@
     <!--     Fonts and icons     -->
     <link href="../../../assets/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
+
+	<!--   Core JS Files   -->
+	<script src="/assets/js/jquery-3.1.0.min.js" type="text/javascript"></script>
+	<script src="/assets/js/bootstrap.min.js" type="text/javascript"></script>
+	<script src="/assets/js/material.min.js" type="text/javascript"></script>
+	<!--  Charts Plugin -->
+	<script src="/assets/js/chartist.min.js"></script>
+
+	<!--  Notifications Plugin    -->
+	<script src="/assets/js/bootstrap-notify.js"></script>
+
+	<!--  Google Maps Plugin    -->
+	<!-- <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script> -->
+
+	<!-- Material Dashboard javascript methods -->
+	<script src="/assets/js/material-dashboard.js"></script>
+
+	<!--   Sharrre Library    -->
+	<script src="/assets/js/jquery.sharrre.js"></script>
+
+	<script src="/assets/js/demo.js"></script>
 		@yield('header-css')
 </head>
 
@@ -62,26 +83,32 @@
 
 	    	<div class="sidebar-wrapper">
 	            <ul class="nav">
-	                <li class="active">
-	                    <a href="dashboard.html">
+	                <li class="{{ Request::is('student') ? 'active' : '' }}">
+						<a href="{{action('Student\DashboardController@view')}}">
 	                        <i class="material-icons">dashboard</i>
 	                        <p>Dashboard</p>
 	                    </a>
 	                </li>
-	                <li>
-	                    <a href="user.html">
+					<li class="{{ Request::is('student/profile') ? 'active' : '' }}">
+	                    <a href="{{action('Student\ProfileController@index')}}">
 	                        <i class="material-icons">person</i>
 	                        <p>User Profile</p>
 	                    </a>
 	                </li>
-	                <li>
-	                    <a href="table.html">
+					<li class="{{ Request::is('student/spm') ? 'active' : '' }}">
+	                    <a href="{{action('Student\SpmController@index')}}">
+	                        <i class="material-icons">person</i>
+	                        <p>SPM</p>
+	                    </a>
+	                </li>
+					<li class="{{ Request::is('student/personality-test') ? 'active' : '' }}">
+	                    <a href="#">
 	                        <i class="material-icons">content_paste</i>
 	                        <p>Personality Test</p>
 	                    </a>
 	                </li>
-	                <li>
-	                    <a href="typography.html">
+					<li class="{{ Request::is('student/search-institution') ? 'active' : '' }}">
+	                    <a href="#">
 	                        <i class="material-icons">search</i>
 	                        <p>Find Institution</p>
 	                    </a>
@@ -254,31 +281,20 @@
 	</div>
 
 
+	<script>
 
+	    $('.btn_edit').on('click',function(){
+	        $('.index-view').hide();
+	        $('.edit-view').show();
+	    });
+
+	    $('.btn_view').on('click',function(){
+	        $('.edit-view').hide();
+	        $('.index-view').show();
+
+	    });
+
+	</script>
 </body>
-
-	<!--   Core JS Files   -->
-	<script src="/assets/js/jquery-3.1.0.min.js" type="text/javascript"></script>
-	<script src="/assets/js/bootstrap.min.js" type="text/javascript"></script>
-	<script src="/assets/js/material.min.js" type="text/javascript"></script>
-
-	<!--  Charts Plugin -->
-	<script src="/assets/js/chartist.min.js"></script>
-
-	<!--  Notifications Plugin    -->
-	<script src="/assets/js/bootstrap-notify.js"></script>
-
-	<!--  Google Maps Plugin    -->
-	<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
-
-	<!-- Material Dashboard javascript methods -->
-	<script src="/assets/js/material-dashboard.js"></script>
-
-	<!--   Sharrre Library    -->
-    <script src="/assets/js/jquery.sharrre.js"></script>
-
-<script src="/assets/js/demo.js"></script>
-
-
 <!-- Mirrored from demos.creative-tim.com/material-dashboard/examples/dashboard.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 27 Oct 2016 07:41:19 GMT -->
 </html>

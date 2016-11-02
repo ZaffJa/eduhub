@@ -10,6 +10,7 @@ use Socialite;
 use App\Models\Student\SocialAccount;
 use Auth;
 use App\User;
+use App\Models\Role;
 
 class SocialAuthController extends Controller
 {
@@ -27,6 +28,7 @@ class SocialAuthController extends Controller
                     ->first();
 
         if ($account) {
+            return $account->user;
             Auth::login($account->user);
 
             return redirect()->action('Student\SpmController@index');
@@ -41,15 +43,21 @@ class SocialAuthController extends Controller
 
             if (!$user) {
 
-                $user = new User;
-                $user->email = $providerUser->getEmail();
-                $user->name = $providerUser->getName();
-                $user->save();
+                $user = User::create([
+                    'email'=>$providerUser->getEmail(),
+                    'name'=>$providerUser->getName(),
+                ]);
 
             }
 
             $account->user()->associate($user);
             $account->save();
+
+            //Assign role student upon registration
+            Role::create([
+                'user_id'=>$user->id,
+                'role_id'=>4
+            ]);
         }
 
         Auth::login($user);

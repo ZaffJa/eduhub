@@ -16,23 +16,38 @@ Auth::routes();
 
 Route::group(['prefix'=>'student','namespace'=>'Student'],function(){
 
+    Route::get('/login', 'LoginController@view');
+    Route::post('/login', 'LoginController@login');
+
     Route::get('register','RegisterController@create');
     Route::post('register','RegisterController@store');
-
-    Route::get('spm', 'SpmController@index');
-    Route::get('spm/create', 'SpmController@create');
-    Route::post('spm/update', 'SpmController@update');
-    Route::post('spm/create', 'SpmController@store');
 
     //Socialite
     Route::get('/redirect/{provider}', 'SocialAuthController@redirect');
     Route::get('/callback/{provider}', 'SocialAuthController@callback');
+
+    Route::group(['middleware'=>['role.auth','auth','empty.null']],function(){
+        Route::get('/', 'DashboardController@view');
+
+
+        Route::get('spm', 'SpmController@index');
+        Route::get('spm/create', 'SpmController@create');
+        Route::post('spm/create', 'SpmController@store');
+        Route::post('spm/update', 'SpmController@update');
+
+        Route::get('profile','ProfileController@index');
+        Route::post('profile','ProfileController@update');
+    });
+
+
+
+
+
 });
 
 
 Route::post('institutions/v/{slug}/enquiry/{course}','EnquiryController@store');
 Route::get('/agent', 'AgentController@dashboard')->name('agent.dashboard');
-Route::get('/students', 'Student\DashboardController@view');
 Route::get('/personality','Student\PersonalityController@view');
 Route::get('/set1','Student\PersonalityController@set1');
 Route::get('/set2','Student\PersonalityController@set2');

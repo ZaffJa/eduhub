@@ -57,4 +57,9 @@ class User extends Authenticatable
 
         return false;
     }
+
+    public function student_profile_picture()
+    {
+        return $this->hasOne('App\Models\Student\StudentFile');
+    }
 }

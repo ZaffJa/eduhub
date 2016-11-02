@@ -28,6 +28,10 @@ class RoleAuth
 
             return $next($request);
         }
+        if (strpos($url, 'student') !== false && Auth::user()->hasRole('student')) {
+
+            return $next($request);
+        }
 
 
 

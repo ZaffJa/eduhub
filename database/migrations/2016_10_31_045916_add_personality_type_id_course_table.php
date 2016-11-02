@@ -15,14 +15,14 @@ class AddPersonalityTypeIdCourseTable extends Migration
     {
         if(Schema::hasTable('courses')) {
             Schema::table('courses', function ($table){
-                $table->integer('personality_type_id')->unsigned();
+                $table->integer('personality_type_id')->unsigned()->nullable();
             });
 
             Schema::table('courses', function (Blueprint $table) {
             $table->foreign('personality_type_id')
                     ->references('id')->on('personality_types')
-                    ->onDelete('cascade')
-                    ->onUpdate('restrict');
+                    ->onDelete('set null')
+                    ->onUpdate('cascade');
             });
         }
     }
@@ -34,10 +34,9 @@ class AddPersonalityTypeIdCourseTable extends Migration
      */
     public function down()
     {
-        if(Schema::hasColumn('courses','personality_type_id')) {
-            Schema::table('course', function ($table){
-                $table->dropColumn(['personality_type_id']);
-            });
-        }
+        Schema::table('courses', function ($table){
+            $table->dropForeign(['personality_type_id']);
+            $table->dropColumn(['personality_type_id']);
+        });
     }
 }

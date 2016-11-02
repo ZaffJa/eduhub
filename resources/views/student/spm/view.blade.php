@@ -25,7 +25,7 @@
 </div>
 @else
 <h3>You have not added your SPM resuls yet.</h3>
-<button class="btn btn-default">{!! link_to_action('Student\SpmController@create','Add') !!}</button>
+{!! link_to_action('Student\SpmController@create','Add',null,['class'=>'btn btn-default']) !!}
 @endif
 
 <div class="container edit-view" style="display:none">
@@ -34,7 +34,6 @@
 
         @include('student.partials.spm-result',['submitButton'=>'Update'])
 
-        {!! Form::button('Cancel',['type'=>'button','class'=>'btn btn-warning btn_view']) !!}
 
     {!! Form::close() !!}
 </div>
