@@ -79,14 +79,14 @@ class PersonalityController extends Controller
       if($r->d1){
         $rea = session('i');
         session(['i' => $rea += 1]);
-      }  
+      }
     }
     //Set session set1 to mark that set1 data is already process
     session(['set1' => 1]);
     //Set1 that is used for checking if set1 data is processed
     //If user pressed back, delete session set1
     session()->forget('set2');
-    
+
     return View::make('student.personality.set2');
   }
 
@@ -188,7 +188,7 @@ class PersonalityController extends Controller
     }
     session(['set3' => 1]);
     session()->forget('set4');
-    
+
     return View::make('student.personality.set4');
   }
 
@@ -239,7 +239,7 @@ class PersonalityController extends Controller
     }
     session(['set4' => 1]);
     session()->forget('set5');
-    
+
     return View::make('student.personality.set5');
   }
 
@@ -290,7 +290,7 @@ class PersonalityController extends Controller
     }
     session(['set5' => 1]);
     session()->forget('set6');
-    
+
     return View::make('student.personality.set6');
   }
 
@@ -316,9 +316,9 @@ class PersonalityController extends Controller
         session(['c' => $rea += 1]);
       }
     }
-    
+
     session(['set6' => 1]);
-    
+
 
 
     //Storing result into array to sort using algorithm
@@ -330,7 +330,7 @@ class PersonalityController extends Controller
     array('Enterprising',session('e')),
     array('Social',session('s')),
     array('Conventional',session('c'))
-    );  
+    );
     //Sorting result
     $res = $this->sort($res);
 
@@ -350,16 +350,16 @@ class PersonalityController extends Controller
     {
       try{
       $personality = PersonalityResult::whereUserId(9)->firstOrFail();
-      
+
       $personality->realistic = session('r');
       $personality->artistic = session('a');
       $personality->investigative = session('i');
       $personality->enterprising = session('e');
       $personality->social = session('s');
       $personality->conventional = session('c');
-      
+
       $personality->save();
-      
+
       }catch(\Illuminate\Database\QueryException $ex){
                 return redirect()
                             ->back()
@@ -394,7 +394,7 @@ class PersonalityController extends Controller
       }
       $n -= 1;
     }while($swapped != false);
-    
+
     return $res;
   }
 

@@ -3,7 +3,7 @@
 <div class="row">
 	<div class="col-md-offset-1 col-md-10">
 		<div class="card">
-			<div class="card-header" data-background-color="purple">
+			<div class="card-header" data-background-color="green">
 				<h4 class="title">Personality Test</h4>
 				<p class="category">Instructions: click or tap the box to tick the box, tick as many box as you like <br>Tick the item that you would enjoy do </p>
 			</div>
