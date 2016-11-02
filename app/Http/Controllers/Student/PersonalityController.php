@@ -319,8 +319,6 @@ class PersonalityController extends Controller
     
     session(['set6' => 1]);
     
-
-
     //Storing result into array to sort using algorithm
     $res = array
     (
@@ -334,45 +332,62 @@ class PersonalityController extends Controller
     //Sorting result
     $res = $this->sort($res);
 
-    if(!PersonalityResult::whereUserId(9)->first())
-    {
-      PersonalityResult::create([
-            'user_id'=>9,
-            'realistic'=>session('r'),
-            'artistic'=>session('a'),
-            'investigative'=>session('i'),
-            'enterprising'=>session('e'),
-            'social'=>session('s'),
-            'conventional'=>session('c')
-        ]);
+    switch ($res[0][0]) {
+      case 'Realistic':
+        $id = 1;
+        break;
+
+      case 'Artistic':
+        $id = 2;
+        break;
+
+      case 'Realistic':
+        $id = 3;
+        break;
+
+      case 'Realistic':
+        $id = 4;
+        break;
+
+      case 'Realistic':
+        $id = 5;
+        break;
+      
+      case 'Conventional':
+        $id = 6;
+        break;
     }
-    else
-    {
-      try{
-      $personality = PersonalityResult::whereUserId(9)->firstOrFail();
-      
-      $personality->realistic = session('r');
-      $personality->artistic = session('a');
-      $personality->investigative = session('i');
-      $personality->enterprising = session('e');
-      $personality->social = session('s');
-      $personality->conventional = session('c');
-      
-      $personality->save();
-      
-      }catch(\Illuminate\Database\QueryException $ex){
+
+    $personalityType = PersonalityType::all();
+    $course = Course::wherePersonalityTypeId($id)->orderByRaw("RAND()")->take(5)->get();
+
+    try{
+      $personalityResult = PersonalityResult::whereUserId(9)->first();
+
+      if($personalityResult == null)
+      {
+        $personalityResult = new PersonalityResult; 
+      }
+
+      $personalityResult->user_id = 1;
+      $personalityResult->realistic = session('r');
+      $personalityResult->artistic = session('a');
+      $personalityResult->investigative = session('i');
+      $personalityResult->enterprising = session('e');
+      $personalityResult->social = session('s');
+      $personalityResult->conventional = session('c');
+    
+      $personalityResult->save();
+
+
+    return View::make('student.personality.result',compact('res','personalityType','course'));
+    }catch(\Illuminate\Database\QueryException $ex){
                 return redirect()
                             ->back()
                             ->withErrors($ex->errorInfo[2])
                             ->withInput();
-        }
     }
-
-    return $res;
-
-    $personalityType = PersonalityType::all();
-
-    return View::make('student.personality.result',compact('res','personalityType'));
+    
   }
 
   public function sort($res)
