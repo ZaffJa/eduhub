@@ -5,6 +5,20 @@
 
 <h1>Here are your personality result</h1>
 <h3>You are a {{$res[0][0]}} person</h3>
+<h4>
+	@foreach($personalityType as $pt)
+		@if($res[0][0] == $pt->type)
+			{{$pt->description}}
+		@endif
+	@endforeach
+</h4>
+<h3>Recommended course for you</h3>
+@foreach($course as $c)
+<h5>
+{{$c->name_en}} at {{$c->institution->institution->name}}
+</h5>
+@endforeach
+
 <table>
 <thead>
 	<tr>
@@ -13,10 +27,10 @@
 	</tr>
 </thead>
 @foreach($res as $r)
-	<tr>
-		<td>{{$r[1]}}</td>
-		<td>{{$r[0]}} </td>
-	</tr>
+		<tr>
+			<td>{{$r[1]}}</td>
+			<td>{{$r[0]}} </td>
+		</tr>
 @endforeach
 </table>
 

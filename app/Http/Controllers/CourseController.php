@@ -29,7 +29,7 @@ class CourseController extends Controller
       $modes = StudyMode::pluck('name','id');
       $nec = Nec::pluck('field','code');
       $period_type = PeriodType::pluck('name','id');
-      $personality_type = PersonalityType::pluck('type','id');
+      $personality_type = PersonalityType::pluck('type','id')->toArray();
       $personality_description = PersonalityType::pluck('description','id');
 
 
@@ -46,7 +46,6 @@ class CourseController extends Controller
 
     public function store(Request $r)
     {
-      return $r;
 
       $validator = Validator::make($r->all(), [
              'name_eng' => 'required|max:255',
@@ -89,6 +88,7 @@ class CourseController extends Controller
             $course->commencement = $r->commencement;
             $course->qualification = $r->qualification;
             $course->mqa_reference_no = $r->mqa;
+            $course->personality_type_id = $r->personality_type_id;
 
             $course->save();
 
@@ -207,6 +207,7 @@ class CourseController extends Controller
      public function update(Request $r,$id)
      {
 
+
       try{
         $course = Course::whereId($id)->firstOrFail();
 
@@ -225,6 +226,7 @@ class CourseController extends Controller
         $course->approved = $r->approved;
         $course->commencement = $r->commencement;
         $course->mqa_reference_no = $r->mqa_reference_no;
+        $course->personality_type_id = $r->personality_type_id;
         $course->save();
 
         $alumni = CourseFee::whereCourseIdAndFeeId($id,1)->first();

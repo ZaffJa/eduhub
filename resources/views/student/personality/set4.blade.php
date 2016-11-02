@@ -50,7 +50,7 @@
 	<input type="checkbox" name="f4" value="1">Take telephone messages </br>		</label>
 					</div>
 
-					<button> Next </button>
+					<button class="btn btn-info"> Next </button>
 				</form>
 			</div>
 
