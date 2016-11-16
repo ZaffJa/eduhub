@@ -12,8 +12,6 @@
 Auth::routes();
 
 
-
-
 Route::group(['prefix'=>'student','namespace'=>'Student'],function(){
 
     Route::get('/login', 'LoginController@view');
@@ -29,7 +27,6 @@ Route::group(['prefix'=>'student','namespace'=>'Student'],function(){
     Route::group(['middleware'=>['role.auth','auth','empty.null']],function(){
         Route::get('/', 'DashboardController@view');
 
-
         Route::get('spm', 'SpmController@index');
         Route::get('spm/create', 'SpmController@create');
         Route::post('spm/create', 'SpmController@store');
@@ -38,10 +35,6 @@ Route::group(['prefix'=>'student','namespace'=>'Student'],function(){
         Route::get('profile','ProfileController@index');
         Route::post('profile','ProfileController@update');
     });
-
-
-
-
 
 });
 

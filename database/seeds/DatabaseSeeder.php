@@ -11,12 +11,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        $this->call(RoleTableSeeder::class);
-        $this->call(BankTypesTableSeeder::class);
-        $this->call(ShortFieldsTableSeeder::class);
-        $this->call(FileCategoryTableSeeder::class);
         $this->call(AdminRoleSeeder::class);
+        $this->call(BankTypesTableSeeder::class);
+        $this->call(CareerImageFileCatergorySeeder::class);
+        $this->call(CareerImageFileSeeder::class);
+        $this->call(PersonalityTypeSeeder::class);
+        $this->call(FileCategoryTableSeeder::class);
+        $this->call(RoleTableSeeder::class);
+        $this->call(ShortFieldsTableSeeder::class);
         $this->call(SpmSubjectSeeder::class);
-
     }
 }

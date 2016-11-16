@@ -16,7 +16,6 @@ class AddPersonalityTypeIdCourseTable extends Migration
         if(Schema::hasTable('courses')) {
             Schema::table('courses', function ($table){
                 $table->integer('personality_type_id')->unsigned()->nullable();
-
             });
 
             Schema::table('courses', function ( $table) {
