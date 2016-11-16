@@ -319,8 +319,6 @@ class PersonalityController extends Controller
 
     session(['set6' => 1]);
 
-
-
     //Storing result into array to sort using algorithm
     $res = array
     (
@@ -368,11 +366,38 @@ class PersonalityController extends Controller
         }
     }
 
-    return $res;
+    switch ($res[0][0]) 
+    {
+      case 'Realistic':
+        $id = 1;
+        break;
 
+      case 'Artistic':
+        $id = 2;
+        break;
+
+      case 'Investigative':
+        $id = 3;
+        break;
+
+      case 'Enterprising':
+        $id = 4;
+        break;
+
+      case 'Social':
+        $id = 5;
+        break;
+
+      case 'Conventional':
+        $id = 6;
+        break;
+      
+    }
+    
     $personalityType = PersonalityType::all();
+    $course = Course::wherePersonalityTypeId($id)->orderByRaw("Rand()")->take(5)->get();
 
-    return View::make('student.personality.result',compact('res','personalityType'));
+    return View::make('student.personality.result',compact('res','personalityType','course'));
   }
 
   public function sort($res)
