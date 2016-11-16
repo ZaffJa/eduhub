@@ -6,6 +6,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use OwenIt\Auditing\AuditingTrait;
+use App\Models\ShortCourse\Provider;
 
 class User extends Authenticatable
 {
@@ -30,11 +31,20 @@ class User extends Authenticatable
     ];
 
 
+    /**
+     * [client description]
+     * @return [type] [description]
+     */
     public function client()
     {
         return $this->belongsTo('App\Models\InstitutionUser','id','user_id');
     }
 
+    /**
+     * Return if user is a short provider
+     * @return Provider
+     *
+     */
     public function short_provider()
     {
         return $this->belongsTo('App\Models\ShortCourse\Provider','id','parent_id');
