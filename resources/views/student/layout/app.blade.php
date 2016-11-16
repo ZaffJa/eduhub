@@ -265,12 +265,12 @@
 	<script src="/assets/js/jquery-3.1.0.min.js" type="text/javascript"></script>
 	<script src="/assets/js/bootstrap.min.js" type="text/javascript"></script>
 	<script src="/assets/js/material.min.js" type="text/javascript"></script>
-
+	
 	<!--  Charts Plugin -->
 	<script src="/assets/js/chartist.min.js"></script>
 	<script src="/assets/js/graph.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.11.8/TweenMax.min.js"></script>
-	
+
 	<!--  Notifications Plugin    -->
 	<script src="/assets/js/bootstrap-notify.js"></script>
 

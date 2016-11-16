@@ -2,8 +2,7 @@
 var sides  = 6;
 var canvasSize = 500;
 var padding = 50;
-var data = [63,55,70,87,80,80];
-var feilds = ['Back-end','Video','Creative','Front-end','Audio','Analytic'];
+var feilds = ['Realistic','Artistic','Investigative','Enterprising','Social','Conventional'];
 
 // Variable
 var canvas = $('#graph')[0];

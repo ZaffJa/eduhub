@@ -3,6 +3,8 @@
 @section('title', 'Dashboard')
 @section('content')
 
+
+
 <h1>Here are your personality result</h1>
 <h3>You are a {{$res[0][0]}} person</h3>
 <h4>
@@ -53,3 +55,15 @@
 <h4>The "Organizers." People who like to work with data, have clerical and/or numerical ability, and who enjoy work activites that follow set procedures and routines. Conventional types are people who are good at coordinating people, places, or events. Possible careers include accountant, secretary, bank teller, dental assistant, and math teacher.</h4>
 
 @endsection
+<!--  Charts Plugin -->
+<script src="/assets/js/chartist.min.js"></script>
+<script type="text/javascript">
+	var data = [];
+
+	@foreach($res as $r)
+		data.push('{{$r[1]}}' * 10);
+	@endforeach
+
+</script>
+<script src="/assets/js/graph.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.11.8/TweenMax.min.js"></script>
