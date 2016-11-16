@@ -268,7 +268,9 @@
 
 	<!--  Charts Plugin -->
 	<script src="/assets/js/chartist.min.js"></script>
-
+	<script src="/assets/js/graph.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.11.8/TweenMax.min.js"></script>
+	
 	<!--  Notifications Plugin    -->
 	<script src="/assets/js/bootstrap-notify.js"></script>
 

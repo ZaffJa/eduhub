@@ -332,10 +332,10 @@ class PersonalityController extends Controller
     //Sorting result
     $res = $this->sort($res);
 
-    if(!PersonalityResult::whereUserId(9)->first())
+    if(!PersonalityResult::whereUserId(4)->first())
     {
       PersonalityResult::create([
-            'user_id'=>9,
+            'user_id'=>4,
             'realistic'=>session('r'),
             'artistic'=>session('a'),
             'investigative'=>session('i'),
@@ -347,7 +347,7 @@ class PersonalityController extends Controller
     else
     {
       try{
-      $personality = PersonalityResult::whereUserId(9)->firstOrFail();
+      $personality = PersonalityResult::whereUserId(4)->firstOrFail();
 
       $personality->realistic = session('r');
       $personality->artistic = session('a');
@@ -366,7 +366,7 @@ class PersonalityController extends Controller
         }
     }
 
-    switch ($res[0][0]) 
+    switch ($res[0][0])
     {
       case 'Realistic':
         $id = 1;
@@ -391,9 +391,9 @@ class PersonalityController extends Controller
       case 'Conventional':
         $id = 6;
         break;
-      
+
     }
-    
+
     $personalityType = PersonalityType::all();
     $course = Course::wherePersonalityTypeId($id)->orderByRaw("Rand()")->take(5)->get();
 

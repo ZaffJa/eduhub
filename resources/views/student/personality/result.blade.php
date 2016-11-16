@@ -33,7 +33,7 @@
 		</tr>
 @endforeach
 </table>
-
+<canvas id='graph'></canvas>
 <h3>Realistic</h3>
 <h4>The "Do-ers." People who enjoy practical, hands-on problems and solutions. May have athletic or mechanical ability. Prefer to work with objects, machines, tools, plants, and/or animals. May prefer to work outdoors. They like to accomplish tasks. They are dependable, punctual, detailed, hard-working, and reliable individuals. Possible careers include mechanic, chef, engineer, police officer, athlete, pilot, soldier, and firefighter.</h4>
 
