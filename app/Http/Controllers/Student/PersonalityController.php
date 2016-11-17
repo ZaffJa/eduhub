@@ -346,7 +346,7 @@ class PersonalityController extends Controller
     }
     else
     {
-      try{
+
       $personality = PersonalityResult::whereUserId(4)->firstOrFail();
 
       $personality->realistic = session('r');
@@ -356,15 +356,11 @@ class PersonalityController extends Controller
       $personality->social = session('s');
       $personality->conventional = session('c');
 
+
       $personality->save();
 
-      }catch(\Illuminate\Database\QueryException $ex){
-                return redirect()
-                            ->back()
-                            ->withErrors($ex->errorInfo[2])
-                            ->withInput();
-        }
     }
+
 
     switch ($res[0][0])
     {
@@ -391,7 +387,6 @@ class PersonalityController extends Controller
       case 'Conventional':
         $id = 6;
         break;
-
     }
 
     $personalityType = PersonalityType::all();
