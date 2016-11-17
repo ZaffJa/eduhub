@@ -14,12 +14,33 @@ use App\Models\PeriodType;
 use App\Models\InstitutionCourse;
 use App\Models\CourseFee;
 use App\Models\PersonalityType;
+use App\Models\Student\SpmSubject;
+use App\Models\Student\SpmResult;
 use Validator;
 use Auth;
 use View;
 
 class CourseController extends Controller
 {
+    public function __construct()
+    {
+        $this->core_spm_subjects = ['1','2','5','6','7'];
+        $this->grades = [
+                           'A+'=>'A+',
+                           'A'=>'A',
+                           'A-'=>'A-',
+                           'B+'=>'B+',
+                           'B'=>'B',
+                           'C+'=>'C+',
+                           'C'=>'C',
+                           'D'=>'D',
+                           'E'=>'E',
+                           'G'=>'G'
+                       ];
+
+    }
+
+
     public function add()
     {
       $institutionId = Auth::user()->client->institution->id;
@@ -31,15 +52,17 @@ class CourseController extends Controller
       $period_type = PeriodType::pluck('name','id');
       $personality_type = PersonalityType::pluck('type','id')->toArray();
       $personality_description = PersonalityType::pluck('description','id');
-
+      $spm_subjects = SpmSubject::pluck('name','id');
+      $core_spm_subjects = $this->core_spm_subjects;
+      $grades = $this->grades;
 
       try{
         return view('client.course.add')
-                              ->with(compact('personality_type','personality_description','faculties','levels','modes','nec','period_type','fee_types'))
+                              ->with(compact('personality_type','personality_description','faculties','levels','modes','nec','period_type','fee_types','core_spm_subjects','spm_subjects','grades'))
                               ->with(['status'=>'hahaha']);
       }catch(Error $x){
         return view('client.course.add')
-                              ->with(compact('personality_description','personality_type','faculties','levels','modes','nec','period_type','fee_types'))
+                              ->with(compact('personality_description','personality_type','faculties','levels','modes','nec','period_type','fee_types','core_spm_subjects','spm_subjects','grades'))
                               ->withError(['status'=>'hahaha']);
       }
     }
