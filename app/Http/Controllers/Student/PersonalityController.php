@@ -349,6 +349,7 @@ class PersonalityController extends Controller
 
       $personality = PersonalityResult::whereUserId(4)->firstOrFail();
 
+      $personality->user_id = 4;
       $personality->realistic = session('r');
       $personality->artistic = session('a');
       $personality->investigative = session('i');
@@ -356,9 +357,7 @@ class PersonalityController extends Controller
       $personality->social = session('s');
       $personality->conventional = session('c');
 
-
       $personality->save();
-
     }
 
 

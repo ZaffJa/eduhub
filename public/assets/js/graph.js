@@ -1,8 +1,8 @@
 // CUSTOMISABLE
 var sides  = 6;
-var canvasSize = 500;
-var padding = 50;
-var feilds = ['Realistic','Artistic','Investigative','Enterprising','Social','Conventional'];
+var canvasSize = 300;
+var padding = 80;
+var feilds = ['Realistic','Artistic','Social','Enterprising','Investigative','Conventional'];
 
 // Variable
 var canvas = $('#graph')[0];
@@ -40,14 +40,14 @@ function loop() {
     ctx.fillStyle   = shape.fill;
     ctx.strokeStyle = shape.stroke;
     ctx.lineWidth   = shape.linewidth;
-
+    ctx.font = "20px Arial";
     ctx.closePath();
     ctx.fill();
     ctx.stroke();
   }
 
   for(var i = 0; i < shapesArray[0].points.length; i++) {
-    ctx.strokeStyle = '#208963';
+    ctx.strokeStyle = '#0000000000';
     ctx.lineWidth   = 1;
     ctx.moveTo(centerX, centerY);
     ctx.lineTo(shapesArray[0].points[i].x, shapesArray[0].points[i].y);
@@ -152,10 +152,10 @@ function setupData(_data, _fill, _stroke, _linewidth) {
 }
 
 function play() {
-  setupShape(sides, radius, '#175f45', '#3ad59c', 3);
-  setupShape(sides, radius*3/4, '#2e6f58', '#208963', 1);
-  setupShape(sides, radius/2, '#437e69', '#208963', 1);
-  setupShape(sides, radius*1/4, '#1f8862', '#208963', 1);
+  setupShape(sides, radius, '#DA2D2D', '#00000', 3);
+  setupShape(sides, radius*3/4, '#ffffff', '#00000', 1);
+  setupShape(sides, radius/2, '#DA2D2D', '#00000', 1);
+  setupShape(sides, radius*1/4, '#ffffff', '#00000', 1);
 
   for (var j = 0; j < shapesArray.length; j++) {
     var shape = shapesArray[j];
@@ -164,7 +164,7 @@ function play() {
     }
   }
 
-  setupData(data, 'rgba(99, 223, 178, 0.5)', '#3ad59c', 2);
+  setupData(data, 'rgb(39,40,34)', '#00000', 1);
 
 }
 

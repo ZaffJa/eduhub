@@ -3,39 +3,69 @@
 @section('title', 'Dashboard')
 @section('content')
 
+<div class="row">
+<div class="col-md-8">
+							<div class="card">
+								<div class="card-header card-chart" data-background-color="green">
+									<div class="ct-chart" style="text-align:center; " ><canvas id='graph'></canvas></div>
+								</div>
+								<div class="card-content">
+									<h4 class="title">Here are your personality result</h4>
+									<h3>You are a {{$res[0][0]}} person</h3>
+									<h4>
+										@foreach($personalityType as $pt)
+											@if($res[0][0] == $pt->type)
+												{{$pt->description}}
+											@endif
+										@endforeach
+									</h4>
+									<h3>Recommended course for you</h3>
+									@foreach($course as $c)
+									<h5>
+									{{$c->name_en}} at {{$c->institution->institution->name}}
+									</h5>
+									@endforeach
+
+								</div>
+								<div class="card-footer">
+									<div class="stats">
+										<i class="material-icons">access_time</i> updated 4 minutes ago
+									</div>
+								</div>
+							</div>
+						</div>
+<div class="col-md-4">
+
+	<div class="card">
+		                            <div class="card-header" data-background-color="purple">
+		                                <h4 class="title">Personality result</h4>
+		                                <p class="category">result of personality test</p>
+		                            </div>
+		                            <div class="card-content table-responsive">
+		                                <table class="table">
+		                                    <thead class="text-primary">
+		                                    	<tr>
+																						<th>Your score</th>
+																						<th>Type of person</th>
 
 
-<h1>Here are your personality result</h1>
-<h3>You are a {{$res[0][0]}} person</h3>
-<h4>
-	@foreach($personalityType as $pt)
-		@if($res[0][0] == $pt->type)
-			{{$pt->description}}
-		@endif
-	@endforeach
-</h4>
-<h3>Recommended course for you</h3>
-@foreach($course as $c)
-<h5>
-{{$c->name_en}} at {{$c->institution->institution->name}}
-</h5>
-@endforeach
+		                                    </tr></thead>
+		                                    <tbody>
+																					@foreach($res as $r)
+																							<tr>
+																								<td>{{$r[1]}}</td>
+																								<td>{{$r[0]}} </td>
+																							</tr>
+																					@endforeach
+		                                    </tbody>
+		                                </table>
 
-<table>
-<thead>
-	<tr>
-		<th>Your score</th>
-		<th>Type of person</th>
-	</tr>
-</thead>
-@foreach($res as $r)
-		<tr>
-			<td>{{$r[1]}}</td>
-			<td>{{$r[0]}} </td>
-		</tr>
-@endforeach
-</table>
-<canvas id='graph'></canvas>
+		                            </div>
+		                        </div>
+
+</div>
+</div>
+<div class="row">
 <h3>Realistic</h3>
 <h4>The "Do-ers." People who enjoy practical, hands-on problems and solutions. May have athletic or mechanical ability. Prefer to work with objects, machines, tools, plants, and/or animals. May prefer to work outdoors. They like to accomplish tasks. They are dependable, punctual, detailed, hard-working, and reliable individuals. Possible careers include mechanic, chef, engineer, police officer, athlete, pilot, soldier, and firefighter.</h4>
 
@@ -53,10 +83,10 @@
 
 <h3>Conventional</h3>
 <h4>The "Organizers." People who like to work with data, have clerical and/or numerical ability, and who enjoy work activites that follow set procedures and routines. Conventional types are people who are good at coordinating people, places, or events. Possible careers include accountant, secretary, bank teller, dental assistant, and math teacher.</h4>
-
+</div>
 @endsection
 <!--  Charts Plugin -->
-<script src="/assets/js/chartist.min.js"></script>
+
 <script type="text/javascript">
 	var data = [];
 
@@ -67,3 +97,94 @@
 </script>
 <script src="/assets/js/graph.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.11.8/TweenMax.min.js"></script>
+<html class="no-js"><!--<![endif]--><head>
+  <meta charset="utf-8">
+  <title></title>
+  <meta name="description" content="AMeijer.nl - Resizable HTML5 Canvas">
+  <meta name="author" content="Alex Ameijer on AMeijer.nl">
+
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="cleartype" content="on">
+
+  <link rel="stylesheet" href="css/style.css?v=1">
+
+  <style>
+
+  	html, body{ margin:0px; padding:0px; }
+  	body{ display:block; width:100%; height:100%; }
+  	#main{ display:block; width:80%; padding:50px 10%; height:300px; }
+
+  </style>
+
+</head>
+<body>
+
+<div id="container">
+    <header>
+		<div id="logo">
+			<h1><a href="http://ameijer.nl/" class="ir">Alex Meijer</a></h1>
+		</div>
+    </header>
+    
+    <div id="main" role="main">
+	    <canvas id="respondCanvas" width="669" height="300">
+	    	<!-- Provide fallback -->
+	    </canvas>
+    </div>
+
+    <footer>
+		<p><a href="http://ameijer.nl/2011/08/resizable-html5-canvas/">Read the entire article</a></p>
+		<p>Demo by <a href="http://ameijer.nl">AMeijer</a></p>
+    </footer>
+</div> <!--! end of #container -->
+
+  <script async="" src="//www.google-analytics.com/ga.js"></script><script src="//ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.js"></script>
+  <script>window.jQuery || document.write("<script src='js/libs/jquery-1.5.1.min.js'>\x3C/script>")</script>
+  <script type="text/javascript">
+  	$(document).ready( function(){
+
+  		//Get the canvas & context
+  		var c = $('#respondCanvas');
+  		var ct = c.get(0).getContext('2d');
+  		var container = $(c).parent();
+
+  		//Run function when browser  resize
+	  	$(window).resize( respondCanvas );
+
+	  	function respondCanvas(){
+  			c.attr('width', $(container).width() ); //max width
+  			c.attr('height', $(container).height() ); //max height
+
+  			//Redraw & reposition content
+  			var x = c.width();
+  			var y = c.height();
+  			ct.font = "20px Calibri";
+
+  			ct.fillStyle = "#DDDDDD"; //black
+  			ct.fillRect( 0, 0, x, y); //fill the canvas
+
+  			var resizeText = "Canvas width: "+c.width()+"px";
+  			ct.textAlign = "center";
+  			ct.fillStyle = "#333333"; //white
+	  		ct.fillText(resizeText, (x/2), (y/2) );
+		}
+
+		//Initial call
+		respondCanvas();
+  	});
+
+
+  </script>
+
+  <script>
+    var _gaq=[["_setAccount","UA-16696587-1"],["_trackPageview"]];
+    (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];g.async=1;
+    g.src=("https:"==location.protocol?"//ssl":"//www")+".google-analytics.com/ga.js";
+    s.parentNode.insertBefore(g,s)}(document,"script"));
+  </script>
+
+
+
+</body></html>
