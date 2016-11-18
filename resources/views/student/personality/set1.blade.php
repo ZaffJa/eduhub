@@ -62,7 +62,7 @@
 										<input type="checkbox" name="d1" value="1">Study causes of diseases </br>
 									</label>
 					</div>
-				
+
 					<button class="btn btn-info"> Next </button>
 				</form>
 
