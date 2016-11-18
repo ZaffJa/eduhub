@@ -106,6 +106,29 @@
                 </div>
             </div>
             <div class="row">
+                <div class="row">
+                    <div class="col-md-2">
+                        SPM Qualification Entry
+                        <a href="#" data-toggle="tooltip" 
+                        title="SPM qualification entry is used for suggesting courses to students after they enter their SPM results,
+                        if the field is not filled the course will not be suggested to the students">
+                        <span class="glyphicon glyphicon-info-sign"></span>
+                        </a>
+                    </div>
+                    <div class="col-md-4">
+                        <a class="btn btn-success" onclick="addRow()">Add subject</a>
+                        <a class="btn btn-danger" onclick="delRow()">Remove subject</a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <table id="spmTable">
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-md-2">
                     Approved
                 </div>
@@ -293,6 +316,25 @@
 
         $('#description').text($descriptions[$val]);
     }).change();
+
+    function addRow() {
+        var rowCount = $('#spmTable tr').length;
+        if (rowCount <= 10) {
+            var row = table.insertRow(0);
+            var cell1 = row.insertCell(0);
+            var cell2 = row.insertCell(1);
+            cell1.innerHTML = '{!! Form::select("name[]", $spm_subjects, null,["placeholder"=>"Select a subject"]); !!}';
+            cell2.innerHTML = '{!! Form::select("grade[]",$grades, null, ["placeholder"=>"Select a grade"]); !!}';
+        }else
+        {
+            alert('SPM have maximum subject of 10');
+        }
+    }
+
+    function delRow() {
+        table.deleteRow(0);
+    }
+
 </script>
 
 @endsection

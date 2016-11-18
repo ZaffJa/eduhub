@@ -53,16 +53,15 @@ class CourseController extends Controller
       $personality_type = PersonalityType::pluck('type','id')->toArray();
       $personality_description = PersonalityType::pluck('description','id');
       $spm_subjects = SpmSubject::pluck('name','id');
-      $core_spm_subjects = $this->core_spm_subjects;
       $grades = $this->grades;
 
       try{
         return view('client.course.add')
-                              ->with(compact('personality_type','personality_description','faculties','levels','modes','nec','period_type','fee_types','core_spm_subjects','spm_subjects','grades'))
+                              ->with(compact('personality_type','personality_description','faculties','levels','modes','nec','period_type','fee_types','spm_subjects','grades'))
                               ->with(['status'=>'hahaha']);
       }catch(Error $x){
         return view('client.course.add')
-                              ->with(compact('personality_description','personality_type','faculties','levels','modes','nec','period_type','fee_types','core_spm_subjects','spm_subjects','grades'))
+                              ->with(compact('personality_description','personality_type','faculties','levels','modes','nec','period_type','fee_types','spm_subjects','grades'))
                               ->withError(['status'=>'hahaha']);
       }
     }
@@ -215,13 +214,16 @@ class CourseController extends Controller
 
       $personality_description = PersonalityType::pluck('description','id');
 
+      $spm_subjects = SpmSubject::pluck('name','id');
+      $grades = $this->grades;
+
         // return $faculties;
 
         if($faculties == null ){
           $faculties = Faculty::whereInstitution_id(Auth::user()->client->institution->id)->paginate(10);
           return View::make('client.faculty.view',compact('faculties'));
         }else {
-          return View::make('client.course.edit',compact('personality_type','personality_description','course','faculties','levels','modes','period_type','nec','courseFee'));
+          return View::make('client.course.edit',compact('personality_type','personality_description','course','faculties','levels','modes','period_type','nec','courseFee','spm_subjects','grades'));
 
         }
 
