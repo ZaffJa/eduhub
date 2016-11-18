@@ -1,8 +1,8 @@
 // CUSTOMISABLE
 var sides  = 6;
-var canvasSize = 300;
-var padding = 80;
-var feilds = ['Realistic','Artistic','Social','Enterprising','Investigative','Conventional'];
+var canvasSize = 200;
+var padding = 40;
+var feilds = ['R','A','S','E','I','C'];
 
 // Variable
 var canvas = $('#graph')[0];
@@ -40,7 +40,7 @@ function loop() {
     ctx.fillStyle   = shape.fill;
     ctx.strokeStyle = shape.stroke;
     ctx.lineWidth   = shape.linewidth;
-    ctx.font = "20px Arial";
+    ctx.font = "15px Arial";
     ctx.closePath();
     ctx.fill();
     ctx.stroke();
