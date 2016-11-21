@@ -11,4 +11,8 @@ class SpmRequirementCourse extends Model
     use AuditingTrait, SoftDeletes;
     
     protected $guarded = [];
+
+    protected $casts = [
+        'requirement' => 'array'
+    ];
 }

@@ -317,14 +317,17 @@
         $('#description').text($descriptions[$val]);
     }).change();
 
+    var table = document.getElementById("spmTable");
+
     function addRow() {
+        console.log('hello');
         var rowCount = $('#spmTable tr').length;
         if (rowCount <= 10) {
             var row = table.insertRow(0);
             var cell1 = row.insertCell(0);
             var cell2 = row.insertCell(1);
-            cell1.innerHTML = '{!! Form::select("name[]", $spm_subjects, null,["placeholder"=>"Select a subject"]); !!}';
-            cell2.innerHTML = '{!! Form::select("grade[]",$grades, null, ["placeholder"=>"Select a grade"]); !!}';
+            cell1.innerHTML = '{!! Form::select("name[]", $spm_subjects, null,["placeholder"=>"Select a subject"]) !!}';
+            cell2.innerHTML = '{!! Form::select("grade[]",$grades, null, ["placeholder"=>"Select a grade"]) !!}';
         }else
         {
             alert('SPM have maximum subject of 10');

@@ -40,8 +40,8 @@ class EnquiryController extends Controller
     public function getNotifications()
     {
         $institution = Auth::user()->client->institution;
-        $count = Enquiry::whereInstitutionIdAndNotificationStatus($institution->id,0)->count();
-        $enquiry = Enquiry::whereInstitutionId($institution->id)->get();
+        $count = Enquiry::whereInstitutionCourseIdAndNotificationStatus($institution->id,0)->count();
+        $enquiry = Enquiry::whereInstitutionCourseId($institution->id)->get();
 
         return response()->json([
             'count' => $count,

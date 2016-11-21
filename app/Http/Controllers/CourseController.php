@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Student\SpmRequirementCourse;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Models\Faculty;
@@ -92,6 +93,7 @@ class CourseController extends Controller
                          ->withInput();
          }
 
+
          try{
             $course = new Course;
 
@@ -113,6 +115,10 @@ class CourseController extends Controller
             $course->personality_type_id = $r->personality_type_id;
 
             $course->save();
+
+             //Add to spm requirement courses
+
+
 
             //Add to institution course
             $is = new InstitutionCourse;
@@ -232,7 +238,6 @@ class CourseController extends Controller
      public function update(Request $r,$id)
      {
 
-
       try{
         $course = Course::whereId($id)->firstOrFail();
 
@@ -295,6 +300,23 @@ class CourseController extends Controller
           $service->course_id = $id;
           $service->fee_id = 4;
         }
+
+
+        //Spm requirements (optional)
+
+          if($r->name != null){
+              $spmSubject = SpmRequirementCourse::whereCourseId($id)->first();
+
+              if($spmSubject == null){
+                  
+              }
+
+
+          }
+
+
+
+
 
         $service->amount = $r->service;
         $service->save();
@@ -385,5 +407,16 @@ class CourseController extends Controller
       }else{
         return redirect()->route('client.course.edit',$course->id);
       }
+    }
+
+
+    public function spmRequirement($spmSubject,$spmGrade)
+    {
+        $value = new \stdClass();
+
+        $value->name = $spmSubject;
+        $value->grade = $spmGrade;
+
+        return response()->json($value);
     }
 }

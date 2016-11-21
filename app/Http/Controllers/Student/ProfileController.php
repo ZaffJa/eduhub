@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Student;
 
+use App\Models\FileCategory;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -51,9 +52,15 @@ class ProfileController extends Controller
 
             }else{
 
+                $fileCategory  = FileCategory::whereName('Student Profile Pic')->first();
+
+                if(!isset($fileCategory)){
+                    $fileCategory = FileCategory::create(['name'=>'Student Profile Pic']);
+                }
+
                 StudentFile::create([
                     'file_type_id'=>1,  // 1 corresponce to image
-                    'file_category_id'=>14, //corresponce to student profile picture
+                    'file_category_id'=>$fileCategory->id, //corresponce to student profile picture
                     'user_id'=> Auth::user()->id,
                     'filename'=>$image->getClientOriginalName(),
                     'path'=>$path,
