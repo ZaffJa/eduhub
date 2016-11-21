@@ -34,6 +34,16 @@ Route::group(['prefix'=>'student','namespace'=>'Student'],function(){
 
         Route::get('profile','ProfileController@index');
         Route::post('profile','ProfileController@update');
+
+
+        Route::get('/personality','PersonalityController@view');
+        Route::get('/set1','PersonalityController@set1');
+        Route::get('/set2','PersonalityController@set2');
+        Route::get('/set3','PersonalityController@set3');
+        Route::get('/set4','PersonalityController@set4');
+        Route::get('/set5','PersonalityController@set5');
+        Route::get('/set6','PersonalityController@set6');
+        Route::get('/result','PersonalityController@result');
     });
 
 });
@@ -41,15 +51,7 @@ Route::group(['prefix'=>'student','namespace'=>'Student'],function(){
 
 Route::post('institutions/v/{slug}/enquiry/{course}','EnquiryController@store');
 Route::get('/agent', 'AgentController@dashboard')->name('agent.dashboard');
-Route::get('/personality','Student\PersonalityController@view');
-Route::get('/set1','Student\PersonalityController@set1');
-Route::get('/set2','Student\PersonalityController@set2');
-Route::get('/set3','Student\PersonalityController@set3');
-Route::get('/set4','Student\PersonalityController@set4');
-Route::get('/set5','Student\PersonalityController@set5');
-Route::get('/set6','Student\PersonalityController@set6');
 
-Route::get('/result','Student\PersonalityController@result');
 Route::get('/permission-error',function(){
     return view('errors.403');
 });

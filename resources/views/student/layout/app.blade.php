@@ -48,6 +48,7 @@
 	<script src="/assets/js/material.min.js" type="text/javascript"></script>
 
 	<!--  Charts Plugin -->
+
 	<script src="/assets/js/chartist.min.js"></script>
 	<script src="/assets/js/graph.js"></script>
 	<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.11.8/TweenMax.min.js"></script>
@@ -104,8 +105,8 @@
 							<p>SPM</p>
 						</a>
 					</li>
-					<li class="{{ Request::is('student/personality-test') ? 'active' : '' }}">
-						<a href="#">
+					<li class="{{ Request::is('student/personality') ? 'active' : '' }}">
+						<a href="{{action('Student\PersonalityController@view')}}">
 							<i class="material-icons">content_paste</i>
 							<p>Personality Test</p>
 						</a>
@@ -299,6 +300,10 @@
 
 		});
 	</script>
+
+  <script src="/assets/js/graph.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.11.8/TweenMax.min.js"></script>
+
 </body>
 <!-- Mirrored from demos.creative-tim.com/material-dashboard/examples/dashboard.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 27 Oct 2016 07:41:19 GMT -->
 

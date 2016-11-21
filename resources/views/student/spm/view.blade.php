@@ -1,10 +1,13 @@
 @extends('student.layout.app') @section('title', 'Dashboard') @section('content')
 
 @if(count($core_spm_subjects) > 0)
-<div class="container index-view">
-    <h2>SPM Result</h2>
+<div class="card">
+    <div class="class-header" data-background-color="orange">
+    <h2 class="title">SPM Result</h2>
+    </div>
+    <div class="card-content table-responsive table-full-width">
     <table class="table">
-        <thead>
+        <thead class="text-danger">
             <tr>
                 <th>Code</th>
                 <th>Name</th>
@@ -29,7 +32,7 @@
 @endif
 
 <div class="container edit-view" style="display:none">
-    <h2>Edit SPM Result</h2>
+   
     {!! Form::model($core_spm_subjects,['action' => 'Student\SpmController@update','autocomplete'=>'off']) !!}
 
         @include('student.partials.spm-result',['submitButton'=>'Update'])
