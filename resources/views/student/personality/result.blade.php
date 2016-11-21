@@ -45,6 +45,10 @@
 								{{$c->name_en}} at {{$c->institution->institution->name}}
 							</h5> 
 						@endforeach
+					<h3>Careers recommended based on your personality</h3>
+						@foreach($careerImage as $ci)
+							<img src="../img/{{$ci->path}}">
+						@endforeach
 				</div>
 			</div>
 		</div>
