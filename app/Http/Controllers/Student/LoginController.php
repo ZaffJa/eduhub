@@ -17,6 +17,7 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
+
         if(Auth::attempt($request->only('email','password'))){
 
             $user = Auth::user();
@@ -24,6 +25,10 @@ class LoginController extends Controller
             if($user->hasRole('student') != null){
                 return redirect()->action('DashboardController@view');
             }
+
+            return redirect()
+                ->back()
+                ->withErrors('Error in authenticating. Please contact our admin to resolve this matter');
 
         }
 
