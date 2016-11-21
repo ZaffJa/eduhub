@@ -1,12 +1,12 @@
 <div class="row">
     <div class="col-md-10 col-md-offset-1">
         <div class="card">
-            <div class="card-header nav nav-pills nav-pills-info nav-stacked" data-background-color="orange">
-                <h2>SPM Result</h2>
+            <div class="class-header"  data-background-color="orange">
+                <h2 class="title">SPM Result</h2>
             </div>
-            <div class="card-content">
+            <div class="card-content table-responsive table-full-width">
                 <table class="table" id="spm_table">
-                    <thead>
+                    <thead class="text-danger">
                         <tr>
                             <th>Subject Name</th>
                             <th>Grade</th>
@@ -19,14 +19,14 @@
                                 <div class="col-md-6 ">
                                     <td>
 
-                                        {!! Form::select('name[]', $spm_subjects, isset($core->spm_subject_id) ? $core->spm_subject_id : $core,['placeholder'=>'Select a subject','required', 'class'=>'form-control','style'=>'background-color:grey;color:white','disabled'=>'true']); !!}
+                                        {!! Form::select('name[]', $spm_subjects, isset($core->spm_subject_id) ? $core->spm_subject_id : $core,['placeholder'=>'Select a subject','required', 'class'=>'btn dropdown-toggle','style'=>'background-color:grey;color:white','disabled'=>'true']); !!}
 
                                     </td>
                                 </div>
                                 <div class="col-md-6 ">
                                     <td>
 
-                                        {!! Form::select('grade[]', $grades, isset($core->grade) ? $core->grade : null, ['placeholder'=>'Select a grade','required','class'=>'add_child_record form-control', 'style'=>'background-color:grey;color:white']); !!}
+                                        {!! Form::select('grade[]', $grades, isset($core->grade) ? $core->grade : null, ['placeholder'=>'Select a grade','required','class'=>'btn dropdown-toggle', 'style'=>'background-color:grey;color:white']); !!}
 
                                     </td>
                                 </div>
@@ -38,7 +38,7 @@
             </div>
             <div class="card-footer">
 
-                {!!Form::submit( $submitButton,['class'=>'btn btn-success']); !!} {!!Form::button( 'Add Record!',['class'=>'btn btn-default','id'=>'add_spm_record']); !!} {!!Form::button( 'Remove Record!',['class'=>'btn btn-danger','id'=>'remove_spm_record']); !!}
+                {!!Form::submit( $submitButton,['class'=>'btn btn-success']); !!} {!!Form::button( 'Add Record!',['class'=>'btn btn-info','id'=>'add_spm_record']); !!} {!!Form::button( 'Remove Record!',['class'=>'btn btn-danger','id'=>'remove_spm_record']); !!}
                 {!! Form::button('Cancel',['type'=>'button','class'=>'btn btn-warning btn_view']) !!}
 
             </div>
