@@ -333,10 +333,12 @@ class PersonalityController extends Controller
     //Sorting result
     $res = $this->sort($res);
 
-    if(!PersonalityResult::whereUserId(4)->first())
+    $user_id = Auth::user()->id;
+
+    if(!PersonalityResult::whereUserId($user_id)->first())
     {
       PersonalityResult::create([
-            'user_id'=>4,
+            'user_id'=>$user_id,
             'realistic'=>session('r'),
             'artistic'=>session('a'),
             'investigative'=>session('i'),
@@ -347,7 +349,7 @@ class PersonalityController extends Controller
     }
     else
     {
-      $user_id = 4;
+      
 
       $personality = PersonalityResult::whereUserId($user_id)->firstOrFail();
 

@@ -104,8 +104,8 @@
 							<p>SPM</p>
 						</a>
 					</li>
-					<li class="{{ Request::is('student/personality-test') ? 'active' : '' }}">
-						<a href="#">
+					<li class="{{ Request::is('student/personality') ? 'active' : '' }}">
+						<a href="{{action('Student\PersonalityController@view')}}">
 							<i class="material-icons">content_paste</i>
 							<p>Personality Test</p>
 						</a>
