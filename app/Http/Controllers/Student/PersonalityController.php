@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Student\PersonalityResult;
 use App\Models\PersonalityType;
+use App\Models\File;
 use App\Models\Course;
 use View;
 
@@ -346,10 +347,11 @@ class PersonalityController extends Controller
     }
     else
     {
+      $user_id = 4;
 
-      $personality = PersonalityResult::whereUserId(4)->firstOrFail();
+      $personality = PersonalityResult::whereUserId($user_id)->firstOrFail();
 
-      $personality->user_id = 4;
+      $personality->user_id = $user_id;
       $personality->realistic = session('r');
       $personality->artistic = session('a');
       $personality->investigative = session('i');
@@ -390,8 +392,11 @@ class PersonalityController extends Controller
 
     $personalityType = PersonalityType::all();
     $course = Course::wherePersonalityTypeId($id)->orderByRaw("Rand()")->take(5)->get();
+    $careerImage = File::wherePersonalityTypeId($id)->get();
 
-    return View::make('student.personality.result',compact('res','personalityType','course'));
+    return $careerImage;
+
+    return View::make('student.personality.result',compact('res','personalityType','course','careerImage'));
   }
 
   public function sort($res)
