@@ -34,7 +34,7 @@ class CareerImageFileSeeder extends Seeder
             ['type_id'=>1,'category_id'=>6,'filename'=>'pilot','path'=>'career/pilot.jpg','mime'=>'jpeg','size'=>'6000854','personality_type_id'=> '1'],
             ['type_id'=>1,'category_id'=>6,'filename'=>'police officer','path'=>'career/police officer.jpeg','mime'=>'jpeg','size'=>'3832372','personality_type_id'=> '1'],
             ['type_id'=>1,'category_id'=>6,'filename'=>'secretary','path'=>'career/secretary.jpg','mime'=>'jpeg','size'=>'395096','personality_type_id'=> '6'],
-            ['type_id'=>1,'category_id'=>6,'filename'=>'soldier','path'=>'career/soldier.jpg','mime'=>'jpeg','size'=>'355139','personality_type_id'=> '1'],
+            ['type_id'=>1,'category_id'=>6,'filename'=>'soldier','path'=>'career/soldier.jpeg','mime'=>'jpeg','size'=>'355139','personality_type_id'=> '1'],
             ['type_id'=>1,'category_id'=>6,'filename'=>'teacher','path'=>'career/teacher.jpg','mime'=>'jpeg','size'=>'400101','personality_type_id'=> '4'],
             ['type_id'=>1,'category_id'=>6,'filename'=>'writer','path'=>'career/writer.jpg','mime'=>'jpeg','size'=>'3272251','personality_type_id'=> '3'],
 

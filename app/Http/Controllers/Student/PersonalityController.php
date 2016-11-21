@@ -394,7 +394,6 @@ class PersonalityController extends Controller
     $course = Course::wherePersonalityTypeId($id)->orderByRaw("Rand()")->take(5)->get();
     $careerImage = File::wherePersonalityTypeId($id)->get();
 
-    return $careerImage;
 
     return View::make('student.personality.result',compact('res','personalityType','course','careerImage'));
   }
