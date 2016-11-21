@@ -12,7 +12,7 @@
 
     <dl>
         <a href="#" class="shader">
-            <img class="round" src="{{$s3.Auth::user()->student_profile_picture->path}}"/>
+            <img class="round" src="{{isset(Auth::user()->student_profile_picture) ? $s3.Auth::user()->student_profile_picture->path : ''}}"/>
         </a>
         <dt>Name</dt>
         <dd>{{$user->name}}</dd>
