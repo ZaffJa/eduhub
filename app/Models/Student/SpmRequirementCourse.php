@@ -2,6 +2,7 @@
 
 namespace App\Models\Student;
 
+use App\Models\Course;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use OwenIt\Auditing\AuditingTrait;
@@ -15,4 +16,14 @@ class SpmRequirementCourse extends Model
     protected $casts = [
         'requirement' => 'array'
     ];
+
+
+    public function course($id)
+    {
+
+        $course = SpmSubject::find($id);
+
+        return $course;
+
+    }
 }
