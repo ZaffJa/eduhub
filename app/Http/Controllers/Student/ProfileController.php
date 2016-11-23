@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Student;
 
 use App\Models\FileCategory;
+use App\Models\Student\Student;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -20,8 +21,9 @@ class ProfileController extends Controller
     public function index()
     {
         $user = auth()->user();
+        $student = auth()->user()->student;
 
-        return view('student.profile.view',compact('user'));
+        return view('student.profile.view',compact('user','student'));
     }
 
     public function update(Request $request)
@@ -38,7 +40,33 @@ class ProfileController extends Controller
 
         $user->name = $request->name;
         $user->email = $request->email;
-        $user->update();
+        $user->save();
+
+
+        $student = Student::whereUserId(Auth::user()->id)->first();
+
+        if($student == null){
+
+            Student::create([
+                'user_id' => Auth::user()->id,
+                'address' => $request->school,
+                'phone' => $request->phone,
+                'school' => $request->school,
+                'birthday' => $request->birthday,
+
+            ]);
+
+        } else {
+
+            $student->address = $request->address;
+            $student->phone = $request->phone;
+            $student->school = $request->school;
+            $student->birthday = $request->birthday;
+            $student->save();
+
+        }
+
+
 
         if($request->hasFile('image'))
         {
@@ -71,9 +99,10 @@ class ProfileController extends Controller
 
             }
 
+            Storage::disk('s3')->put($path,file_get_contents($image),'public');
+            
         }
 
-        Storage::disk('s3')->put($path,file_get_contents($image),'public');
 
         return redirect()
                 ->action('Student\ProfileController@index')

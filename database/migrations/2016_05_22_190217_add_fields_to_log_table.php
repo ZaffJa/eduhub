@@ -1,10 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
 
-class ChangeRouteInLogsTable extends Migration
+class AddFieldsToLogTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +13,8 @@ class ChangeRouteInLogsTable extends Migration
     public function up()
     {
         Schema::table('logs', function (Blueprint $table) {
-            $table->string('route',655)->change();
+            $table->string('route')->after('type')->nullable();
+            $table->string('ip', 45)->after('route')->nullable();
         });
     }
 
@@ -26,7 +26,8 @@ class ChangeRouteInLogsTable extends Migration
     public function down()
     {
         Schema::table('logs', function (Blueprint $table) {
-            $table->string('route',255)->change();
+            $table->dropColumn('route');
+            $table->dropColumn('ip');
         });
     }
 }

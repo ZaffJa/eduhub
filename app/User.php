@@ -72,4 +72,9 @@ class User extends Authenticatable
     {
         return $this->hasOne('App\Models\Student\StudentFile');
     }
+
+    public function student()
+    {
+        return $this->hasOne('App\Models\Student\Student');
+    }
 }

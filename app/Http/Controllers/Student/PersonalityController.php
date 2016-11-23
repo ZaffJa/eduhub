@@ -9,6 +9,7 @@ use App\Models\PersonalityType;
 use App\Models\File;
 use App\Models\Course;
 use View;
+use Auth;
 
 
 class PersonalityController extends Controller

@@ -32,6 +32,9 @@ Route::group(['prefix'=>'student','namespace'=>'Student'],function(){
         Route::post('spm/create', 'SpmController@store');
         Route::post('spm/update', 'SpmController@update');
 
+
+        Route::get('find-institution','InstitutionController@index');
+
         Route::get('profile','ProfileController@index');
         Route::post('profile','ProfileController@update');
 
