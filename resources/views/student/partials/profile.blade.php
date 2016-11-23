@@ -9,6 +9,25 @@
     {{Form::label('email', 'E-Mail Address')}} {{Form::text('email',null,['class'=>'form-control'])}}
 </div>
 
+<div class="form-group">
+    {{Form::label('address', 'Address')}} {{Form::text('address',isset($student->address) ? $student->address : null,['class'=>'form-control'])}}
+</div>
+
+<div class="form-group">
+    {{Form::label('school', 'Secondary School')}} {{Form::text('school',isset($student->school) ? $student->school : null,['class'=>'form-control'])}}
+</div>
+
+<div class="form-group">
+    {{Form::label('phone', 'Phone No.')}} {{Form::text('phone',isset($student->phone) ? $student->phone : null,['class'=>'form-control'])}}
+</div>
+
+<div class="form-group">
+    {{Form::label('birthday', 'Birthday')}} {{Form::date('birthday',isset($student->birthday) ? $student->birthday : null,['class'=>'form-control'])}}
+</div>
+
+
+
+
 <div class="input-group">
     <label class="input-group-btn">
         <span class="btn btn-primary">
