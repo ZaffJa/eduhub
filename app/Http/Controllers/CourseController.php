@@ -142,6 +142,17 @@ class CourseController extends Controller
 
             $coq->save();
 
+            //Spm requirements (optional)
+
+            if($r->name != null){
+
+                 SpmRequirementCourse::create([
+                     'course_id'=>$course->id,
+                     'requirement'=>'hello'
+                 ]);
+
+             }
+
             $residential = new CourseFee;
             $residential->course_id = $course->id;
             $residential->fee_id = 3;
@@ -200,28 +211,31 @@ class CourseController extends Controller
 
      public function edit($id)
      {
-      $faculties = Faculty::whereInstitutionId(Auth::user()->client->institution->id)->pluck('name','id');
+         $faculties = Faculty::whereInstitutionId(Auth::user()->client->institution->id)->pluck('name','id');
 
-      $levels = StudyLevel::pluck('name','id');
+         $levels = StudyLevel::pluck('name','id');
 
-      $modes = StudyMode::pluck('name','id');
+         $modes = StudyMode::pluck('name','id');
 
-      $nec = Nec::pluck('field','code');
+         $nec = Nec::pluck('field','code');
 
-      $period_type = PeriodType::pluck('name','id');
+         $period_type = PeriodType::pluck('name','id');
 
-      $institution = Institution::find(Auth::user()->client->institution->id);
+         $institution = Institution::find(Auth::user()->client->institution->id);
 
-      $course = Course::whereId($id)->firstOrFail();
+         $course = Course::whereId($id)->firstOrFail();
 
-      $courseFee = CourseFee::whereCourseId($id)->get();
+         $courseFee = CourseFee::whereCourseId($id)->get();
 
-      $personality_type = PersonalityType::pluck('type','id')->toArray();
+         $personality_type = PersonalityType::pluck('type','id')->toArray();
 
-      $personality_description = PersonalityType::pluck('description','id');
+         $personality_description = PersonalityType::pluck('description','id');
 
-      $spm_subjects = SpmSubject::pluck('name','id');
-      $grades = $this->grades;
+         $spmCourseRequirement = SpmRequirementCourse::whereCourseId($id)->first();
+
+         $spm_subjects = SpmSubject::pluck('name','id');
+
+         $grades = $this->grades;
 
         // return $faculties;
 
@@ -229,7 +243,10 @@ class CourseController extends Controller
           $faculties = Faculty::whereInstitution_id(Auth::user()->client->institution->id)->paginate(10);
           return View::make('client.faculty.view',compact('faculties'));
         }else {
-          return View::make('client.course.edit',compact('personality_type','personality_description','course','faculties','levels','modes','period_type','nec','courseFee','spm_subjects','grades'));
+          return View::make('client.course.edit',compact(
+                            'personality_type','personality_description','course',
+                            'faculties','levels','modes','period_type','nec',
+                            'courseFee','spm_subjects','grades','spmCourseRequirement'));
 
         }
 
@@ -237,6 +254,7 @@ class CourseController extends Controller
 
      public function update(Request $r,$id)
      {
+
 
       try{
         $course = Course::whereId($id)->firstOrFail();
@@ -305,18 +323,29 @@ class CourseController extends Controller
         //Spm requirements (optional)
 
           if($r->name != null){
+
               $spmSubject = SpmRequirementCourse::whereCourseId($id)->first();
+              $requirement = $this->spmRequirement($r->name,$r->grade);
+
 
               if($spmSubject == null){
+
+
+                  SpmRequirementCourse::create([
+                      'course_id'=>$id,
+                      'requirement'=>'hello'
+                  ]);
                   
+              }else{
+
+                  $spmRequirementCourse = SpmRequirementCourse::whereCourseId($id)->first();
+                  $spmRequirementCourse->requirement = array_combine($r->name,$r->grade);
+                  $spmRequirementCourse->update();
+
               }
 
 
           }
-
-
-
-
 
         $service->amount = $r->service;
         $service->save();

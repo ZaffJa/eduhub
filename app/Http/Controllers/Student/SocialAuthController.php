@@ -28,7 +28,7 @@ class SocialAuthController extends Controller
                     ->first();
 
         if ($account) {
-            return $account->user;
+
             Auth::login($account->user);
 
             return redirect()->action('Student\SpmController@index');

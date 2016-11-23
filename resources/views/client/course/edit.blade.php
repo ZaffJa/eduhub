@@ -109,16 +109,43 @@
                 <div class="row">
                     <div class="col-md-2">
                         SPM Qualification Entry
-                        <a href="#" data-toggle="tooltip" 
-                        title="SPM qualification entry is used for suggesting courses to students after they enter their SPM results,
-                        if the field is not filled the course will not be suggested to the students">
-                        <span class="glyphicon glyphicon-info-sign"></span>
+                        <a href="#" data-toggle="tooltip"
+                           title="SPM qualification entry is used for suggesting courses to students after they enter their SPM results,
+                            if the field is not filled the course will not be suggested to the students">
+                            <span class="glyphicon glyphicon-info-sign"></span>
                         </a>
                     </div>
+
                     <div class="col-md-4">
+
+                    @if($spmCourseRequirement == null)
+
                         <a class="btn btn-success" onclick="addRow()">Add subject</a>
                         <a class="btn btn-danger" onclick="delRow()">Remove subject</a>
+                        
+                    @else
+
+                        <span id="showEdit" style="display: none;">
+                            <a class="btn btn-success" onclick="addRow()">Add subject</a>
+                            <a class="btn btn-danger" onclick="delRow()">Remove subject</a>
+                            <a class="btn btn-warning" onclick="optionRow()">View</a>
+
+                        </span>
+
+                        <span id="showResult">
+                            @foreach($spmCourseRequirement->requirement as $key => $value)
+
+                                <h3>{{ $spmCourseRequirement->course($key)->name }} => {{ $value }}</h3>
+
+                            @endforeach
+
+                                <a class="btn btn-warning" onclick="editRow()">Edit</a>
+                        </span>
+
+                         @endif
                     </div>
+
+
                 </div>
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
@@ -336,6 +363,17 @@
 
     function delRow() {
         table.deleteRow(0);
+    }
+
+    function editRow()
+    {
+        $('#showEdit').show();
+        $('#showResult').hide();
+    }
+
+    function optionRow() {
+        $('#showEdit').hide();
+        $('#showResult').show();
     }
 
 </script>
