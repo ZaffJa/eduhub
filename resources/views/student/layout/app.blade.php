@@ -14,6 +14,9 @@
 	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
 	<meta name="viewport" content="width=device-width" />
 
+	<meta name="csrf-token" content="{{ csrf_token() }}">
+
+
 	<!-- Canonical SEO -->
 	<link rel="canonical" href="http://www.creative-tim.com/product/material-dashboard" />
 
@@ -44,6 +47,7 @@
 
 <!--   Core JS Files   -->
 	<script src="/assets/js/jquery-3.1.0.min.js" type="text/javascript"></script>
+	<script src="/js/jquery-ui.js" type="text/javascript"></script>
 	<script src="/assets/js/bootstrap.min.js" type="text/javascript"></script>
 	<script src="/assets/js/material.min.js" type="text/javascript"></script>
 
@@ -80,7 +84,7 @@
 		    -->
 
 			<div class="logo">
-				<a href="#" class="simple-text">
+				<a href="https://eduhub.my/home/full-courses" class="simple-text">
 					 Eduhub.my
 				</a>
 			</div>
@@ -101,7 +105,7 @@
 					</li>
 					<li class="{{ Request::is('student/spm') ? 'active' : '' }}">
 						<a href="{{action('Student\SpmController@index')}}">
-							<i class="material-icons">person</i>
+							<i class="material-icons">book</i>
 							<p>SPM</p>
 						</a>
 					</li>
@@ -111,30 +115,23 @@
 							<p>Personality Test</p>
 						</a>
 					</li>
-					<li class="{{ Request::is('student/search-institution') ? 'active' : '' }}">
-						<a href="#">
+					<li class="{{ Request::is('student/find-institution') ? 'active' : '' }}">
+						<a href="{{action('Student\InstitutionController@index')}}">
 							<i class="material-icons">search</i>
 							<p>Find Institution</p>
 						</a>
 					</li>
-					<!-- <li>
-	                    <a href="icons.html">
-	                        <i class="material-icons">bubble_chart</i>
-	                        <p>Icons</p>
-	                    </a>
-	                </li>
-	                <li>
-	                    <a href="maps.html">
-	                        <i class="material-icons">location_on</i>
-	                        <p>Maps</p>
-	                    </a>
-	                </li> -->
-					<li>
-						<a href="notifications.html">
-							<i class="material-icons text-gray">notifications</i>
-							<p>Notifications</p>
-						</a>
-					</li>
+                    <li>
+                        <a href="{{ url('/logout') }}"
+                           onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                            <i class="material-icons">locks</i>
+                            <p>Sign out</p>
+                        </a>
+
+                        <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                            {{ csrf_field() }}
+                        </form>
+                    </li>
 				</ul>
 			</div>
 		</div>
@@ -149,47 +146,7 @@
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-						<a class="navbar-brand" href="#">Hello, <b>User!</b></a>
-					</div>
-					<div class="collapse navbar-collapse">
-						<ul class="nav navbar-nav navbar-right">
-							<li>
-								<a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
-									<i class="material-icons">dashboard</i>
-									<p class="hidden-lg hidden-md">Dashboard</p>
-								</a>
-							</li>
-							<li class="dropdown">
-								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
-									<i class="material-icons">notifications</i>
-									<span class="notification">5</span>
-									<p class="hidden-lg hidden-md">Notifications</p>
-								</a>
-								<ul class="dropdown-menu">
-									<li><a href="#">Mike John responded to your email</a></li>
-									<li><a href="#">You have 5 new tasks</a></li>
-									<li><a href="#">You're now friend with Andrew</a></li>
-									<li><a href="#">Another Notification</a></li>
-									<li><a href="#">Another One</a></li>
-								</ul>
-							</li>
-							<li>
-								<a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
-									<i class="material-icons">person</i>
-									<p class="hidden-lg hidden-md">Profile</p>
-								</a>
-							</li>
-						</ul>
 
-						<form class="navbar-form navbar-right" role="search">
-							<div class="form-group  is-empty">
-								<input type="text" class="form-control" placeholder="Search">
-								<span class="material-input"></span>
-							</div>
-							<button type="submit" class="btn btn-white btn-round btn-just-icon">
-								<i class="material-icons">search</i><div class="ripple-container"></div>
-							</button>
-						</form>
 					</div>
 				</div>
 			</nav>
@@ -287,19 +244,6 @@
 		</div>
 	</div>
 
-
-	<script>
-		$('.btn_edit').on('click', function() {
-			$('.index-view').hide();
-			$('.edit-view').show();
-		});
-
-		$('.btn_view').on('click', function() {
-			$('.edit-view').hide();
-			$('.index-view').show();
-
-		});
-	</script>
 
   <script src="/assets/js/graph.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.11.8/TweenMax.min.js"></script>
