@@ -10,6 +10,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Models\Student\StudentFile;
+use App\Models\UserLocation;
 
 use Storage;
 use Auth;
@@ -71,6 +72,24 @@ class ProfileController extends Controller
             $student->school = $request->school;
             $student->birthday = $request->birthday;
             $student->save();
+
+        }
+
+        $location = UserLocation::whereUserId(Auth::user()->id)->first();
+
+        if($location == null){
+
+            UserLocation::create([
+                'user_id' => Auth::user()->id,
+                'latitude' => $request->latitude,
+                'longtitude' => $request->longtitude,
+            ]);
+
+        } else {
+
+            $location->latitude = $request->latitude;
+            $location->longtitude = $request->longtitude;
+            $location->save();
 
         }
 
