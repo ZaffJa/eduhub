@@ -25,7 +25,6 @@
 					<img class="img" src="{{isset(Auth::user()->student_profile_picture) ? $s3.Auth::user()->student_profile_picture->path : '/img/avatar/boy-512-03.png'}}" />
 				</a>
 			</div>
-
 			<div class="content">
 				<!-- <h6 class="category text-gray">CEO / Co-Founder</h6> -->
 				<h4 class="card-title">{{Auth::user()->name}}</h4>

@@ -39,13 +39,17 @@ Route::group(['prefix'=>'student','namespace'=>'Student'],function(){
 
 
         Route::get('/personality','PersonalityController@view');
-        Route::get('/set1','PersonalityController@set1');
-        Route::get('/set2','PersonalityController@set2');
-        Route::get('/set3','PersonalityController@set3');
-        Route::get('/set4','PersonalityController@set4');
-        Route::get('/set5','PersonalityController@set5');
-        Route::get('/set6','PersonalityController@set6');
-        Route::get('/result','PersonalityController@result');
+
+        Route::group(['prefix'=>'personality'],function(){
+            Route::get('/set1','PersonalityController@set1');
+            Route::get('/set2','PersonalityController@set2');
+            Route::get('/set3','PersonalityController@set3');
+            Route::get('/set4','PersonalityController@set4');
+            Route::get('/set5','PersonalityController@set5');
+            Route::get('/set6','PersonalityController@set6');
+            Route::get('/result','PersonalityController@result');
+        });
+
     });
 
 });
