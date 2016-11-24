@@ -84,9 +84,9 @@
 						</a>
 					</li>
 					<li class="{{ Request::is('student/profile*') ? 'active' : '' }}">
-						<a href="{{action('Student\ProfileController@edit')}}">
+						<a href="{{action('Student\ProfileController@index')}}">
 							<i class="material-icons">person</i>
-							<p>Edit Profile</p>
+							<p>User Profile</p>
 						</a>
 					</li>
 					<li class="{{ Request::is('student/spm') ? 'active' : '' }}">
@@ -225,11 +225,7 @@
 
 		</div>
 	</div>
-<<<<<<< Updated upstream
 
-
-=======
->>>>>>> Stashed changes
 	<script>
 		$('.btn_edit').on('click', function() {
 			$('.index-view').hide();
