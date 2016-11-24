@@ -2,7 +2,7 @@
 
 <style>
     #map {
-        height: 400px;
+        height: 600px;
         width: 100%;
     }
 </style>
@@ -98,11 +98,21 @@
         });
 
         function initMap() {
+            var pastLocation = new google.maps.LatLng(
+            parseFloat("{{isset($location->latitude) ? $location->latitude : 1.5300076438874903}}").toFixed(6),
+            parseFloat("{{isset($location->longtitude) ? $location->longtitude : 103.765869140625}}").toFixed(6)
+            );
+
             map = new google.maps.Map(document.getElementById('map'), {
-            center: {lat: 1.5300076438874903, lng: 103.765869140625},
-            zoom: 8
+            center: pastLocation,
+            zoom: 13,
+
             });
             
+            infoWindow = new google.maps.InfoWindow({map: map});
+            infoWindow.setPosition(pastLocation);
+            infoWindow.setContent('Your previous location.');
+
             map.addListener('click', function(e) {
                 placeMarkerAndPanTo(e.latLng,map);
                 $("#latitude").val(e.latLng.toJSON().lat);

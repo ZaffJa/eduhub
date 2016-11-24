@@ -9,4 +9,7 @@ use OwenIt\Auditing\AuditingTrait;
 class UserLocation extends Model
 {
     use AuditingTrait, SoftDeletes;
+
+
+    protected $guarded = [];
 }
