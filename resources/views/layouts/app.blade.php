@@ -71,8 +71,7 @@
 
                         <ul class="dropdown-menu" role="menu">
                             <li>
-                                <a href="{{ url('/logout') }}" onclick="event.preventDefault();
-                                                 document.getElementById('logout-form').submit();">
+                                <a href="{{ url('/logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                         Logout
                                     </a>
 
@@ -120,6 +119,6 @@
         </div>
 
         <!-- Scripts -->
-        <script src="/js/app.js"></script>
+        <script src="/assets/js/app.js"></script>
 </body>
 </html>

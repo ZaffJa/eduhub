@@ -35,7 +35,7 @@
 
 	<!--   Core JS Files   -->
 	<script src="/assets/js/jquery-3.1.0.min.js" type="text/javascript"></script>
-	<script src="/js/jquery-ui.js" type="text/javascript"></script>
+	<script src="/assets/js/jquery-ui.js" type="text/javascript"></script>
 	<script src="/assets/js/bootstrap.min.js" type="text/javascript"></script>
 	<script src="/assets/js/material.min.js" type="text/javascript"></script>
 
@@ -234,7 +234,6 @@
 	</div>
 
 
-<<<<<<< HEAD
 	<script>
 		$('.btn_edit').on('click', function() {
 			$('.index-view').hide();
@@ -248,8 +247,6 @@
 		});
 	</script>
 
-	<script src="/assets/js/graph.js"></script>
-	<script src="//cdnjs.cloudflare.com/ajax/libs/gsap/1.11.8/TweenMax.min.js"></script>
 
 </body>
 <!-- Mirrored from demos.creative-tim.com/material-dashboard/examples/dashboard.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 27 Oct 2016 07:41:19 GMT -->

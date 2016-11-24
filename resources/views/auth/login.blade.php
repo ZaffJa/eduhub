@@ -8,13 +8,14 @@
             <ul class="nav nav-tabs">
               <li class="active"><a href="{{ url('/login') }}">Institution Login</a></li>
               <li class=""><a href="{{ url('/short/login') }}">Short Course Login</a></li>
+              <li class=""><a href="{{ url('/student/login') }}">Student Login</a></li>
             </ul>
             <div class="tab-content">
               <div class="tab-pane active" id="tab_1">
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
                         <div class="box panel panel-default">
-                            <div class="panel-heading">Login</div>
+                            <div class="panel-heading">Institution Login</div>
                             <div class="panel-body">
                                 <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}" autocomplete="off">
                                     {{ csrf_field() }}
