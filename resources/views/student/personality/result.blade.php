@@ -3,7 +3,7 @@
 	var data = [];
 
 	@foreach($res as $r)
-	data.push('{{$r[1]}}' * 10);
+	data.push('{{$r[1]}}' * 1);
 	@endforeach
 
 </script>
@@ -73,7 +73,7 @@
 					@endforeach
 
 
-		    
+
 		    <!-- Left and right controls -->
 		    <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
 		      <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
@@ -90,14 +90,70 @@
 	</div>
 	<div class="col-md-4 col-lg-4 col-sm-12">
 		<div class="card">
-			<div class="card-content">
-					<div style="text-align:center;"><canvas id='graph'></canvas></div>
+			<div class="card-content" data-background-color="green">
+				<div id="container" style="min-width: 200px; max-width: 600px; height: 400px; margin: 0 auto"></div>
 			</div>
 			<div class="card-footer">
-					<h5>R = Realistic, A = Artistic, I = Investigative, E = Enterprising, S = Social, C = Conventional</h5>
+				<h5>R = Realistic, A = Artistic, I = Investigative, E = Enterprising, S = Social, C = Conventional</h5>
 			</div>
 		</div>
 	</div>
+
+	<script type="text/javascript">
+		$(function() {
+
+			Highcharts.chart('container', {
+
+				chart: {
+					polar: true,
+					type: 'line'
+				},
+
+				title: {
+					text: 'Personality',
+					x: -40
+				},
+
+				pane: {
+					size: '80%'
+				},
+
+				xAxis: {
+					categories: ['R', 'A', 'I', 'E',
+						'S', 'C'
+					],
+					tickmarkPlacement: 'on',
+					lineWidth: 0
+				},
+
+				yAxis: {
+					gridLineInterpolation: 'polygon',
+					lineWidth: 0,
+					min: 0
+				},
+
+				tooltip: {
+					shared: true,
+					pointFormat: '<span style="color:{series.color}">{series.name}: <b>{point.y}</b><br/>'
+				},
+
+				legend: {
+					align: 'right',
+					verticalAlign: 'top',
+					y: 70,
+					layout: 'vertical'
+				},
+
+				series: [{
+					color: "red",
+					name: 'Score',
+					data: data,
+					pointPlacement: 'on'
+				}, ]
+
+			});
+		});
+	</script>
 </div>
 <div class="row">
 	<div class="col-md-8">

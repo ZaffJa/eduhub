@@ -8,11 +8,12 @@
             <ul class="nav nav-tabs">
               <li class="active"><a href="{{ url('/register') }}">Institution</a></li>
               <li class=""><a href="{{ url('/short/register') }}">Short Course</a></li>
+              <li class=""><a href="{{ url('/student/register') }}">Student</a></li>
             </ul>
             <div class="tab-content">
               <div class="tab-pane active" id="tab_1">
                 <div class="row">
-                    <div class="col-md-8 col-md-offset-2">
+                    <div class="col-md-12">
                         <div class="box panel panel-default">
                             <div class="panel-heading">Register</div>
                             <div class="panel-body">
