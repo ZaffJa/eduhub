@@ -1,5 +1,21 @@
 @extends('student.layout.app') @section('title', 'Dashboard') @section('content')
+<script type="text/javascript">
+	var data = [];
+	var type = [];
+	var res = new Array();
 
+	res.push( new Array ('Realistic','{{$personality->realistic}}'));
+	res.push( new Array ('Investigative','{{$personality->investigative}}'));
+	res.push( new Array ('Artistic','{{$personality->artistic}}'));
+	res.push( new Array ('Social','{{$personality->social}}'));
+	res.push( new Array ('Enterprising','{{$personality->enterprising}}'));
+	res.push( new Array ('Conventional','{{$personality->conventional}}'));
+
+	for (i = 0; i < res.length; i++) { 
+	data.push(res[i][1] * 1);
+	type.push(res[i][0]);
+	}
+</script>
 
 <div class="row">
 	<div class="col-md-4 col-md-offset-2">
@@ -94,7 +110,7 @@
 				series: [{
 					color: "red",
 					name: 'Score',
-					data: [5, 5, 5, 6, 9, 4],
+					data: data,
 					pointPlacement: 'on'
 				}, ]
 
