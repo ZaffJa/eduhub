@@ -76,6 +76,7 @@ class FacultyController extends Controller
     {
       $faculty = Faculty::where('name','LIKE','%'.$r->term.'%')->whereInstitution_id(Auth::user()->client->institution->id)->get();
 
+        $data = [];
       foreach($faculty as $f){
         $data[] = $f->name;
       }
