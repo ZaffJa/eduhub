@@ -27,45 +27,47 @@
     <!-- Scripts -->
     <script>
         window.Laravel = <?php echo json_encode([
-            'csrfToken' => csrf_token(),
+                'csrfToken' => csrf_token(),
         ]); ?>
     </script>
 </head>
 
 <body class="hold-transition skin-red sidebar-mini">
-    <nav class="navbar navbar-inverse navbar-static-top">
-        <div class="container-fluid">
-            <div class="navbar-header">
+<nav class="navbar navbar-inverse navbar-static-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
 
-                <!-- Collapsed Hamburger -->
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
-                    <span class="sr-only">Toggle Navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
+            <!-- Collapsed Hamburger -->
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#app-navbar-collapse">
+                <span class="sr-only">Toggle Navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
 
-                <!-- Branding Image -->
-                <a class="navbar-brand " href="{{ url('/') }}" type="button">
-                    <img alt="Brand" src="/img/logo/LOGO-U.svg" height="150%" weight="150%">
-                </a>
-            </div>
+            <!-- Branding Image -->
+            <a class="navbar-brand " href="{{ url('/') }}" type="button">
+                <img alt="Brand" src="/img/logo/LOGO-U.svg" height="150%" weight="150%">
+            </a>
+        </div>
 
-            <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                <!-- Left Side Of Navbar -->
-                <ul class="nav navbar-nav">
-                    &nbsp;
-                </ul>
+        <div class="collapse navbar-collapse" id="app-navbar-collapse">
+            <!-- Left Side Of Navbar -->
+            <ul class="nav navbar-nav">
+                &nbsp;
+            </ul>
 
-                <!-- Right Side Of Navbar -->
-                <ul class="nav navbar-nav navbar-right">
-                    <!-- Authentication Links -->
-                    @if (Auth::guest())
+            <!-- Right Side Of Navbar -->
+            <ul class="nav navbar-nav navbar-right">
+                <!-- Authentication Links -->
+                @if (Auth::guest())
                     <li><a href="{{ url('/login') }}" type="button" class="btn btn-outline">Login</a></li>
                     <li><a href="{{ url('/register') }}" type="button" class="btn btn-outline">Register</a></li>
-                    @else
+                @else
                     <li class="dropdown">
-                        <a href="#" class="dropdown-toggle btn btn-outline" data-toggle="dropdown" role="button" aria-expanded="false" type="button" >
+                        <a href="#" class="dropdown-toggle btn btn-outline" data-toggle="dropdown" role="button"
+                           aria-expanded="false" type="button">
                             {{ Auth::user()->name }} <span class="caret"></span>
                         </a>
 
@@ -73,40 +75,41 @@
                             <li>
                                 <a href="{{ url('/logout') }}" onclick="event.preventDefault();
                                                  document.getElementById('logout-form').submit();">
-                                        Logout
-                                    </a>
+                                    Logout
+                                </a>
 
-                                <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                                <form id="logout-form" action="{{ url('/logout') }}" method="POST"
+                                      style="display: none;">
                                     {{ csrf_field() }}
                                 </form>
                             </li>
                         </ul>
                     </li>
-                    @endif
-                </ul>
-            </div>
+                @endif
+            </ul>
         </div>
-    </nav>
-    <div class="content">
+    </div>
+</nav>
+<div class="content">
     <div class="row">
         <div class="col-lg-12">
             <div class='row'>
                 @if(count($errors) > 0)
-                <div class="alert alert-danger alert-dismissible">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                    <h4><i class="icon fa fa-ban"></i> Alert!</h4>
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
+                    <div class="alert alert-danger alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <h4><i class="icon fa fa-ban"></i> Alert!</h4>
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
                 @endif
                 @if(isset($status))
-                <div class="alert alert-success alert-dismissible">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                    <h4><i class="icon fa fa-check"></i> Success!</h4> {{ $status }}
-                </div>
+                    <div class="alert alert-success alert-dismissible">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                        <h4><i class="icon fa fa-check"></i> Success!</h4> {{ $status }}
+                    </div>
                 @endif
             </div>
             <div class='row'>
@@ -117,9 +120,10 @@
 
             </div>
         </div>
-        </div>
+    </div>
+</div>
 
-        <!-- Scripts -->
-        <script src="/js/app.js"></script>
+<!-- Scripts -->
+<script src="/js/app.js"></script>
 </body>
 </html>

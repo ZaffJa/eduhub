@@ -24,7 +24,6 @@
     <link rel="stylesheet" href="/css/mdb.min.css">
 
     <!-- Live reload plugin for local pc (will be removed when production starts) -->
-    <script src="http://localhost:8000/livereload.js" charset="utf-8"></script>
     <!-- <link rel="stylesheet" href="/css/material.min.css"> -->
 
     <!-- jQuery 2.2.3 -->
@@ -99,9 +98,9 @@
                             <ul class="dropdown-menu">
                                 <!-- User image -->
                                 <li class="user-header">
-                                    <img class="profile-pic" id="clickImg" src="../img/{{isset($profilePic) ? $profilePic->path : ''}}" onerror="this.onerror=null;this.src='/img/avatar/picture.png'" />
+                                    <img class="profile-pic" id="clickImg" src="/img/{{isset($profilePic) ? $profilePic->path : 'avatar/boy-512-02.png'}}" />
                                     <p>
-                                        {{ Auth::user()->client != null ? Auth::user()->client->institution->name : 'Not Associated with Instititution'}}
+                                        {{ Auth::user()->client != null ? Auth::user()->client->institution->name : 'Not Associated with Institution'}}
                                         <small>Member since {{Auth::user()->client != null ? Auth::user()->client->user->created_at->diffForHumans() : ''}}</small>
                                     </p>
                                 </li>
@@ -146,7 +145,7 @@
                 <!-- Sidebar user panel (optional) -->
                 <div class="user-panel">
                     <div class="pull-left image">
-                        <img src="../img/{{isset($profilePic) ? $profilePic->path : ''}}" onerror="this.onerror=null;this.src='/img/avatar/picture.png'" class="img-circle" alt="User Image">
+                        <img src="/img/{{isset($profilePic) ? $profilePic->path : 'avatar/boy-512-02.png'}}" class="img-circle" alt="User Image">
                     </div>
                     <div class="pull-left info">
 
