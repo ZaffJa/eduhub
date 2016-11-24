@@ -119,7 +119,7 @@
         </div>
 
         <div class="main-panel">
-            <nav class="navbar navbar-red navbar-absolute">
+            <nav class="navbar navbar-inverse navbar-absolute">
                 <div class="container-fluid">
                     <div class="navbar-header">
                         <button type="button" class="navbar-toggle" data-toggle="collapse">
