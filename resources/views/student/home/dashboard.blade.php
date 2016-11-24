@@ -5,8 +5,8 @@
 	<div class="col-md-4 col-md-offset-2">
 		<div class="card card-profile">
 			<div class="card-avatar">
-				<a href="#pablo">
-					<img class="img" src="{{isset(Auth::user()->student_profile_picture) ? $s3.Auth::user()->student_profile_picture->path : ''}}" />
+				<a href="">
+					<img class="img-circle thumbnail" src="{{isset(Auth::user()->student_profile_picture) ? $s3.Auth::user()->student_profile_picture->path : 'img/avatar/boy-512-03.png'}}" />
 				</a>
 			</div>
 
@@ -32,6 +32,7 @@
 					<dt>Birthday</dt>
 					<dd>{{$user->student->birthday or null}}</dd>
 					<hr> </p>
+						<a href="#pablo" class="btn btn-primary btn-round">Edit</a>
 			</div>
 		</div>
 	</div>
