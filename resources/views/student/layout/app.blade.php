@@ -6,9 +6,7 @@
 <head>
     <meta charset="utf-8" />
     <link rel="apple-touch-icon" sizes="76x76" href="/assets/img/apple-icon.png" />
-    <link rel="icon" type="image/png" href="/assets/img/favicon.png" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-
+    <link rel="icon" sizes="192x192" href="/img/logo/logo/student.png">
     <title>Student Dashboard</title>
 
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
@@ -67,10 +65,16 @@
         <div class="sidebar" data-color="red" data-image="/assets/img/sidebar-1.jpg">
 
             <div class="logo">
-                <a href="http://www.creative-tim.com" class="simple-text">
-					Creative Tim
+                <a href="" class="simple-text">
+					Eduhub.my
 				</a>
             </div>
+            <div class="">
+                    <div class="photo">
+                        <img src="/img/logo/logo/student.png">
+                    </div>
+
+                </div>
 
             <div class="sidebar-wrapper">
                 <ul class="nav">
