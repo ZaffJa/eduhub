@@ -96,7 +96,7 @@
                         <p>SPM</p>
                     </a>
                 </li>
-                <li class="{{ Request::is('student/personality') ? 'active' : '' }}">
+                <li class="{{ Request::is('student/personality*') ? 'active' : '' }}">
                     <a href="{{action('Student\PersonalityController@view')}}">
                         <i class="material-icons">content_paste</i>
                         <p>Personality Test</p>
@@ -139,7 +139,7 @@
                 <div class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                            <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="material-icons">dashboard</i>
                                 <p class="hidden-lg hidden-md">Dashboard</p>
                             </a>
@@ -158,7 +158,6 @@
                                 <li><a href="#">Another One</a></li>
                             </ul>
                         </li>
-                        Add a comment to this line
                         <li>
                             <a href="#pablo" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="material-icons">person</i>
@@ -267,7 +266,6 @@
                 </ul>
             </div>
         </div>
-
 
     </div>
 </div>
