@@ -332,6 +332,7 @@ class PersonalityController extends Controller
     array('Conventional',session('c'))
     );
     //Sorting result
+    $chart = $res;
     $res = $this->sort($res);
 
     $user_id = Auth::user()->id;
@@ -398,7 +399,7 @@ class PersonalityController extends Controller
     $careerImage = File::wherePersonalityTypeId($id)->get();
 
 
-    return View::make('student.personality.result',compact('res','personalityType','course','careerImage'));
+    return View::make('student.personality.result',compact('res','chart','personalityType','course','careerImage'));
   }
 
   public function sort($res)
@@ -415,6 +416,9 @@ class PersonalityController extends Controller
           $temp = $res[$i-1][1];
           $res[$i-1][1] = $res[$i][1];
           $res[$i][1] = $temp;
+          $temp2 =  $res[$i-1][0];
+          $res[$i-1][0] = $res[$i][0];
+          $res[$i][0] = $temp2;
           $swapped = true;
         }
       }
