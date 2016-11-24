@@ -26,6 +26,14 @@ class ProfileController extends Controller
         return view('student.profile.view',compact('user','student'));
     }
 
+    public function edit()
+    {
+        $user = auth()->user();
+        $student = auth()->user()->student;
+
+        return view('student.profile.edit',compact('user','student'));
+    }
+
     public function update(Request $request)
     {
 
@@ -65,8 +73,6 @@ class ProfileController extends Controller
             $student->save();
 
         }
-
-
 
         if($request->hasFile('image'))
         {
