@@ -19,14 +19,14 @@
                                 <div class="col-md-6 ">
                                     <td>
 
-                                        {!! Form::select('name[]', $spm_subjects, isset($core->spm_subject_id) ? $core->spm_subject_id : $core,['placeholder'=>'Select a subject','required', 'class'=>'btn dropdown-toggle','style'=>'background-color:grey;color:white','disabled'=>'true']); !!}
+                                        {!! Form::select('name[]', $spm_subjects, isset($core->spm_subject_id) ? $core->spm_subject_id : $core,['placeholder'=>'Select a subject','required', 'class'=>'btn dropdown-toggle','style'=>'background-color:grey;color:white']) !!}
 
                                     </td>
                                 </div>
                                 <div class="col-md-6 ">
                                     <td>
 
-                                        {!! Form::select('grade[]', $grades, isset($core->grade) ? $core->grade : null, ['placeholder'=>'Select a grade','required','class'=>'btn dropdown-toggle', 'style'=>'background-color:grey;color:white']); !!}
+                                        {!! Form::select('grade[]', $grades, isset($core->grade) ? $core->grade : null, ['placeholder'=>'Select a grade','required','class'=>'btn dropdown-toggle', 'style'=>'background-color:grey;color:white']) !!}
 
                                     </td>
                                 </div>
@@ -38,7 +38,7 @@
             </div>
             <div class="card-footer">
 
-                {!!Form::submit( $submitButton,['class'=>'btn btn-success']); !!} {!!Form::button( 'Add Record!',['class'=>'btn btn-info','id'=>'add_spm_record']); !!} {!!Form::button( 'Remove Record!',['class'=>'btn btn-danger','id'=>'remove_spm_record']); !!}
+                {!!Form::submit( $submitButton,['class'=>'btn btn-success']) !!} {!!Form::button( 'Add Record!',['class'=>'btn btn-info','id'=>'add_spm_record']) !!} {!!Form::button( 'Remove Record!',['class'=>'btn btn-danger','id'=>'remove_spm_record']) !!}
                 {!! Form::button('Cancel',['type'=>'button','class'=>'btn btn-warning btn_view']) !!}
 
             </div>
@@ -57,14 +57,14 @@
             $('#spm_table tbody>tr:last select').prop('disabled',false);
             $('#spm_table tbody>tr:last select').val(null);
         } else {
-            alert('Stop!!!');
+            alert('Limit SPM subjects reached!');
         }
     });
 
     $('#remove_spm_record').on('click', function() {
         var rowCount = $('#spm_table tr').length;
         if (rowCount <= 5 || rowCount <= fixRowCount) {
-            alert('Stop!!');
+            alert('Limit SPM subjects reached!');
         } else {
 
             $('#spm_table tbody>tr:last').remove();

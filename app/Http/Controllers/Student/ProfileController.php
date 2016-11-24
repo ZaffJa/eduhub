@@ -23,16 +23,18 @@ class ProfileController extends Controller
     {
         $user = auth()->user();
         $student = auth()->user()->student;
+        $location = UserLocation::whereUserId(Auth::user()->id)->first();
 
-        return view('student.profile.view',compact('user','student'));
+        return view('student.profile.view',compact('user','student','location'));
     }
 
     public function edit()
     {
         $user = auth()->user();
         $student = auth()->user()->student;
+        $location = UserLocation::whereUserId(Auth::user()->id)->first();
 
-        return view('student.profile.edit',compact('user','student'));
+        return view('student.profile.edit',compact('user','student','location'));
     }
 
     public function update(Request $request)

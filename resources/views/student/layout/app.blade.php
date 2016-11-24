@@ -83,7 +83,7 @@
 							<p>Dashboard</p>
 						</a>
 					</li>
-					<li class="{{ Request::is('student/profile') ? 'active' : '' }}">
+					<li class="{{ Request::is('student/profile*') ? 'active' : '' }}">
 						<a href="{{action('Student\ProfileController@index')}}">
 							<i class="material-icons">person</i>
 							<p>User Profile</p>
@@ -218,10 +218,6 @@
 								<img src="/assets/img/sidebar-4.jpg">
 							</a>
 						</li>
-
-
-
-
 					</ul>
 				</div>
 			</div>
@@ -229,7 +225,6 @@
 
 		</div>
 	</div>
-
 
 	<script>
 		$('.btn_edit').on('click', function() {
