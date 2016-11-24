@@ -1,6 +1,5 @@
 <h2>{{$profileHeaderText}}</h2>
 
-
 <div class="form-group">
     {{Form::label('name', 'Name')}} {{Form::text('name',null,['class'=>'form-control'])}}
 </div>
@@ -24,9 +23,6 @@
 <div class="form-group">
     {{Form::label('birthday', 'Birthday')}} {{Form::date('birthday',isset($student->birthday) ? $student->birthday : null,['class'=>'form-control'])}}
 </div>
-
-
-
 
 <div class="input-group">
     <label class="input-group-btn">

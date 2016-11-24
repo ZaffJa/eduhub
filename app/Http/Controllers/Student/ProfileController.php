@@ -10,6 +10,7 @@ use App\Http\Requests;
 use App\Http\Controllers\Controller;
 
 use App\Models\Student\StudentFile;
+use App\Models\UserLocation;
 
 use Storage;
 use Auth;
@@ -24,6 +25,14 @@ class ProfileController extends Controller
         $student = auth()->user()->student;
 
         return view('student.profile.view',compact('user','student'));
+    }
+
+    public function edit()
+    {
+        $user = auth()->user();
+        $student = auth()->user()->student;
+
+        return view('student.profile.edit',compact('user','student'));
     }
 
     public function update(Request $request)
@@ -66,7 +75,23 @@ class ProfileController extends Controller
 
         }
 
+        $location = UserLocation::whereUserId(Auth::user()->id)->first();
 
+        if($location == null){
+
+            UserLocation::create([
+                'user_id' => Auth::user()->id,
+                'latitude' => $request->latitude,
+                'longtitude' => $request->longtitude,
+            ]);
+
+        } else {
+
+            $location->latitude = $request->latitude;
+            $location->longtitude = $request->longtitude;
+            $location->save();
+
+        }
 
         if($request->hasFile('image'))
         {

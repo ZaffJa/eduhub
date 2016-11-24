@@ -168,7 +168,7 @@
                     Accredited
                 </div>
                 <div class="col-md-4">
-                    <input type="text" value="{!! $course->accredited !!}" name="accredited" placeholder="Accredit">
+                    <input type="text" value="{!! $course->accredited !!}" name="accredited" placeholder="Accredited">
                 </div>
             </div>
             <div class="row">
@@ -214,7 +214,7 @@
                     Co-curriculum Fee
                     </div>
                     <div class="col-md-4">
-                        <input type="number" name="coq" value="{!! isset($courseFee[1]) ? $courseFee[1]->amount : '' !!}" placeholder="Cocuriculum Fee">
+                        <input type="number" name="coq" value="{!! isset($courseFee[1]) ? $courseFee[1]->amount : '' !!}" placeholder="Cocurriculum Fee">
                     </div>
                 </div>
                 <div class="row">

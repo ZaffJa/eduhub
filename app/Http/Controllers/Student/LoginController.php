@@ -23,7 +23,7 @@ class LoginController extends Controller
             $user = Auth::user();
             
             if($user->hasRole('student') != null){
-                return redirect()->action('DashboardController@view');
+                return redirect()->action('Student\DashboardController@view');
             }
 
             return redirect()
