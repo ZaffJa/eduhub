@@ -97,21 +97,37 @@
           </div>
         </a>
       </div>
-      <div class="col-lg-3 col-md-6 col-sm-3 col-xs-12">
-        <a href="/client-dashboard/institution">
+
+      @if(!Auth::user()->hasRole('short'))
+        <div class="col-lg-3 col-md-6 col-sm-3 col-xs-12">
+        <a href="{{action('ShortController@activateInstitutionUser',Auth::user()->id)}}">
           <div class="box-body">
-            <div class="demo-card-image mdl-card  " style="background-image: url('/img/default/sijil-02.png'); background-size: 30%; background-color:white;">
+              <div class="demo-card-image mdl-card  " style="background-image: url('/img/default/sijil-02.png'); background-size: 30%; background-color:white;">
               <div class="mdl-card__title mdl-card--expand"  >
               </div>
-                <div class="mdl-card__actions  " >
+              <div class="mdl-card__actions  " >
                   <span class="demo-card-image__filename" style="font-size:150%;color:black;">Short Courses</span>
-                </div>
+              </div>
             </div>
           </div>
         </a>
-      </div>
+          </div>
+      @else
+        <div class="col-lg-3 col-md-6 col-sm-3 col-xs-12">
+        <a href="{{action('ShortController@institutionShortCourse')}}">
+          <div class="box-body">
+              <div class="demo-card-image mdl-card  " style="background-image: url('/img/default/sijil-02.png'); background-size: 30%; background-color:white;">
+              <div class="mdl-card__title mdl-card--expand"  >
+              </div>
+              <div class="mdl-card__actions  " >
+                  <span class="demo-card-image__filename" style="font-size:150%;color:black;">Short Courses</span>
+              </div>
+            </div>
+          </div>
+        </a>
+        </div>
 
-
+      @endif
 
       <div class="col-lg-3 col-md-6 col-sm-3 col-xs-12">
         <a href="/client-dashboard/facilities">

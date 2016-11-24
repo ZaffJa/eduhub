@@ -148,7 +148,7 @@
                     <div class="pull-left info">
 
 
-                        <p style="-webkit-transform">{{ Auth::user() != null ? Auth::user()->name : ''}}</p>
+                        <p>{{ Auth::user() != null ? Auth::user()->name : ''}}</p>
                     </div>
                 </div>
                 <!-- search form (Optional) -->
