@@ -154,13 +154,7 @@
 		<div class="card-header" data-background-color="purple" data-toggle="collapse" data-target="#realistic">
 			<h4 class="title">Personality Description (click to expand)</h4>
 		</div>
-		<!-- <div class="card-content table-responsive">
-			<div id="realistic" class="collapse">
-				<h4>
-				The "Do-ers." People who enjoy practical, hands-on problems and solutions. May have athletic or mechanical ability. Prefer to work with objects, machines, tools, plants, and/or animals. May prefer to work outdoors. They like to accomplish tasks. They are dependable, punctual, detailed, hard-working, and reliable individuals. Possible careers include mechanic, chef, engineer, police officer, athlete, pilot, soldier, and firefighter.
-				</h4>
-			</div>
-		</div> -->
+
 		<div class="card-content">
                                     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                                         <div class="panel panel-default">
