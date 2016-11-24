@@ -73,7 +73,7 @@
             <div class="col-md-2">
                     Mode
                 </div>
-                <div class="col-md-1">
+                <div class="col-md-3">
                     {{ Form::select('mode', $modes) }}
                 </div>
             </div>

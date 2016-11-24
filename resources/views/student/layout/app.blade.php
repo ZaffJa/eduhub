@@ -37,6 +37,8 @@
     <script src="/assets/js/jquery-3.1.0.min.js" type="text/javascript"></script>
     <script src="/assets/js/jquery-ui.js" type="text/javascript"></script>
 
+    <script src="https://www.atlasestateagents.co.uk/javascript/tether.min.js"></script><!-- Tether for Bootstrap -->
+    <script src="/assets/js/bootstrap.min.js" type="text/javascript"></script>
     <script src="/assets/js/material.min.js" type="text/javascript"></script>
 
     <!--  Charts Plugin -->
