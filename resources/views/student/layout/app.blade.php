@@ -83,10 +83,10 @@
 							<p>Dashboard</p>
 						</a>
 					</li>
-					<li class="{{ Request::is('student/profile') ? 'active' : '' }}">
-						<a href="{{action('Student\ProfileController@index')}}">
+					<li class="{{ Request::is('student/profile*') ? 'active' : '' }}">
+						<a href="{{action('Student\ProfileController@edit')}}">
 							<i class="material-icons">person</i>
-							<p>User Profile</p>
+							<p>Edit Profile</p>
 						</a>
 					</li>
 					<li class="{{ Request::is('student/spm') ? 'active' : '' }}">
@@ -218,10 +218,6 @@
 								<img src="/assets/img/sidebar-4.jpg">
 							</a>
 						</li>
-
-
-
-
 					</ul>
 				</div>
 			</div>
@@ -229,8 +225,11 @@
 
 		</div>
 	</div>
+<<<<<<< Updated upstream
 
 
+=======
+>>>>>>> Stashed changes
 	<script>
 		$('.btn_edit').on('click', function() {
 			$('.index-view').hide();
