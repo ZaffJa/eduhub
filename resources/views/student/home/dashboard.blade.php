@@ -11,7 +11,7 @@
                     </a>
                 </div>
 
-                <div class="content">
+                <div class="card">
                     <!-- <h6 class="category text-gray">CEO / Co-Founder</h6> -->
                     <h4 class="card-title">{{Auth::user()->name}}</h4>
                     <p class="card-content">
@@ -40,7 +40,7 @@
         <div class="col-md-6 col-lg-6 col-sm-12">
             <div class="card">
                 <div class="card-content" data-background-color="green">
-                    <div id="container" style="min-width: 200px; max-width: 600px; height: 400px; margin: 0 auto"></div>
+                    <div id="graph" style="min-width: 200px; max-width: 600px; height: 400px; margin: 0 auto"></div>
                 </div>
                 <div class="card-footer">
                     <h5>R = Realistic, A = Artistic, I = Investigative, E = Enterprising, S = Social, C =
@@ -48,12 +48,32 @@
                 </div>
             </div>
         </div>
+
     </div>
+		@if($spm_results->count() > 0)
+				<div class="row">
+						<div class="col-md-4 col-md-offset-2">
+								<div class="card card-profile">
+										<h4 class="card-title">SPM Result</h4>
+
+											<div class="card-content">
+													@foreach($spm_results as $result)
+																										<dt>{{ $result->subject->name }}</dt>
+																										<dd>{{$result->grade}}</dd>
+																										<hr>
+																								@endforeach
+											</div>
+
+								</div>
+						</div>
+				</div>
+				@endif
+
 
     <script type="text/javascript">
         $(function () {
 
-            Highcharts.chart('container', {
+            Highcharts.chart('graph', {
 
                 chart: {
                     polar: true,
@@ -106,25 +126,6 @@
         });
     </script>
 
-    @if($spm_results->count() > 0)
-        <div class="row">
-            <div class="col-md-4 col-md-offset-2">
-                <div class="card card-profile">
-                    <h4 class="card-title">SPM Result</h4>
-                    <div class="content">
-											<span class="card-content">
-													@foreach($spm_results as $result)
-                                                    <dt>{{ $result->subject->name }}</dt>
-                                                    <dd>{{$result->grade}}</dd>
-                                                    <hr>
-                                                @endforeach
-											</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        @endif
 
-        </div>
 
 @endsection
