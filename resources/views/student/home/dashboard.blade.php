@@ -1,13 +1,12 @@
 @extends('student.layout.app') @section('title', 'Dashboard') @section('content')
 
 
-<<<<<<< HEAD
 <div class="row">
 	<div class="col-md-4 col-md-offset-2">
 		<div class="card card-profile">
 			<div class="card-avatar">
-				<a href="">
-					<img class="img-circle thumbnail" src="{{isset(Auth::user()->student_profile_picture) ? $s3.Auth::user()->student_profile_picture->path : 'img/avatar/boy-512-03.png'}}" />
+				<a href="#pablo">
+					<img class="img" src="{{isset(Auth::user()->student_profile_picture) ? $s3.Auth::user()->student_profile_picture->path : '/img/avatar/boy-512-03.png'}}" />
 				</a>
 			</div>
 
@@ -33,7 +32,6 @@
 					<dt>Birthday</dt>
 					<dd>{{$user->student->birthday or null}}</dd>
 					<hr> </p>
-						<a href="#pablo" class="btn btn-primary btn-round">Edit</a>
 			</div>
 		</div>
 	</div>
@@ -47,92 +45,81 @@
 			</div>
 		</div>
 	</div>
-=======
-    <div class="row">
-        <div class="col-md-4 col-md-offset-2">
-            <div class="card card-profile">
-                <div class="card-avatar">
-                    <a href="#pablo">
-                        <img class="img"
-                             src="{{isset(Auth::user()->student_profile_picture) ? $s3.Auth::user()->student_profile_picture->path : ''}}"/>
-                    </a>
-                </div>
 
-                <div class="content">
-                    <p class="card-content">
-                        <dt>Name</dt>
-                        <dd>{{$user->name}}</dd>
-                        <hr>
-                        <dt>Email</dt>
-                        <dd>{{$user->email}}</dd>
-                        <hr>
-                        <dt>Address</dt>
-                        <dd>{{$user->student->address or null}}</dd>
-                        <hr>
-                        <dt>Phone</dt>
-                        <dd>{{$user->student->phone or null}}</dd>
-                        <hr>
-                        <dt>School</dt>
-                        <dd>{{$user->student->school or null}}</dd>
-                        <hr>
-                        <dt>Birthday</dt>
-                        <dd>{{$user->student->birthday or null}}</dd>
-                        <hr>
-                    </p>
-                </div>
-            </div>
-        </div>
->>>>>>> 4b0d5a86bff5b6bd30bd2e778ea71e2eba15346d
+	<script type="text/javascript">
+		$(function() {
 
-        <div class="col-md-4 col-lg-4 col-sm-12">
-            <div class="card">
-                <div class="card-content">
-                    <h4 class="card-title">Personality Test Result</h4>
-                    <div style="text-align:center;">
-                        <canvas id='graph'></canvas>
-                    </div>
-                </div>
-                <div class="card-content table-responsive">
-                    <table class="table">
-                        <thead class="text-primary">
-                        <tr>
-                            <th>Your score</th>
-                            <th>Type of person</th>
-                        </tr>
-                        </thead>
+			Highcharts.chart('container', {
 
-                    </table>
+				chart: {
+					polar: true,
+					type: 'line'
+				},
 
-                </div>
-                <div class="card-footer">
-                    <h5 class="footer">R = Realistic, A = Artistic, I = Investigative, E = Enterprising, S = Social, C =
-                        Conventional</h5>
-                </div>
-            </div>
-        </div>
-    </div>
+				title: {
+					text: 'Personality',
+					x: -40
+				},
 
+				pane: {
+					size: '80%'
+				},
 
-    @if($spm_results->count() > 0)
-        <div class="row">
-            <div class="col-md-4 col-md-offset-2">
-                <div class="card card-profile">
-                    <h4 class="card-title">Personality Test Result</h4>
-                    <div class="content">
-                        <span class="card-content">
-                            @foreach($spm_results as $result)
-                                <dt>{{ $result->subject->name }}</dt>
-                                <dd>{{$result->grade}}</dd>
-                                <hr>
-                            @endforeach
-                        </span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    @endif
+				xAxis: {
+					categories: ['R', 'A', 'I', 'E',
+						'S', 'C'
+					],
+					tickmarkPlacement: 'on',
+					lineWidth: 0
+				},
 
+				yAxis: {
+					gridLineInterpolation: 'polygon',
+					lineWidth: 0,
+					min: 0
+				},
 
+				tooltip: {
+					shared: true,
+					pointFormat: '<span style="color:{series.color}">{series.name}: <b>{point.y}</b><br/>'
+				},
 
+				legend: {
+					align: 'right',
+					verticalAlign: 'top',
+					y: 70,
+					layout: 'vertical'
+				},
+
+				series: [{
+					color: "red",
+					name: 'Score',
+					data: [5, 5, 5, 6, 9, 4],
+					pointPlacement: 'on'
+				}, ]
+
+			});
+		});
+	</script>
+	@if($spm_results->count() > 0)
+			<div class="row">
+					<div class="col-md-4 col-md-offset-2">
+							<div class="card card-profile">
+									<h4 class="card-title">SPM Result</h4>
+									<div class="content">
+											<span class="card-content">
+													@foreach($spm_results as $result)
+															<dt>{{ $result->subject->name }}</dt>
+															<dd>{{$result->grade}}</dd>
+															<hr>
+													@endforeach
+											</span>
+									</div>
+							</div>
+					</div>
+			</div>
+	@endif
+
+</div>
 
 @endsection
