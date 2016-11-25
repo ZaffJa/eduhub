@@ -18,7 +18,7 @@
         @endif
 
         <div class="card">
-            <div class="class-header" data-background-color="orange">
+            <div class="card-header" data-background-color="orange">
                 <h2 class="title">&nbsp;Edit Profile</h2>
             </div>
             <div class="card-content">
@@ -30,7 +30,7 @@
 
                     <div class="form-group">
                         {{Form::label('email', 'E-Mail Address')}}
-                        {{Form::text('email',isset($user->email) ? $user->email : null,['class'=>'form-control'])}}
+                        {{Form::text('email',isset($user->email) ? $user->email : null,['class'=>'form-control','readonly'])}}
                     </div>
 
                     <div class="form-group">
@@ -54,11 +54,11 @@
                     </div>
 
                     <div class="form-group">
-                        <input type="hidden" id="latitude" name="latitude">
+                        <input type="hidden" id="latitude" name="latitude" value="{{isset($location->latitude) ? $location->latitude : 1.5300076438874903}}">
                     </div>
 
                     <div class="form-group">
-                        <input type="hidden" id="longtitude" name="longtitude">
+                        <input type="hidden" id="longtitude" name="longtitude" value="{{isset($location->longtitude) ? $location->longtitude : 103.765869140625}}">
                     </div>
 
                     <div class="form-control input-group">
@@ -77,7 +77,7 @@
                     {{csrf_field()}}
 
                     <a href="{{ action('Student\ProfileController@update') }}">
-                        <button class="btn btn-default">Update</button>
+                        <button class="btn btn-success">Update</button>
                     </a>
 
                     <a href="{{ action('Student\ProfileController@index') }}"
@@ -160,6 +160,8 @@
                     infoWindow.setPosition(pos);
                     infoWindow.setContent('Location found.');
                     map.setCenter(pos);
+                    $("#latitude").val(position.coords.latitude);
+                    $("#longtitude").val(position.coords.longtitude);
                 }, function () {
                     handleLocationError(true, infoWindow, map.getCenter());
                 });

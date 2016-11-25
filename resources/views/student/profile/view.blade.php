@@ -18,6 +18,9 @@
     @endif
 
         <div class="card">
+          <div class="card-header" data-background-color="green" >
+            <h4 class="title" >Profile Info</h4></div>
+
             <div class="card-content">
                 <div class="form-group">
                     {{Form::label('name', 'Name')}}
@@ -62,7 +65,7 @@
         <div id="map"></div>
 
 
-        <a href="{{ action('Student\ProfileController@edit') }}"><button class="btn btn-default">Edit</button></a>
+        <a href="{{ action('Student\ProfileController@edit') }}"><button class="btn btn-info">Edit</button></a>
 
 </div>
 <script>
@@ -88,7 +91,7 @@
             zoom: 13,
 
             });
-            
+
             infoWindow = new google.maps.InfoWindow({map: map});
             infoWindow.setPosition(location);
             infoWindow.setContent('Your location.');
