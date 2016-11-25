@@ -14,7 +14,7 @@
 
 	for (i = 0; i < res.length; i++) {
 	data.push(res[i][1] * 1);
-	type.push(res[i][0]);
+	type.push(res[i][0].charAt(0));
 	}
 </script>
 
@@ -53,7 +53,7 @@
 	</div>
 	<div class="col-md-6 col-lg-6 col-sm-12">
 		<div class="card">
-			<div class="card-content" data-background-color="green">
+			<div class="card-header" data-background-color="blue">
 				<div id="container" style="min-width: 200px; max-width: 600px; height: 400px; margin: 0 auto"></div>
 			</div>
 			<div class="card-footer">
@@ -82,9 +82,7 @@
 				},
 
 				xAxis: {
-					categories: ['R', 'A', 'I', 'E',
-						'S', 'C'
-					],
+					categories: type,
 					tickmarkPlacement: 'on',
 					lineWidth: 0
 				},
@@ -108,7 +106,7 @@
 				},
 
 				series: [{
-					color: "red",
+					color: 'blue',
 					name: 'Score',
 					data: data,
 					pointPlacement: 'on'
@@ -119,18 +117,21 @@
 	</script>
 	@if($spm_results->count() > 0)
 			<div class="row">
-					<div class="col-md-4 col-md-offset-2">
-							<div class="card card-profile">
-									<h4 class="card-title">SPM Result</h4>
-									<div class="content">
-											<span class="card-content">
+					<div class="col-md-6 ">
+							<div class="card">
+							 <div class="card-header" data-background-color="blue">
+									<h4 class="title">SPM Result</h4>
+								</div>
+											<div class="card-content">
 													@foreach($spm_results as $result)
+													<div class="col-md-4">
 															<dt>{{ $result->subject->name }}</dt>
 															<dd>{{$result->grade}}</dd>
 															<hr>
+													</div>
 													@endforeach
-											</span>
-									</div>
+											</div>
+
 							</div>
 					</div>
 			</div>

@@ -69,14 +69,15 @@
 					Eduhub.my
 				</a>
             </div>
-            <div class="">
-                    <div class="photo">
+
+
+            <div class="sidebar-wrapper">
+              <div class="user">
+                    <div class="photo text-center" >
                         <img src="/img/logo/logo/student.png">
                     </div>
 
                 </div>
-
-            <div class="sidebar-wrapper">
                 <ul class="nav">
                     <li class="{{ Request::is('student') ? 'active' : '' }}">
                         <a href="{{action('Student\DashboardController@view')}}">
@@ -90,7 +91,7 @@
                             <p>User Profile</p>
                         </a>
                     </li>
-                    <li class="{{ Request::is('student/spm') ? 'active' : '' }}">
+                    <li class="{{ Request::is('student/spm*') ? 'active' : '' }}">
                         <a href="{{action('Student\SpmController@index')}}">
                             <i class="material-icons">book</i>
                             <p>SPM</p>
@@ -133,7 +134,7 @@
                         <span class="icon-bar"></span>
                     </button>
 
-                        <a class="navbar-brand" href="#">Hello, <b>User!</b></a>
+                        <a class="navbar-brand" href="#">Hello, <b>{{auth()->user()->name}}!</b></a>
                     </div>
 
                 </div>

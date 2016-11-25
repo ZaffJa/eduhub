@@ -18,7 +18,7 @@
         @endif
 
         <div class="card">
-            <div class="class-header" data-background-color="orange">
+            <div class="card-header" data-background-color="orange">
                 <h2 class="title">&nbsp;Edit Profile</h2>
             </div>
             <div class="card-content">
@@ -30,7 +30,7 @@
 
                     <div class="form-group">
                         {{Form::label('email', 'E-Mail Address')}}
-                        {{Form::text('email',isset($user->email) ? $user->email : null,['class'=>'form-control'])}}
+                        {{Form::text('email',isset($user->email) ? $user->email : null,['class'=>'form-control','readonly'])}}
                     </div>
 
                     <div class="form-group">
@@ -77,7 +77,7 @@
                     {{csrf_field()}}
 
                     <a href="{{ action('Student\ProfileController@update') }}">
-                        <button class="btn btn-default">Update</button>
+                        <button class="btn btn-success">Update</button>
                     </a>
 
                     <a href="{{ action('Student\ProfileController@index') }}"

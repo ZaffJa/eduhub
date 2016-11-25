@@ -1,4 +1,5 @@
 @extends('student.layout.app') @section('title', 'Dashboard') @section('content')
+
 <div class="row">
   <div class="col-md-12">
 @if(count($core_spm_subjects) > 0)
@@ -6,8 +7,8 @@
     <div class="card-header" data-background-color="orange">
         <h2 class="title">&nbsp;SPM Result</h2>
     </div>
-    <div class="card-content table-responsive table-full-width">
-        <table class="table">
+    <div class="card-content ">
+        <table class="table table-responsive table-full-width">
             <thead class="text-danger">
                 <tr>
                     <th>Code</th>
