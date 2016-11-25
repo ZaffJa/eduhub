@@ -54,11 +54,11 @@
                     </div>
 
                     <div class="form-group">
-                        <input type="hidden" id="latitude" name="latitude">
+                        <input type="hidden" id="latitude" name="latitude" value="{{isset($location->latitude) ? $location->latitude : 1.5300076438874903}}">
                     </div>
 
                     <div class="form-group">
-                        <input type="hidden" id="longtitude" name="longtitude">
+                        <input type="hidden" id="longtitude" name="longtitude" value="{{isset($location->longtitude) ? $location->longtitude : 103.765869140625}}">
                     </div>
 
                     <div class="form-control input-group">
