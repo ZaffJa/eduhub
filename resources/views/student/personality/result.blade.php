@@ -68,7 +68,7 @@
 					@foreach($careerImage as $ci)
 
 					<div class="col-md-4">
-			        <img src="../img/{{$ci->path}}" class="thumbnail" alt="Chania" width="460" height="345">
+			        <img src="/img/{{$ci->path}}" class="thumbnail" alt="Chania" width="460" height="345">
 
 			      </div>
 					@endforeach
