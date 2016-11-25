@@ -160,6 +160,8 @@
                     infoWindow.setPosition(pos);
                     infoWindow.setContent('Location found.');
                     map.setCenter(pos);
+                    $("#latitude").val(position.coords.latitude);
+                    $("#longtitude").val(position.coords.longtitude);
                 }, function () {
                     handleLocationError(true, infoWindow, map.getCenter());
                 });
