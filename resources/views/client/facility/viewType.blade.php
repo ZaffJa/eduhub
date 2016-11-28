@@ -10,12 +10,13 @@
 
             <a href="{!! action('FacilityController@view', $type->id) !!}">
                 <div class="box-body">
-                    <div class="demo-card-image mdl-card mdl-shadow--2dp" style="background-image: url('/img/default/{!! $type->icon !!}')">
-                        <div class="mdl-card__title mdl-card--expand">
-
-                        </div>
+                    @if($type->name == 'Bank/ATM')
+                        <div class="demo-card-image mdl-card mdl-shadow--2dp" style="background-image: url('/img/default-facilities/Bank.jpg')">
+                    @else
+                        <div class="demo-card-image mdl-card mdl-shadow--2dp" style="background-image: url('/img/default-facilities/{!! $type->name !!}.jpg')">
+                    @endif
                         <div class="mdl-card__actions">
-                            <span class="demo-card-image__filename">{!! $type->name !!}</span>
+                            <span class="demo-card-image__filename">{!! $type->name!!}</span>
                         </div>
                     </div>
                 </div>

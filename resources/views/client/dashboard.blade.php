@@ -13,7 +13,7 @@
               <h5 class="widget-user-desc">Skudai Johor</h5>
             </div>
             <div class="widget-user-image">
-              <img class="img-circle hidden-xs" id="clickImg" src="../img/{{isset($profilePic) ? $profilePic->path : ''}}" onerror="this.onerror=null;this.src='/img/avatar/picture.png'" />
+              <img class="img-circle hidden-xs" id="clickImg" src="/img/{{isset($profilePic) ? $profilePic->path : 'avatar/boy-512-02.png'}}" />
             </div>
             <div class="box-footer">
               <div class="row">
