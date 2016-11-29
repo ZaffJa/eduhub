@@ -15,20 +15,31 @@ class AddBankAccountHeadlineProfilePicLocationStatusBankTypeIdShortProvidersTabl
     {
         if(Schema::hasTable('short_providers')){
             Schema::table('short_providers', function ($table){
-                $table->integer('bank_account')->unsigned()->nullable();
-                $table->string('headline')->nullable();
-                $table->integer('short_file_id')->nullable()->unsigned();
-                $table->tinyInteger('status')->nullable();
-                $table->integer('bank_type_id')->nullable()->unsigned();
+
+                if (!Schema::hasColumn('short_providers', 'bank_account')) {
+
+                    $table->integer('bank_account')->unsigned()->nullable();
+                }
+                if (!Schema::hasColumn('short_providers', 'headline')) {
+
+                    $table->string('headline')->nullable();
+                }
+                if (!Schema::hasColumn('short_providers', 'short_file_id')) {
+
+                    $table->integer('short_file_id')->nullable()->unsigned();
+                }
+                if (!Schema::hasColumn('short_providers', 'status')) {
+
+                    $table->tinyInteger('status')->nullable();
+                }
+                if (!Schema::hasColumn('short_providers', 'bank_type_id')) {
+
+                    $table->integer('bank_type_id')->nullable()->unsigned();
+                }
+
             });
 
-            Schema::table('short_providers', function ($table){
-                $table->foreign('parent_id')
-                        ->references('id')->on('users')
-                        ->onDelete('cascade')
-                        ->onUpdate('restrict');
 
-            });
 
             Schema::table('short_providers', function ($table){
                 $table->foreign('short_file_id')

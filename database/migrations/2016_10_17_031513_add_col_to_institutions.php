@@ -21,7 +21,7 @@ class AddColToInstitutions extends Migration
             $table->string('email')->nullable();
             $table->string('remarks')->nullable();
             $table->string('examination_board')->nullable();
-            // $table->string('contact_no')->nullable();
+             $table->string('contact_no')->nullable();
             $table->string('fax_no')->nullable();
             $table->integer('file_id')->unsigned()->nullable();
         });
@@ -42,6 +42,11 @@ class AddColToInstitutions extends Migration
     public function down()
     {
         Schema::table('institutions', function (Blueprint $table) {
+
+            Schema::table('institutions', function (Blueprint $table) {
+                $table->dropForeign(['file_id']);
+            });
+
             $table->dropColumn(['public_relations_department_email',
                                 'student_enrollment_department_email',
                                 'corporate_communications_department_email',
@@ -51,12 +56,9 @@ class AddColToInstitutions extends Migration
                                 'examination_board',
                                 'fax_no',
                                 'file_id',
-                                'contact_no'
                             ]);
         });
 
-        Schema::table('institutions', function (Blueprint $table) {
-            $table->dropForeign(['file_id']);
-        });
+
     }
 }

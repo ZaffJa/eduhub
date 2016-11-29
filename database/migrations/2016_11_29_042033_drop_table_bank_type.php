@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class SetUserIdNullOnLogsTable extends Migration
+class DropTableBankType extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class SetUserIdNullOnLogsTable extends Migration
      */
     public function up()
     {
-        Schema::table('logs', function (Blueprint $table) {
-            $table->integer('user_id')->unsigned()->nullable()->change();
-        });
+        Schema::dropIfExists('bank_type');
+
     }
 
     /**
@@ -25,8 +24,12 @@ class SetUserIdNullOnLogsTable extends Migration
      */
     public function down()
     {
-        Schema::table('logs', function (Blueprint $table) {
-            $table->integer('user_id')->unsigned()->change();
+        Schema::create('bank_type', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name');
+            $table->timestamps();
+            $table->softDeletes();
+
 
         });
     }

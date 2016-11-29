@@ -30,7 +30,7 @@ class AddColShortCourse extends Migration
     public function down()
     {
         if(Schema::hasColumn('short_courses','who_should_att')) {
-            Schema::table('short_course', function ($table){
+            Schema::table('short_courses', function ($table){
                 $table->dropColumn(['who_should_att',
                                     'early_birds',
                                     'credit_hours'
