@@ -2892,20 +2892,31 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
   height: 200px;
 
   /* Create the parallax scrolling effect */
+
+}
+.card-background-main{
   background-attachment: fixed;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-}
-.card-background-main{
-
   background-image: url("/img/default/pexels-photo.png");
 
 }
 .card-background-sub{
+
+  background-repeat: no-repeat;
+  background-size: cover;
   background-image: url("/img/default/library.jpg");
 
 }
+.card-background-sub-table{
+
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-image: url("/img/default/books-magazines-building-school.png");
+
+}
+
 .navbar {
   border: 0;
   border-radius: 3px;

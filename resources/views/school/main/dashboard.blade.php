@@ -59,8 +59,8 @@
             </div>
             <div class="col-md-12 col-lg-8">
                 <div class="card">
-                    <div class="card-header card-background card-background-sub">
-                        <h4 class="title">School Ranking</h4>
+                    <div class="card-header card-background card-background-sub-table" >
+                        <h2 class="title"><b>School Ranking</b></h2>
                         <p class="category">Here is a subtitle for this table</p>
                     </div>
                     <div class="card-content table-responsive table-full-width">
