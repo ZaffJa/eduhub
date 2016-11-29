@@ -31,11 +31,11 @@
     <!-- Bootstrap 3.3.6 -->
     <script src="/client/bootstrap/js/bootstrap.min.js"></script>
     <!-- Jquery User Interface plugin -->
-    <script src="/js/jquery-ui.js"></script>
+    <script src="/assets/js/jquery-ui.js"></script>
     <!-- Slim scroll plugin-->
     <script type="text/javascript" src="/client/plugins/slimScroll/jquery.slimscroll.min.js"></script>
     <!-- Plugin for confirmation to leave before saving -->
-    <script src="/js/jquery.are-you-sure.js"></script>
+    <script src="/assets/js/jquery.are-you-sure.js"></script>
 
     <script src="/client/dist/js/app.min.js"></script>
 
