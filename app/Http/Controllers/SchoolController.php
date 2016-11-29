@@ -11,4 +11,9 @@ class SchoolController extends Controller
     return View::make('school.main.dashboard');
   }
 
+  public function map()
+  {
+  	return View::make('school.map.map');
+  }
+
 }
