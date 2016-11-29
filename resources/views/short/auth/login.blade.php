@@ -6,10 +6,10 @@
             <ul class="nav nav-tabs">
               <li class=""><a href="{{ url('/login') }}">Institution Login</a></li>
               <li class="active"><a href="{{ url('/short/login') }}">Short Course Login</a></li>
+              <li class=""><a href="{{ url('/student/login') }}">Student Login</a></li>
             </ul>
             <div class="tab-content">
               <div class="tab-pane " id="tab_1">
-
               </div>
               <!-- /.tab-pane -->
               <div class="tab-pane active" id="tab_2">

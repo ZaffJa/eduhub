@@ -12,18 +12,52 @@
 Auth::routes();
 
 
+Route::group(['prefix'=>'student','namespace'=>'Student'],function(){
+
+    Route::get('/login', 'LoginController@view');
+    Route::post('/login', 'LoginController@login');
+
+    Route::get('register','RegisterController@create');
+    Route::post('register','RegisterController@store');
+
+    //Socialite
+    Route::get('/redirect/{provider}', 'SocialAuthController@redirect');
+    Route::get('/callback/{provider}', 'SocialAuthController@callback');
+
+    Route::group(['middleware'=>['role.auth','auth','empty.null']],function(){
+        Route::get('/', 'DashboardController@view');
+
+        Route::get('spm', 'SpmController@index');
+        Route::get('spm/create', 'SpmController@create');
+        Route::post('spm/create', 'SpmController@store');
+        Route::post('spm/update', 'SpmController@update');
+
+        Route::get('find-institution','InstitutionController@index');
+        Route::get('profile','ProfileController@index');
+        Route::get('profile/edit','ProfileController@edit');
+        Route::post('profile/edit','ProfileController@update');
 
 
+        Route::get('/personality','PersonalityController@view');
+
+        Route::group(['prefix'=>'personality'],function(){
+            Route::get('/set1','PersonalityController@set1');
+            Route::get('/set2','PersonalityController@set2');
+            Route::get('/set3','PersonalityController@set3');
+            Route::get('/set4','PersonalityController@set4');
+            Route::get('/set5','PersonalityController@set5');
+            Route::get('/set6','PersonalityController@set6');
+            Route::get('/result','PersonalityController@result');
+        });
+
+    });
+
+});
 
 
 Route::post('institutions/v/{slug}/enquiry/{course}','EnquiryController@store');
 Route::get('/agent', 'AgentController@dashboard')->name('agent.dashboard');
-Route::get('/students', 'Student\DashboardController@view');
-Route::get('/personality','Student\PersonalityController@view');
-Route::get('/set1','Student\PersonalityController@set1');
-Route::get('/set2','Student\PersonalityController@set2');
 
-Route::get('/result','Student\PersonalityController@result');
 Route::get('/permission-error',function(){
     return view('errors.403');
 });
@@ -34,6 +68,7 @@ Route::get('/',function(){
 
 
 Route::group(['prefix'=>'admin'],function(){
+
     Route::get('/login','AdminController@login');
     Route::post('/login','AdminController@postLogin');
 

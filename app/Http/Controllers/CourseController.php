@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Student\SpmRequirementCourse;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Models\Faculty;
@@ -13,12 +14,32 @@ use App\Models\Nec;
 use App\Models\PeriodType;
 use App\Models\InstitutionCourse;
 use App\Models\CourseFee;
+use App\Models\PersonalityType;
+use App\Models\Student\SpmSubject;
+use App\Models\Student\SpmResult;
 use Validator;
 use Auth;
 use View;
 
 class CourseController extends Controller
 {
+    public function __construct()
+    {
+        $this->core_spm_subjects = ['1','2','5','6','7'];
+        $this->grades = [
+                           'A+'=>'A+',
+                           'A'=>'A',
+                           'A-'=>'A-',
+                           'B+'=>'B+',
+                           'B'=>'B',
+                           'C+'=>'C+',
+                           'C'=>'C',
+                           'D'=>'D',
+                           'E'=>'E',
+                           'G'=>'G'
+                       ];
+
+    }
 
 
     public function add()
@@ -30,20 +51,25 @@ class CourseController extends Controller
       $modes = StudyMode::pluck('name','id');
       $nec = Nec::pluck('field','code');
       $period_type = PeriodType::pluck('name','id');
+      $personality_type = PersonalityType::pluck('type','id')->toArray();
+      $personality_description = PersonalityType::pluck('description','id');
+      $spm_subjects = SpmSubject::pluck('name','id');
+      $grades = $this->grades;
 
       try{
         return view('client.course.add')
-                              ->with(compact('faculties','levels','modes','nec','period_type','fee_types'))
+                              ->with(compact('personality_type','personality_description','faculties','levels','modes','nec','period_type','fee_types','spm_subjects','grades'))
                               ->with(['status'=>'hahaha']);
       }catch(Error $x){
         return view('client.course.add')
-                              ->with(compact('faculties','levels','modes','nec','period_type','fee_types'))
+                              ->with(compact('personality_description','personality_type','faculties','levels','modes','nec','period_type','fee_types','spm_subjects','grades'))
                               ->withError(['status'=>'hahaha']);
       }
     }
 
     public function store(Request $r)
     {
+
       $validator = Validator::make($r->all(), [
              'name_eng' => 'required|max:255',
              'name_ms' => 'required|max:255',
@@ -67,6 +93,7 @@ class CourseController extends Controller
                          ->withInput();
          }
 
+
          try{
             $course = new Course;
 
@@ -85,8 +112,13 @@ class CourseController extends Controller
             $course->commencement = $r->commencement;
             $course->qualification = $r->qualification;
             $course->mqa_reference_no = $r->mqa;
+            $course->personality_type_id = $r->personality_type_id;
 
             $course->save();
+
+             //Add to spm requirement courses
+
+
 
             //Add to institution course
             $is = new InstitutionCourse;
@@ -109,6 +141,17 @@ class CourseController extends Controller
             $coq->amount =  $r->coq;
 
             $coq->save();
+
+            //Spm requirements (optional)
+
+            if($r->name != null){
+
+                 SpmRequirementCourse::create([
+                     'course_id'=>$course->id,
+                     'requirement'=>'hello'
+                 ]);
+
+             }
 
             $residential = new CourseFee;
             $residential->course_id = $course->id;
@@ -168,21 +211,31 @@ class CourseController extends Controller
 
      public function edit($id)
      {
-      $faculties = Faculty::whereInstitutionId(Auth::user()->client->institution->id)->pluck('name','id');
+         $faculties = Faculty::whereInstitutionId(Auth::user()->client->institution->id)->pluck('name','id');
 
-      $levels = StudyLevel::pluck('name','id');
+         $levels = StudyLevel::pluck('name','id');
 
-      $modes = StudyMode::pluck('name','id');
+         $modes = StudyMode::pluck('name','id');
 
-      $nec = Nec::pluck('field','code');
+         $nec = Nec::pluck('field','code');
 
-      $period_type = PeriodType::pluck('name','id');
+         $period_type = PeriodType::pluck('name','id');
 
-      $institution = Institution::find(Auth::user()->client->institution->id);
+         $institution = Institution::find(Auth::user()->client->institution->id);
 
-      $course = Course::whereId($id)->firstOrFail();
+         $course = Course::whereId($id)->firstOrFail();
 
-      $courseFee = CourseFee::whereCourseId($id)->get();
+         $courseFee = CourseFee::whereCourseId($id)->get();
+
+         $personality_type = PersonalityType::pluck('type','id')->toArray();
+
+         $personality_description = PersonalityType::pluck('description','id');
+
+         $spmCourseRequirement = SpmRequirementCourse::whereCourseId($id)->first();
+
+         $spm_subjects = SpmSubject::pluck('name','id');
+
+         $grades = $this->grades;
 
         // return $faculties;
 
@@ -190,7 +243,10 @@ class CourseController extends Controller
           $faculties = Faculty::whereInstitution_id(Auth::user()->client->institution->id)->paginate(10);
           return View::make('client.faculty.view',compact('faculties'));
         }else {
-          return View::make('client.course.edit',compact('course','faculties','levels','modes','period_type','nec','courseFee'));
+          return View::make('client.course.edit',compact(
+                            'personality_type','personality_description','course',
+                            'faculties','levels','modes','period_type','nec',
+                            'courseFee','spm_subjects','grades','spmCourseRequirement'));
 
         }
 
@@ -198,6 +254,7 @@ class CourseController extends Controller
 
      public function update(Request $r,$id)
      {
+
 
       try{
         $course = Course::whereId($id)->firstOrFail();
@@ -217,6 +274,7 @@ class CourseController extends Controller
         $course->approved = $r->approved;
         $course->commencement = $r->commencement;
         $course->mqa_reference_no = $r->mqa_reference_no;
+        $course->personality_type_id = $r->personality_type_id;
         $course->save();
 
         $alumni = CourseFee::whereCourseIdAndFeeId($id,1)->first();
@@ -260,6 +318,34 @@ class CourseController extends Controller
           $service->course_id = $id;
           $service->fee_id = 4;
         }
+
+
+        //Spm requirements (optional)
+
+          if($r->name != null){
+
+              $spmSubject = SpmRequirementCourse::whereCourseId($id)->first();
+              $requirement = $this->spmRequirement($r->name,$r->grade);
+
+
+              if($spmSubject == null){
+
+
+                  SpmRequirementCourse::create([
+                      'course_id'=>$id,
+                      'requirement'=>'hello'
+                  ]);
+                  
+              }else{
+
+                  $spmRequirementCourse = SpmRequirementCourse::whereCourseId($id)->first();
+                  $spmRequirementCourse->requirement = array_combine($r->name,$r->grade);
+                  $spmRequirementCourse->update();
+
+              }
+
+
+          }
 
         $service->amount = $r->service;
         $service->save();
@@ -350,5 +436,16 @@ class CourseController extends Controller
       }else{
         return redirect()->route('client.course.edit',$course->id);
       }
+    }
+
+
+    public function spmRequirement($spmSubject,$spmGrade)
+    {
+        $value = new \stdClass();
+
+        $value->name = $spmSubject;
+        $value->grade = $spmGrade;
+
+        return response()->json($value);
     }
 }

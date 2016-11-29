@@ -73,7 +73,7 @@
             <div class="col-md-2">
                     Mode
                 </div>
-                <div class="col-md-1">
+                <div class="col-md-3">
                     {{ Form::select('mode', $modes) }}
                 </div>
             </div>
@@ -123,6 +123,29 @@
                 </div>
             </div>
             <div class="row">
+                <div class="row">
+                    <div class="col-md-2">
+                        SPM Qualification Entry
+                        <a href="#" data-toggle="tooltip" 
+                        title="SPM qualification entry is used for suggesting courses to students after they enter their SPM results,
+                        if the field is not filled the course will not be suggested to the students">
+                        <span class="glyphicon glyphicon-info-sign"></span>
+                        </a>
+                    </div>
+                    <div class="col-md-4">
+                        <a class="btn btn-success" onclick="addRow()">Add subject</a>
+                        <a class="btn btn-danger" onclick="delRow()">Remove subject</a>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <table id="spmTable">
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
                 <div class="col-md-2">
                     Approved
                     <span class="required">*</span>
@@ -137,7 +160,7 @@
                     <span class="required">*</span>
                 </div>
                 <div class="col-md-4">
-                    <input type="text" name="accredited" placeholder="Accredit">
+                    <input type="text" name="accredited" placeholder="Accredited">
                 </div>
             </div>
             <div class="row">
@@ -204,6 +227,28 @@
                 </div>
             </div>
             <div class="row">
+                <div class="col-md-2">
+                <h3>Course Type</h3>
+                <h4>*For student recomendation</h4>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">
+                Type of person
+                </div>
+                <div class="col-md-4">
+                    {{ Form::select('personality_type_id', $personality_type, null, ['class' => 'my_class']) }}
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-2">
+                Person Description
+                </div>
+                <div class="col-md-6" id='description'>
+
+                </div>
+            </div>
+            <div class="row">
                 {{ csrf_field() }}
                 <div class="col-md-10">
                 </div>
@@ -216,5 +261,43 @@
     @endif
     </div>
 </div>
+
+<script type="text/javascript">
+$(document).ready(function(){
+    $('[data-toggle="tooltip"]').tooltip();
+});
+
+    $descriptions = [];
+    
+    @foreach($personality_description as $pd)
+        $descriptions.push('{{$pd}}');
+    @endforeach
+
+    var table = document.getElementById("spmTable");
+    
+    function addRow() {
+        var rowCount = $('#spmTable tr').length;
+        if (rowCount <= 10) {
+            var row = table.insertRow(0);
+            var cell1 = row.insertCell(0);
+            var cell2 = row.insertCell(1);
+            cell1.innerHTML = '{!! Form::select("name[]", $spm_subjects, null,["placeholder"=>"Select a subject"]); !!}';
+            cell2.innerHTML = '{!! Form::select("grade[]",$grades, null, ["placeholder"=>"Select a grade"]); !!}';
+        }else
+        {
+            alert('SPM have maximum subject of 10');
+        }
+    }
+
+    function delRow() {
+        table.deleteRow(0);
+    }
+
+    $('.my_class').change(function () {
+        $val = $('.my_class').val() - 1;
+
+        $('#description').text($descriptions[$val]);
+    }).change();
+</script>
 
 @endsection

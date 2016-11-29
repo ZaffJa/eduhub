@@ -14,8 +14,9 @@
 
             }
         </style>
-        <div class="box-body">
-            <form method="post" autocomplete="off" class="confirmLeaveBeforeSave">
+        <form method="post" autocomplete="off" class="confirmLeaveBeforeSave">
+
+            <div class="box-body">
                 <div class="row">
                     <div class="col-md-2">
                         <h3>Course Info</h3>
@@ -69,7 +70,7 @@
                     <div class="col-md-2">
                         Period Min
                     </div>
-                    <div class="col-md-1">
+                    <div class="col-md-4">
                         <input type="number" value="{!! $course->period_value_min !!}" name="period_value_min"
                                placeholder="Min credit hour">
                     </div>
@@ -79,7 +80,7 @@
                     <div class="col-md-2">
                         Period Max
                     </div>
-                    <div class="col-md-1">
+                    <div class="col-md-4">
                         <input type="number" value="{!! $course->period_value_max !!}" name="period_value_max"
                                placeholder="Max credit hour">
                     </div>
@@ -126,7 +127,8 @@
                         Accredited
                     </div>
                     <div class="col-md-4">
-                        <input type="text" value="{!! $course->accredited !!}" name="accredited" placeholder="Accredited">
+                        <input type="text" value="{!! $course->accredited !!}" name="accredited"
+                               placeholder="Accredited">
                     </div>
                 </div>
                 <div class="row">
@@ -252,23 +254,23 @@
                             <input type="number" name="tuition" value="" placeholder="Tuition Fee">
                         </div>
                     </div>
-            @endif
+                @endif
 
-            </form>
-        </div>
-        <div class="box-footer">
-
-            {{ csrf_field() }}
-            <div class="col-md-10">
             </div>
-            <div class="col-md-2">
-                <a href="{!! route('client.course.view.course', $course->id ) !!}" class="btn btn-warning ">Cancel</a>
-                <a href="{!! route('client.course.update',$course->id) !!}">
-                    <button class='btn btn-success '>Update</button>
-                </a>
-            </div>
+            <div class="box-footer">
 
-            </form>
-        </div>
+                {{ csrf_field() }}
+                <div class="col-md-10">
+                </div>
+                <div class="col-md-2">
+                    <a href="{!! route('client.course.view.course', $course->id ) !!}"
+                       class="btn btn-warning ">Cancel</a>
+                    <a href="{!! route('client.course.update',$course->id) !!}">
+                        <button class='btn btn-success '>Update</button>
+                    </a>
+                </div>
+            </div>
+        </form>
     </div>
+
 @endsection

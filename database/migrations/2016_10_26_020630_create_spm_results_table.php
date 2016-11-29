@@ -15,8 +15,29 @@ class CreateSpmResultsTable extends Migration
     {
         Schema::create('spm_results', function (Blueprint $table) {
             $table->increments('id');
+            $table->integer('user_id')->unsigned();
+            $table->integer('spm_subject_id')->unsigned();
+            $table->string('grade');
             $table->timestamps();
+            $table->softDeletes();
         });
+
+
+        Schema::table('spm_results', function (Blueprint $table) {
+
+            $table->foreign('user_id')
+                    ->references('id')->on('users')
+                    ->onDelete('cascade')
+                    ->onUpdate('restrict');
+
+            $table->foreign('spm_subject_id')
+                    ->references('id')->on('spm_subjects')
+                    ->onDelete('cascade')
+                    ->onUpdate('restrict');
+
+        });
+
+
     }
 
     /**
