@@ -35,7 +35,8 @@
             var pastLocation =  new google.maps.Marker({
                 position : pastLocation,
                 map: map,
-                title: 'Your past location'
+                title: 'Your past location',
+                icon : '/img/logo/map eduhub-02.png'
             });
 
             var pastInfo = new google.maps.InfoWindow({
@@ -81,38 +82,6 @@
             newMarker.push(marker);
             
             map.panTo(latLng);
-        }
-
-        function geolocate() {
-            infoWindow = new google.maps.InfoWindow({map: map});
-
-            // Try HTML5 geolocation.
-            if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(function (position) {
-                    pos = {
-                        lat: position.coords.latitude,
-                        lng: position.coords.longitude
-                    };
-
-                    infoWindow.setPosition(pos);
-                    infoWindow.setContent('Location found.');
-                    map.setCenter(pos);
-                    $("#latitude").val(position.coords.latitude);
-                    $("#longtitude").val(position.coords.longtitude);
-                }, function () {
-                    handleLocationError(true, infoWindow, map.getCenter());
-                });
-            } else {
-                // Browser doesn't support Geolocation
-                handleLocationError(false, infoWindow, map.getCenter());
-            }
-        }
-
-        function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-            infoWindow.setPosition(pos);
-            infoWindow.setContent(browserHasGeolocation ?
-                    'Error: The Geolocation service failed.' :
-                    'Error: Your browser doesn\'t support geolocation.');
         }
 
     </script>
