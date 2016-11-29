@@ -26,7 +26,7 @@ class SetUserIdNullOnLogsTable extends Migration
     public function down()
     {
         Schema::table('logs', function (Blueprint $table) {
-            $table->integer('facility_id')->unsigned()->change();
+            $table->integer('user_id')->unsigned()->change();
 
         });
     }
