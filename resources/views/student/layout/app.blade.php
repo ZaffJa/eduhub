@@ -134,7 +134,8 @@
                         <span class="icon-bar"></span>
                     </button>
 
-                        <a class="navbar-brand" href="#">Hello, <b>{{auth()->user()->name}}!</b></a>
+                        <a class="navbar-rose" href="#">Hello, <b>{{auth()->user()->name}}!</b></a>
+                        <div class="pull-right search"><input class="form-control" type="text" placeholder="Search"></div>
                     </div>
 
                 </div>

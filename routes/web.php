@@ -11,6 +11,7 @@
 */
 Auth::routes();
 
+Route::get('/school', 'SchoolController@view');
 
 Route::group(['prefix'=>'student','namespace'=>'Student'],function(){
 
