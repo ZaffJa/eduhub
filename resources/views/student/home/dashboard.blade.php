@@ -5,12 +5,12 @@
 	var type = [];
 	var res = new Array();
 
-	res.push( new Array ('Realistic','{{$personality->realistic}}'));
-	res.push( new Array ('Investigative','{{$personality->investigative}}'));
-	res.push( new Array ('Artistic','{{$personality->artistic}}'));
-	res.push( new Array ('Social','{{$personality->social}}'));
-	res.push( new Array ('Enterprising','{{$personality->enterprising}}'));
-	res.push( new Array ('Conventional','{{$personality->conventional}}'));
+	res.push( new Array ('Realistic','{{$personality->realistic or null}}'));
+	res.push( new Array ('Investigative','{{$personality->investigative or null}}'));
+	res.push( new Array ('Artistic','{{$personality->artistic  or null}}'));
+	res.push( new Array ('Social','{{$personality->social or null}}'));
+	res.push( new Array ('Enterprising','{{$personality->enterprising or null}}'));
+	res.push( new Array ('Conventional','{{$personality->conventional or null}}'));
 
 	for (i = 0; i < res.length; i++) {
 	data.push(res[i][1] * 1);

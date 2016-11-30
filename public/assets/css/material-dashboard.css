@@ -612,6 +612,12 @@ h2.title {
   background: rgba(200, 200, 200, 0.2);
 }
 
+.main-panel-main{
+  float:right;
+}
+.main-panel-sub{
+  float:none;
+}
 .main-panel {
   position: relative;
   z-index: 2;
@@ -2889,7 +2895,7 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
   /* The image used */
 
   /* Set a specific height */
-  height: 200px;
+
 
   /* Create the parallax scrolling effect */
 
@@ -2900,17 +2906,17 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
   background-repeat: no-repeat;
   background-size: cover;
   background-image: url("/img/default/pexels-photo.png");
-
+  height: 200px;
 }
 .card-background-sub{
-
+height: 100px;
   background-repeat: no-repeat;
   background-size: cover;
-  background-image: url("/img/default/library.jpg");
+  background-image: url("/img/default/pexels-photo-218434.jpeg");
 
 }
 .card-background-sub-table{
-
+height: 100px;
   background-repeat: no-repeat;
   background-size: cover;
   background-image: url("/img/default/books-magazines-building-school.png");
