@@ -98,9 +98,47 @@
                 placeMarkerAndPanTo(e.latLng, map);
             });
 
-            var searchBox = new google.maps.places.SearchBox(document.getElementById('pac-input'));
-           
+            var searchInput = document.getElementById('pac-input');
+            var searchBox = new google.maps.places.SearchBox(searchInput);
+            map.controls[google.maps.ControlPosition.TOP_LEFT].push(searchInput);
+        
+            searchBox.addListener('places_changed', function() {
+              var places = searchBox.getPlaces();
 
+              if (places.length == 0) {
+                return;
+              }
+
+              markers = [];
+              // Clear out the old markers.
+              markers.forEach(function(marker) {
+                marker.setMap(null);
+              });
+
+              // For each place, get the icon, name and location.
+              var bounds = new google.maps.LatLngBounds();
+              places.forEach(function(place) {
+                if (!place.geometry) {
+                  console.log("Returned place contains no geometry");
+                  return;
+                }
+
+                // Create a marker for each place.
+                markers.push(new google.maps.Marker({
+                  map: map,
+                  title: place.name,
+                  position: place.geometry.location
+                }));
+
+                if (place.geometry.viewport) {
+                  // Only geocodes have viewport.
+                  bounds.union(place.geometry.viewport);
+                } else {
+                  bounds.extend(place.geometry.location);
+                }
+              });
+              map.fitBounds(bounds);
+            });
         }
 
         function setMapOnAll(map) {
