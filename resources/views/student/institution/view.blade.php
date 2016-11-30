@@ -1,67 +1,58 @@
-@extends('student.layout.app')
+@extends('student.layout.app') @section('title', 'Dashboard') @section('content')
 
-@section('title', 'Dashboard')
 
-@section('content')
-    <style>
-        .card {
-            box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-            transition: 0.3s;
-            border-radius: 5px;
-            width: 45%;
-        }
+<div class="row ">
 
-        .card:hover {
-            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-        }
-
-        img {
-            border-radius: 5px 5px 0 0;
-        }
-
-        .container {
-            padding: 2px 16px;
-        }
-    </style>
-
-    <h2>Recommended Courses based on your SPM results</h2>
-
-    @foreach($courses as $index => $course)
-
+    <div class="col-md-6">
         <div class="card">
-            <div class="container">
-                <h4><b><a href="{{ $course->website }}">{{ $course->name_en }}</a></b></h4>
-                <p><a href="https://eduhub.my/institutions/v/{{ $course->institution->institution->slug }}/courses/">{{ $course->institution->institution->name or "Error" }}</a></p>
+            <div class="card-header"  data-background-color="orange">
+                <h2 class="title">Recommended Courses based on your SPM results</h2>
             </div>
+
+            @foreach($courses as $index => $course)
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-content">
+                        <h4><b><a href="{{ $course->website }}">{{ $course->name_en }}</a></b></h4>
+                        <p><a href="https://eduhub.my/institutions/v/{{ $course->institution->institution->slug }}/courses/">{{ $course->institution->institution->name or "Error" }}</a></p>
+                    </div>
+                </div>
+            </div>
+
+            @endforeach
+        </div>
+    </div>
+
+<div class="col-md-6">
+
+    <div class="card" >
+        <div class="card-header" data-background-color="red">
+            <h2 class="title">Offered Courses by Institutions</h2>
+        </div>
+        <div class="card-content">
+            @foreach($allCourses as $index => $course)
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-content">
+                        <h4 class="title"><a href="{{ $course->institution->institution->website }}" target="_blank">{{ $course->institution->institution->name or "Error" }}</a></h4>
+                        <p class="category"><b><a href="https://eduhub.my/institutions/v/{{ $course->institution->institution->slug }}/courses/" target="_blank">{{ $course->name_en }}</a></b></h5>
+                    </div>
+
+                </div>
+            </div>
+            @endforeach
+            <br>
+        </div>
+        <div class="card-footer">
+          <div class=" col-sm-8 col-sm-offset-3">
+          {{ $allCourses->render() }}
+          </div>
         </div>
 
-    @endforeach
+    </div>
+</div>
 
-
-    <h2>Offered Courses by Institutions</h2>
-
-    @foreach($allCourses as $index => $course)
-
-        <div class="card">
-            <div class="container">
-                <h4><a href="{{ $course->institution->institution->website }}" target="_blank">{{ $course->institution->institution->name or "Error" }}</a></h4>
-                <h5><b><a href="https://eduhub.my/institutions/v/{{ $course->institution->institution->slug }}/courses/" target="_blank">{{ $course->name_en }}</a></b></h5>
-            </div>
-        </div>
-
-    @endforeach
-    <br>
-
-    {{ $allCourses->render() }}
-
-
-    Course level
-
-    Faculty level
-
-    Default level - those that not fill course requirement
-
-
+</div>
 
 
 

@@ -73,7 +73,7 @@
             <div class="col-md-2">
                     Mode
                 </div>
-                <div class="col-md-1">
+                <div class="col-md-3">
                     {{ Form::select('mode', $modes) }}
                 </div>
             </div>
@@ -160,7 +160,7 @@
                     <span class="required">*</span>
                 </div>
                 <div class="col-md-4">
-                    <input type="text" name="accredited" placeholder="Accredit">
+                    <input type="text" name="accredited" placeholder="Accredited">
                 </div>
             </div>
             <div class="row">

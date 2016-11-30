@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="/client/dist/css/skins/_all-skins.min.css">
     <link rel="stylesheet" href="/css/mdb.min.css">
 
+    <!-- Live reload plugin for local pc (will be removed when production starts) -->
     <!-- <link rel="stylesheet" href="/css/material.min.css"> -->
 
     <!-- jQuery 2.2.3 -->
@@ -30,11 +31,11 @@
     <!-- Bootstrap 3.3.6 -->
     <script src="/client/bootstrap/js/bootstrap.min.js"></script>
     <!-- Jquery User Interface plugin -->
-    <script src="/js/jquery-ui.js"></script>
+    <script src="/assets/js/jquery-ui.js"></script>
     <!-- Slim scroll plugin-->
     <script type="text/javascript" src="/client/plugins/slimScroll/jquery.slimscroll.min.js"></script>
     <!-- Plugin for confirmation to leave before saving -->
-    <script src="/js/jquery.are-you-sure.js"></script>
+    <script src="/assets/js/jquery.are-you-sure.js"></script>
 
     <script src="/client/dist/js/app.min.js"></script>
 
@@ -91,12 +92,13 @@
                         </li>
                         <li class="dropdown user user-menu">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <!-- <img src="../../dist/img/user2-160x160.jpg" class="user-image" alt="User Image"> -->
                                 <i class="fa fa-cog"></i><span class=""><b>Hello,</b> {{Auth::user()->name}}</span>
                             </a>
                             <ul class="dropdown-menu">
                                 <!-- User image -->
                                 <li class="user-header">
-                                    <img class="profile-pic" id="clickImg" src="/img/{{isset($profilePic) ? $profilePic->path : ''}}" onerror="this.src='/img/avatar/picture.png'" />
+                                    <img class="profile-pic" id="clickImg" src="/img/{{isset($profilePic) ? $profilePic->path : 'avatar/boy-512-02.png'}}" />
                                     <p>
                                         {{ Auth::user()->client != null ? Auth::user()->client->institution->name : 'Not Associated with Institution'}}
                                         <small>Member since {{Auth::user()->client != null ? Auth::user()->client->user->created_at->diffForHumans() : ''}}</small>
@@ -143,7 +145,7 @@
                 <!-- Sidebar user panel (optional) -->
                 <div class="user-panel">
                     <div class="pull-left image">
-                        <img src="/img/{{isset($profilePic) ? $profilePic->path : ''}}" onerror="this.src='/img/avatar/picture.png'" class="img-circle" alt="User Image">
+                        <img src="/img/{{isset($profilePic) ? $profilePic->path : 'avatar/boy-512-02.png'}}" class="img-circle" alt="User Image">
                     </div>
                     <div class="pull-left info">
 

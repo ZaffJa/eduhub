@@ -15,6 +15,9 @@ class AddForeignBankTypeIdShortProvidersTable extends Migration
     {
         if(Schema::hasTable('short_providers')){
             Schema::table('short_providers', function ($table){
+                $table->dropForeign(['bank_type_id']);
+
+
                 $table->foreign('bank_type_id')
                         ->references('id')->on('bank_types')
                         ->onDelete('cascade')

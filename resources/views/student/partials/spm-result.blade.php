@@ -1,11 +1,14 @@
+
 <div class="row">
     <div class="col-md-10 col-md-offset-1">
         <div class="card">
-            <div class="class-header"  data-background-color="orange">
-                <h2 class="title">SPM Result</h2>
-            </div>
-            <div class="card-content table-responsive table-full-width">
-                <table class="table" id="spm_table">
+          <div class="card-header " data-background-color="orange">
+              <h4 class="tittle">SPM Result</h4>
+          </div>
+            <div class="card-content ">
+
+              <div class="table-responsive">
+                  <table class="table" id="spm_table">
                     <thead class="text-danger">
                         <tr>
                             <th>Subject Name</th>
@@ -36,11 +39,11 @@
                     </tbody>
                 </table>
             </div>
+          </div>
             <div class="card-footer">
 
                 {!!Form::submit( $submitButton,['class'=>'btn btn-success']) !!} {!!Form::button( 'Add Record!',['class'=>'btn btn-info','id'=>'add_spm_record']) !!} {!!Form::button( 'Remove Record!',['class'=>'btn btn-danger','id'=>'remove_spm_record']) !!}
-                {!! Form::button('Cancel',['type'=>'button','class'=>'btn btn-warning btn_view']) !!}
-
+              
             </div>
         </div>
     </div>

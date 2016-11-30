@@ -10,7 +10,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>eduhub.my</title>
-    <link rel="icon" sizes="192x192" href="/img/logo/LOGO-U-01.png">
+    <link rel="icon" sizes="192x192" href="/img/logo/LOGO-U.png">
     <!-- Styles -->
     <!-- Bootstrap 3.3.6 -->
     <link rel="stylesheet" href="/client/bootstrap/css/bootstrap.min.css">
@@ -73,8 +73,8 @@
 
                         <ul class="dropdown-menu" role="menu">
                             <li>
-                                <a href="{{ url('/logout') }}"
-                                   onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                <a href="{{ url('/logout') }}" onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();">
                                     Logout
                                 </a>
 
@@ -121,10 +121,9 @@
             </div>
         </div>
     </div>
-
 </div>
 
 <!-- Scripts -->
-<script src="/assets/js/app.js"></script>
+<script src="/js/app.js"></script>
 </body>
 </html>

@@ -4,7 +4,7 @@
 	var type = [];
 	@foreach($res as $r)
 	data.push('{{$r[1]}}' * 1);
-	type.push('{{$r[0]}}');
+	type.push('{{$r[0]}}'.charAt(0));
 	@endforeach
 
 </script>
@@ -45,7 +45,7 @@
 							@if($res[0][0] == $pt->type)
 								{{$pt->description}}
 								<script type="text/javascript">
-								$('#{{$pt}}').attr({aria-expanded:"true"});
+								$(#"'{{$pt}}'").attr({aria-expanded:"true"});
 								</script>
 							@endif
 						@endforeach
@@ -68,14 +68,14 @@
 					@foreach($careerImage as $ci)
 
 					<div class="col-md-4">
-			        <img src="../img/{{$ci->path}}" class="thumbnail" alt="Chania" width="460" height="345">
-			        
+			        <img src="/img/{{$ci->path}}" class="thumbnail" alt="Chania" width="460" height="345">
+
 			      </div>
 					@endforeach
 
 
 
-		   
+
 		  </div>
 				</div>
 			</div>
@@ -84,8 +84,8 @@
 </div>
 	<div class="col-md-4 col-lg-4 col-sm-12">
 		<div class="card">
-			<div class="card-content" data-background-color="purple">
-				<div id="container" style="min-width: 200px; max-width: 600px; height: 400px; margin: 0 auto"></div>
+			<div class="card-header" data-background-color="purple">
+				<div id="container" style="min-width: 100px; max-width: 600px; height: auto; margin: auto;"></div>
 			</div>
 			<div class="card-footer">
 				<h5>R = Realistic, A = Artistic, I = Investigative, E = Enterprising, S = Social, C = Conventional</h5>
@@ -151,7 +151,7 @@
 
 <div class="col-md-12">
 	<div class="card">
-		<div class="card-header" data-background-color="purple" data-toggle="collapse" data-target="#realistic">
+		<div class="card-header" data-background-color="purple" >
 			<h4 class="title">Personality Description (click to expand)</h4>
 		</div>
 
@@ -159,7 +159,7 @@
                                     <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
                                         <div class="panel panel-default">
                                             <div class="panel-heading" role="tab" id="headingOne">
-                                                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#Realistic" aria-expanded="false" aria-controls="Realistic" class="">
+                                                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#Realistic" aria-expanded="false" aria-controls="Realistic" class="collapsed">
                                                     <h4 class="panel-title">
                                                         Realistic
                                                         <i class="material-icons">keyboard_arrow_down</i>
