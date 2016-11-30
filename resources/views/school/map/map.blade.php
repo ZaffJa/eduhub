@@ -4,10 +4,57 @@
             height: 600px;
             width: 100%;
         }
+
+        .controls {
+  margin-top: 10px;
+  border: 1px solid transparent;
+  border-radius: 2px 0 0 2px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  height: 32px;
+  outline: none;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}
+
+#pac-input {
+  background-color: #fff;
+  font-family: Roboto;
+  font-size: 15px;
+  font-weight: 300;
+  margin-left: 12px;
+  padding: 0 11px 0 13px;
+  text-overflow: ellipsis;
+  width: 300px;
+}
+
+#pac-input:focus {
+  border-color: #4d90fe;
+}
+
+.pac-container {
+  font-family: Roboto;
+}
+
+#type-selector {
+  color: #fff;
+  background-color: #4d90fe;
+  padding: 5px 11px 0px 11px;
+}
+
+#type-selector label {
+  font-family: Roboto;
+  font-size: 13px;
+  font-weight: 300;
+}
+#target {
+  width: 345px;
+}
     </style>
-
+<input id="pac-input" class="controls" type="text" placeholder="Search Box">
 <div id="map"></div>
-
+<script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgdkEKOxECZPSbpr7MvPZMLH7sBGeIbV8&libraries=places&callback=initMap">
+</script>
  <script>
         // Note: This example requires that you consent to location sharing when
         // prompted by your browser. If you see the error "The Geolocation service
@@ -32,8 +79,7 @@
 
             });
 
-
-            var pastLocation =  new google.maps.Marker({
+            var pastLocationMarker =  new google.maps.Marker({
                 position : pastLocation,
                 map: map,
                 title: 'Your past location',
@@ -44,15 +90,16 @@
                 content: 'Sekolah Menengah Example'
             });
 
-            pastLocation.addListener('click', function() {
+            pastLocationMarker.addListener('click', function() {
                 pastInfo.open(map, pastLocation);
             });
-
-           
 
             map.addListener('click', function (e) {
                 placeMarkerAndPanTo(e.latLng, map);
             });
+
+            var searchBox = new google.maps.places.SearchBox(document.getElementById('pac-input'));
+           
 
         }
 
@@ -87,7 +134,5 @@
 
     </script>
 
-    <script async defer
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgdkEKOxECZPSbpr7MvPZMLH7sBGeIbV8&callback=initMap">
-    </script>
+
 @endsection
