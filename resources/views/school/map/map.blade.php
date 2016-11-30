@@ -32,6 +32,7 @@
 
             });
 
+
             var pastLocation =  new google.maps.Marker({
                 position : pastLocation,
                 map: map,
