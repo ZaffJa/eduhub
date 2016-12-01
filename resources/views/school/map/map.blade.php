@@ -128,7 +128,7 @@
                 var searchMarker = new google.maps.Marker({
                    map: map,
                    title: place.name,
-                   position: place.geometry.location, 
+                   position: place.geometry.location,
                 });
 
                 var searchInfoWindow = new google.maps.InfoWindow({
@@ -169,12 +169,9 @@
                 content: 'New Location'
             });
 
-<<<<<<< HEAD
+
             setMapOnAll(null);
 
-=======
-            
->>>>>>> e52262b9c509e66db1bad55dafd3625cd9b89f5e
             marker.setMap(map);
 
             marker.addListener('click', function () {
