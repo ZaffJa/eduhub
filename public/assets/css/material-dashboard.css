@@ -614,6 +614,7 @@ h2.title {
 
 .main-panel-main{
   float:right;
+    width: calc(100% - 260px);
 }
 .main-panel-sub{
   float:none;
@@ -1354,28 +1355,19 @@ h2.title {
 .navbar .navbar-nav > li > .profile-photo {
   margin: 5px 2px;
 }
-.sidebar .user .photo,
-.off-canvas-sidebar .user .photo {
+photo {
   width: 80px;
   height: 80px;
   overflow: hidden;
   border-radius: 50%;
   margin: 0 auto;
   box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.42), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
-}
-.sidebar .user .photo img,
-.off-canvas-sidebar .user .photo img {
   width: 100%;
-}
-.sidebar-mini .sidebar .user .photo {
    width: 50px;
    height: 50px;
    border-width: 2px;
- }
- .animation-transition-general, .sidebar .nav p,
-.off-canvas-sidebar .nav p, .sidebar .user .photo,
-.off-canvas-sidebar .user .photo, .sidebar .user a,
-.off-canvas-sidebar .user a, .login-page .card-login, .lock-page .card-profile {
+
+
   -webkit-transition: all 300ms linear;
   -moz-transition: all 300ms linear;
   -o-transition: all 300ms linear;
@@ -2909,14 +2901,16 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
   height: 200px;
 }
 .card-background-sub{
-height: 100px;
+height: 100%;
+max-height: 200px;
   background-repeat: no-repeat;
   background-size: cover;
   background-image: url("/img/default/pexels-photo-218434.jpeg");
 
 }
 .card-background-sub-table{
-height: 100px;
+  height: 100%;
+  max-height: 200px;
   background-repeat: no-repeat;
   background-size: cover;
   background-image: url("/img/default/books-magazines-building-school.png");
@@ -2928,20 +2922,15 @@ height: 100px;
   border-radius: 3px;
   border-bottom: 1px solid #ededf3;
   padding: 10px 0;
-
+}
+.navbar .navbar-brand{
   position: relative;
   height: 50px;
   line-height: 30px;
   color: inherit;
   padding: 10px 15px;
 }
-.navbar-brand {
-  float: left;
-  padding-top: 0.25rem;
-  padding-bottom: 0.25rem;
-  margin-right: 1rem;
-  font-size: 1.25rem;
-}
+
 
 .navbar .navbar-brand:hover, .navbar .navbar-brand:focus {
   color: inherit;

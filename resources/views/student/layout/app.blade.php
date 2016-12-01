@@ -20,7 +20,7 @@
 
     <!-- Bootstrap core CSS     -->
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+
     <!--  Material Dashboard CSS    -->
     <link href="/assets/css/material-dashboard.css" rel="stylesheet" />
 
@@ -124,7 +124,7 @@
         </div>
 
         <div class="main-panel main-panel-main">
-            <nav class="navbar navbar-absolute">
+            <nav class="navbar navbar-transparent navbar-absolute">
                 <div class="container-fluid">
                     <div class="navbar-header hidden-lg-up">
                         <button type="button" class="navbar-toggle" data-toggle="collapse">
@@ -134,7 +134,7 @@
                         <span class="icon-bar"></span>
                     </button>
 
-                        <a class="title" href="#">Hello, <b>{{auth()->user()->name}}!</b></a>
+                        <h1 class="navbar-brand" href="#">Hello, <b>{{auth()->user()->name}}!</b></h1>
 
                     </div>
 

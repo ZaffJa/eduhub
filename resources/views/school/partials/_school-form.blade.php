@@ -1,4 +1,12 @@
 
+<div class="row">
+	<div class="col-md-8 col-md-offset-2">
+    <div class="card card-profile">
+      <div class="card-header card-background card-background-sub">
+          <h2 class="title"><b>Register School</b></h2>
+
+      </div>
+      <div class="card-content">
 <div class="form-group">
     {{Form::label('name', 'Name')}} {{Form::text('name',null,['class'=>'form-control','required'])}}
 </div>
@@ -41,10 +49,15 @@
 </div>
 
     @include('school.partials._map')
+      </div>
+      <div class="card-footer">
+
+        {!! Form::submit('Submit',['type'=>'button','class'=>'btn btn-success']) !!} {!! Form::button('Cancel',['type'=>'button','class'=>'btn btn-warning btn_view']) !!}
 
 
-{!! Form::submit('Submit',['type'=>'button','class'=>'btn btn-default']) !!} {!! Form::button('Cancel',['type'=>'button','class'=>'btn btn-warning btn_view']) !!}
-
+      </div>
+      </div>
+</div>
 
 
 <script type="text/javascript">
