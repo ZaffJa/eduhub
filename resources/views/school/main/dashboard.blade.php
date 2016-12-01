@@ -75,7 +75,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-12 col-sm-12 hidden-xs ">
+            <div class="col-lg-6 col-md-12 col-sm-12 hidden-xs ">
                 <div class="card ">
                     <div class="card-header " data-background-color="red">
                         <h4 class="title">News from eduhub.my </h4>
@@ -89,33 +89,15 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-12 col-lg-8">
-                <div class="card card-profile">
-                    <div class="card-header card-background card-background-sub">
-                        <h2 class="title"><b>School Location</b></h2>
-
-                    </div>
-
-
-
-
-                    <div class="card-content">
-                      <input id="pac-input" class="controls" type="text" placeholder="Search Box">
-                      <div id="map"></div>
-
-                    </div>
-                    <a href="#pablo" class="btn btn-primary btn-round">Follow</a>
-
-                </div>
-            </div>
-            <div class="col-md-12 col-lg-6">
+<div class="row">
+            <div class="col-md-12 col-lg-6" >
                 <div class="card  ">
                     <div class="card-header card-background card-background-sub-table">
                         <h2 class="title"><b>School Ranking</b></h2>
                         <p class="category">Here is a subtitle for this table</p>
                     </div>
-                    <div class="card-content table-responsive">
-                        <table class="table">
+                    <div class="card-content table-responsive" >
+                        <table class="table" height="100px">
                             <thead class="text-danger">
                                 <th>Name</th>
                                 <th>Country</th>
@@ -133,6 +115,51 @@
                             </tbody>
                         </table>
                         <hr>
+                        <table class="table" height="300px">
+                            <thead class="text-danger">
+                                <th>Name</th>
+                                <th>Country</th>
+                                <th>City</th>
+                                <th>Salary</th>
+                            </thead>
+                            <tbody>
+
+                                <tr>
+                                    <td>Philip Chaney</td>
+                                    <td>Korea, South</td>
+                                    <td>Overland Park</td>
+                                    <td class="text-primary">$38,735</td>
+                                </tr>
+                                <tr>
+                                    <td>Doris Greene</td>
+                                    <td>Malawi</td>
+                                    <td>Feldkirchen in Kärnten</td>
+                                    <td class="text-primary">$63,542</td>
+                                </tr>
+                                <tr>
+                                    <td>Mason Porter</td>
+                                    <td>Chile</td>
+                                    <td>Gloucester</td>
+                                    <td class="text-primary">$78,615</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+
+            </div>
+            </div>
+
+            <div class="col-md-12 col-lg-6">
+                <div class="card  ">
+                    <div class="card-header card-background card-background-sub-table">
+                        <h2 class="title"><b>School Subject Streams</b></h2>
+
+                    </div>
+                    <div class="card-content table-responsive">
+
+                        <p class="category card-title">Steams that this school offers</p>
                         <table class="table">
                             <thead class="text-danger">
                                 <th>Name</th>
@@ -209,48 +236,24 @@
                 </div>
 
             </div>
-            <div class="col-md-12 col-lg-8">
-                <div class="card  ">
-                    <div class="card-header card-background card-background-sub-table">
-                        <h2 class="title"><b>School Subject Streams</b></h2>
+            <div class="col-md-12 col-lg-12">
+                <div class="card card-profile">
+                    <div class="card-header card-background card-background-sub">
+                        <h2 class="title"><b>School Location</b></h2>
 
                     </div>
-                    <div class="card-content table-responsive">
 
-                        <p class="category card-title">Steams that this school offers</p>
-                        <table class="table">
-                            <thead class="text-danger">
-                                <th>Name</th>
-                                <th>Country</th>
-                                <th>City</th>
-                                <th>Salary</th>
-                            </thead>
-                            <tbody>
 
-                                <tr>
-                                    <td>Philip Chaney</td>
-                                    <td>Korea, South</td>
-                                    <td>Overland Park</td>
-                                    <td class="text-primary">$38,735</td>
-                                </tr>
-                                <tr>
-                                    <td>Doris Greene</td>
-                                    <td>Malawi</td>
-                                    <td>Feldkirchen in Kärnten</td>
-                                    <td class="text-primary">$63,542</td>
-                                </tr>
-                                <tr>
-                                    <td>Mason Porter</td>
-                                    <td>Chile</td>
-                                    <td>Gloucester</td>
-                                    <td class="text-primary">$78,615</td>
-                                </tr>
-                            </tbody>
-                        </table>
+
+
+                    <div class="card-content">
+                      <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+                      <div id="map"></div>
 
                     </div>
+                    <a href="#pablo" class="btn btn-primary btn-round">Follow</a>
+
                 </div>
-
             </div>
         </div>
     </div>
