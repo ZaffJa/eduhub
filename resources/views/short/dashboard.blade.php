@@ -23,7 +23,7 @@
                     <!-- /.col -->
                     <div class="col-sm-4 border-right">
                         <div class="description-block">
-                            <h5 class="description-header"> {{ $ShortCoursesCount }} </h5>
+                            <h5 class="description-header"> {{ $ShortCoursesCount or 'None' }} </h5>
                             <span class="description-text">Short Courses</span>
                         </div>
                         <!-- /.description-block -->

@@ -1,7 +1,7 @@
 @extends('student.layout.app') @section('title', 'Dashboard') @section('content')
 
 <div class="row">
-  <div class="col-md-12">
+  <div class="col-md-8 col-md-offset-2">
 @if(count($core_spm_subjects) > 0)
 <div class="card ">
     <div class="card-header" data-background-color="orange">
