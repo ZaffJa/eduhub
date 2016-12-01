@@ -100,7 +100,7 @@
             var searchInput = document.getElementById('pac-input');
             var searchBox = new google.maps.places.SearchBox(searchInput);
             map.controls[google.maps.ControlPosition.TOP_LEFT].push(searchInput);
-        
+
             searchBox.addListener('places_changed', function() {
               var places = searchBox.getPlaces();
 
@@ -127,7 +127,7 @@
                 var searchMarker = new google.maps.Marker({
                    map: map,
                    title: place.name,
-                   position: place.geometry.location, 
+                   position: place.geometry.location,
                 });
 
                 var searchInfoWindow = new google.maps.InfoWindow({
@@ -163,21 +163,22 @@
             var marker = new google.maps.Marker({
                 position: latLng,
             });
-            
+
             var infoWindow = new google.maps.InfoWindow({
                 content: 'New Location'
             });
 
+
             setMapOnAll(null);
-            
+
             marker.setMap(map);
-            
+
             marker.addListener('click', function () {
                 infoWindow.open(map, marker);
             });
-            
+
             newMarker.push(marker);
-            
+
             map.panTo(latLng);
         }
 
