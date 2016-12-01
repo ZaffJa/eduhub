@@ -123,10 +123,10 @@
             </div>
         </div>
 
-        <div class="main-panel">
-            <nav class="navbar navbar-inverse navbar-absolute">
+        <div class="main-panel main-panel-main">
+            <nav class="navbar navbar-transparent navbar-absolute">
                 <div class="container-fluid">
-                    <div class="navbar-header">
+                    <div class="navbar-header hidden-lg-up">
                         <button type="button" class="navbar-toggle" data-toggle="collapse">
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
@@ -134,8 +134,8 @@
                         <span class="icon-bar"></span>
                     </button>
 
-                        <a class="navbar-rose" href="#">Hello, <b>{{auth()->user()->name}}!</b></a>
-                        <div class="pull-right search"><input class="form-control" type="text" placeholder="Search"></div>
+                        <h1 class="navbar-brand" href="#">Hello, <b>{{auth()->user()->name}}!</b></h1>
+
                     </div>
 
                 </div>
@@ -152,23 +152,28 @@
                     <nav class="pull-left">
                         <ul>
                             <li>
-                                <a href="#">
+                                <a href="{{action('Student\DashboardController@view')}}">
                                 Dashboard
                             </a>
                             </li>
                             <li>
-                                <a href="#">
-                                Institutions
+                                <a href="{{action('Student\ProfileController@index')}}">
+                                User Profile
                             </a>
                             </li>
                             <li>
-                                <a href="#">
-                                Personality Test
+                                <a href="{{action('Student\SpmController@index')}}">
+                                SPM Result
                             </a>
                             </li>
                             <li>
-                                <a href="#">
-                                Contact Us
+                                <a href="{{action('Student\PersonalityController@view')}}">
+                                Personality
+                            </a>
+                            </li>
+                            <li>
+                                <a href="{{action('Student\InstitutionController@index')}}">
+                                Institution
                             </a>
                             </li>
                         </ul>
