@@ -1,5 +1,13 @@
 @extends('student.layout.app') @section('title', 'Dashboard') @section('content')
 
+    <style>
+        .truncate {
+            /*white-space: nowrap;*/
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-height: 155px;
+        }
+    </style>
 
 <div class="row ">
 
@@ -9,17 +17,22 @@
                 <h2 class="title">Recommended Courses based on your SPM results</h2>
             </div>
 
-            @foreach($courses as $index => $course)
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-content">
-                        <h4><b><a href="{{ $course->website }}">{{ $course->name_en }}</a></b></h4>
-                        <p><a href="https://eduhub.my/institutions/v/{{ $course->institution->institution->slug }}/courses/">{{ $course->institution->institution->name or "Error" }}</a></p>
+            @if(count($courses) > 0)
+                @foreach($courses as $index => $course)
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-content">
+                                <h4><b><a href="{{ $course->website }}">{{ $course->name_en }}</a></b></h4>
+                                <p><a href="https://eduhub.my/institutions/v/{{ $course->institution->institution->slug }}/courses/">{{ $course->institution->institution->name or "Error" }}</a></p>
+                            </div>
+                        </div>
                     </div>
+                @endforeach
+            @else
+                <div class="col-md-12">
+                    <h4> We're sorry. It looks like there is no course suggestions available at the moment.</h4>
                 </div>
-            </div>
-
-            @endforeach
+            @endif
         </div>
     </div>
 
@@ -31,15 +44,15 @@
         </div>
         <div class="card-content">
             @foreach($allCourses as $index => $course)
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-content">
-                        <h4 class="title"><a href="{{ $course->institution->institution->website }}" target="_blank">{{ $course->institution->institution->name or "Error" }}</a></h4>
-                        <p class="category"><b><a href="https://eduhub.my/institutions/v/{{ $course->institution->institution->slug }}/courses/" target="_blank">{{ $course->name_en }}</a></b></h5>
-                    </div>
+                <div class="col-md-4">
+                    <div class="card">
+                        <div class="card-content truncate">
+                            <h4 class="title"><a href="{{ $course->institution->institution->website }}" target="_blank">{{ $course->institution->institution->name or "Error" }}</a></h4>
+                            <p class="category"><b><a href="https://eduhub.my/institutions/v/{{ $course->institution->institution->slug }}/courses/" target="_blank">{{ $course->name_en }}</a></b></p>
+                        </div>
 
+                    </div>
                 </div>
-            </div>
             @endforeach
             <br>
         </div>
