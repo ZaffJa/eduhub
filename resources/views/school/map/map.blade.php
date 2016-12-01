@@ -91,7 +91,7 @@
             });
 
             pastLocationMarker.addListener('click', function() {
-                pastInfo.open(map, pastLocation);
+                pastInfo.open(map, pastLocationMarker);
             });
 
             map.addListener('click', function (e) {
@@ -109,11 +109,12 @@
                 return;
               }
 
-              markers = [];
               // Clear out the old markers.
-              markers.forEach(function(marker) {
+              newMarker.forEach(function(marker) {
                 marker.setMap(null);
               });
+              newMarker = [];
+
 
               // For each place, get the icon, name and location.
               var bounds = new google.maps.LatLngBounds();
@@ -124,11 +125,23 @@
                 }
 
                 // Create a marker for each place.
-                markers.push(new google.maps.Marker({
-                  map: map,
-                  title: place.name,
-                  position: place.geometry.location
-                }));
+                var searchMarker = new google.maps.Marker({
+                   map: map,
+                   title: place.name,
+                   position: place.geometry.location, 
+                });
+
+                var searchInfoWindow = new google.maps.InfoWindow({
+                    content: 'New Location'
+                });
+
+                searchMarker.addListener('click', function() {
+                    searchInfoWindow.open(map,searchMarker);
+                });
+
+                newMarker.push(searchMarker);
+
+                console.log(place.geometry.location.toJSON());
 
                 if (place.geometry.viewport) {
                   // Only geocodes have viewport.
@@ -150,15 +163,18 @@
         function placeMarkerAndPanTo(latLng, map) {
             var marker = new google.maps.Marker({
                 position: latLng,
-                title: "Your location"
             });
 
             var infoWindow = new google.maps.InfoWindow({
                 content: 'New Location'
             });
 
+<<<<<<< HEAD
             setMapOnAll(null);
 
+=======
+            
+>>>>>>> e52262b9c509e66db1bad55dafd3625cd9b89f5e
             marker.setMap(map);
 
             marker.addListener('click', function () {

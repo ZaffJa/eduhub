@@ -77,8 +77,9 @@
                 <li><button class="w3-btn w3-black">Go</button></li>
             </ul>
 </div>
-
             <div class="content">
+                @include('errors.form')
+                @include(('success.status'))
                 <div class="container-fluid">
                     @yield('content')
                 </div>
