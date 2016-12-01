@@ -64,7 +64,7 @@
 
     <div class="wrapper">
 
-        <div class="main-panel">
+        <div class="main-panel main-panel-sub">
           <div class="navbar-fixed-top">
             <ul class="w3-navbar w3-card-8 w3-red navbar-fixed-top">
                 <li>

@@ -20,7 +20,7 @@
 
     <!-- Bootstrap core CSS     -->
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet" />
-
+    <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
     <!--  Material Dashboard CSS    -->
     <link href="/assets/css/material-dashboard.css" rel="stylesheet" />
 
@@ -123,10 +123,10 @@
             </div>
         </div>
 
-        <div class="main-panel">
-            <nav class="navbar navbar-inverse navbar-absolute">
+        <div class="main-panel main-panel-main">
+            <nav class="navbar navbar-absolute">
                 <div class="container-fluid">
-                    <div class="navbar-header">
+                    <div class="navbar-header hidden-lg-up">
                         <button type="button" class="navbar-toggle" data-toggle="collapse">
                         <span class="sr-only">Toggle navigation</span>
                         <span class="icon-bar"></span>
@@ -134,8 +134,8 @@
                         <span class="icon-bar"></span>
                     </button>
 
-                        <a class="navbar-rose" href="#">Hello, <b>{{auth()->user()->name}}!</b></a>
-                        <div class="pull-right search"><input class="form-control" type="text" placeholder="Search"></div>
+                        <a class="title" href="#">Hello, <b>{{auth()->user()->name}}!</b></a>
+
                     </div>
 
                 </div>
