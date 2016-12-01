@@ -11,17 +11,25 @@ class SchoolController extends Controller
 {
   public function view()
   {
-    return View::make('school.main.dashboard');
+    $schoolLocation  =  SchoolLocation::all();
+
+    return View::make('school.main.dashboard',compact('schoolLocation'));
   }
 
   public function map()
   {
+
   	return View::make('school.map.map');
   }
 
   public function register()
   {
       return View::make('school.main.register-school');
+  }
+  public function edit($id)
+  {
+    $school = School::whereId($id)->first();
+      return View::make('school.main.edit')->with('school',$school);
   }
 
     public function store(Request $request)

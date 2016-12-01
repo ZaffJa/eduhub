@@ -269,6 +269,8 @@
         var pos;
         var newMarker = [];
         var pastMarker = [];
+        var schoolMarker = [];
+        var schoolInfo = [];
 
         function initMap() {
             var pastLocation = new google.maps.LatLng(
@@ -282,24 +284,27 @@
 
             });
 
-            var pastLocationMarker =  new google.maps.Marker({
-                position : pastLocation,
-                map: map,
-                title: 'Your past location',
-                icon : '/img/logo/map eduhub-02.png'
-            });
+            @foreach ($schoolLocation as $key=>$school)
+                var schoolPosition = new google.maps.LatLng(
+                    parseFloat("{{$school->latitude}}").toFixed(6), 
+                    parseFloat("{{$school->longtitude}}").toFixed(6)
+                );
 
-            var pastInfo = new google.maps.InfoWindow({
-                content: 'Sekolah Menengah Example'
-            });
+                schoolMarker[{{$key}}] = new google.maps.Marker({
+                    position : schoolPosition,
+                    map: map,
+                    title: 'School location',
+                    icon: '/img/logo/map-00.png'
+                });
 
-            pastLocationMarker.addListener('click', function() {
-                pastInfo.open(map, pastLocation);
-            });
+                schoolInfo[{{$key}}] =  new google.maps.InfoWindow({
+                    content: "{{$school->school->name}}"
+                })
 
-            map.addListener('click', function (e) {
-                placeMarkerAndPanTo(e.latLng, map);
-            });
+                schoolMarker[{{$key}}].addListener('click', function() {
+                    schoolInfo[{{$key}}].open(map, schoolMarker[{{$key}}])
+                });
+            @endforeach
 
             var searchInput = document.getElementById('pac-input');
             var searchBox = new google.maps.places.SearchBox(searchInput);
@@ -312,11 +317,12 @@
                 return;
               }
 
-              markers = [];
               // Clear out the old markers.
-              markers.forEach(function(marker) {
+              newMarker.forEach(function(marker) {
                 marker.setMap(null);
               });
+              newMarker = [];
+
 
               // For each place, get the icon, name and location.
               var bounds = new google.maps.LatLngBounds();
@@ -327,11 +333,23 @@
                 }
 
                 // Create a marker for each place.
-                markers.push(new google.maps.Marker({
-                  map: map,
-                  title: place.name,
-                  position: place.geometry.location
-                }));
+                var searchMarker = new google.maps.Marker({
+                   map: map,
+                   title: place.name,
+                   position: place.geometry.location,
+                });
+
+                var searchInfoWindow = new google.maps.InfoWindow({
+                    content: 'New Location'
+                });
+
+                searchMarker.addListener('click', function() {
+                    searchInfoWindow.open(map,searchMarker);
+                });
+
+                newMarker.push(searchMarker);
+
+                console.log(place.geometry.location.toJSON());
 
                 if (place.geometry.viewport) {
                   // Only geocodes have viewport.
@@ -342,35 +360,6 @@
               });
               map.fitBounds(bounds);
             });
-        }
-
-        function setMapOnAll(map) {
-            for (var i = 0; i < newMarker.length; i++) {
-                newMarker[i].setMap(map);
-            }
-        }
-
-        function placeMarkerAndPanTo(latLng, map) {
-            var marker = new google.maps.Marker({
-                position: latLng,
-                title: "Your location"
-            });
-
-            var infoWindow = new google.maps.InfoWindow({
-                content: 'New Location'
-            });
-
-            setMapOnAll(null);
-
-            marker.setMap(map);
-
-            marker.addListener('click', function () {
-                infoWindow.open(map, marker);
-            });
-
-            newMarker.push(marker);
-
-            map.panTo(latLng);
         }
 
     </script>
