@@ -152,23 +152,28 @@
                     <nav class="pull-left">
                         <ul>
                             <li>
-                                <a href="#">
+                                <a href="{{action('Student\DashboardController@view')}}">
                                 Dashboard
                             </a>
                             </li>
                             <li>
-                                <a href="#">
-                                Institutions
+                                <a href="{{action('Student\ProfileController@index')}}">
+                                User Profile
                             </a>
                             </li>
                             <li>
-                                <a href="#">
-                                Personality Test
+                                <a href="{{action('Student\SpmController@index')}}">
+                                SPM Result
                             </a>
                             </li>
                             <li>
-                                <a href="#">
-                                Contact Us
+                                <a href="{{action('Student\PersonalityController@view')}}">
+                                Personality
+                            </a>
+                            </li>
+                            <li>
+                                <a href="{{action('Student\InstitutionController@index')}}">
+                                Institution
                             </a>
                             </li>
                         </ul>
