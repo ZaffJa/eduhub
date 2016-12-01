@@ -169,6 +169,7 @@
                 content: 'New Location'
             });
 
+            setMapOnAll(null);
             
             marker.setMap(map);
             
