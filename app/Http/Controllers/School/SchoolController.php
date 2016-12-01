@@ -35,14 +35,13 @@ class SchoolController extends Controller
     public function store(Request $request)
     {
         $this->validate($request,[
-            'name' => 'required | string | between:15,85',
+            'name' => 'required | string | between:10,85',
             'type' => 'required | string | between:5,25',
             'ppd'  => 'required | string | between:5,25',
             'code' => 'required | integer | digits_between:4,15',
             'address' => 'required | string | between:15,85',
-            'postcode' => 'required | integer | digits_between:4,10',
-            'city' => 'required | string | between:8,65',
-            'state' => 'required | string | between:5,30',
+            'city' => 'required | string | between:3,65',
+            'state' => 'required | string | between:3,30',
             'telephone' => 'required | string | between:8,15',
             'fax' => 'required | string | between:8,15',
         ],[
