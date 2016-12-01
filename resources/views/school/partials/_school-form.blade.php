@@ -40,6 +40,7 @@
     {{Form::label('fax', 'Fax')}} {{Form::text('fax',null,['class'=>'form-control','required'])}}
 </div>
 
+    @include('school.partials._map')
 
 
 {!! Form::submit('Submit',['type'=>'button','class'=>'btn btn-default']) !!} {!! Form::button('Cancel',['type'=>'button','class'=>'btn btn-warning btn_view']) !!}

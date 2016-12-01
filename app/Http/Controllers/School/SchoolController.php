@@ -4,6 +4,7 @@ namespace App\Http\Controllers\School;
 
 use App\Http\Controllers\Controller;
 use App\Models\School\School;
+use App\Models\School\SchoolLocation;
 use Illuminate\Http\Request;
 use View;
 class SchoolController extends Controller
@@ -40,7 +41,13 @@ class SchoolController extends Controller
 
         ]);
 
-        School::create($request->except(['_token']));
+        $school = School::create($request->except(['_token','lat','lng']));
+
+        SchoolLocation::create([
+          'school_id'=>$school->id,
+          'latitude'=>$request->lat,
+          'longtitude'=>$request->lng
+          ]);
 
         return redirect()->back()->with('status','Successfully added new school');
     }
