@@ -28,12 +28,11 @@
             <div class="col-lg-4 col-md-12 col-sm-12 hidden-xs ">
                 <div class="card ">
                     <div class="card-header " data-background-color="red">
-                        <h4 class="title">News from eduhub.my</h4>
+                        <h4 class="title">News from eduhub.my </h4>
                     </div>
 
 
                     <div class="card-content">
-
 
 
                         <iframe src="https://eduhub.my/articles/" width="100%" height="500px"></iframe>
