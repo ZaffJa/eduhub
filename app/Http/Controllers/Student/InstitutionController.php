@@ -18,6 +18,7 @@ class InstitutionController extends Controller
 
         $userSpmSubject = SpmResult::whereUserId(Auth::user()->id)->get(['spm_subject_id','grade']);
 
+
         $courses =  $this->recommendedCourse($spmCourseRequirement,$userSpmSubject);
 
         $allCourses = Course::paginate(16);
@@ -34,20 +35,24 @@ class InstitutionController extends Controller
     {
 
         $courseId = [];
+
         foreach ($courseRequirement as $key => $value){
 
-            foreach ($value->requirement as $key2 => $value2){
+            if(is_array($value)) {
 
-                foreach ($userSubject as $key3 => $value3){
+                foreach ($value->requirement as $key2 => $value2){
 
-                    if($key2 == $value3->spm_subject_id && $this->gradePoint($value2) <= $this->gradePoint($value3->grade)){
+                    foreach ($userSubject as $key3 => $value3){
 
-                        $courseId[] = $value->course_id;
+                        if($key2 == $value3->spm_subject_id && $this->gradePoint($value2) <= $this->gradePoint($value3->grade)){
+
+                            $courseId[] = $value->course_id;
+                        }
                     }
-
                 }
-
             }
+
+
 
         }
 
