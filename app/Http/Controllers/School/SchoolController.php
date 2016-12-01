@@ -23,6 +23,11 @@ class SchoolController extends Controller
   {
       return View::make('school.main.register-school');
   }
+  public function edit($id)
+  {
+    $school = School::whereId($id)->first();
+      return View::make('school.main.edit')->with('school',$school);
+  }
 
     public function store(Request $request)
     {
