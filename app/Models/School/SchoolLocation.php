@@ -12,4 +12,9 @@ class SchoolLocation extends Model
 
     protected $guarded = [];
 
+    public function school()
+    {
+    	return $this->belongsTo('App\Models\School\School');
+    }
+
 }

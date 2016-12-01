@@ -11,11 +11,14 @@ class SchoolController extends Controller
 {
   public function view()
   {
-    return View::make('school.main.dashboard');
+    $schoolLocation  =  SchoolLocation::all();
+
+    return View::make('school.main.dashboard',compact('schoolLocation'));
   }
 
   public function map()
   {
+
   	return View::make('school.map.map');
   }
 
