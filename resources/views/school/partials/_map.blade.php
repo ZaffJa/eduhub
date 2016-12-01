@@ -49,10 +49,22 @@
           width: 345px;
         }
     </style>
-<input id="pac-input" class="controls" type="text" placeholder="Search Box">
-<div id="map"></div>
+
+<div class="form-group">
+    {{Form::label('school location', 'School location')}}
+
+    </br>
+    Search the school location by using the searchbox or by clicking at the map
+    <input name="lat" type="hidden" id="lat">
+    <input name="lng" type="hidden" id="lng">
+    <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+
+    <div id="map"></div>
+
+</div>
+
 <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgdkEKOxECZPSbpr7MvPZMLH7sBGeIbV8&libraries=places&callback=initMap">
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgdkEKOxECZPSbpr7MvPZMLH7sBGeIbV8&libraries=places&callback=initMap">
 </script>
  <script>
         // Note: This example requires that you consent to location sharing when
@@ -78,23 +90,13 @@
 
             });
 
-            var pastLocationMarker =  new google.maps.Marker({
-                position : pastLocation,
-                map: map,
-                title: 'Your past location',
-                icon : '/img/logo/map eduhub-02.png'
-            });
-
-            var pastInfo = new google.maps.InfoWindow({
-                content: 'Sekolah Menengah Example'
-            });
-
-            pastLocationMarker.addListener('click', function() {
-                pastInfo.open(map, pastLocationMarker);
-            });
-
             map.addListener('click', function (e) {
                 placeMarkerAndPanTo(e.latLng, map);
+                $("#lat").val(e.latLng.toJSON().lat);
+                $("#lng").val(e.latLng.toJSON().lng);
+                console.log("Input lat value : " + $("#lat").val());
+                console.log("Input lng value : " + $("#lng").val());
+
             });
 
             var searchInput = document.getElementById('pac-input');
@@ -131,7 +133,7 @@
                 });
 
                 var searchInfoWindow = new google.maps.InfoWindow({
-                    content: 'New Location'
+                    content: 'Your school Location'
                 });
 
                 searchMarker.addListener('click', function() {
@@ -140,7 +142,10 @@
 
                 newMarker.push(searchMarker);
 
-                console.log(place.geometry.location.toJSON());
+                $("#lat").val(place.geometry.location.toJSON().lat);
+                $("#lng").val(place.geometry.location.toJSON().lng);
+                console.log("Input lat value : " + $("#lat").val());
+                console.log("Input lng value : " + $("#lng").val());
 
                 if (place.geometry.viewport) {
                   // Only geocodes have viewport.
@@ -165,7 +170,7 @@
             });
             
             var infoWindow = new google.maps.InfoWindow({
-                content: 'New Location'
+                content: 'Your school Location'
             });
 
             setMapOnAll(null);
@@ -180,5 +185,4 @@
             
             map.panTo(latLng);
         }
-
-    </script>
+</script>
