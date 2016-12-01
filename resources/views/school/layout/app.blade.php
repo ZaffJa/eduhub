@@ -63,20 +63,59 @@
 <body>
 
     <div class="wrapper">
+      <div class="sidebar hidden-lg hidden-md" data-color="purple" data-image="../assets/img/sidebar-1.jpg">
+      			<!--
+      		        Tip 1: You can change the color of the sidebar using: data-color="purple | blue | green | orange | red"
 
+      		        Tip 2: you can also add an image using data-image tag
+      		    -->
+
+      			<div class="logo text-center">
+              <a class="text-center" href="#">
+                  <img src="/img/logo/logo/student.png" width="90" height="90" class="d-inline-block align-top" alt="">
+              </a>
+      			</div>
+
+      	    	<div class="sidebar-wrapper">
+      	            <form class="navbar-form navbar-right" role="search">
+      							<div class="form-group  is-empty">
+      								<input type="text" class="form-control" placeholder="Search School">
+      								<span class="material-input"></span>
+      							<span class="material-input"></span></div>
+      							<button type="submit" class="btn btn-white btn-round btn-just-icon">
+      								<i class="material-icons">search</i><div class="ripple-container"></div>
+      							</button>
+      						</form>
+      	    	</div>
+      	    </div>
         <div class="main-panel main-panel-sub">
-          <div class="navbar-fixed-top">
-            <ul class="w3-navbar w3-card-8 w3-red navbar-fixed-top">
-                <li>
-                    <a class="navbar-brand" href="#">
-                        <img src="/img/logo/logo/student.png" width="30" height="30" class="d-inline-block align-top" alt="">
-                    </a>
-                </li>
+          <nav class="navbar navbar-danger navbar-absolute">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle toggled" data-toggle="collapse">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+            <a class="navbar-brand" href="#">
+                <img src="/img/logo/logo/student.png" width="30" height="30" class="d-inline-block align-top" alt="">
+            </a>
+					</div>
+					<div class="collapse navbar-collapse">
 
-                <li><input type="text" class="w3-input" placeholder="Search.."></li>
-                <li><button class="w3-btn w3-black">Go</button></li>
-            </ul>
-</div>
+						<form class="navbar-form navbar-right" role="search">
+							<div class="form-group  is-empty">
+								<input type="text" class="form-control" placeholder="Search">
+								<span class="material-input"></span>
+							<span class="material-input"></span></div>
+							<button type="submit" class="btn btn-white btn-round btn-just-icon">
+								<i class="material-icons">search</i><div class="ripple-container"></div>
+							</button>
+						</form>
+					</div>
+				</div>
+			</nav>
             <div class="content">
                 @include('errors.form')
                 @include(('success.status'))
