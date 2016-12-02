@@ -15,12 +15,18 @@ Auth::routes();
 Route::group(['prefix'=>'school','namespace'=>'School'],function() {
 
     Route::get('/', 'SchoolController@view');
+    Route::get('/lists', 'SchoolController@lists');
     Route::get('map', 'SchoolController@map');
     Route::get('register', 'SchoolController@register');
     Route::post('register', 'SchoolController@store');
     Route::get('edit/{id}', 'SchoolController@edit');
-    Route::post('edit', 'SchoolController@update');
-  });
+    Route::post('edit/{id}', 'SchoolController@update');
+
+    Route::get('school-types', 'SchoolController@index');
+
+
+
+});
 
 Route::group(['prefix'=>'student','namespace'=>'Student'],function(){
 

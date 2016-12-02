@@ -10,5 +10,8 @@ class School extends Model
         'stream' => 'array'
     ];
 
-    protected $guarded = [];
+    protected $fillable = [
+        'id', 'type', 'ppd', 'code', 'school_type_id', 'name', 'address', 'postcode',
+        'city', 'state', 'telephone', 'fax', 'stream', 'created_at', 'updated_at', 'deleted_at'
+    ];
 }

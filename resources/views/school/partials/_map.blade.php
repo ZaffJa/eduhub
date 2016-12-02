@@ -91,6 +91,13 @@
 
             });
 
+            // Create a marker for each place.
+            var searchEditMarker = new google.maps.Marker({
+                map: map,
+                position: pastLocation,
+            });
+
+
             map.addListener('click', function (e) {
                 placeMarkerAndPanTo(e.latLng, map);
                 $("#lat").val(e.latLng.toJSON().lat);
