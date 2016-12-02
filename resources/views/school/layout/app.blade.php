@@ -64,8 +64,6 @@
 @include('school.partials._modal')
 <div class="wrapper">
     <div class="sidebar hidden-lg hidden-md" data-color="purple" data-image="../assets/img/sidebar-1.jpg">
- 
-
         <div class="logo text-center">
             <a class="text-center" href="#">
                 <img src="/img/logo/logo/student.png" width="90" height="90" class="d-inline-block align-top" alt="">
