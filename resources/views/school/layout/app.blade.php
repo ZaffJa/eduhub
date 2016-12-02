@@ -33,7 +33,7 @@
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet' type='text/css'>
 
     <!--   Core JS Files   -->
-    <script src="/assets/js/jquery-3.1.0.min.js" type="text/javascript"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="/assets/js/jquery-ui.js" type="text/javascript"></script>
 
     <script src="https://www.atlasestateagents.co.uk/javascript/tether.min.js"></script>
@@ -62,6 +62,8 @@
 
 <body>
 
+  <!-- Modal -->
+  @include('school.partials._modal')
     <div class="wrapper">
       <div class="sidebar hidden-lg hidden-md" data-color="purple" data-image="../assets/img/sidebar-1.jpg">
       			<!--
@@ -116,7 +118,9 @@
 					</div>
 				</div>
 			</nav>
+
             <div class="content">
+
                 @include('errors.form')
                 @include(('success.status'))
                 <div class="container-fluid">

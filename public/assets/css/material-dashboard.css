@@ -3248,6 +3248,15 @@ max-height: 200px;
 .navbar.navbar-info .dropdown-menu {
   border-radius: 3px !important;
 }
+.modal-header, .close {
+    background-color: #5cb85c;
+    color:white !important;
+    text-align: center;
+    font-size: 30px;
+}
+.modal-footer {
+    background-color: #f9f9f9;
+}
 .navbar.navbar-info .dropdown-menu li > a:hover, .navbar.navbar-info .dropdown-menu li > a:focus {
   color: #FFFFFF;
   background-color: #00bcd4;
