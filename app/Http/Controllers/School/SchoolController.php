@@ -18,8 +18,8 @@ class SchoolController extends Controller
 
   public function map()
   {
-
-  	return View::make('school.map.map');
+      $schoolLocation  =  SchoolLocation::all();
+      return View::make('school.map.map',compact('schoolLocation'));
   }
 
   public function register()

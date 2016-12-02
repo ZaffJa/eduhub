@@ -168,7 +168,6 @@
                                 <th>Salary</th>
                             </thead>
                             <tbody>
-
                                 <tr>
                                     <td>Philip Chaney</td>
                                     <td>Korea, South</td>
@@ -201,7 +200,7 @@
 
                     </div>
                     <div class="card-content table-responsive">
-                      <p class="category card-title">Requirement to enter this school</p>
+                        <p class="category card-title">Requirement to enter this school</p>
                         <table class="table">
                             <thead class="text-danger">
                                 <th>Name</th>
@@ -210,7 +209,6 @@
                                 <th>Salary</th>
                             </thead>
                             <tbody>
-
                                 <tr>
                                     <td>Philip Chaney</td>
                                     <td>Korea, South</td>
@@ -231,25 +229,17 @@
                                 </tr>
                             </tbody>
                         </table>
-
                     </div>
                 </div>
-
             </div>
             <div class="col-md-12 col-lg-12">
                 <div class="card card-profile">
                     <div class="card-header card-background card-background-sub">
                         <h2 class="title"><b>School Location</b></h2>
-
                     </div>
-
-
-
-
                     <div class="card-content">
                       <input id="pac-input" class="controls" type="text" placeholder="Search Box">
                       <div id="map"></div>
-
                     </div>
                     <a href="#pablo" class="btn btn-primary btn-round">Follow</a>
 
@@ -261,19 +251,18 @@
 <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgdkEKOxECZPSbpr7MvPZMLH7sBGeIbV8&libraries=places&callback=initMap">
 </script>
- <script>
+<script>
         // Note: This example requires that you consent to location sharing when
         // prompted by your browser. If you see the error "The Geolocation service
         // failed.", it means you probably did not give permission for the browser to
         // locate you.
 
         var map;
-        var infoWindow;
-        var pos;
-        var newMarker = [];
-        var pastMarker = [];
         var schoolMarker = [];
         var schoolInfo = [];
+
+
+
 
         function initMap() {
             var pastLocation = new google.maps.LatLng(
@@ -284,10 +273,10 @@
             map = new google.maps.Map(document.getElementById('map'), {
                 center: pastLocation,
                 zoom: 11,
-
             });
 
             @foreach ($schoolLocation as $key=>$school)
+
                 var schoolPosition = new google.maps.LatLng(
                     parseFloat("{{$school->latitude}}").toFixed(6), 
                     parseFloat("{{$school->longtitude}}").toFixed(6)
@@ -308,63 +297,9 @@
                     schoolInfo[{{$key}}].open(map, schoolMarker[{{$key}}])
                 });
             @endforeach
-
-            var searchInput = document.getElementById('pac-input');
-            var searchBox = new google.maps.places.SearchBox(searchInput);
-            map.controls[google.maps.ControlPosition.TOP_LEFT].push(searchInput);
-
-            searchBox.addListener('places_changed', function() {
-              var places = searchBox.getPlaces();
-
-              if (places.length == 0) {
-                return;
-              }
-
-              // Clear out the old markers.
-              newMarker.forEach(function(marker) {
-                marker.setMap(null);
-              });
-              newMarker = [];
-
-
-              // For each place, get the icon, name and location.
-              var bounds = new google.maps.LatLngBounds();
-              places.forEach(function(place) {
-                if (!place.geometry) {
-                  console.log("Returned place contains no geometry");
-                  return;
-                }
-
-                // Create a marker for each place.
-                var searchMarker = new google.maps.Marker({
-                   map: map,
-                   title: place.name,
-                   position: place.geometry.location,
-                });
-
-                var searchInfoWindow = new google.maps.InfoWindow({
-                    content: 'New Location'
-                });
-
-                searchMarker.addListener('click', function() {
-                    searchInfoWindow.open(map,searchMarker);
-                });
-
-                newMarker.push(searchMarker);
-
-                console.log(place.geometry.location.toJSON());
-
-                if (place.geometry.viewport) {
-                  // Only geocodes have viewport.
-                  bounds.union(place.geometry.viewport);
-                } else {
-                  bounds.extend(place.geometry.location);
-                }
-              });
-              map.fitBounds(bounds);
-            });
         }
 
-    </script>
+
+</script>
 
 @endsection
