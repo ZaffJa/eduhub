@@ -61,12 +61,29 @@ class SchoolController extends Controller
 
     public function lists()
     {
-        $schools = School::all();
+        $schools = School::paginate(5);
 
         $school_type = $this->school_type;
 
 
         return View::make('school.main.list')->with(compact('schools', 'school_type'));
+    }
+
+    public function filter(Request $request)
+    {
+
+        if(!empty($request->type)){
+            $schools = School::whereSchoolTypeId($request->type)->paginate(5);
+
+        }else {
+            $schools = School::paginate(5);
+
+        }
+
+        $school_type = $this->school_type;
+
+        $type = $request->type;
+        return View::make('school.main.list')->with(compact('schools', 'school_type','type'));
     }
 
     public function map()
@@ -127,13 +144,40 @@ class SchoolController extends Controller
 
         // Update the chosen school location record
         $schoolLocation = SchoolLocation::whereSchoolId($school->id)->first();
-        $schoolLocation->update([
-            'latitude' => $request->lat,
-            'longtitude' => $request->lng
-        ]);
+
+
+//        dd($request);
+
+        if(isset($schoolLocation)){
+
+            $schoolLocation->update([
+                'latitude' => $request->lat,
+                'longtitude' => $request->lng
+            ]);
+
+        }else {
+
+            SchoolLocation::create([
+                'school_id' => $school->id,
+                'latitude' => $request->lat,
+                'longtitude' => $request->lng
+            ]);
+
+        }
 
         return redirect()->back()->with('status','Updated the school');
 
+    }
+
+    public function delete($id)
+    {
+        $school = School::find($id);
+
+        $name = $school->name;
+
+//        $school->delete();
+
+        return $name;
     }
 
 }
