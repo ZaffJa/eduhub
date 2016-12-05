@@ -1,56 +1,21 @@
 @extends('school.layout.app') @section('title', 'Dashboard') @section('content')
-<style>
+    <style>
         #map {
             height: 600px;
             width: 100%;
         }
 
-        .controls {
-  margin-top: 10px;
-  border: 1px solid transparent;
-  border-radius: 2px 0 0 2px;
-  box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  height: 32px;
-  outline: none;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-}
+        .ui-widget {
+            margin-top: 1%;
+        }
 
-#pac-input {
-  background-color: #fff;
-  font-family: Roboto;
-  font-size: 15px;
-  font-weight: 300;
-  margin-left: 12px;
-  padding: 0 11px 0 13px;
-  text-overflow: ellipsis;
-  width: 300px;
-}
-
-#pac-input:focus {
-  border-color: #4d90fe;
-}
-
-.pac-container {
-  font-family: Roboto;
-}
-
-#type-selector {
-  color: #fff;
-  background-color: #4d90fe;
-  padding: 5px 11px 0px 11px;
-}
-
-#type-selector label {
-  font-family: Roboto;
-  font-size: 13px;
-  font-weight: 300;
-}
-#target {
-  width: 345px;
-}
-</style>
+        .padding1pc {
+            margin-top: 1%;
+        }
+    </style>
+    <link href="/css/jquery-ui.css" rel="stylesheet" />
 <div class="row">
+
     <div class="col-md-2">
     </div>
     <div class="col-md-8">
@@ -76,11 +41,11 @@
                         <p class="card-content">
                             Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
                         </p>
-                        <a href="#pablo" class="btn btn-primary btn-round">Follow</a>
+                        <button type="button" class="btn btn-success btn-round btn-md" id="myBtn">edit</button>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-6 col-md-12 col-sm-12 hidden-xs ">
+            <div class="col-lg-6 col-md-12 col-sm-12 hidden-xs hidden-md">
                 <div class="card ">
                     <div class="card-header " data-background-color="red">
                         <h4 class="title">News from eduhub.my </h4>
@@ -198,6 +163,7 @@
                 </div>
 
             </div>
+            <div class="row">
             <div class="col-md-12 col-lg-6">
                 <div class="card  ">
                     <div class="card-header card-background card-background-sub-table">
@@ -243,7 +209,9 @@
                         <h2 class="title"><b>School Location</b></h2>
                     </div>
                     <div class="card-content">
-                      <input id="pac-input" class="controls" type="text" placeholder="Search Box">
+                        <div class="text-center">
+                            <input class="ui-widget input" id="pac-input"  type="text" placeholder="School Name" oninput="searchName()" onchange="searchName()">
+                        </div>
                       <div id="map"></div>
                     </div>
                     <a href="#pablo" class="btn btn-primary btn-round">Follow</a>
@@ -252,27 +220,31 @@
             </div>
         </div>
     </div>
+    </div>
 </div>
-<script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgdkEKOxECZPSbpr7MvPZMLH7sBGeIbV8&libraries=places&callback=initMap">
-</script>
-<script>
-        // Note: This example requires that you consent to location sharing when
-        // prompted by your browser. If you see the error "The Geolocation service
-        // failed.", it means you probably did not give permission for the browser to
-        // locate you.
-
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgdkEKOxECZPSbpr7MvPZMLH7sBGeIbV8&libraries=places&callback=initMap">
+    </script>
+    <script>
         var map;
         var schoolMarker = [];
         var schoolInfo = [];
+        var schoolData = [];
 
-
-
+        function searchName() {
+            search = document.getElementById("pac-input").value;
+            for (i = 0; i < schoolData.length; i++) {
+                if ( schoolData[i][0].includes(search))
+                {
+                    map.panTo(schoolData[i][1]);
+                }
+            }
+        }
 
         function initMap() {
             var pastLocation = new google.maps.LatLng(
-                    parseFloat("{{isset($location->latitude) ? $location->latitude : 1.5300076438874903}}").toFixed(6),
-                    parseFloat("{{isset($location->longtitude) ? $location->longtitude : 103.765869140625}}").toFixed(6)
+                parseFloat("{{isset($location->latitude) ? $location->latitude : 1.5300076438874903}}").toFixed(6),
+                parseFloat("{{isset($location->longtitude) ? $location->longtitude : 103.765869140625}}").toFixed(6)
             );
 
             map = new google.maps.Map(document.getElementById('map'), {
@@ -280,31 +252,41 @@
                 zoom: 11,
             });
 
-            @foreach ($schoolLocation as $key=>$school)
+            @foreach($schoolLocation as $school)
+            schoolData.push(
+                new Array (
+                    "{{$school->school->name}}",
+                    position = new google.maps.LatLng
+                    (
+                        parseFloat("{{$school->latitude}}").toFixed(6),
+                        parseFloat("{{$school->longtitude}}").toFixed(6)
+                    )
+                )
+            );
+                    @endforeach
 
-                var schoolPosition = new google.maps.LatLng(
-                    parseFloat("{{$school->latitude}}").toFixed(6), 
-                    parseFloat("{{$school->longtitude}}").toFixed(6)
+                    @foreach ($schoolLocation as $key=>$school)
+            var schoolPosition = new google.maps.LatLng(
+                parseFloat("{{$school->latitude}}").toFixed(6),
+                parseFloat("{{$school->longtitude}}").toFixed(6)
                 );
 
-                schoolMarker[{{$key}}] = new google.maps.Marker({
-                    position : schoolPosition,
-                    map: map,
-                    title: 'School location',
-                    icon: '/img/logo/map-00.png'
-                });
+            schoolMarker[{{$key}}] = new google.maps.Marker({
+                position : schoolPosition,
+                map: map,
+                title: 'School location',
+                icon: '/img/logo/map-00.png'
+            });
 
-                schoolInfo[{{$key}}] =  new google.maps.InfoWindow({
-                    content: "{{$school->school->name}}"
-                })
+            schoolInfo[{{$key}}] =  new google.maps.InfoWindow({
+                content: "{{$school->school->name}}"
+            })
 
-                schoolMarker[{{$key}}].addListener('click', function() {
-                    schoolInfo[{{$key}}].open(map, schoolMarker[{{$key}}])
-                });
+            schoolMarker[{{$key}}].addListener('click', function() {
+                schoolInfo[{{$key}}].open(map, schoolMarker[{{$key}}])
+            });
             @endforeach
+
         }
-
-
-</script>
-
+    </script>
 @endsection
