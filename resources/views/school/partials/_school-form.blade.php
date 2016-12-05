@@ -15,6 +15,10 @@
                 </div>
 
                 <div class="form-group">
+                    {{Form::label('rank', 'Rank')}} {{ Form::text('rank',null,['class'=>'form-control'])}}
+                </div>
+
+                <div class="form-group">
                     {{Form::label('school_type', 'School Type')}} {{ Form::select('school_type_id',$school_type,null,['class'=>'form-control','required','placeholder'=>'Please select a school type']) }}
                 </div>
 

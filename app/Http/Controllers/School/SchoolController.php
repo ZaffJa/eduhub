@@ -35,6 +35,8 @@ class SchoolController extends Controller
 
         $this->school_type = SchoolType::pluck('name', 'id');
 
+        $this->school = School::pluck('name','id');
+
         $this->form_validations = [
             'name' => 'required | string | between:10,85',
             'type' => 'required | string | between:5,25',

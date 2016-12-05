@@ -55,8 +55,8 @@
 
     </br>
     Search the school location by using the searchbox or by clicking at the map
-    <input name="lat" type="hidden" id="lat">
-    <input name="lng" type="hidden" id="lng">
+    <input name="lat" type="hidden" id="lat" value="{{ $location->latitude or null }}">
+    <input name="lng" type="hidden" id="lng" value="{{ $location->longtitude or null }}">
     <input id="pac-input" class="controls" type="text" placeholder="Search Box">
 
     <div id="map"></div>

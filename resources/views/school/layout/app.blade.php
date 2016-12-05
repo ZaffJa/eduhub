@@ -61,7 +61,7 @@
 </head>
 
 <body>
-@include('school.partials._modal')
+{{--@include('school.partials._modal')--}}
 <div class="wrapper">
     <div class="sidebar hidden-lg hidden-md" data-color="purple" data-image="../assets/img/sidebar-1.jpg">
         <div class="logo text-center">
