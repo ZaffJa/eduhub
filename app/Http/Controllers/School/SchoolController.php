@@ -69,8 +69,9 @@ class SchoolController extends Controller
 
     public function map()
     {
+        $schoolLocation =  SchoolLocation::all();
 
-        return View::make('school.map.map');
+        return View::make('school.map.map')->with(compact('schoolLocation'));
     }
 
     public function register()
