@@ -108,7 +108,6 @@
                                         <td>This school name</td>
                                         <td>This school rank</td>
                                     </tr>
-                                @endforeach
                             </table>
                         </div>
                         <div class="card-content table-responsive" >
