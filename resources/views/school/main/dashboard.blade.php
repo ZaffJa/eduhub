@@ -210,8 +210,17 @@
                     </div>
                     <div class="card-content">
                         <div class="text-center">
-                            <input class="ui-widget input" id="pac-input"  type="text" placeholder="School Name" oninput="searchName()" onchange="searchName()">
+                            <form class="navbar-form " role="search">
+                                <div class="form-group is-empty">
+                                    <input type="text" class="form-control"  id="pac-input"  type="text" placeholder="School Name" oninput="searchName()" onchange="searchName()">
+                                    <span class="material-input"></span>
+                                    <span class="material-input"></span></div>
+                                <button type="submit" class="btn btn-white btn-round btn-just-icon">
+                                    <i class="material-icons">search</i><div class="ripple-container"></div>
+                                </button>
+                            </form>
                         </div>
+
                       <div id="map"></div>
                     </div>
                     <a href="#pablo" class="btn btn-primary btn-round">Follow</a>
