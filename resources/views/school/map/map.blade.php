@@ -59,7 +59,7 @@
                     )
                 )
             );
-                    @endforeach
+            @endforeach
 
             @foreach ($schoolLocation as $key=>$school)
                 var schoolPosition = new google.maps.LatLng(
