@@ -37,6 +37,10 @@ class SchoolController extends Controller
 
         $this->school = School::pluck('name','id');
 
+        $this->schoolRank = School::select('name','rank')->orderBy('rank','asc')->get();
+
+        $this->schoolLocation = SchoolLocation::all();
+
         $this->form_validations = [
             'name' => 'required | string | between:10,85',
             'type' => 'required | string | between:5,25',
@@ -55,9 +59,10 @@ class SchoolController extends Controller
 
     public function view()
     {
-        $schoolLocation = SchoolLocation::all();
+        $schoolLocation = $this->schoolLocation;
+        $schoolRank = $this->schoolRank;
 
-        return View::make('school.main.dashboard', compact('schoolLocation'));
+        return View::make('school.main.dashboard', compact('schoolLocation','schoolRank'));
     }
 
     public function lists()
@@ -107,7 +112,7 @@ class SchoolController extends Controller
 
     public function map()
     {
-        $schoolLocation =  SchoolLocation::all();
+        $schoolLocation = $this->schoolLocation;
 
         return View::make('school.map.map')->with(compact('schoolLocation'));
     }
