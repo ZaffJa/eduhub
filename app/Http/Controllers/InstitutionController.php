@@ -295,7 +295,7 @@ class InstitutionController extends Controller
                     ->back()
                     ->with('status','Succesfully deleted the record');
 
-        }catch(Illuminate\Database\QueryException $ex){
+        }catch(\Illuminate\Database\QueryException $ex){
             return redirect()
                     ->back()
                     ->withErrors('Error in deleting the record');
