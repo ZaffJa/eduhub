@@ -295,7 +295,7 @@
                 });
 
                 schoolInfo[{{$key}}] =  new google.maps.InfoWindow({
-                    content: "{{$school->school->name}}"
+                    content: "{{$school->school->name or null}}"
                 })
 
                 schoolMarker[{{$key}}].addListener('click', function() {

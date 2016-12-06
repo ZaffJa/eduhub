@@ -13,6 +13,13 @@
                             {{ Form::select('type',$school_type, !empty($type) ? $type : null,['class'=>'form-control','id'=>'school_type','placeholder'=>'School Type']) }}
                         </div>
                     </form>
+
+                    <form action="{{ action('School\SchoolController@filterState') }}" method="post">
+                        <div class="form-group">
+                            {{ csrf_field() }}
+                            {{ Form::select('school_state',$states, !empty($school_state) ? $school_state: null,['class'=>'form-control','id'=>'school_state','placeholder'=>'School State']) }}
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
@@ -40,8 +47,6 @@
                 <div class="row">
                     {{ $schools->render()}}
                 </div>
-
-
             @else
                 <h3> No schools for this school type</h3>
             @endif
@@ -58,9 +63,9 @@
         $('.btnDelete').on('click', function () {
 
             var close = $(this);
-            var school
+            var school;
 
-            bootbox.confirm("Are you sure want to delete?", function (result) {
+            bootbox.confirm("Are you sure want to delete this record ?", function (result) {
 
                 if (result === true) {
 
@@ -91,9 +96,12 @@
 
         $('#school_type').on('change',function(){
 
-            $school = $(this);
+            $(this).closest('form').submit();
+        });
 
-            $school.closest('form').submit();
+        $('#school_state').on('change',function(){
+
+            $(this).closest('form').submit();
         });
 
 

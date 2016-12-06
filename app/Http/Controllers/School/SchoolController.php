@@ -47,6 +47,7 @@ class SchoolController extends Controller
             'state' => 'required | string | between:3,30',
             'telephone' => 'required | string | between:8,15',
             'fax' => 'required | string | between:8,15',
+            'rank'=> 'unique:schools'
         ];
 
 
@@ -62,11 +63,10 @@ class SchoolController extends Controller
     public function lists()
     {
         $schools = School::paginate(5);
-
         $school_type = $this->school_type;
+        $states = $this->states;
 
-
-        return View::make('school.main.list')->with(compact('schools', 'school_type'));
+        return View::make('school.main.list')->with(compact('schools', 'school_type','states'));
     }
 
     public function filter(Request $request)
@@ -81,9 +81,28 @@ class SchoolController extends Controller
         }
 
         $school_type = $this->school_type;
-
         $type = $request->type;
-        return View::make('school.main.list')->with(compact('schools', 'school_type','type'));
+        $states = $this->states;
+
+        return View::make('school.main.list')->with(compact('schools', 'school_type','type','states'));
+    }
+
+    public function filterState(Request $request)
+    {
+
+        if(!empty($request->school_state)){
+            $schools = School::whereState($request->school_state)->paginate(5);
+
+        }else {
+            $schools = School::paginate(5);
+
+        }
+
+        $school_type = $this->school_type;
+        $school_state = $request->school_state;
+        $states = $this->states;
+
+        return View::make('school.main.list')->with(compact('schools', 'school_type','school_state','states'));
     }
 
     public function map()
@@ -138,6 +157,8 @@ class SchoolController extends Controller
     public function update(Request $request)
     {
 
+        $this->validate($request, $this->form_validations);
+
         // Update the chosen school record
         $school = School::find($request->id);
         $school->update($request->except(['_token','lat','lng']));
@@ -145,8 +166,6 @@ class SchoolController extends Controller
         // Update the chosen school location record
         $schoolLocation = SchoolLocation::whereSchoolId($school->id)->first();
 
-
-//        dd($request);
 
         if(isset($schoolLocation)){
 
@@ -179,5 +198,7 @@ class SchoolController extends Controller
 
         return $name;
     }
+
+
 
 }

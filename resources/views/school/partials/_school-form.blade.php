@@ -10,9 +10,10 @@
                     {{Form::label('name', 'Name')}} {{Form::text('name',null,['class'=>'form-control','required'])}}
                 </div>
 
-                <div class="form-group">
-                    {{Form::label('type', 'Type')}} {{ Form::select('type',$type, null,['class'=>'form-control','required','placeholder'=>'Please select a type']) }}
-                </div>
+                {{--<div class="form-group">--}}
+                    {{--{{Form::label('type', 'Type')}} {{ Form::select('type',$type, null,['class'=>'form-control','required','placeholder'=>'Please select a type']) }}--}}
+                {{--</div>--}}
+                <input type="hidden" name="type" value="menengah">
 
                 <div class="form-group">
                     {{Form::label('rank', 'Rank')}} {{ Form::text('rank',null,['class'=>'form-control'])}}

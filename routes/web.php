@@ -17,6 +17,7 @@ Route::group(['prefix'=>'school','namespace'=>'School'],function() {
     Route::get('/', 'SchoolController@view');
     Route::get('/lists', 'SchoolController@lists');
     Route::get('/lists/filter', 'SchoolController@filter');
+    Route::post('/lists/filter', 'SchoolController@filterState');
     Route::get('map', 'SchoolController@map');
     Route::get('register', 'SchoolController@register');
     Route::post('register', 'SchoolController@store');
