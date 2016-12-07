@@ -73,28 +73,61 @@
                     </div>
                     <div class="card-avatar">
                         <a href="#pablo">
-                            <img class="img" src="/img/avatar/boy-512-03.png" style="background-color:white;">
+                            <img class="img" src="https://upload.wikimedia.org/wikipedia/ms/3/3d/Sekolah_Menengah_Kebangsaan_Perimbun.png" style="background-color:white;">
                         </a>
                     </div>
-                    <div class="content">
-                        <p class="card-content">
-                            Don't be scared of the truth because we need to restart the human foundation in truth And I love you like Kanye loves Kanye I love Rick Owens’ bed design but the back is...
-                        </p>
-                        <button type="button" class="btn btn-success btn-round btn-md" id="myBtn">edit</button>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-6 col-md-12 col-sm-12 hidden-xs hidden-md">
-                <div class="card ">
-                    <div class="card-header " data-background-color="red">
-                        <h4 class="title">News from eduhub.my </h4>
-                    </div>
+
+
+
+
+
+
                     <div class="card-content">
-                        <iframe src="https://eduhub.my/articles/" width="100%" height="500px"></iframe>
+
+                        <h2 class="card-title">
+                            Sekolah Menengah Kebangsaan Perimbun
+                        </h2>
+                        <h3 class="category">Visi</h3>
+                        <p>Maahad / Sekolah Menengah Hafiz adalah untuk melahirkan golongan Profesional Islam yang Hafiz Al-Quran Contohnya Dr Mohammad Firdaus Al-Hafiz, Ir Ali b Musa Al-Hafiz dan sebagainya.</p>
+                        <h3 class="category">Misi</h3>
+                        <p>Sekolah adalah untuk melahirkan generasi Al-Quran dalam menuju wawasan 2020 di bumi allah.</p>
+                        <h3 class="category">Objektif</h3>
+                        <p>Sekolah adalah supaya dapat mengamalkan isi kandungan Al-Quran dan Sunnah Rasulullah S.A.W dalam kehidupan seharian mencakupi kejayaan di dunia dan kejayaan diakhirat yang kekal abadi.</p>
+                        
+
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="col-md-12 col-lg-6" >
+                <div class="card  ">
+                    <div class="card-header card-background card-background-contact">
+                        <h2 class="title"><b>School Contacts</b></h2>
+                        <p class="category">Here is a subtitle for this table</p>
+                    </div>
+                    <div class="card-content " >
+                        <h3 class="category"><b>Contacts</b></h3>
+                        <h4 class="category">Head Quarters & Pentadbiran Kolej Hafiz</h4>
+                        No 2, Wisma Hafiz, Jalan Batu 3 Lama, 41300 Klang, Selangor.
+                        Tel: 03-33425872 Faks: 03-33427872
+
+                        <h4 class="category">Pentadbiran Sekolah Menengah Hafiz (Muslimin)</h4>
+                        No 4B & 4C, Jalan Pos Baru, 41300 Klang, Selangor.
+                        Tel: 03-33436505 Faks: 03-33427872
+
+                        <h4 class="category">Pentadbiran Sekolah Menengah Hafiz (Muslimin Ting. 1) & Sekolah Rendah Hafiz</h4>
+                        Lot 17911, Batu 2 Sungai Pinang, Jalan Kapar, 41400 Klang, Selangor.
+                        Tel: 03-33440030 Faks: 03-33427872
+
+                        <h4 class="category">Pentadbiran Sekolah Menengah Hafiz (Muslimat)</h4>
+                        Lot 783, Pekan Jeram, 45800 Jeram Kuala Selangor, Selangor. Tel: 03-32649217
+
+                        <h4 class="category">Tadika Hafiz</h4>
+                        Off Jalan Batu 3 Lama, 41300 Klang, Selangor
+                        Tel: 03-33445945 Faks: 03-33410904
+                    </div>
+                </div>
+            </div>
+
                 <div class="col-md-12 col-lg-6" >
                     <div class="card  ">
                         <div class="card-header card-background card-background-sub-table">
@@ -119,7 +152,7 @@
                         </div>
                     </div>
                 </div>
-            </div>
+
             <div class="col-md-12 col-lg-6">
                 <div class="card  ">
                     <div class="card-header card-background card-background-sub-table">
@@ -193,7 +226,7 @@
 
                       <div id="map"></div>
                     </div>
-                    <a href="#pablo" class="btn btn-primary btn-round">Follow</a>
+
                 </div>
             </div>
         </div>
