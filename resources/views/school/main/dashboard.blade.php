@@ -136,6 +136,15 @@
                         </div>
                         <div class="card-content table-responsive" >
                             <table class="table" height="100px">
+                                <tbody>
+                                    <tr>
+                                        <td>This school name</td>
+                                        <td>This school rank</td>
+                                    </tr>
+                            </table>
+                        </div>
+                        <div class="card-content table-responsive" >
+                            <table class="table" height="100px">
                                 <thead class="text-danger">
                                     <th>School Name</th>
                                     <th>Ranking</th>

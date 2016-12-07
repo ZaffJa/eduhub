@@ -32,8 +32,10 @@ class AddSchoolTypeIdToSchoolsTable extends Migration
     {
         Schema::table('schools', function (Blueprint $table) {
 
-            $table->dropForeign(['school_type_id']);
-            $table->dropColumn('school_type_id');
+            if(Schema::hasColumn('schools','stream_type_id')) {
+                $table->dropForeign(['school_type_id']);
+                $table->dropColumn('school_type_id');
+            }
         });
     }
 }

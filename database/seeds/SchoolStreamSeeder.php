@@ -11,15 +11,12 @@ class SchoolStreamSeeder extends Seeder
      */
     public function run()
     {
+        DB::table('school_streams')->delete();
+
         $streams = [
-            ['stream'=>'Sains Tulen'],
-            ['stream'=>'ICT'],
-            ['stream'=>'Prinsip Perakaunan'],
-            ['stream'=>'Ekonomi Asas'],
-            ['stream'=>'Perdagangan'],
-            ['stream'=>'Pendidikan Seni Visual'],
-            ['stream'=>'Katering'],
-            ['stream'=>'Landskap'],
+            ['stream'=>'Akademik(Sains/Sastera)'],
+            ['stream'=>'Teknik dan Vokasional'],
+            ['stream'=>'Agama'],
         ];
 
         foreach($streams as $stream)

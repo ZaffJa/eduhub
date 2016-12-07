@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\School\School;
 use App\Models\School\SchoolLocation;
 use App\Models\School\SchoolType;
+use App\Models\School\SchoolStream;
 use Illuminate\Http\Request;
 use View;
 
@@ -41,6 +42,8 @@ class SchoolController extends Controller
 
         $this->schoolLocation = SchoolLocation::all();
 
+        $this->schoolStream = SchoolStream::pluck('stream','id');
+
         $this->form_validations = [
             'name' => 'required | string | between:10,85',
             'type' => 'required | string | between:5,25',
@@ -51,7 +54,7 @@ class SchoolController extends Controller
             'state' => 'required | string | between:3,30',
             'telephone' => 'required | string | between:8,15',
             'fax' => 'required | string | between:8,15',
-            'rank'=> 'unique:schools'
+            'rank'=> 'integer'
         ];
 
 
@@ -125,8 +128,9 @@ class SchoolController extends Controller
 
         $school_type = $this->school_type;
 
+        $school_stream = $this->schoolStream;
 
-        return View::make('school.main.register-school')->with(compact('states', 'school_type', 'type'));
+        return View::make('school.main.register-school')->with(compact('states', 'school_type', 'type','school_stream'));
     }
 
     public function edit($id)
@@ -138,9 +142,13 @@ class SchoolController extends Controller
         $type = $this->type;
 
         $school_type = $this->school_type;
+
         $location = SchoolLocation::whereSchoolId($id)->first();
 
-        return View::make('school.main.edit')->with(compact('location','school', 'states', 'type', 'school_type'));
+        $school_stream = $this->schoolStream;
+
+
+        return View::make('school.main.edit')->with(compact('location','school', 'states', 'type', 'school_type','school_stream'));
     }
 
     public function store(Request $request)
