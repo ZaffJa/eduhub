@@ -42,7 +42,7 @@ class SchoolController extends Controller
 
         $this->schoolLocation = SchoolLocation::all();
 
-        $this->schoolStream = SchoolStream::all();
+        $this->schoolStream = SchoolStream::pluck('stream','id');
 
         $this->form_validations = [
             'name' => 'required | string | between:10,85',
@@ -54,7 +54,7 @@ class SchoolController extends Controller
             'state' => 'required | string | between:3,30',
             'telephone' => 'required | string | between:8,15',
             'fax' => 'required | string | between:8,15',
-            'rank'=> 'unique:schools'
+            'rank'=> 'integer'
         ];
 
 

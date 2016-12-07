@@ -20,6 +20,10 @@
                 </div>
 
                 <div class="form-group">
+                    {{Form::label('stream_type_id', 'School Stream')}} {{ Form::select('stream_type_id',$school_stream,null,['class'=>'form-control','required','placeholder'=>'Please select a school stream']) }}
+                </div>
+
+                <div class="form-group">
                     {{Form::label('school_type', 'School Type')}} {{ Form::select('school_type_id',$school_type,null,['class'=>'form-control','required','placeholder'=>'Please select a school type']) }}
                 </div>
 
