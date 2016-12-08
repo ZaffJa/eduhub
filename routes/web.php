@@ -29,10 +29,10 @@ Route::group(['prefix'=>'school','namespace'=>'School'],function() {
     Route::get('school-types', 'SchoolController@index');
     Route::get('delete/{id}', 'SchoolController@delete');
 
+    Route::get('/application','SchoolController@application');
+
 
     Route::get('/{id}', 'SchoolController@viewSchool');
-
-    Route::get('/application','SchoolController@application');
 
 
 });

@@ -114,6 +114,8 @@
                                 <h3 class="category"><b>Faks Sekolah</b></h3>
                                 {{ $school->fax or 'Belum di isi' }}
                             </div>
+                            <div class="text-center"><a class="btn btn-round btn-info" href="/school/application">Cara Memohon</a>
+                            </div>
                         </div>
                     </div>
                     {{-- Kedudukan Sekolah --}}
