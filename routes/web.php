@@ -32,7 +32,7 @@ Route::group(['prefix'=>'school','namespace'=>'School'],function() {
 
     Route::get('/{id}', 'SchoolController@viewSchool');
 
-
+    Route::get('/application','SchoolController@application');
 
 
 });
