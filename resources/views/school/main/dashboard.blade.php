@@ -90,7 +90,7 @@
                             <p>{{ $school->mission or 'Belum di isi' }}.</p>
                             <h3 class="category">Objektif</h3>
                             <p>{{ $school->objective or 'Belum di isi'}}.</p>
-
+                            <a class="btn btn-round btn-success" href="#">Edit</a>
 
                         </div>
                     </div>
@@ -215,6 +215,8 @@
                 </div>
             </div>
         </div>
+
+
     </div>
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgdkEKOxECZPSbpr7MvPZMLH7sBGeIbV8&libraries=places&callback=initMap">
