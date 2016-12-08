@@ -90,7 +90,7 @@
                             <p>{{ $school->mission or 'Belum di isi' }}.</p>
                             <h3 class="category">Objektif</h3>
                             <p>{{ $school->objective or 'Belum di isi'}}.</p>
-
+                            <a class="btn btn-round btn-success" href="#">Edit</a>
 
                         </div>
                     </div>
@@ -113,6 +113,8 @@
                             <div class="card-content ">
                                 <h3 class="category"><b>Faks Sekolah</b></h3>
                                 {{ $school->fax or 'Belum di isi' }}
+                            </div>
+                            <div class="text-center"><a class="btn btn-round btn-info" href="/school/application">Cara Memohon</a>
                             </div>
                         </div>
                     </div>
@@ -216,6 +218,8 @@
                 </div>
             </div>
         </div>
+
+
     </div>
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgdkEKOxECZPSbpr7MvPZMLH7sBGeIbV8&libraries=places&callback=initMap">

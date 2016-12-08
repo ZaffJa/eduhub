@@ -2,9 +2,10 @@
 @section('title', 'Dashboard')
 @section('content')
     <div class="row">
-        <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+
             <div class="card">
-                <div class="card-header card-background card-background-contact">
+                <div class="card-header card-background card-background-application">
                     <h2 class="title"><b>Sekolah Berasrama Penuh</b></h2>
                     <p class="category">How to apply to Sekolah Berasrama Penuh Malaysia</p>
                 </div>
@@ -23,7 +24,7 @@
                 </div>
             </div>
             <div class="card">
-                <div class="card-header card-background card-background-contact">
+                <div class="card-header card-background card-background-application">
                     <h2 class="title"><b>Kolej Vokasional & Sekolah Menengah Teknik</b></h2>
                     <p class="category">How to apply to Kolej Vokasional & Sekolah Menengah Teknik</p>
                 </div>
@@ -36,7 +37,7 @@
                 </div>
             </div>
             <div class="card">
-                <div class="card-header card-background card-background-contact">
+                <div class="card-header card-background card-background-application">
                     <h2 class="title"><b>Sekolah Kawalan</b></h2>
                     <p class="category">How to apply to Sekolah Kawalan</p>
                 </div>
@@ -58,7 +59,7 @@
                 </div>
             </div>
             <div class="card">
-                <div class="card-header card-background card-background-contact">
+                <div class="card-header card-background card-background-application">
                     <h2 class="title"><b>Maktab Rendah Sains MARA(MRSM)</b></h2>
                     <p class="category">How to apply to Maktab Rendah Sains MARA(MRSM)</p>
                 </div>
@@ -73,7 +74,7 @@
                 </div>
             </div>
             <div class="card">
-                <div class="card-header card-background card-background-contact">
+                <div class="card-header card-background card-background-application">
                     <h2 class="title"><b>Sekolah Seni</b></h2>
                     <p class="category">How to apply to Sekolah Seni</p>
                 </div>
@@ -83,7 +84,7 @@
                 </div>
             </div>
             <div class="card">
-                <div class="card-header card-background card-background-contact">
+                <div class="card-header card-background card-background-application">
                     <h2 class="title"><b>Sekolah Sukan</b></h2>
                     <p class="category">How to apply to Sekolah Seni</p>
                 </div>
@@ -119,7 +120,7 @@
                 </div>
             </div>
             <div class="card">
-                <div class="card-header card-background card-background-contact">
+                <div class="card-header card-background card-background-application">
                     <h2 class="title"><b>Sekolah Harian</b></h2>
                     <p class="category">How to apply to Sekolah Harian</p>
                 </div>

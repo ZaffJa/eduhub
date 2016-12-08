@@ -97,7 +97,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#">
+                    <a class="navbar-brand" href="/school">
                         <img src="/img/logo/logo/student.png" width="30" height="30" class="d-inline-block align-top" alt="">
                     </a>
                 </div>
