@@ -30,9 +30,14 @@ Route::group(['prefix'=>'school','namespace'=>'School'],function() {
     Route::get('delete/{id}', 'SchoolController@delete');
 
 
+    Route::get('/application','SchoolController@application');
+
+    Route::get('search','SchoolController@search');
+    Route::post('search','SchoolController@postSearch');
+
     Route::get('/{id}', 'SchoolController@viewSchool');
 
-    Route::get('/application','SchoolController@application');
+
 
 
 });

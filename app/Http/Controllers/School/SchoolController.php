@@ -99,7 +99,7 @@ class SchoolController extends Controller
 
     public function lists()
     {
-        $schools = School::paginate(5);
+        $schools = School::paginate(9);
         $school_type = $this->school_type;
         $states = $this->states;
 
@@ -110,10 +110,10 @@ class SchoolController extends Controller
     {
 
         if(!empty($request->type)){
-            $schools = School::whereSchoolTypeId($request->type)->paginate(5);
+            $schools = School::whereSchoolTypeId($request->type)->paginate(9);
 
         }else {
-            $schools = School::paginate(5);
+            $schools = School::paginate(9);
 
         }
 
@@ -128,10 +128,10 @@ class SchoolController extends Controller
     {
 
         if(!empty($request->school_state)){
-            $schools = School::whereState($request->school_state)->paginate(5);
+            $schools = School::whereState($request->school_state)->paginate(9);
 
         }else {
-            $schools = School::paginate(5);
+            $schools = School::paginate(9);
 
         }
 
@@ -239,6 +239,32 @@ class SchoolController extends Controller
 //        $school->delete();
 
         return $name;
+    }
+
+    public function search(Request $request)
+    {
+        $schools = School::where('name','like','%'.$request->term.'%')->select('name')->get();
+
+        $data = [];
+
+        foreach ($schools as $school)
+        {
+            $data[] = $school->name;
+        }
+
+        return response()->json($data);
+    }
+
+    public function postSearch(Request $request)
+    {
+        $school = School::whereName($request->name)->first();
+
+        if(empty($school)) {
+
+            return redirect()->back()->with('status','No school found for this query');
+        }
+
+        return redirect()->action('School\SchoolController@viewSchool',$school->id);
     }
 
 

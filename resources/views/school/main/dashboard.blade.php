@@ -178,8 +178,9 @@
                                 <h2 class="title"><b>Syarat Masuk</b></h2>
                             </div>
                             <div class="card-content ">
-                                <h3 class="category"><b>{{ $school->schoolType->requirements or 'Belum di isi' }}</b></h3>
-                                Untuk maklumat lanjut klik <strong><a href="{{ $school->typSchool->link or '#'}}">sini</a></strong>
+                                <h3 class="category"><b>Untuk maklumat lanjut klik <strong><a
+                                                    href="{{ $school->typeSchool->link or '#'}}"
+                                                    target="_blank">sini</a></strong></b></h3>
                             </div>
                         </div>
                     </div>
@@ -221,12 +222,12 @@
     </script>
     <script>
         var map;
-        var schoolMarker = [];
-        var schoolInfo = [];
-        var schoolData = [];
+        var schoolMarker = null;
+        var schoolInfo = null;
+        var schoolData = null;
 
         function searchName() {
-            search = document.getElementById("pac-input").value;
+            var search = document.getElementById("pac-input").value;
             for (i = 0; i < schoolData.length; i++) {
                 if (schoolData[i][0].includes(search)) {
                     map.panTo(schoolData[i][1]);
@@ -236,8 +237,8 @@
 
         function initMap() {
             var pastLocation = new google.maps.LatLng(
-                    parseFloat("{{isset($location->latitude) ? $location->latitude : 1.5300076438874903}}").toFixed(6),
-                    parseFloat("{{isset($location->longtitude) ? $location->longtitude : 103.765869140625}}").toFixed(6)
+                    parseFloat("{{$school->location->latitude or 1.5300076438874903}}").toFixed(6),
+                    parseFloat("{{$school->location->longtitude or 103.765869140625}}").toFixed(6)
             );
 
             map = new google.maps.Map(document.getElementById('map'), {
@@ -245,39 +246,25 @@
                 zoom: 11,
             });
 
-            @foreach($schoolLocation as $school)
-            schoolData.push(
-                    ["{{$school->school->name or null}}",
-                        position = new google.maps.LatLng
-                        (
-                                parseFloat("{{$school->latitude}}").toFixed(6),
-                                parseFloat("{{$school->longtitude}}").toFixed(6)
-                        )]
-            );
-                    @endforeach
-
-                    @foreach ($schoolLocation as $key=>$school)
             var schoolPosition = new google.maps.LatLng(
-                    parseFloat("{{$school->latitude}}").toFixed(6),
-                    parseFloat("{{$school->longtitude}}").toFixed(6)
+                    parseFloat("{{$school->location->latitude or null}}").toFixed(6),
+                    parseFloat("{{$school->location->longtitude or null}}").toFixed(6)
                     );
 
-            schoolMarker['{{$key}}'] = new google.maps.Marker({
+            schoolMarker = new google.maps.Marker({
                 position: schoolPosition,
                 map: map,
                 title: 'School location',
                 icon: '/img/logo/map-00.png'
             });
 
-            schoolInfo['{{$key}}'] = new google.maps.InfoWindow({
+            schoolInfo = new google.maps.InfoWindow({
                 content: "{{$school->school->name or null}}"
-            })
-
-            schoolMarker['{{$key}}'].addListener('click', function () {
-                schoolInfo['{{$key}}'].open(map, schoolMarker['{{$key}}'])
             });
-            @endforeach
 
+            schoolMarker.addListener('click', function () {
+                schoolInfo.open(map, schoolMarker)
+            });
         }
     </script>
 @endsection

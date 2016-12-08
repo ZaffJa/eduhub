@@ -3,21 +3,35 @@
         <div class="col-md-3">
             <div class="row">
                 <div class="col-md-10 col-md-offset-1 alert alert-default">
-                    <div class="form-group">
-                        {{Form::text('name',null,['class'=>'form-control','placeholder'=>'Search a school'])}}
-                    </div>
+
+                    <form action="{{ action('School\SchoolController@postSearch') }}" method="post">
+                        <div class="row">
+                            <div class="col-md-8 col-lg-8">
+                                <div class="form-group">
+                                    {{Form::text('name',null,['class'=>'form-control','placeholder'=>'Cari sekolah','id'=>'cariSekolah'])}}
+                                </div>
+                            </div>
+                            <div class="col-md-2 col-lg-2">
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-success btn-sm">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        {{ csrf_field() }}
+                    </form>
 
                     <form action="{{ action('School\SchoolController@filter') }}" method="get">
                         <div class="form-group">
                             {{ csrf_field() }}
-                            {{ Form::select('type',$school_type, !empty($type) ? $type : null,['class'=>'form-control','id'=>'school_type','placeholder'=>'School Type']) }}
+                            {{ Form::select('type',$school_type, !empty($type) ? $type : null,['class'=>'form-control','id'=>'school_type','placeholder'=>'Jenis Sekolah']) }}
                         </div>
                     </form>
 
                     <form action="{{ action('School\SchoolController@filterState') }}" method="post">
                         <div class="form-group">
                             {{ csrf_field() }}
-                            {{ Form::select('school_state',$states, !empty($school_state) ? $school_state: null,['class'=>'form-control','id'=>'school_state','placeholder'=>'School State']) }}
+                            {{ Form::select('school_state',$states, !empty($school_state) ? $school_state: null,['class'=>'form-control','id'=>'school_state','placeholder'=>'Negeri    ']) }}
                         </div>
                     </form>
                 </div>
@@ -48,15 +62,10 @@
                     {{ $schools->render()}}
                 </div>
             @else
-                <h3> No schools for this school type</h3>
+                <h3> Tiada sekolah untuk carian ini type</h3>
             @endif
         </div>
     </div>
-
-
-
-    <script src="/assets/js/bootstrap-notify.js"></script>
-    <script src="/assets/js/bootbox.js"></script>
 
     <script>
 
@@ -75,7 +84,7 @@
                     .done(function (result) {
 
                         $.notify({
-                            message: "Successfully deleted " + result
+                            message: "<strong>Successfully deleted " + result + "</strong>"
                         }, {
                             type: 'success'
                         });
@@ -102,6 +111,10 @@
         $('#school_state').on('change',function(){
 
             $(this).closest('form').submit();
+        });
+
+        $('#cariSekolah').autocomplete({
+            source : '{{ action('School\SchoolController@search') }}'
         });
 
 
