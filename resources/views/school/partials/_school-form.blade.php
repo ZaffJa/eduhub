@@ -36,6 +36,18 @@
                 </div>
 
                 <div class="form-group">
+                    {{Form::label('mission', 'Mission')}} {{Form::text('mission',null,['class'=>'form-control','required'])}}
+                </div>
+
+                <div class="form-group">
+                    {{Form::label('vision', 'Vision')}} {{Form::text('vision',null,['class'=>'form-control','required'])}}
+                </div>
+
+                <div class="form-group">
+                    {{Form::label('objective', 'Objective')}} {{Form::text('objective',null,['class'=>'form-control','required'])}}
+                </div>
+
+                <div class="form-group">
                     {{Form::label('address', 'Address')}} {{Form::text('address',null,['class'=>'form-control','required'])}}
                 </div>
 

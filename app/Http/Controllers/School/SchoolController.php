@@ -38,7 +38,10 @@ class SchoolController extends Controller
 
         $this->school = School::pluck('name','id');
 
-        $this->schoolRank = School::select('name','rank')->orderBy('rank','asc')->get();
+        $this->schoolRank = School::select('name','rank')
+                                    ->whereNotNull('rank')
+                                    ->where('rank','<=',10)
+                                    ->orderBy('rank','asc')->get();
 
         $this->schoolLocation = SchoolLocation::all();
 
@@ -66,6 +69,27 @@ class SchoolController extends Controller
         $schoolRank = $this->schoolRank;
 
         return View::make('school.main.dashboard', compact('schoolLocation','schoolRank'));
+    }
+
+    public function viewSchool($id)
+    {
+        $school = School::find($id);
+
+        $schoolLocation = $this->schoolLocation;
+        $schoolRank = $this->schoolRank;
+
+//        return $school;
+
+        if(empty($school)) {
+
+            return redirect()->action('School\SchoolController@view');
+
+        } else {
+
+            return view('school.main.dashboard',compact('school','schoolLocation','schoolRank'));
+
+        }
+
     }
 
     public function lists()

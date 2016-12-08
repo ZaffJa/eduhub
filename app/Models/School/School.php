@@ -14,8 +14,18 @@ class School extends Model
         'stream' => 'array'
     ];
 
-    protected $fillable = [
-        'id', 'type', 'ppd', 'code', 'school_type_id', 'name', 'address', 'postcode',
-        'city', 'state', 'telephone', 'fax', 'stream_type_id','rank','created_at', 'updated_at', 'deleted_at'
-    ];
+    protected $guarded = [];
+
+    public function stream()
+    {
+        return $this->belongsTo('\App\Models\School\SchoolStream','stream_type_id');
+    }
+
+    public function typeSchool()
+    {
+        return $this->belongsTo('\App\Models\School\SchoolType','school_type_id');
+    }
+
+
+
 }

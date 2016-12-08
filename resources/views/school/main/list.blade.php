@@ -29,7 +29,7 @@
                     @foreach($schools as $school)
                         <div class="alert alert-default alert-dismissible col-md-4 col-sm-12 col-xs-12 col-lg-3" style="margin-left: 3px;">
                             <strong>
-                                <a href="{{ action('School\SchoolController@edit',$school->id) }}">
+                                <a href="{{ action('School\SchoolController@viewSchool',$school->id) }}">
                                     {{ $school->name }} <br>
                                     {{ $school->ppd }} <br>
                                     {{ $school->address }} <br>

@@ -14,8 +14,10 @@ Auth::routes();
 
 Route::group(['prefix'=>'school','namespace'=>'School'],function() {
 
-    Route::get('/', 'SchoolController@view');
-    Route::get('/lists', 'SchoolController@lists');
+    Route::get('/', 'SchoolController@lists');
+    Route::get('filter', 'SchoolController@filter');
+    Route::post('filter', 'SchoolController@filterState');
+
     Route::get('/lists/filter', 'SchoolController@filter');
     Route::post('/lists/filter', 'SchoolController@filterState');
     Route::get('map', 'SchoolController@map');
@@ -26,6 +28,10 @@ Route::group(['prefix'=>'school','namespace'=>'School'],function() {
 
     Route::get('school-types', 'SchoolController@index');
     Route::get('delete/{id}', 'SchoolController@delete');
+
+
+    Route::get('/{id}', 'SchoolController@viewSchool');
+
 
 
 
