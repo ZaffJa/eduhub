@@ -60,6 +60,11 @@ class SchoolController extends Controller
 
     }
 
+    public function application()
+    {
+        return View::make('school.application.application');
+    }
+
     public function view()
     {
         $schoolLocation = $this->schoolLocation;

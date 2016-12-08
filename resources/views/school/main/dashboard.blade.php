@@ -76,14 +76,7 @@
                             <img class="img" src="https://upload.wikimedia.org/wikipedia/ms/3/3d/Sekolah_Menengah_Kebangsaan_Perimbun.png" style="background-color:white;">
                         </a>
                     </div>
-
-
-
-
-
-
                     <div class="card-content">
-
                         <h2 class="card-title">
                             Sekolah Menengah Kebangsaan Perimbun
                         </h2>
@@ -93,8 +86,6 @@
                         <p>Sekolah adalah untuk melahirkan generasi Al-Quran dalam menuju wawasan 2020 di bumi allah.</p>
                         <h3 class="category">Objektif</h3>
                         <p>Sekolah adalah supaya dapat mengamalkan isi kandungan Al-Quran dan Sunnah Rasulullah S.A.W dalam kehidupan seharian mencakupi kejayaan di dunia dan kejayaan diakhirat yang kekal abadi.</p>
-                        
-
                     </div>
                 </div>
             </div>

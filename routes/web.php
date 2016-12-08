@@ -28,6 +28,8 @@ Route::group(['prefix'=>'school','namespace'=>'School'],function() {
     Route::get('delete/{id}', 'SchoolController@delete');
 
 
+    Route::get('/application','SchoolController@application');
+
 
 });
 
