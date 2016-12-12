@@ -14,7 +14,12 @@ class AddContactNoToInstitutionsTable extends Migration
     public function up()
     {
         Schema::table('institutions', function (Blueprint $table) {
-            $table->string('contact_no')->nullable();
+
+            if (!Schema::hasColumn('institutions', 'contact_no')) {
+
+                $table->string('contact_no')->nullable();
+            }
+
         });
     }
 

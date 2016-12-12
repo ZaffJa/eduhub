@@ -23,12 +23,19 @@
 
     <link rel="stylesheet" href="/client/dist/css/skins/_all-skins.min.css">
     <link rel="stylesheet" href="/css/mdb.min.css">
+    <script src="/client/plugins/jQuery/jquery-2.2.3.min.js"></script>
+    {{--<script src="/client/dist/js/app.min.js"></script>--}}
+    <script src="/assets/js/bootbox.min.js"></script>
+    <script src="/assets/js/bootstrap-notify.js"></script>
+
+
+
 
     <!-- Scripts -->
     <script>
-        window.Laravel = <?php echo json_encode([
+        window.Laravel = '<?php echo json_encode([
                 'csrfToken' => csrf_token(),
-        ]); ?>
+        ]); ?>'
     </script>
 </head>
 
@@ -95,15 +102,27 @@
         <div class="col-lg-12">
             <div class='row'>
                 @if(count($errors) > 0)
-                    <div class="alert alert-danger alert-dismissible">
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                        <h4><i class="icon fa fa-ban"></i> Alert!</h4>
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
+                    {{--<div class="alert alert-danger alert-dismissible">--}}
+                        {{--<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>--}}
+                        {{--<h4><i class="icon fa fa-ban"></i> Alert!</h4>--}}
+                        {{--<ul>--}}
+                            {{--@foreach ($errors->all() as $error)--}}
+                                {{--<li>{{ $error }}</li>--}}
+                            {{--@endforeach--}}
+                        {{--</ul>--}}
+                    {{--</div>--}}
+                    @foreach ($errors->all() as $error)
+                        <script>
+                            $.notify({
+                                // options
+                                message: "{{ $error }}"
+                            }, {
+                                // settings
+                                type: 'danger'
+                            });
+                        </script>
+                    @endforeach
+
                 @endif
                 @if(isset($status))
                     <div class="alert alert-success alert-dismissible">
@@ -123,7 +142,7 @@
     </div>
 </div>
 
-<!-- Scripts -->
-<script src="/js/app.js"></script>
+<script src="//cdn.ckeditor.com/4.5.11/standard/ckeditor.js"></script>
+
 </body>
 </html>

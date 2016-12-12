@@ -67,10 +67,4 @@ class Institution extends Model
         return $this->belongsTo('App\Models\InstitutionContact','id','institution_id');
     }
 
-    public function list($mail)
-    {
-        $input = explode('---',$mail);
-
-        return $input;
-    }
 }
