@@ -31,6 +31,12 @@
                         <dt>Address</dt>
                         <dd> {{ $institution->address != null ? $institution->address : 'Address not added'}} </dd>
                         <hr>
+                        <dt>Contact</dt>
+                        <dd> {{ $institution->contact_no != null ? $institution->contact_no: 'Contact not added'}} </dd>
+                        <hr>
+                        <dt>Address</dt>
+                        <dd> {{ $institution->fax_no != null ? $institution->fax_no: 'Fax not added'}} </dd>
+                        <hr>
                         <dt>Website</dt>
                         <dd>
                             <a href=" http://{{ $institution->website != null ? $institution->website : 'Website not added '}} "> {{ $institution->website != null ? $institution->website : 'Website not added '}} </a>

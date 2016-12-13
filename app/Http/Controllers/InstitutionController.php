@@ -73,17 +73,27 @@ class InstitutionController extends Controller
     {
         $institution = Institution::whereId($id)->firstOrFail();
 
+
+        if ($r->slug != null) {
+            $institution->slug = str_replace(' ', '-', strtolower($r->slug));
+        } else {
+            $institution->slug = str_replace(' ', '-', strtolower($institution->name));
+        }
         $institution->name = $r->name;
         $institution->type_id = $r->type_id;
         $institution->abbreviation = $r->abbreviation;
         $institution->established = $r->established;
         $institution->location = $r->location;
         $institution->address = $r->address;
+        $institution->fax_no = $r->fax_no;
+        $institution->contact_no = $r->contact_no;
+        $institution->website= $r->website;
         $institution->email = $r->email;
         $institution->public_relations_department_email = $r->public_relations_department_email;
         $institution->corporate_communications_department_email = $r->corporate_communications_department_email;
         $institution->marketing_department_email = $r->marketing_department_email;
         $institution->student_enrollment_department_email = $r->student_enrollment_department_email;
+
         if ($r->parent_id != 0) {
             $institution->parent_id = $r->parent_id;
         } elseif ($r->parent_id == 0) {
@@ -98,7 +108,11 @@ class InstitutionController extends Controller
 
         }
 
-        return redirect()->action('InstitutionController@viewInstitution',$institution->id)->with(['status' => 'The ' . $institution->name . ' has been updated.']);
+        if (auth()->user()->hasRole('admin')) {
+            return redirect()->back()->with(['status' => 'The ' . $institution->name . ' has been updated.']);
+
+        }
+        return redirect()->action('InstitutionController@viewInstitution', $institution->id)->with(['status' => 'The ' . $institution->name . ' has been updated.']);
 
     }
 
@@ -264,9 +278,12 @@ class InstitutionController extends Controller
     public function editInstitution($id)
     {
         $i = Institution::find($id);
+        $institution = Institution::find($id);
+        $institution_types = InstitutionType::pluck('name', 'id');
+        $parent_institution = Institution::pluck('name', 'id')->toArray();
 
         return view('admin.edit-institution')
-            ->with(compact(('i')));
+            ->with(compact('i', 'institution', 'institution_types', 'parent_institution'));
     }
 
     public function requestHistory()

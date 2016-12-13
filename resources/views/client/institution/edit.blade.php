@@ -92,6 +92,24 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-2">
+                        Contact
+                    </div>
+                    <div class="col-lg-10">
+                        <input name="contact_no" type="text"
+                               value="{!! $institution->contact_no != null ? $institution->contact_no : 'Contact not added' !!}">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-2">
+                        Fax
+                    </div>
+                    <div class="col-lg-10">
+                        <input name="fax_no" type="text"
+                               value="{!! $institution->fax_no != null ? $institution->fax_no : 'Fax not added' !!}">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-2">
                         Main Branch
                     </div>
                     <div class="col-lg-10">
@@ -121,7 +139,8 @@
                         Public Relations Department Email
                     </div>
                     <div class="col-lg-10">
-                        <textarea name="public_relations_department_email">{!! $institution->public_relations_department_email !!}</textarea>
+                        <textarea
+                                name="public_relations_department_email">{!! $institution->public_relations_department_email !!}</textarea>
                     </div>
                 </div>
                 <div class="row">
@@ -138,7 +157,8 @@
                         Marketing Department Email
                     </div>
                     <div class="col-lg-10">
-                        <textarea name="marketing_department_email">{!! $institution->marketing_department_email !!}</textarea>
+                        <textarea
+                                name="marketing_department_email">{!! $institution->marketing_department_email !!}</textarea>
                     </div>
                 </div>
                 <div class="row">

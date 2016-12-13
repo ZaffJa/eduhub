@@ -95,6 +95,7 @@ Route::group(['prefix'=>'admin'],function(){
         Route::get('/notifications', 'NotificationController@getAdminNotifications');
         Route::post('/notifications', 'NotificationController@postAdminNotifications');
         Route::post('/reset-notifications', 'NotificationController@reset');
+        Route::post('/institution/{id}/edit', 'InstitutionController@update')->name('admin.institution.update');
     });
 });
 
