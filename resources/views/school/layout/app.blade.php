@@ -7,7 +7,7 @@
     <meta charset="utf-8"/>
     <link rel="apple-touch-icon" sizes="76x76" href="/assets/img/apple-icon.png"/>
     <link rel="icon" sizes="192x192" href="/img/logo/logo/student.png">
-    <title>Student Dashboard</title>
+    <title>Sekolah</title>
 
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport'/>
     <meta name="viewport" content="width=device-width"/>
@@ -59,9 +59,9 @@
     <script src="/assets/js/material-dashboard.js"></script>
 
     <!--   Sharrre Library    -->
-    <script src="/assets/js/jquery.sharrre.js"></script>
+    {{--<script src="/assets/js/jquery.sharrre.js"></script>--}}
 
-    <script src="/assets/js/demo.js"></script>
+    {{--<script src="/assets/js/demo.js"></script>--}}
     @yield('header-css')
 </head>
 
@@ -83,7 +83,7 @@
                     <span class="material-input"></span></div>
                 <button type="submit" class="btn btn-white btn-round btn-just-icon">
                     <i class="material-icons">search</i>
-                    <div class="ripple-container"></div>
+                    <span class="ripple-container"></span>
                 </button>
             </form>
         </div>
@@ -103,12 +103,14 @@
                              alt="">
                     </a>
                 </div>
+                @if(auth()->user())
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="{{ action('School\SchoolController@register') }}">
                             <i class="fa fa-pencil fa-fw" aria-hidden="true"></i>
                         </a>
                     </li>
                 </ul>
+                @endif
             </div>
         </nav>
         <div class="content">
