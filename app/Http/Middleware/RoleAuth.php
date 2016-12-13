@@ -33,6 +33,14 @@ class RoleAuth
             return $next($request);
         }
 
+        if (strpos($url, 'school') !== false && Auth::user()->hasRole('school')) {
+
+            return $next($request);
+        } else if(strpos($url, 'school') !== false && !Auth::user()->hasRole('school')){
+
+            return redirect('/login')->with('status','Please sign in first!');
+        }
+
 
 
         return redirect('/permission-error');

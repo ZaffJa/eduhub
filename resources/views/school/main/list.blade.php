@@ -1,20 +1,32 @@
 @extends('school.layout.app') @section('title', 'Dashboard') @section('content')
+
+    <style>
+
+        #cariSekolah {
+            border-bottom: 1px solid black;
+        }
+
+        #school_type {
+            border: 1px solid black;
+        }
+
+        #school_state {
+            border: 1px solid black;
+        }
+    </style>
+
     <div class="row">
         <div class="col-md-3">
             <div class="row">
                 <div class="col-md-10 col-md-offset-1 alert alert-default">
-
                     <form action="{{ action('School\SchoolController@postSearch') }}" method="post">
                         <div class="row">
-                            <div class="col-md-8 col-lg-8">
-                                <div class="form-group">
+                            <div class="col-md-7 col-lg-7 col-sm-12">
                                     {{Form::text('name',null,['class'=>'form-control','placeholder'=>'Cari sekolah','id'=>'cariSekolah'])}}
-                                </div>
                             </div>
-                            <div class="col-md-2 col-lg-2">
-                                <div class="form-group">
-                                    <button type="submit" class="btn btn-success btn-sm">Submit</button>
-                                </div>
+                            <div class="col-md-2 col-sm-12">
+                                <button type="submit" class="btn btn-info btn-sm" style="top:25px"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+
                             </div>
                         </div>
 
@@ -37,11 +49,12 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-9">
+        <div class="col-md-8">
             @if(count($schools) > 0)
                 <div class="row">
                     @foreach($schools as $school)
-                        <div class="alert alert-default alert-dismissible col-md-4 col-sm-12 col-xs-12 col-lg-3" style="margin-left: 3px;">
+                        <div class="alert alert-default alert-dismissible col-md-4 col-sm-12 col-xs-12 col-lg-3"
+                             style="margin-left: 3px;">
                             <strong>
                                 <a href="{{ action('School\SchoolController@viewSchool',$school->id) }}">
                                     {{ $school->name }} <br>
@@ -62,7 +75,7 @@
                     {{ $schools->render()}}
                 </div>
             @else
-                <h3> Tiada sekolah untuk carian ini type</h3>
+                <h3> Tiada sekolah untuk carian ini</h3>
             @endif
         </div>
     </div>
@@ -81,42 +94,41 @@
                     var jqxhr = $.get("/school/delete/" + close.data('href'), function () {
                         console.log("Sent");
                     })
-                    .done(function (result) {
+                            .done(function (result) {
 
-                        $.notify({
-                            message: "<strong>Successfully deleted " + result + "</strong>"
-                        }, {
-                            type: 'success'
-                        });
+                                $.notify({
+                                    message: "<strong>Successfully deleted " + result + "</strong>"
+                                }, {
+                                    type: 'success'
+                                });
 
-                        close.closest('div').hide();
-                    })
-                    .fail(function () {
-                        $.notify({
-                            message: "An error occurred"
-                        }, {
-                            type: 'warning'
-                        });
+                                close.closest('div').hide();
+                            })
+                            .fail(function () {
+                                $.notify({
+                                    message: "An error occurred"
+                                }, {
+                                    type: 'warning'
+                                });
 
-                    });
+                            });
                 }
             });
         });
 
-        $('#school_type').on('change',function(){
+        $('#school_type').on('change', function () {
 
             $(this).closest('form').submit();
         });
 
-        $('#school_state').on('change',function(){
+        $('#school_state').on('change', function () {
 
             $(this).closest('form').submit();
         });
 
         $('#cariSekolah').autocomplete({
-            source : '{{ action('School\SchoolController@search') }}'
+            source: '{{ action('School\SchoolController@search') }}'
         });
-
 
 
     </script>

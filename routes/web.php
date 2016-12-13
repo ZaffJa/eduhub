@@ -14,25 +14,32 @@ Auth::routes();
 
 Route::group(['prefix'=>'school','namespace'=>'School'],function() {
 
-    Route::get('/', 'SchoolController@lists');
-    Route::get('filter', 'SchoolController@filter');
-    Route::post('filter', 'SchoolController@filterState');
+    Route::get('login','LoginController@login');
+    Route::post('login','LoginController@postLogin');
 
-    Route::get('/lists/filter', 'SchoolController@filter');
-    Route::post('/lists/filter', 'SchoolController@filterState');
-    Route::get('map', 'SchoolController@map');
-    Route::get('register', 'SchoolController@register');
-    Route::post('register', 'SchoolController@store');
-    Route::get('edit/{id}', 'SchoolController@edit');
-    Route::post('edit/{id}', 'SchoolController@update');
+    Route::group(['middleware'=>['role.type:school','empty.null']],function() {
 
-    Route::get('school-types', 'SchoolController@index');
-    Route::get('delete/{id}', 'SchoolController@delete');
-    
-    Route::get('/application','SchoolController@application');
-    Route::get('search','SchoolController@search');
-    Route::post('search','SchoolController@postSearch');
-    Route::get('/{id}', 'SchoolController@viewSchool');
+        Route::get('/', 'SchoolController@lists');
+        Route::get('filter', 'SchoolController@filter');
+        Route::post('filter', 'SchoolController@filterState');
+
+        Route::get('/lists/filter', 'SchoolController@filter');
+        Route::post('/lists/filter', 'SchoolController@filterState');
+        Route::get('map', 'SchoolController@map');
+        Route::get('register', 'SchoolController@register');
+        Route::post('register', 'SchoolController@store');
+        Route::get('edit/{id}', 'SchoolController@edit');
+        Route::post('edit/{id}', 'SchoolController@update');
+
+        Route::get('school-types', 'SchoolController@index');
+        Route::get('delete/{id}', 'SchoolController@delete');
+
+        Route::get('/application', 'SchoolController@application');
+        Route::get('search', 'SchoolController@search');
+        Route::post('search', 'SchoolController@postSearch');
+        Route::get('/{id}', 'SchoolController@viewSchool');
+
+    });
 
 
 

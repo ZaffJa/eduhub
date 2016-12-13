@@ -36,16 +36,16 @@ class SchoolController extends Controller
 
         $this->school_type = SchoolType::pluck('name', 'id');
 
-        $this->school = School::pluck('name','id');
+        $this->school = School::pluck('name', 'id');
 
-        $this->schoolRank = School::select('name','rank')
-                                    ->whereNotNull('rank')
-                                    ->where('rank','<=',10)
-                                    ->orderBy('rank','asc')->get();
+        $this->schoolRank = School::select('name', 'rank')
+            ->whereNotNull('rank')
+            ->where('rank', '<=', 10)
+            ->orderBy('rank', 'asc')->get();
 
         $this->schoolLocation = SchoolLocation::all();
 
-        $this->schoolStream = SchoolStream::pluck('stream','id');
+        $this->schoolStream = SchoolStream::pluck('stream', 'id');
 
         $this->form_validations = [
             'name' => 'required | string | between:10,85',
@@ -57,7 +57,7 @@ class SchoolController extends Controller
             'state' => 'required | string | between:3,30',
             'telephone' => 'required | string | between:8,15',
             'fax' => 'required | string | between:8,15',
-            'rank'=> 'integer'
+            'rank' => 'integer'
         ];
 
 
@@ -73,7 +73,7 @@ class SchoolController extends Controller
         $schoolLocation = $this->schoolLocation;
         $schoolRank = $this->schoolRank;
 
-        return View::make('school.main.dashboard', compact('schoolLocation','schoolRank'));
+        return View::make('school.main.dashboard', compact('schoolLocation', 'schoolRank'));
     }
 
     public function viewSchool($id)
@@ -85,13 +85,13 @@ class SchoolController extends Controller
 
 //        return $school;
 
-        if(empty($school)) {
+        if (empty($school)) {
 
             return redirect()->action('School\SchoolController@view');
 
         } else {
 
-            return view('school.main.dashboard',compact('school','schoolLocation','schoolRank'));
+            return view('school.main.dashboard', compact('school', 'schoolLocation', 'schoolRank'));
 
         }
 
@@ -103,16 +103,16 @@ class SchoolController extends Controller
         $school_type = $this->school_type;
         $states = $this->states;
 
-        return View::make('school.main.list')->with(compact('schools', 'school_type','states'));
+        return View::make('school.main.list')->with(compact('schools', 'school_type', 'states'));
     }
 
     public function filter(Request $request)
     {
 
-        if(!empty($request->type)){
+        if (!empty($request->type)) {
             $schools = School::whereSchoolTypeId($request->type)->paginate(9);
 
-        }else {
+        } else {
             $schools = School::paginate(9);
 
         }
@@ -121,16 +121,16 @@ class SchoolController extends Controller
         $type = $request->type;
         $states = $this->states;
 
-        return View::make('school.main.list')->with(compact('schools', 'school_type','type','states'));
+        return View::make('school.main.list')->with(compact('schools', 'school_type', 'type', 'states'));
     }
 
     public function filterState(Request $request)
     {
 
-        if(!empty($request->school_state)){
+        if (!empty($request->school_state)) {
             $schools = School::whereState($request->school_state)->paginate(9);
 
-        }else {
+        } else {
             $schools = School::paginate(9);
 
         }
@@ -139,7 +139,7 @@ class SchoolController extends Controller
         $school_state = $request->school_state;
         $states = $this->states;
 
-        return View::make('school.main.list')->with(compact('schools', 'school_type','school_state','states'));
+        return View::make('school.main.list')->with(compact('schools', 'school_type', 'school_state', 'states'));
     }
 
     public function map()
@@ -159,7 +159,7 @@ class SchoolController extends Controller
 
         $school_stream = $this->schoolStream;
 
-        return View::make('school.main.register-school')->with(compact('states', 'school_type', 'type','school_stream'));
+        return View::make('school.main.register-school')->with(compact('states', 'school_type', 'type', 'school_stream'));
     }
 
     public function edit($id)
@@ -177,14 +177,17 @@ class SchoolController extends Controller
         $school_stream = $this->schoolStream;
 
 
-        return View::make('school.main.edit')->with(compact('location','school', 'states', 'type', 'school_type','school_stream'));
+        return View::make('school.main.edit')->with(compact('location', 'school', 'states', 'type', 'school_type', 'school_stream'));
     }
 
     public function store(Request $request)
     {
         $this->validate($request, $this->form_validations);
 
+        $request['slug'] = $this->slugify($request->name);
 
+
+        return $request->all();
         $school = School::create($request->except(['_token', 'lat', 'lng']));
 
         SchoolLocation::create([
@@ -203,20 +206,20 @@ class SchoolController extends Controller
 
         // Update the chosen school record
         $school = School::find($request->id);
-        $school->update($request->except(['_token','lat','lng']));
+        $school->update($request->except(['_token', 'lat', 'lng']));
 
         // Update the chosen school location record
         $schoolLocation = SchoolLocation::whereSchoolId($school->id)->first();
 
 
-        if(isset($schoolLocation)){
+        if (isset($schoolLocation)) {
 
             $schoolLocation->update([
                 'latitude' => $request->lat,
                 'longtitude' => $request->lng
             ]);
 
-        }else {
+        } else {
 
             SchoolLocation::create([
                 'school_id' => $school->id,
@@ -226,7 +229,7 @@ class SchoolController extends Controller
 
         }
 
-        return redirect()->back()->with('status','Updated the school');
+        return redirect()->back()->with('status', 'Updated the school');
 
     }
 
@@ -243,12 +246,11 @@ class SchoolController extends Controller
 
     public function search(Request $request)
     {
-        $schools = School::where('name','like','%'.$request->term.'%')->select('name')->get();
+        $schools = School::where('name', 'like', '%' . $request->term . '%')->select('name')->get();
 
         $data = [];
 
-        foreach ($schools as $school)
-        {
+        foreach ($schools as $school) {
             $data[] = $school->name;
         }
 
@@ -259,14 +261,40 @@ class SchoolController extends Controller
     {
         $school = School::whereName($request->name)->first();
 
-        if(empty($school)) {
+        if (empty($school)) {
 
-            return redirect()->back()->with('status','No school found for this query');
+            return redirect()->back()->with('status', 'No school found for this query');
         }
 
-        return redirect()->action('School\SchoolController@viewSchool',$school->id);
+        return redirect()->action('School\SchoolController@viewSchool', $school->id);
     }
 
+    public function slugify($text)
+    {
+        // replace non letter or digits by -
+        $text = preg_replace('~[^\pL\d]+~u', '-', $text);
+
+        // transliterate
+        $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
+
+        // remove unwanted characters
+        $text = preg_replace('~[^-\w]+~', '', $text);
+
+        // trim
+        $text = trim($text, '-');
+
+        // remove duplicate -
+        $text = preg_replace('~-+~', '-', $text);
+
+        // lowercase
+        $text = strtolower($text);
+
+        if (empty($text)) {
+            return 'n-a';
+        }
+
+        return $text;
+    }
 
 
 }
