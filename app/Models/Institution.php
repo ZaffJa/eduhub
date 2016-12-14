@@ -39,7 +39,7 @@ class Institution extends Model
 
     public function logo()
     {
-        return $this->hasMany('App\Models\File')->where('files.type_id', '=', 1)->where('files.category_id', '=', 1);
+        return $this->hasOne('App\Models\File')->where('files.type_id', '=', 1)->where('files.category_id', '=', 1);
     }
 
     public function type()

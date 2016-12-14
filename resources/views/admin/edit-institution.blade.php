@@ -1,11 +1,18 @@
 @extends('admin.layout.app') @section('title', 'Course') @section('headbar', 'Institution Form') @section('content')
-
     <div class="box box-primary">
         <div class="box-body">
             <div class="row" id="showView">
                 <div class="col-sm-12">
                     <fieldset disabled>
                         <div class="box-body">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <label>Institution Name</label>
+                                </div>
+                                <div class="col-md-6">
+                                    <img src="{{ $s3.$i->logo->path }}" style="height:100px;" class="form-control">
+                                </div>
+                            </div>
                             <div class="row">
                                 <div class="col-md-4">
                                     <label>Institution Name</label>
@@ -178,8 +185,16 @@
             </div>
             <div class="row" id="editForm" style="display: none;">
                 <form method="post" autocomplete="off" class="confirmLeaveBeforeSave"
-                      action="{{ route('admin.institution.update',$institution->id) }}">
+                      action="{{ route('admin.institution.update',$institution->id) }}" enctype="multipart/form-data">
                     <div class="box-body">
+                        <div class="form-group">
+                            <label>Institution Image</label>
+                            <label class="btn btn-primary" for="my-file-selector">
+                                <input id="my-file-selector" type="file" style="display:none;" onchange="$('#upload-file-info').html($(this).val());" name="file_image">
+                                Browse Institution Logo
+                            </label>
+                            <h4><div class='label label-info' id="upload-file-info"></div></h4>
+                        </div>
                         <div class="row">
                             <div class="col-lg-2">
                                 Institution Name

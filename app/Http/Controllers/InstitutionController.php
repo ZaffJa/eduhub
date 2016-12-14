@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use View;
 use App\Http\Requests;
@@ -94,24 +95,79 @@ class InstitutionController extends Controller
         $institution->marketing_department_email = $r->marketing_department_email;
         $institution->student_enrollment_department_email = $r->student_enrollment_department_email;
 
+
+
+        if($r->hasFile('file_image')) {
+
+            $image = $r->file('file_image');
+
+            $institutionImage = File::whereInstitutionId($institution->id)
+                                    ->whereTypeId(1)
+                                    ->wherecategoryId(1)
+                                    ->orderBy('created_at')->first();
+
+            if($institutionImage == null) {
+
+                $file = new File;
+                $file->institution_id = $institution->id;
+                $file->type_id = 1;
+                $file->category_id = 1;
+                $file->filename = $image->getClientOriginalName();
+                $file->path = 'logo/' . $image->getClientOriginalName();
+                $file->mime = $image->getMimeType();
+                $file->size = $image->getSize();
+
+                $institution->file_id = $file->id;
+
+                $file->save();
+
+
+            } else {
+
+                $institutionImage->filename = $image->getClientOriginalName();
+                $institutionImage->path = 'logo/' .$image->getClientOriginalName();
+
+                $institutionImage->update();
+
+            }
+
+            Storage::disk('s3')->put('logo/' . $image->getClientOriginalName(), file_get_contents($image), 'public');
+
+        }
+
+
+
         if ($r->parent_id != 0) {
+
             $institution->parent_id = $r->parent_id;
-        } elseif ($r->parent_id == 0) {
+
+        } else if ($r->parent_id == 0) {
+
             $r->parent_id = null;
             $institution->parent_id = $r->parent_id;
+
         }
+
         $institution->description = $r->description;
 
         try {
+
             $institution->save();
-        } catch (\Illuminate\Database\QueryException $ex) {
+
+        } catch (QueryException $ex) {
+
+            return redirect()->back()
+                ->withErrors($ex->errorInfo[2])
+                ->withInput();
 
         }
 
         if (auth()->user()->hasRole('admin')) {
+
             return redirect()->back()->with(['status' => 'The ' . $institution->name . ' has been updated.']);
 
         }
+
         return redirect()->action('InstitutionController@viewInstitution', $institution->id)->with(['status' => 'The ' . $institution->name . ' has been updated.']);
 
     }
@@ -160,7 +216,7 @@ class InstitutionController extends Controller
 
             return redirect()->action('InstitutionController@viewAllInstitution')->with('status', 'Succesfully added a new institution');
 
-        } catch (\Illuminate\Database\QueryException $ex) {
+        } catch (QueryException $ex) {
 
             return redirect()->back()
                 ->withErrors($ex->errorInfo[2])
@@ -201,7 +257,7 @@ class InstitutionController extends Controller
             $ri->save();
             return redirect()->back()
                 ->with('status', 'Successfully request an institution. Please wait for the admin to approve your request.');
-        } catch (\Illuminate\Database\QueryException $ex) {
+        } catch (QueryException $ex) {
             return redirect()->back()
                 ->withErrors($ex->errorInfo[2])
                 ->withInput();
@@ -239,7 +295,7 @@ class InstitutionController extends Controller
                 ->back()
                 ->with('status', 'Succesfully approve client request');
 
-        } catch (\Illuminate\Database\QueryException $ex) {
+        } catch (QueryException $ex) {
 
             return redirect()
                 ->back()
@@ -258,7 +314,7 @@ class InstitutionController extends Controller
                 ->back()
                 ->with('status', 'Succesfully reject client request');
 
-        } catch (\Illuminate\Database\QueryException $ex) {
+        } catch (QueryException $ex) {
 
             return redirect()
                 ->back()
@@ -305,7 +361,7 @@ class InstitutionController extends Controller
                 ->back()
                 ->with('status', 'Succesfully deleted the record');
 
-        } catch (\Illuminate\Database\QueryException $ex) {
+        } catch (QueryException $ex) {
             return redirect()
                 ->back()
                 ->withErrors('Error in deleting the record');

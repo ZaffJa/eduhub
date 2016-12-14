@@ -56,10 +56,10 @@ return [
 
         's3' => [
             'driver' => 's3',
-            'key' => 'AKIAIIOSH7U5TNUH523A',
-            'secret' => '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',
-            'region' => 'ap-southeast-1',
-            'bucket' => 'amr-eduhub-upoads',
+            'key' => env('AWS_S3_KEY'),
+            'secret' => env('AWS_S3_SECRET'),
+            'region' => env('AWS_S3_REGION'),
+            'bucket' => env('AWS_S3_BUCKET'),
         ],
 
     ],
