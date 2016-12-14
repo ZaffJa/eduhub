@@ -171,7 +171,36 @@
                         </div>
                     </div>
                 </div>
-
+                <div class="row">
+                    {{-- Aliran Sekolah --}}
+                    <div class="col-md-12 col-lg-12">
+                        <div class="card ">
+                            <div class="card-header card-background card-background-sub-table">
+                                <h2 class="title"><b>Personaliti Test</b></h2>
+                            </div>
+                            <div class="card-content text-center">
+                                Ambil ujian personaliti sekarang untuk mengetahui jenis personality anda.
+                                <br>
+                                <img src="/img/default/notepad.svg" style="height: 15%; width: 15%"/>
+                                <br>
+                                <a href="{{action('School\PublicPersonalityController@view')}}" class="btn btn-info" >Ambil Ujian Personaliti Sekarang</a>
+                            </div>
+                        </div>
+                    </div>
+                    {{-- Syarat Masuk Sekolah --}}
+                    <div class="col-md-12 col-lg-6">
+                        <div class="card  ">
+                            <div class="card-header card-background card-background-sub-table">
+                                <h2 class="title"><b>Syarat Masuk</b></h2>
+                            </div>
+                            <div class="card-content ">
+                                <h3 class="category">
+                                    <strong>{{ $school->typeSchool->requirements or 'Sila hubungi sekolah itu' }}</strong>
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="row">
                     {{-- Aliran Sekolah --}}
                     <div class="col-md-12 col-lg-6">
@@ -206,21 +235,6 @@
                                 <h2 class="title"><b>School Location</b></h2>
                             </div>
                             <div class="card-content">
-                                <div class="text-center">
-                                    <form class="navbar-form " role="search">
-                                        <div class="form-group is-empty">
-                                            <input type="text" class="form-control" id="pac-input"
-                                                   placeholder="School Name" oninput="searchName()"
-                                                   onchange="searchName()">
-                                            <span class="material-input"></span>
-                                            <span class="material-input"></span></div>
-                                        <button type="submit" class="btn btn-white btn-round btn-just-icon">
-                                            <i class="material-icons">search</i>
-                                            <span class="ripple-container"></span>
-                                        </button>
-                                    </form>
-                                </div>
-
                                 <div id="map"></div>
                             </div>
 
