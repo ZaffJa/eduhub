@@ -29,7 +29,7 @@ class ExcelController extends Controller
     {
 
 
-        $csv = array_map('str_getcsv', file($request->file('excel')));
+        $csv = array_map('str_getcsv', file('SEKOLAH_MENENGAH.csv'));
 
         array_walk($csv, function (&$a) use ($csv) {
             $a = array_combine($csv[0], $a);
