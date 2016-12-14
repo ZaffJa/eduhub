@@ -53,16 +53,14 @@
 								</h5>
 							@endforeach
 						<h3>Careers recommended based on your personality</h3>
-					<div id="myCarousel" class="carousel slide" data-ride="carousel">
-				<!-- Indicators -->
-				<!-- Wrapper for slides -->
+
 						<div>
 						@foreach($careerImage as $ci)
-							<div class="col-md-4">
-								<img src="/img/{{$ci->path}}" class="thumbnail" alt="Chania" width="460" height="345">
+							<div class="col-md-4" >
+								<img src="/img/{{$ci->path}}" class="thumbnail" style="max-height: 200px">
 							</div>
 						@endforeach
-						</div>
+
 					</div>
 				</div>
 			</div>

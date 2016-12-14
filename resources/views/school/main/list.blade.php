@@ -64,8 +64,10 @@
             @if(count($schools) > 0)
                 <div class="row">
                     @foreach($schools as $school)
+
                         <div class="alert alert-default alert-dismissible col-md-4 col-sm-12 col-xs-12 col-lg-3"
-                             style="margin-left: 3px;">
+                             style="margin-left: 3px; min-height: 200px">
+                            <div class="box">
                             <strong>
                                 <a href="{{ action('School\SchoolController@viewSchool',$school->slug) }}">
                                     {{ $school->name }} <br>
@@ -82,6 +84,8 @@
                                 @endif
                             </strong>
                         </div>
+                        </div>
+
                     @endforeach
                 </div>
                 <div class="row">

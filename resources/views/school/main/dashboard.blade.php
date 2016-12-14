@@ -73,7 +73,7 @@
             <div class="row">
                 <div class="row">
                 <div class="col-md-12">
-                    <div class="card card-profile">
+                    <div class="card card-profile" >
                         <div class="card-header card-background card-background-main">
                             <img src="/img/logo/logocvr.png" style="max-height:100px; width:100%; max-width:400px; "
                                  alt="Norway">
@@ -104,7 +104,7 @@
                 <div class="row">
                     {{-- Hubungi Sekolah --}}
                     <div class="col-md-12 col-lg-6">
-                        <div class="card">
+                        <div class="card" style="min-height: 200px;">
                             <div class="card-header card-header-icon" data-background-color="orange">
                                 <i class="material-icons">contacts</i>
 
@@ -135,7 +135,7 @@
                     </div>
                     {{-- Kedudukan Sekolah --}}
                     <div class="col-md-12 col-lg-6">
-                        <div class="card">
+                        <div class="card" style="min-height: 200px;">
                             <div class="card-header card-header-icon" data-background-color="red">
                                 <i class="material-icons">trending_up</i>
 
@@ -184,7 +184,7 @@
 
                     {{-- Aliran Sekolah --}}
                     <div class="col-md-8 col-lg-6">
-                        <div class="card">
+                        <div class="card" style="min-height: 200px;">
                             <div class="card-header card-header-icon" data-background-color="orange">
                                 <i class="material-icons">pie_chart_outlined</i>
 
@@ -207,7 +207,7 @@
 
                     {{-- Aliran Sekolah --}}
                     <div class="col-md-12 col-lg-6">
-                        <div class="card">
+                        <div class="card" style="min-height: 200px;">
                             <div class="card-header card-header-icon" data-background-color="orange">
                                 <i class="material-icons">pie_chart_outlined</i>
 
@@ -226,7 +226,7 @@
                     {{-- Syarat Masuk Sekolah --}}
 
                     <div class="col-md-12 col-lg-6">
-                        <div class="card">
+                        <div class="card" style="min-height: 200px;">
                             <div class="card-header card-header-icon" data-background-color="purple">
                                 <i class="material-icons">subject</i>
 
@@ -248,7 +248,7 @@
                     {{-- Peta Sekolah--}}
 
                     <div class="col-md-12 col-lg-12">
-                        <div class="card">
+                        <div class="card" style="min-height: 200px;">
                             <div class="card-header card-header-icon" data-background-color="blue">
                                 <i class="material-icons">language</i>
                             </div>

@@ -187,7 +187,7 @@ class SchoolController extends Controller
 
     public function edit($id)
     {
-        $school = School::whereId($id)->first();
+        $school = School::whereSlug($id)->first();
 
         $states = $this->states;
 
@@ -195,7 +195,7 @@ class SchoolController extends Controller
 
         $school_type = $this->school_type;
 
-        $location = SchoolLocation::whereSchoolId($id)->first();
+        $location = SchoolLocation::whereSchoolId($school->id)->first();
 
         $school_stream = $this->schoolStream;
 
