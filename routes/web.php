@@ -1,14 +1,4 @@
 <?php
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| This file is where you may define all of the routes that are handled
-| by your application. Just tell Laravel the URIs it should respond
-| to using a Closure or controller method. Build something great!
-|
-*/
 
 Auth::routes();
 
@@ -16,10 +6,14 @@ Auth::routes();
 
 Route::group(['prefix'=>'school','namespace'=>'School'],function() {
 
+    Route::get('login','LoginController@login');
+    Route::post('login','LoginController@postLogin');
     Route::get('/', 'SchoolController@lists');
     Route::get('filter', 'SchoolController@filter');
     Route::post('filter', 'SchoolController@filterState');
-
+    Route::get('/application', 'SchoolController@application');
+    Route::get('search', 'SchoolController@search');
+    Route::post('search', 'SchoolController@postSearch');
     Route::get('/lists/filter', 'SchoolController@filter');
     Route::post('/lists/filter', 'SchoolController@filterState');
     Route::get('map', 'SchoolController@map');
@@ -45,9 +39,20 @@ Route::group(['prefix'=>'school','namespace'=>'School'],function() {
         Route::get('/set6','PublicPersonalityController@set6');
         Route::get('/result','PublicPersonalityController@result');
     });
+    Route::post('/lists/filter/stream', 'SchoolController@filterStream');
+
+    Route::group(['middleware'=>['role.type:school']],function() {
+
+        Route::get('/register', 'SchoolController@register');
+        Route::post('register', 'SchoolController@store');
+        Route::get('edit/{id}', 'SchoolController@edit');
+        Route::post('edit/{id}', 'SchoolController@update');
+        Route::get('delete/{id}', 'SchoolController@delete');
 
 
     Route::get('/{id}', 'SchoolController@viewSchool');
+
+    });
 
 });
 
