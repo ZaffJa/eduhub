@@ -1,5 +1,9 @@
 <?php
 
+
+Route::get('excel','ExcelController@index');
+Route::post('excel','ExcelController@store');
+
 Auth::routes();
 
 Route::group(['prefix'=>'school','namespace'=>'School'],function() {
