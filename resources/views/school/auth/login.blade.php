@@ -4,7 +4,7 @@
             <div class="box panel panel-default">
                 <div class="panel-heading">Login</div>
                 <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/admin/login') }}"
+                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/school/login') }}"
                           autocomplete="off">
                         {{ csrf_field() }}
 
@@ -47,10 +47,6 @@
                                 <button type="submit" class="btn btn-primary">
                                     Login
                                 </button>
-
-                                <a class="btn btn-link" href="{{ url('/password/reset') }}">
-                                    Forgot Your Password?
-                                </a>
                             </div>
                         </div>
                     </form>

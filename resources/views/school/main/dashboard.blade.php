@@ -58,6 +58,12 @@
         .padding1pc {
             margin-top: 1%;
         }
+
+        .label {
+
+            font-size: 130%;
+
+        }
     </style>
     <link href="/css/jquery-ui.css" rel="stylesheet"/>
     <div class="row">
@@ -72,25 +78,24 @@
                             <img src="/img/logo/logocvr.png" style="max-height:100px; width:100%; max-width:400px; "
                                  alt="Norway">
                         </div>
-                        <div class="card-avatar">
-                            <a href="">
-                                <img class="img"
-                                     src="https://upload.wikimedia.org/wikipedia/ms/3/3d/Sekolah_Menengah_Kebangsaan_Perimbun.png"
-                                     style="background-color:white;">
-                            </a>
-                        </div>
+                        {{--<div class="card-avatar">--}}
+                        {{--<a href="">--}}
+                        {{--<img class="img"--}}
+                        {{--src="https://upload.wikimedia.org/wikipedia/ms/3/3d/Sekolah_Menengah_Kebangsaan_Perimbun.png"--}}
+                        {{--style="background-color:white;">--}}
+                        {{--</a>--}}
+                        {{--</div>--}}
                         <div class="card-content">
 
                             <h2 class="card-title">
                                 {{ $school-> name or null }}
                             </h2>
-                            <h3 class="category">Visi</h3>
-                            <p>{{ $school->vision or 'Belum di isi'}}</p>
-                            <h3 class="category">Misi</h3>
-                            <p>{{ $school->mission or 'Belum di isi' }}.</p>
-                            <h3 class="category">Objektif</h3>
-                            <p>{{ $school->objective or 'Belum di isi'}}.</p>
-                            <a class="btn btn-round btn-success" href="#">Edit</a>
+                            <a class="btn btn-round btn-info" href="/school/application">Cara Memohon</a>
+
+                            @if(auth()->user())
+                                <a class="btn btn-round btn-success"
+                                   href="{{ action('School\SchoolController@edit',$school->slug) }}">Edit</a>
+                            @endif
 
                         </div>
                     </div>
@@ -114,7 +119,13 @@
                                 <h3 class="category"><b>Faks Sekolah</b></h3>
                                 {{ $school->fax or 'Belum di isi' }}
                             </div>
-                            <div class="text-center"><a class="btn btn-round btn-info" href="/school/application">Cara Memohon</a>
+
+                            <div class="card-content ">
+                                <h3 class="category"><b>Media Sosial Sekolah</b></h3>
+                                <a href="{{ $school->facebook or '#' }}" class="label" style="background-color:#3b5998">Facebook</a>
+                                <a href="{{ $school->instagram or '#' }}" class="label"
+                                   style="background-color:#fbad50">Instagram</a>
+                                <a href="{{ $school->facebook or '#' }}" class="label" style="background-color:#1dcaff">Twitter</a>
                             </div>
                         </div>
                     </div>
@@ -180,8 +191,9 @@
                                 <h2 class="title"><b>Syarat Masuk</b></h2>
                             </div>
                             <div class="card-content ">
-                                <h3 class="category"><b>{{ $school->schoolType->requirements or 'Belum di isi' }}</b></h3>
-                                Untuk maklumat lanjut klik <strong><a href="{{ $school->typSchool->link or '#'}}">sini</a></strong>
+                                <h3 class="category">
+                                    <strong>{{ $school->typeSchool->requirements or 'Sila hubungi sekolah itu' }}</strong>
+                                </h3>
                             </div>
                         </div>
                     </div>
@@ -217,20 +229,18 @@
                 </div>
             </div>
         </div>
-
-
     </div>
     <script async defer
             src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgdkEKOxECZPSbpr7MvPZMLH7sBGeIbV8&libraries=places&callback=initMap">
     </script>
     <script>
         var map;
-        var schoolMarker = [];
-        var schoolInfo = [];
-        var schoolData = [];
+        var schoolMarker = null;
+        var schoolInfo = null;
+        var schoolData = null;
 
         function searchName() {
-            search = document.getElementById("pac-input").value;
+            var search = document.getElementById("pac-input").value;
             for (i = 0; i < schoolData.length; i++) {
                 if (schoolData[i][0].includes(search)) {
                     map.panTo(schoolData[i][1]);
@@ -240,8 +250,8 @@
 
         function initMap() {
             var pastLocation = new google.maps.LatLng(
-                    parseFloat("{{isset($location->latitude) ? $location->latitude : 1.5300076438874903}}").toFixed(6),
-                    parseFloat("{{isset($location->longtitude) ? $location->longtitude : 103.765869140625}}").toFixed(6)
+                    parseFloat("{{$school->location->latitude or 1.5300076438874903}}").toFixed(6),
+                    parseFloat("{{$school->location->longtitude or 103.765869140625}}").toFixed(6)
             );
 
             map = new google.maps.Map(document.getElementById('map'), {
@@ -249,39 +259,25 @@
                 zoom: 11,
             });
 
-            @foreach($schoolLocation as $school)
-            schoolData.push(
-                    ["{{$school->school->name or null}}",
-                        position = new google.maps.LatLng
-                        (
-                                parseFloat("{{$school->latitude}}").toFixed(6),
-                                parseFloat("{{$school->longtitude}}").toFixed(6)
-                        )]
-            );
-                    @endforeach
-
-                    @foreach ($schoolLocation as $key=>$school)
             var schoolPosition = new google.maps.LatLng(
-                    parseFloat("{{$school->latitude}}").toFixed(6),
-                    parseFloat("{{$school->longtitude}}").toFixed(6)
-                    );
+                    parseFloat("{{$school->location->latitude or null}}").toFixed(6),
+                    parseFloat("{{$school->location->longtitude or null}}").toFixed(6)
+            );
 
-            schoolMarker['{{$key}}'] = new google.maps.Marker({
+            schoolMarker = new google.maps.Marker({
                 position: schoolPosition,
                 map: map,
                 title: 'School location',
                 icon: '/img/logo/map-00.png'
             });
 
-            schoolInfo['{{$key}}'] = new google.maps.InfoWindow({
-                content: "{{$school->school->name or null}}"
-            })
-
-            schoolMarker['{{$key}}'].addListener('click', function () {
-                schoolInfo['{{$key}}'].open(map, schoolMarker['{{$key}}'])
+            schoolInfo = new google.maps.InfoWindow({
+                content: "{{$school->name or null}}"
             });
-            @endforeach
 
+            schoolMarker.addListener('click', function () {
+                schoolInfo.open(map, schoolMarker)
+            });
         }
     </script>
 @endsection

@@ -7,43 +7,43 @@
             <div class="card">
                 <div class="card-header card-background card-background-application">
                     <h2 class="title"><b>Sekolah Berasrama Penuh</b></h2>
-                    <p class="category">How to apply to Sekolah Berasrama Penuh Malaysia</p>
+                    <p class="category">Cara mendaftar ke Sekolah Berasrama Penuh Malaysia</p>
                 </div>
                 <div class="card-content " >
-                    <h3 class="category"><b>Application for upcoming Form 1 Students</b></h3>
-                    <h4 class="category">Online Application Webiste</h4>
-                    <a href="https://sst1.moe.gov.my">Go to site</a>
-                    <h4 class="category">Application form guide</h4>
-                    <a href="https://sst1.moe.gov.my/spat1_mohon/panduan.cfm">View guide</a>
+                    <h3 class="category"><b>Applikasi untuk bakal pelajar Tingkatan 1</b></h3>
+                    <h4 class="category">Applikasi Atas Talian</h4>
+                    <a href="https://sst1.moe.gov.my">Pergi ke laman web</a>
+                    <h4 class="category">Borang panduan applikasi</h4>
+                    <a href="https://sst1.moe.gov.my/spat1_mohon/panduan.cfm">Tengok panduan</a>
 
-                    <h3 class="category"><b>Application for upcoming Form 4 Students</b></h3>
-                    <h4 class="category">Online Application Webiste</h4>
-                    <a href="https://sst4.moe.gov.my">Go to site</a>
-                    <h4 class="category">Application form guide</h4>
-                    <a href="https://sst4.moe.gov.my/spat4_mohon/panduan.cfm">View guide</a>
+                    <h3 class="category"><b>Applikasi untuk bakal pelajar Tingkatan 4</b></h3>
+                    <h4 class="category">Applikasi Atas Talian</h4>
+                    <a href="https://sst4.moe.gov.my">Pergi ke laman web</a>
+                    <h4 class="category">Borang panduan applikasi</h4>
+                    <a href="https://sst4.moe.gov.my/spat4_mohon/panduan.cfm">Tengok panduan</a>
                 </div>
             </div>
             <div class="card">
                 <div class="card-header card-background card-background-application">
                     <h2 class="title"><b>Kolej Vokasional & Sekolah Menengah Teknik</b></h2>
-                    <p class="category">How to apply to Kolej Vokasional & Sekolah Menengah Teknik</p>
+                    <p class="category">Cara mendaftar ke Kolej Vokasional & Sekolah Menengah Teknik</p>
                 </div>
                 <div class="card-content " >
-                    <h3 class="category"><b>Application for upcoming Form 4 Students</b></h3>
-                    <h4 class="category">Online Application Webiste</h4>
-                    <a href="https://sptv.moe.gov.my">Go to site</a>
-                    <h4 class="category">Application form guide</h4>
-                    <a href="https://sptv.moe.gov.my/mohon_kvsmt/perdana/Panduan_Permohonan_SPTV_PERDANA.pdf">View guide</a>
+                    <h3 class="category"><b>Applikasi untuk bakal pelajar Tingkatan 4</b></h3>
+                    <h4 class="category">Applikasi Atas Talian</h4>
+                    <a href="https://sptv.moe.gov.my">Pergi ke laman web</a>
+                    <h4 class="category">Borang panduan applikasi</h4>
+                    <a href="https://sptv.moe.gov.my/mohon_kvsmt/perdana/Panduan_Permohonan_SPTV_PERDANA.pdf">Tengok panduan</a>
                 </div>
             </div>
             <div class="card">
                 <div class="card-header card-background card-background-application">
                     <h2 class="title"><b>Sekolah Kawalan</b></h2>
-                    <p class="category">How to apply to Sekolah Kawalan</p>
+                    <p class="category">Cara mendaftar ke Sekolah Kawalan</p>
                 </div>
                 <div class="card-content " >
-                    <h3 class="category"><b>Application for upcoming Form 4 Students</b></h3>
-                    <h4 class="category">Categories of Sekolah Kawalan</h4>
+                    <h3 class="category"><b>Applikasi untuk bakal pelajar Tingkatan 4</b></h3>
+                    <h4 class="category">Kategori Sekolah Kawalan</h4>
                         <ul>
                             <li>Sekolah Menengah Kebangsaan Agama (SMKA)</li>
                             <li>Sekolah Agama Bantuan Kerajaan (SABK)</li>
@@ -52,44 +52,44 @@
                             <li>Kelas Rancangan Khas (KRK)/Rancangan Khas Daerah (RKD)/ Sekolah Premier</li>
                             <li>Kelas Aliran Agama (KAA)</li>
                         </ul>
-                    <h4 class="category">Online Application Webiste</h4>
-                    <a href="https://public.moe.gov.my">Go to site</a>
-                    <h4 class="category">Application form guide</h4>
-                    <a href="https://public.moe.gov.my/panduan/MUAT_TURUN.pdf">View guide</a>
+                    <h4 class="category">Applikasi Atas Talian</h4>
+                    <a href="https://public.moe.gov.my">Pergi ke laman web</a>
+                    <h4 class="category">Borang panduan applikasi</h4>
+                    <a href="https://public.moe.gov.my/panduan/MUAT_TURUN.pdf">Tengok panduan</a>
                 </div>
             </div>
             <div class="card">
                 <div class="card-header card-background card-background-application">
                     <h2 class="title"><b>Maktab Rendah Sains MARA(MRSM)</b></h2>
-                    <p class="category">How to apply to Maktab Rendah Sains MARA(MRSM)</p>
+                    <p class="category">Cara mendaftar ke Maktab Rendah Sains MARA(MRSM)</p>
                 </div>
                 <div class="card-content " >
-                    <h3 class="category"><b>Application for upcoming Form 1 Students</b></h3>
-                    <h4 class="category">Online Application Webiste</h4>
-                    <a href="https://mohon.mrsm.edu.my/form1/login.jsp">Go to site</a>
+                    <h3 class="category"><b>Applikasi untuk bakal pelajar Tingkatan 1</b></h3>
+                    <h4 class="category">Borang panduan applikasi</h4>
+                    <a href="https://mohon.mrsm.edu.my/form1/login.jsp">Pergi ke laman web</a>
 
-                    <h3 class="category"><b>Application for upcoming Form 4 Students</b></h3>
-                    <h4 class="category">Online Application Webiste</h4>
-                    <a href="https://mohon.mrsm.edu.my/form4/login.jsp">Go to site</a>
+                    <h3 class="category"><b>Applikasi untuk bakal pelajar Tingkatan 4</b></h3>
+                    <h4 class="category">Borang panduan applikasi</h4>
+                    <a href="https://mohon.mrsm.edu.my/form4/login.jsp">Pergi ke laman web</a>
                 </div>
             </div>
             <div class="card">
                 <div class="card-header card-background card-background-application">
                     <h2 class="title"><b>Sekolah Seni</b></h2>
-                    <p class="category">How to apply to Sekolah Seni</p>
+                    <p class="category">Cara mendaftar ke Sekolah Seni</p>
                 </div>
                 <div class="card-content " >
-                    <h3 class="category"><b>Sekolah Seni Website</b></h3>
-                    <a href="https://essem.moe.gov.my/">Visit Website</a>
+                    <h3 class="category"><b>Applikasi atas talian</b></h3>
+                    <a href="https://essem.moe.gov.my/">Pergi ke laman web</a>
                 </div>
             </div>
             <div class="card">
                 <div class="card-header card-background card-background-application">
                     <h2 class="title"><b>Sekolah Sukan</b></h2>
-                    <p class="category">How to apply to Sekolah Seni</p>
+                    <p class="category">Cara mendaftar ke Sekolah Seni</p>
                 </div>
                 <div class="card-content " >
-                    <h3 class="category"><b>List of Sekolah Sukan</b></h3>
+                    <h3 class="category"><b>Senarai Sekolah Sukan</b></h3>
                     <ul>
                         <li>
                             Sekolah Sukan Bukit Jalil
@@ -114,18 +114,18 @@
                             </ul>
                         </li>
                     </ul>
-                    <h3 class="category"><b>Please contact the respective school directly</b></h3>
-                    <h3 class="category"><b>For further info please visit MOE Malaysia website</b></h3>
-                    <a href="http://www.moe.gov.my/my/sekolah-sukan-malaysia">Visit Website</a>
+                    <h3 class="category"><b>Sila berhubung terus dengan sekolah tersebut</b></h3>
+                    <h3 class="category"><b>Untuk maklumat lanjuat sila kunjungi laman web MOE</b></h3>
+                    <a href="http://www.moe.gov.my/my/sekolah-sukan-malaysia">Kunjungi laman web</a>
                 </div>
             </div>
             <div class="card">
                 <div class="card-header card-background card-background-application">
                     <h2 class="title"><b>Sekolah Harian</b></h2>
-                    <p class="category">How to apply to Sekolah Harian</p>
+                    <p class="category">Cara mendaftar ke Sekolah Harian</p>
                 </div>
                 <div class="card-content " >
-                    <h3 class="category"><b>Please contact the respective school directly</b></h3>
+                    <h3 class="category"><b>Sila berhubung terus dengan sekolah tersebut</b></h3>
                 </div>
             </div>
         </div>

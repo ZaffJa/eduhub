@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddSchoolTypeIdToSchoolsTable extends Migration
+class AddFbIgTwitterToSchoolsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,12 +14,10 @@ class AddSchoolTypeIdToSchoolsTable extends Migration
     public function up()
     {
         Schema::table('schools', function (Blueprint $table) {
-            $table->integer('school_type_id')->unsigned()->nullable()->after('code');
 
-            $table->foreign('school_type_id')
-                ->references('id')->on('school_types')
-                ->onDelete('set null')
-                ->onUpdate('cascade');
+            $table->string('facebook')->nullable()->after('fax');
+            $table->string('instagram')->nullable()->after('fax');
+            $table->string('twitter')->nullable()->after('fax');
         });
     }
 
@@ -32,10 +30,7 @@ class AddSchoolTypeIdToSchoolsTable extends Migration
     {
         Schema::table('schools', function (Blueprint $table) {
 
-            if(Schema::hasColumn('schools','stream_type_id')) {
-                $table->dropForeign(['school_type_id']);
-                $table->dropColumn('school_type_id');
-            }
+            $table->dropColumn(['facebook','instagram','twitter']);
         });
     }
 }

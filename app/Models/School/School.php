@@ -26,6 +26,11 @@ class School extends Model
         return $this->belongsTo('\App\Models\School\SchoolType','school_type_id');
     }
 
+    public function location()
+    {
+        return $this->hasOne('\App\Models\School\SchoolLocation');
+    }
+
 
 
 }

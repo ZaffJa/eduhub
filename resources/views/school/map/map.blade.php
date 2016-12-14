@@ -15,7 +15,7 @@
 </style>
 <link href="/css/jquery-ui.css" rel="stylesheet" />
 <div class="text-center">
-        <input class="ui-widget input" id="pac-input"  type="text" placeholder="School Name" oninput="searchName()" onchange="searchName()">
+        <input class="ui-widget input" id="pac-input"  type="text" placeholder="Name Sekolah" oninput="searchName()" onchange="searchName()">
 </div>
 <div id="map"></div>
 <script async defer

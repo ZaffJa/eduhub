@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSchoolTypesTable extends Migration
+class AddSlugToSchoolsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class CreateSchoolTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('school_types', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('name');
-            $table->timestamps();
-            $table->softDeletes();
+        Schema::table('schools', function (Blueprint $table) {
+
+            $table->string('slug',100)->nullable()->after('name');
         });
     }
 
@@ -28,6 +26,9 @@ class CreateSchoolTypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('school_types');
+        Schema::table('schools', function (Blueprint $table) {
+
+            $table->dropColumn(['slug']);
+        });
     }
 }
