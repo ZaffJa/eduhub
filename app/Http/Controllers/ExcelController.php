@@ -37,6 +37,8 @@ class ExcelController extends Controller
 
         array_shift($csv);
 
+        ini_set('max_execution_time', 300); //300 seconds = 5 minutes
+
         foreach ($csv as $data) {
 
             $school = School::create([
