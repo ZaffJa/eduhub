@@ -42,9 +42,9 @@
     <script src="/assets/js/material.min.js" type="text/javascript"></script>
 
     <!--  Charts Plugin -->
-    {{--<script src="https://code.highcharts.com/highcharts.js"></script>--}}
-    {{--<script src="https://code.highcharts.com/highcharts-more.js"></script>--}}
-    {{--<script src="https://code.highcharts.com/modules/exporting.js"></script>--}}
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts-more.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
 
     <link rel="stylesheet" href="/css/jquery-ui.css">
 
@@ -92,17 +92,13 @@
         <nav class="navbar navbar-danger navbar-absolute">
             <div class="container-fluid">
                 <div class="navbar-header">
-                    <button type="button" class="navbar-toggle toggled" data-toggle="collapse">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
+
                     <a class="navbar-brand" href="/school">
                         <img src="/img/logo/logo/student.png" width="30" height="30" class="d-inline-block align-top"
                              alt="">
                     </a>
                 </div>
+
                 @if(auth()->user())
                 <ul class="nav navbar-nav navbar-right">
                     <li><a href="{{ action('School\SchoolController@register') }}">
@@ -111,6 +107,7 @@
                     </li>
                 </ul>
                 @endif
+
             </div>
         </nav>
         <div class="content">

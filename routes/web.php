@@ -6,6 +6,8 @@ Route::post('excel','ExcelController@store');
 
 Auth::routes();
 
+
+
 Route::group(['prefix'=>'school','namespace'=>'School'],function() {
 
     Route::get('login','LoginController@login');
@@ -13,12 +15,34 @@ Route::group(['prefix'=>'school','namespace'=>'School'],function() {
     Route::get('/', 'SchoolController@lists');
     Route::get('filter', 'SchoolController@filter');
     Route::post('filter', 'SchoolController@filterState');
-    Route::get('map', 'SchoolController@map');
     Route::get('/application', 'SchoolController@application');
     Route::get('search', 'SchoolController@search');
     Route::post('search', 'SchoolController@postSearch');
     Route::get('/lists/filter', 'SchoolController@filter');
     Route::post('/lists/filter', 'SchoolController@filterState');
+    Route::get('map', 'SchoolController@map');
+    Route::get('register', 'SchoolController@register');
+    Route::post('register', 'SchoolController@store');
+    Route::get('edit/{id}', 'SchoolController@edit');
+    Route::post('edit/{id}', 'SchoolController@update');
+
+    Route::get('school-types', 'SchoolController@index');
+    Route::get('delete/{id}', 'SchoolController@delete');
+    
+    Route::get('/application','SchoolController@application');
+    Route::get('search','SchoolController@search');
+    Route::post('search','SchoolController@postSearch');
+
+    Route::get('personality','PublicPersonalityController@view');
+    Route::group(['prefix'=>'personality'],function(){
+        Route::get('/set1','PublicPersonalityController@set1');
+        Route::get('/set2','PublicPersonalityController@set2');
+        Route::get('/set3','PublicPersonalityController@set3');
+        Route::get('/set4','PublicPersonalityController@set4');
+        Route::get('/set5','PublicPersonalityController@set5');
+        Route::get('/set6','PublicPersonalityController@set6');
+        Route::get('/result','PublicPersonalityController@result');
+    });
     Route::post('/lists/filter/stream', 'SchoolController@filterStream');
 
     Route::group(['middleware'=>['role.type:school']],function() {
@@ -30,10 +54,10 @@ Route::group(['prefix'=>'school','namespace'=>'School'],function() {
         Route::get('delete/{id}', 'SchoolController@delete');
 
 
+    Route::get('/{id}', 'SchoolController@viewSchool');
 
     });
 
-    Route::get('/{id}', 'SchoolController@viewSchool');
 });
 
 Route::group(['prefix'=>'student','namespace'=>'Student'],function(){

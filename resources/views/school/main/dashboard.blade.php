@@ -103,84 +103,96 @@
                 <div class="row">
                     {{-- Hubungi Sekolah --}}
                     <div class="col-md-12 col-lg-6">
-                        <div class="card  ">
-                            <div class="card-header card-background card-background-contact">
-                                <h2 class="title"><b>Hubungi Sekolah</b></h2>
+                        <div class="card">
+                            <div class="card-header card-header-icon" data-background-color="orange">
+                                <i class="material-icons">contacts</i>
+
                             </div>
-                            <div class="card-content ">
-                                <h3 class="category"><b>Alamat Sekolah</b></h3>
-                                {{ $school->address or 'Belum di isi' }}
-                            </div>
-                            <div class="card-content ">
+                            <div class="card-content">
+                                <h2 class="title">Hubungi Sekolah</h2>
+
+                                    <h3 class="category"><b>Alamat Sekolah</b></h3>
+                                    {{ $school->address or 'Belum di isi' }}
+
+
                                 <h3 class="category"><b>No Telefon Sekolah</b></h3>
                                 {{ $school->telephone or 'Belum di isi' }}
-                            </div>
-                            <div class="card-content ">
+
                                 <h3 class="category"><b>Faks Sekolah</b></h3>
                                 {{ $school->fax or 'Belum di isi' }}
-                            </div>
 
-                            <div class="card-content ">
                                 <h3 class="category"><b>Media Sosial Sekolah</b></h3>
-                                <a href="{{ $school->facebook or '#' }}" class="label" style="background-color:#3b5998">Facebook</a>
-                                <a href="{{ $school->instagram or '#' }}" class="label"
-                                   style="background-color:#fbad50">Instagram</a>
-                                <a href="{{ $school->facebook or '#' }}" class="label" style="background-color:#1dcaff">Twitter</a>
+                                <a href="{{ $school->facebook or '#' }}" class="btn btn-social btn-facebook btn-round sharrre"><i class="fa fa-facebook"></i> Facebook<div class="ripple-container"></div></a>
+
+                                <a href="{{ $school->instagram or '#' }}" class="btn btn-social btn-instagram btn-round sharrre"><i class="fa fa-instagram"></i> Instagram<div class="ripple-container"></div></a>
+
+                                <a href="{{ $school->twitter or '#' }}" class="btn btn-social btn-twitter btn-round sharrre"><i class="fa fa-twitter"></i> Twitter<div class="ripple-container"></div></a>
+
                             </div>
                         </div>
+
                     </div>
                     {{-- Kedudukan Sekolah --}}
                     <div class="col-md-12 col-lg-6">
-                        <div class="card  ">
-                            <div class="card-header card-background card-background-sub-table">
-                                <h2 class="title"><b>Kedudukan Sekolah</b></h2>
-                            </div>
-                            <div class="card-content table-responsive">
-                                <table class="table">
-                                    <thead>
-                                    <tr>
-                                        <th>Nama sekolah ini</th>
-                                        <th>Kedudukan sekolah</th>
-                                    </tr>
+                        <div class="card">
+                            <div class="card-header card-header-icon" data-background-color="red">
+                                <i class="material-icons">trending_up</i>
 
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td>{{ $school->name or 'Belum di isi' }}</td>
-                                        <td style="text-align: center;">{{ $school->rank or 'Belum di isi' }}</td>
-                                    </tr>
-                                </table>
                             </div>
-                            <div class="card-content table-responsive">
-                                <table class="table">
-                                    <thead class="text-danger">
-                                    <tr>
-                                        <th>School Name</th>
-                                        <th>Ranking</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    @foreach($schoolRank as $rank)
+                            <div class="card-content">
+                                <h2 class="title">Kedudukan Sekolah</h2>
+                                <div class="card-content table-responsive">
+                                    <table class="table">
+                                        <thead>
                                         <tr>
-                                            <td>{!! $rank->name == $school->name ? "<strong> $rank->name </strong>" : $rank->name !!}</td>
-                                            <td>{{$rank->rank}}</td>
+                                            <th>Nama sekolah ini</th>
+                                            <th>Kedudukan sekolah</th>
                                         </tr>
-                                    @endforeach
-                                    </tbody>
-                                </table>
+
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>{{ $school->name or 'Belum di isi' }}</td>
+                                            <td style="text-align: center;">{{ $school->rank or 'Belum di isi' }}</td>
+                                        </tr>
+                                    </table>
+                                </div>
+                                <div class="card-content table-responsive">
+                                    <table class="table">
+                                        <thead class="text-danger">
+                                        <tr>
+                                            <th>School Name</th>
+                                            <th>Ranking</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        @foreach($schoolRank as $rank)
+                                            <tr>
+                                                <td>{!! $rank->name == $school->name ? "<strong> $rank->name </strong>" : $rank->name !!}</td>
+                                                <td>{{$rank->rank}}</td>
+                                            </tr>
+                                        @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     {{-- Aliran Sekolah --}}
-                    <div class="col-md-12 col-lg-6">
+                    <div class="col-md-12 col-lg-12">
                         <div class="card ">
                             <div class="card-header card-background card-background-sub-table">
-                                <h2 class="title"><b>Aliran Sekolah</b></h2>
+                                <h2 class="title"><b>Personaliti Test</b></h2>
                             </div>
-                            <div class="card-content ">
-                                <h3 class="category"><b>{{ $school->stream->stream or 'Belum di isi' }}</b></h3>
+                            <div class="card-content text-center">
+                                Ambil ujian personaliti sekarang untuk mengetahui jenis personality anda.
+                                <br>
+                                <img src="/img/default/notepad.svg" style="height: 15%; width: 15%"/>
+                                <br>
+                                <a href="{{action('School\PublicPersonalityController@view')}}" class="btn btn-info" >Ambil Ujian Personaliti Sekarang</a>
                             </div>
                         </div>
                     </div>
@@ -199,33 +211,57 @@
                     </div>
                 </div>
                 <div class="row">
-                    {{-- Peta Sekolah--}}
-                    <div class="col-md-12 col-lg-12">
-                        <div class="card card-profile">
-                            <div class="card-header card-background card-background-sub">
-                                <h2 class="title"><b>School Location</b></h2>
+                    {{-- Aliran Sekolah --}}
+                    <div class="col-md-12 col-lg-6">
+                        <div class="card">
+                            <div class="card-header card-header-icon" data-background-color="orange">
+                                <i class="material-icons">pie_chart_outlined</i>
+
                             </div>
                             <div class="card-content">
-                                <div class="text-center">
-                                    <form class="navbar-form " role="search">
-                                        <div class="form-group is-empty">
-                                            <input type="text" class="form-control" id="pac-input"
-                                                   placeholder="School Name" oninput="searchName()"
-                                                   onchange="searchName()">
-                                            <span class="material-input"></span>
-                                            <span class="material-input"></span></div>
-                                        <button type="submit" class="btn btn-white btn-round btn-just-icon">
-                                            <i class="material-icons">search</i>
-                                            <span class="ripple-container"></span>
-                                        </button>
-                                    </form>
-                                </div>
+                                <h2 class="title">Aliran Sekolah</h2>
+                                <h3 class="category">
+                                    <h3 class="category"><b>{{ $school->stream->stream or 'Belum di isi' }}</b></h3>
+                                </h3>
 
+                            </div>
+                        </div>
+
+                    </div>
+                    {{-- Syarat Masuk Sekolah --}}
+
+                    <div class="col-md-12 col-lg-6">
+                        <div class="card">
+                            <div class="card-header card-header-icon" data-background-color="purple">
+                                <i class="material-icons">subject</i>
+
+                            </div>
+                            <div class="card-content">
+                                <h2 class="title">Syarat Masuk</h2>
+                                <h3 class="category">
+                                    <strong>{{ $school->typeSchool->requirements or 'Sila hubungi sekolah itu' }}</strong>
+                                </h3>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row">
+                    {{-- Peta Sekolah--}}
+
+                    <div class="col-md-12 col-lg-12">
+                        <div class="card">
+                            <div class="card-header card-header-icon" data-background-color="blue">
+                                <i class="material-icons">language</i>
+                            </div>
+                            <div class="card-content">
+                                <h2 class="title">Lokasi Sekolah</h2>
                                 <div id="map"></div>
                             </div>
 
+                            </div>
                         </div>
-                    </div>
                 </div>
             </div>
         </div>
