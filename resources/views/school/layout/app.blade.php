@@ -42,9 +42,9 @@
     <script src="/assets/js/material.min.js" type="text/javascript"></script>
 
     <!--  Charts Plugin -->
-    {{--<script src="https://code.highcharts.com/highcharts.js"></script>--}}
-    {{--<script src="https://code.highcharts.com/highcharts-more.js"></script>--}}
-    {{--<script src="https://code.highcharts.com/modules/exporting.js"></script>--}}
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/highcharts-more.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
 
     <link rel="stylesheet" href="/css/jquery-ui.css">
 

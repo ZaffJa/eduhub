@@ -80,7 +80,6 @@
                             </a>
                         </div>
                         <div class="card-content">
-
                             <h2 class="card-title">
                                 {{ $school-> name or null }}
                             </h2>
@@ -161,6 +160,7 @@
                         </div>
                     </div>
                 </div>
+
                 <div class="row">
                     {{-- Aliran Sekolah --}}
                     <div class="col-md-12 col-lg-6">
@@ -216,6 +216,7 @@
                         </div>
                     </div>
                 </div>
+
             </div>
         </div>
 

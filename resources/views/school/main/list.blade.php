@@ -36,6 +36,7 @@
                     </form>
                 </div>
             </div>
+
         </div>
         <div class="col-md-9">
             @if(count($schools) > 0)

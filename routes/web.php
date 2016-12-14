@@ -12,6 +12,8 @@
 
 Auth::routes();
 
+
+
 Route::group(['prefix'=>'school','namespace'=>'School'],function() {
 
     Route::get('/', 'SchoolController@lists');
@@ -32,11 +34,20 @@ Route::group(['prefix'=>'school','namespace'=>'School'],function() {
     Route::get('/application','SchoolController@application');
     Route::get('search','SchoolController@search');
     Route::post('search','SchoolController@postSearch');
+
+    Route::get('personality','PublicPersonalityController@view');
+    Route::group(['prefix'=>'personality'],function(){
+        Route::get('/set1','PublicPersonalityController@set1');
+        Route::get('/set2','PublicPersonalityController@set2');
+        Route::get('/set3','PublicPersonalityController@set3');
+        Route::get('/set4','PublicPersonalityController@set4');
+        Route::get('/set5','PublicPersonalityController@set5');
+        Route::get('/set6','PublicPersonalityController@set6');
+        Route::get('/result','PublicPersonalityController@result');
+    });
+
+
     Route::get('/{id}', 'SchoolController@viewSchool');
-
-
-
-
 
 });
 
