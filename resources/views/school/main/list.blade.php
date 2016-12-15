@@ -19,17 +19,17 @@
     </style>
 
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-lg-3  col-lg-offset-1 ">
             <div class="row">
                 <div class="col-md-10 col-md-offset-1 alert alert-default">
                     <h3><strong>Tapis Sekolah</strong></h3>
                     <form action="{{ action('School\SchoolController@postSearch') }}" method="post">
                     <div class="row">
-                            <div class="col-md-7 col-lg-7 col-sm-12">
-                                    {{Form::text('name',null,['class'=>'form-control','placeholder'=>'Cari sekolah','id'=>'cariSekolah'])}}
+                            <div class="col-md-9 col-lg-9 col-sm-12">
+                                    {{Form::text('name',null,['class'=>'form-control input-box','placeholder'=>'Cari sekolah','id'=>'cariSekolah'])}}
                             </div>
                             <div class="col-md-2 col-sm-12">
-                                <button type="submit" class="btn btn-info btn-sm" style="top:25px;left:0px;"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+                                <button type="submit" class="btn btn-info btn-sm" style="top:25px;left:0px;"><i class="fa fa-search" aria-hidden="true"></i></button>
                             </div>
                         </div>
 
@@ -58,14 +58,35 @@
                     </form>
                 </div>
             </div>
+            <div class="row">
+            <div class="col-md-10 col-md-offset-1 ">
+                <div class="alert alert-default" style="min-height: 200px;">
+
+                    <div class="text-center">
+                        <h2 class="title">Ujian Personaliti</h2>
+                        <div class=" text-center">
+                            Ambil ujian personaliti sekarang untuk mengetahui jenis personality anda.
+                            <br>
+                            <img src="/img/icon/notepad.svg" style="height: 15%; width: 15%"/>
+                            <br>
+                            <a href="{{action('School\PublicPersonalityController@view')}}" class="btn btn-info btn-round text-wrap" >Ambil Ujian</a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            </div>
 
         </div>
-        <div class="col-md-8">
+        <div class="col-lg-7 col-lg-offset-1">
             @if(count($schools) > 0)
                 <div class="row">
                     @foreach($schools as $school)
+
                         <div class="alert alert-default alert-dismissible col-md-4 col-sm-12 col-xs-12 col-lg-3"
-                             style="margin-left: 3px;">
+                             style="margin-left: 3px; min-height: 250px">
+                            <div class="box">
                             <strong>
                                 <a href="{{ action('School\SchoolController@viewSchool',$school->slug) }}">
                                     {{ $school->name }} <br>
@@ -77,15 +98,19 @@
                                 </a>
                                 @if(auth()->user() !== null && auth()->user()->hasRole('school'))
                                 <button type="button" class="btn btn-danger btnDelete" data-href="{{ $school->id }}"
-                                        style="width: 100%">Delete
+                                        style=" width: 100%">Delete
                                 </button>
                                 @endif
                             </strong>
                         </div>
+                        </div>
+
                     @endforeach
                 </div>
                 <div class="row">
+                    <div class="col-lg-12">
                     {{ $schools->render()}}
+                    </div>
                 </div>
             @else
                 <h3> Tiada sekolah untuk carian ini</h3>

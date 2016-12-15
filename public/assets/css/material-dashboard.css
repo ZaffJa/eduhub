@@ -3613,9 +3613,9 @@ footer .btn {
   position: relative;
   width: 100%;
   margin: 25px 0;
-  -webkit-box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.75);
-  -moz-box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.75);
-  box-shadow: 0px 4px 4px 0px rgba(0,0,0,0.75);
+  -webkit-box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.75);
+  box-shadow: 0px 2px 2px 0px rgba(0,0,0,0.75);
   border-radius: 3px;
   color: rgba(0,0,0, 0.87);
   background: #fff;
@@ -3866,6 +3866,7 @@ footer .btn {
   border: 0;
   box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.42), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
 }
+
 
 .card-profile,
 .card-testimonial {

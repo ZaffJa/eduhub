@@ -6,7 +6,7 @@
 
             <div class="card">
                 <div class="card-header card-background card-background-application">
-                    <h2 class="title"><b>Sekolah Berasrama Penuh</b></h2>
+                    <h2 class="title"><b>Cara Memohon Ke Sekolah Berasrama Penuh</b></h2>
                     <p class="category">Cara mendaftar ke Sekolah Berasrama Penuh Malaysia</p>
                 </div>
                 <div class="card-content " >
@@ -25,7 +25,7 @@
             </div>
             <div class="card">
                 <div class="card-header card-background card-background-application">
-                    <h2 class="title"><b>Kolej Vokasional & Sekolah Menengah Teknik</b></h2>
+                    <h2 class="title"><b>Cara Memohon Ke Kolej Vokasional & Sekolah Menengah Teknik</b></h2>
                     <p class="category">Cara mendaftar ke Kolej Vokasional & Sekolah Menengah Teknik</p>
                 </div>
                 <div class="card-content " >
@@ -38,7 +38,7 @@
             </div>
             <div class="card">
                 <div class="card-header card-background card-background-application">
-                    <h2 class="title"><b>Sekolah Kawalan</b></h2>
+                    <h2 class="title"><b>Cara Memohon Ke Sekolah Kawalan</b></h2>
                     <p class="category">Cara mendaftar ke Sekolah Kawalan</p>
                 </div>
                 <div class="card-content " >
@@ -60,7 +60,7 @@
             </div>
             <div class="card">
                 <div class="card-header card-background card-background-application">
-                    <h2 class="title"><b>Maktab Rendah Sains MARA(MRSM)</b></h2>
+                    <h2 class="title"><b>Cara Memohon Ke Maktab Rendah Sains MARA(MRSM)</b></h2>
                     <p class="category">Cara mendaftar ke Maktab Rendah Sains MARA(MRSM)</p>
                 </div>
                 <div class="card-content " >
@@ -75,7 +75,7 @@
             </div>
             <div class="card">
                 <div class="card-header card-background card-background-application">
-                    <h2 class="title"><b>Sekolah Seni</b></h2>
+                    <h2 class="title"><b>Cara Memohon Ke Sekolah Seni</b></h2>
                     <p class="category">Cara mendaftar ke Sekolah Seni</p>
                 </div>
                 <div class="card-content " >
@@ -85,7 +85,7 @@
             </div>
             <div class="card">
                 <div class="card-header card-background card-background-application">
-                    <h2 class="title"><b>Sekolah Sukan</b></h2>
+                    <h2 class="title"><b>Cara Memohon Ke Sekolah Sukan</b></h2>
                     <p class="category">Cara mendaftar ke Sekolah Seni</p>
                 </div>
                 <div class="card-content " >
@@ -121,7 +121,7 @@
             </div>
             <div class="card">
                 <div class="card-header card-background card-background-application">
-                    <h2 class="title"><b>Sekolah Harian</b></h2>
+                    <h2 class="title"><b>Cara Memohon Ke Sekolah Harian</b></h2>
                     <p class="category">Cara mendaftar ke Sekolah Harian</p>
                 </div>
                 <div class="card-content " >

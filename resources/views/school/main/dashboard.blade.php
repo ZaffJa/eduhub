@@ -68,12 +68,12 @@
     <link href="/css/jquery-ui.css" rel="stylesheet"/>
     <div class="row">
 
-        <div class="col-md-2">
-        </div>
-        <div class="col-md-8">
+
+        <div class="col-lg-8 col-lg-offset-2">
             <div class="row">
+                <div class="row">
                 <div class="col-md-12">
-                    <div class="card card-profile">
+                    <div class="card card-profile" >
                         <div class="card-header card-background card-background-main">
                             <img src="/img/logo/logocvr.png" style="max-height:100px; width:100%; max-width:400px; "
                                  alt="Norway">
@@ -94,16 +94,18 @@
 
                             @if(auth()->user())
                                 <a class="btn btn-round btn-success"
-                                   href="{{ action('School\SchoolController@edit',$school->slug) }}">Sunting</a>
+                                   href="{{ action('School\SchoolController@edit',$school->slug) }}">Edit</a>
                             @endif
 
                         </div>
                     </div>
                 </div>
+                </div>
                 <div class="row">
                     {{-- Hubungi Sekolah --}}
+                    <div class="row">
                     <div class="col-md-12 col-lg-6">
-                        <div class="card">
+                        <div class="card" style="min-height: 200px;">
                             <div class="card-header card-header-icon" data-background-color="orange">
                                 <i class="material-icons">contacts</i>
 
@@ -112,7 +114,7 @@
                                 <h2 class="title">Hubungi Sekolah</h2>
 
                                     <h3 class="category"><b>Alamat Sekolah</b></h3>
-                                    {{ $school->address }} {{ $school->postcode }} {{ $school->city }} {{ $school->state }}
+                                    {{ $school->address or 'Belum di isi' }}
 
 
                                 <h3 class="category"><b>No Telefon Sekolah</b></h3>
@@ -134,7 +136,7 @@
                     </div>
                     {{-- Kedudukan Sekolah --}}
                     <div class="col-md-12 col-lg-6">
-                        <div class="card">
+                        <div class="card" style="min-height: 200px;">
                             <div class="card-header card-header-icon" data-background-color="red">
                                 <i class="material-icons">trending_up</i>
 
@@ -158,12 +160,11 @@
                                     </table>
                                 </div>
                                 <div class="card-content table-responsive">
-                                    <h4 class="category"><b>10 Sekolah Terbaik Malaysia</b></h4>
                                     <table class="table">
                                         <thead class="text-danger">
                                         <tr>
-                                            <th>Nama Sekolah</th>
-                                            <th>Kedudukan</th>
+                                            <th>School Name</th>
+                                            <th>Ranking</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -183,46 +184,17 @@
                 </div>
                 <div class="row">
                     {{-- Aliran Sekolah --}}
-                    <div class="col-md-12 col-lg-12">
-                        <div class="card ">
-                            <div class="card-header card-background card-background-sub-table">
-                                <h2 class="title"><b>Ujian Personaliti</b></h2>
-                            </div>
-                            <div class="card-content text-center">
-                                Ambil ujian personaliti sekarang untuk mengetahui jenis personaliti anda.
-                                <br>
-                                <img src="/img/default/notepad.svg" style="height: 15%; width: 15%"/>
-                                <br>
-                                <a href="{{action('School\PublicPersonalityController@view')}}" class="btn btn-info" >Ambil Ujian Personaliti Sekarang</a>
-                            </div>
-                        </div>
-                    </div>
-                    {{-- Syarat Masuk Sekolah --}}
                     <div class="col-md-12 col-lg-6">
-                        <div class="card  ">
-                            <div class="card-header card-background card-background-sub-table">
-                                <h2 class="title"><b>Syarat Masuk</b></h2>
-                            </div>
-                            <div class="card-content ">
-                                <h3 class="category">
-                                    <strong>{!!  $school->typeSchool->requirements or 'Sila hubungi sekolah itu' !!}</strong>
-                                </h3>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    {{-- Aliran Sekolah --}}
-                    <div class="col-md-12 col-lg-6">
-                        <div class="card">
+                        <div class="card" style="min-height: 200px;">
                             <div class="card-header card-header-icon" data-background-color="orange">
                                 <i class="material-icons">pie_chart_outlined</i>
 
                             </div>
                             <div class="card-content">
                                 <h2 class="title">Aliran Sekolah</h2>
-                                <h3 class="category">
-                                    <h3 class="category"><b>{{ $school->stream->stream or 'Belum di isi' }}</b></h3>
+                                <h3 class="category text-center">
+                                    <img src="/img/icon/pencil.png" style="height: 15%; width: 15%"/>
+                                    <h3 class="text-center"><b>{{ $school->stream->stream or 'Belum di isi' }}</b></h3>
                                 </h3>
 
                             </div>
@@ -232,27 +204,30 @@
                     {{-- Syarat Masuk Sekolah --}}
 
                     <div class="col-md-12 col-lg-6">
-                        <div class="card">
+                        <div class="card" style="min-height: 200px;">
                             <div class="card-header card-header-icon" data-background-color="purple">
                                 <i class="material-icons">subject</i>
 
                             </div>
                             <div class="card-content">
                                 <h2 class="title">Syarat Masuk</h2>
-                                <h3 class="category">
-                                    <strong>{!!  $school->typeSchool->requirements or 'Sila hubungi sekolah itu' !!}</strong>
+                                <h3 class="category text-center">
+                                    <img src="/img/icon/stationery.png" style="height: 15%; width: 15%"/>
+                                    <h3 class="text-center"><b>{{ $school->typeSchool->requirements or 'Sila hubungi sekolah itu' }}</b></h3>
                                 </h3>
 
                             </div>
                         </div>
 
                     </div>
+
+                </div>
                 </div>
                 <div class="row">
                     {{-- Peta Sekolah--}}
 
                     <div class="col-md-12 col-lg-12">
-                        <div class="card">
+                        <div class="card" style="min-height: 200px;">
                             <div class="card-header card-header-icon" data-background-color="blue">
                                 <i class="material-icons">language</i>
                             </div>
