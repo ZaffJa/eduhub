@@ -103,6 +103,7 @@
                 </div>
                 <div class="row">
                     {{-- Hubungi Sekolah --}}
+                    <div class="row">
                     <div class="col-md-12 col-lg-6">
                         <div class="card" style="min-height: 200px;">
                             <div class="card-header card-header-icon" data-background-color="orange">
@@ -182,29 +183,10 @@
                     </div>
 
 
-                    {{-- Aliran Sekolah --}}
-                    <div class="col-md-8 col-lg-6">
-                        <div class="card" style="min-height: 200px;">
-                            <div class="card-header card-header-icon" data-background-color="orange">
-                                <i class="material-icons">pie_chart_outlined</i>
-
-                            </div>
-                            <div class="card-content">
-                                <h2 class="title">Ujian Personaliti</h2>
-                                <div class="card-content text-center">
-                                    Ambil ujian personaliti sekarang untuk mengetahui jenis personality anda.
-                                    <br>
-                                    <img src="/img/icon/notepad.svg" style="height: 15%; width: 15%"/>
-                                    <br>
-                                    <a href="{{action('School\PublicPersonalityController@view')}}" class="btn btn-info btn-round" >Ambil Ujian Personaliti Sekarang</a>
-                                </div>
-
-                            </div>
-                        </div>
-
                     </div>
 
 
+                <div class="row">
                     {{-- Aliran Sekolah --}}
                     <div class="col-md-12 col-lg-6">
                         <div class="card" style="min-height: 200px;">
@@ -243,6 +225,7 @@
 
                     </div>
 
+                </div>
                 </div>
                 <div class="row">
                     {{-- Peta Sekolah--}}

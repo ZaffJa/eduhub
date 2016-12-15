@@ -67,12 +67,30 @@
 		</div>
 	</div>
 	<div class="col-md-4 col-lg-4 col-sm-12">
+		<div class="row">
+			<div class="col-lg-12">
 		<div class="card">
 			<div class="card-header" data-background-color="purple">
 				<div id="container" style="min-width: 100px; max-width: 600px; height: auto; margin: auto;"></div>
 			</div>
 			<div class="card-footer">
 				<h5>R = Realistic, A = Artistic, I = Investigative, E = Enterprising, S = Social, C = Conventional</h5>
+			</div>
+		</div>
+			</div>
+			<div class="col-lg-12">
+				<div class="card">
+					<div class="card-header" data-background-color="purple">
+						<h2 class="title">Back to search School</h2>
+					</div>
+						<div class="card-content">
+							<h3 class="title">School search page</h3>
+							<h3 class="category text-center">
+								<img src="/img/icon/text-editor.png" style="height: 15%; width: 15%"/><br>
+								<a  href="/school" class="btn btn-info btn-round text-wrap" >Back</a>
+							</h3>
+						</div>
+				</div>
 			</div>
 		</div>
 	</div>
