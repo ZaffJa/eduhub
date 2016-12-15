@@ -53,10 +53,9 @@ Route::group(['prefix'=>'school','namespace'=>'School'],function() {
         Route::post('edit/{id}', 'SchoolController@update');
         Route::get('delete/{id}', 'SchoolController@delete');
 
+    });
 
     Route::get('/{id}', 'SchoolController@viewSchool');
-
-    });
 
 });
 

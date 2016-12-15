@@ -287,7 +287,7 @@ class SchoolController extends Controller
 
         if (empty($school)) {
 
-            return redirect()->back()->with('status', 'No school found for this query');
+            return redirect()->action('School\SchoolController@lists')->with('status', 'Tiada hasil untuk carian ini.');
         }
 
         return redirect()->action('School\SchoolController@viewSchool', $school->slug);

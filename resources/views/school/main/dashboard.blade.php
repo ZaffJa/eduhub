@@ -94,7 +94,7 @@
 
                             @if(auth()->user())
                                 <a class="btn btn-round btn-success"
-                                   href="{{ action('School\SchoolController@edit',$school->slug) }}">Edit</a>
+                                   href="{{ action('School\SchoolController@edit',$school->slug) }}">Sunting</a>
                             @endif
 
                         </div>
@@ -112,7 +112,7 @@
                                 <h2 class="title">Hubungi Sekolah</h2>
 
                                     <h3 class="category"><b>Alamat Sekolah</b></h3>
-                                    {{ $school->address or 'Belum di isi' }}
+                                    {{ $school->address }} {{ $school->postcode }} {{ $school->city }} {{ $school->state }}
 
 
                                 <h3 class="category"><b>No Telefon Sekolah</b></h3>
@@ -158,11 +158,12 @@
                                     </table>
                                 </div>
                                 <div class="card-content table-responsive">
+                                    <h4 class="category"><b>10 Sekolah Terbaik Malaysia</b></h4>
                                     <table class="table">
                                         <thead class="text-danger">
                                         <tr>
-                                            <th>School Name</th>
-                                            <th>Ranking</th>
+                                            <th>Nama Sekolah</th>
+                                            <th>Kedudukan</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -185,10 +186,10 @@
                     <div class="col-md-12 col-lg-12">
                         <div class="card ">
                             <div class="card-header card-background card-background-sub-table">
-                                <h2 class="title"><b>Personaliti Test</b></h2>
+                                <h2 class="title"><b>Ujian Personaliti</b></h2>
                             </div>
                             <div class="card-content text-center">
-                                Ambil ujian personaliti sekarang untuk mengetahui jenis personality anda.
+                                Ambil ujian personaliti sekarang untuk mengetahui jenis personaliti anda.
                                 <br>
                                 <img src="/img/default/notepad.svg" style="height: 15%; width: 15%"/>
                                 <br>
@@ -204,7 +205,7 @@
                             </div>
                             <div class="card-content ">
                                 <h3 class="category">
-                                    <strong>{{ $school->typeSchool->requirements or 'Sila hubungi sekolah itu' }}</strong>
+                                    <strong>{!!  $school->typeSchool->requirements or 'Sila hubungi sekolah itu' !!}</strong>
                                 </h3>
                             </div>
                         </div>
@@ -239,7 +240,7 @@
                             <div class="card-content">
                                 <h2 class="title">Syarat Masuk</h2>
                                 <h3 class="category">
-                                    <strong>{{ $school->typeSchool->requirements or 'Sila hubungi sekolah itu' }}</strong>
+                                    <strong>{!!  $school->typeSchool->requirements or 'Sila hubungi sekolah itu' !!}</strong>
                                 </h3>
 
                             </div>

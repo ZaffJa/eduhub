@@ -41,7 +41,7 @@
 								@if($res[0][0] == $pt->type)
 									{{$pt->description}}
 									<script type="text/javascript">
-									$(#"'{{$pt}}'").attr({aria-expanded:"true"});
+									$('#{{$pt}}').attr({'aria-expanded':"true"});
 									</script>
 								@endif
 							@endforeach
@@ -126,7 +126,7 @@
 					name: 'Score',
 					data: data,
 					pointPlacement: 'on'
-				}, ]
+				} ]
 
 			});
 		});
