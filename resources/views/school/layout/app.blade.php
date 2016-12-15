@@ -15,8 +15,6 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
 
-    <!-- Canonical SEO -->
-    <link rel="canonical" href="http://www.creative-tim.com/product/material-dashboard"/>
 
     <!-- Bootstrap core CSS     -->
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet"/>
