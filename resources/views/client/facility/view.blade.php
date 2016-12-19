@@ -107,7 +107,7 @@
 
     <script type="text/javascript">
         $('.clickImg').on('click', function () {
-            var $filePath = 'https://s3-ap-southeast-1.amazonaws.com/amr-eduhub-upoads/';
+            var $filePath = '{{ $s3 }}';
             $('.imgSrc').prop('src', $filePath + $(this).attr('src'));
             console.log($(this).text());
         });

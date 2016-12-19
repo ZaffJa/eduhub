@@ -14,7 +14,8 @@
         "doctrine/dbal": "^2.5",
         "laravel/socialite": "^2.0",
         "maatwebsite/excel": "~2.1.0",
-        "phpoffice/phpexcel": "^1.8"
+        "phpoffice/phpexcel": "^1.8",
+        "barryvdh/laravel-ide-helper": "^2.2"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
