@@ -4,53 +4,55 @@
 	<div class="col-md-offset-1 col-md-10">
 		<div class="card">
 			<div class="card-header" data-background-color="green">
-				<h4 class="title">Personality Test</h4>
-				<p class="category">Instructions: click or tap the box to tick the box, tick as many box as you like <br>Tick the item that you would enjoy do </p>
+				<h4 class="title">Ujian Personaliti</h4>
+				<p class="category" style="color:white;">Arahan: Tandakan kotak yang anda suka. Anda boleh tanda
+					sebanyak mana kotak yang
+					anda suka. </p>
 			</div>
 			<div class="card-content">
 
 				<form method="get" action="{{ action('School\PublicPersonalityController@set4') }}">
 					<div class="checkbox"><label>
-					<input type="checkbox" name="b1" value="1">Sing before the public </br></label></div>
+					<input type="checkbox" name="b1" value="1">Menyanyi di khalayak ramai </label></div>
 
 					<div class="checkbox">
 						<label>
-					<input type="checkbox" name="c2" value="1">Make a speech </br></label></div>
+					<input type="checkbox" name="c2" value="1">Memberi ucapan </label></div>
 
 					<div class="checkbox">
 						<label>
-					<input type="checkbox" name="d3" value="1">Study human anatomy </br></label></div>
+					<input type="checkbox" name="d3" value="1">Mengkaji anatomi manusia</label></div>
 
 					<div class="checkbox">
 						<label>
-					<input type="checkbox" name="e4" value="1">Interview clients </br></label></div>
+					<input type="checkbox" name="e4" value="1">Menemu bual klien </label></div>
 
 					<div class="checkbox">
 						<label>
-					<input type="checkbox" name="f5" value="1">Attend to details </br></label></div>
+					<input type="checkbox" name="f5" value="1">Peka dengan persekitaran </label></div>
 
 					<div class="checkbox">
 						<label>
-					<input type="checkbox" name="a5" value="1">Arrest lawbreakers </br></label></div>
+					<input type="checkbox" name="a5" value="1">Menahan pelanggar undang-undang </label></div>
 
 					<div class="checkbox">
 						<label>
-					<input type="checkbox" name="b6" value="1">Design a poster </br></label></div>
+					<input type="checkbox" name="b6" value="1">Menghasilkan poster </label></div>
 
 					<div class="checkbox">
 						<label>
-					<input type="checkbox" name="c7" value="1">Lead a meeting </br></label></div>
+					<input type="checkbox" name="c7" value="1">Mengetuai perjumpaan </label></div>
 
 					<div class="checkbox">
 						<label>
-					<input type="checkbox" name="d8" value="1">Do math problems </br></label></div>
+					<input type="checkbox" name="d8" value="1">Menyelesaikan masalah matematik</label></div>
 
 					<div class="checkbox">
 						<label>
-					<input type="checkbox" name="e9" value="1">Teach teens or adults </br></label></div>
+					<input type="checkbox" name="e9" value="1">Mengajar remaja atau dewasa</label></div>
 
 
-					<button class="btn btn-info"> Next </button>
+					<button class="btn btn-info"> Seterusnya </button>
 				</form>
 			</div>
 

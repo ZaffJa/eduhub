@@ -2,11 +2,13 @@
 
 namespace App\Http\Controllers\School;
 
+use App\Mail\PublicPersonalityTestResult;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\PersonalityType;
 use App\Models\File;
 use App\Models\Course;
+use Illuminate\Support\Facades\Mail;
 use View;
 use Auth;
 
@@ -366,6 +368,8 @@ class PublicPersonalityController extends Controller
         $careerImage = File::wherePersonalityTypeId($id)->get();
 
 
+        return $r->email;
+        Mail::to('zafri@example.com')->send(new PublicPersonalityTestResult($res,$chart,$personalityType,$course,$careerImage));
         return View::make('school.personality.result',compact('res','chart','personalityType','course','careerImage'));
     }
 
