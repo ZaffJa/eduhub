@@ -111,7 +111,7 @@
 
                             </div>
                             <div class="card-content">
-                                <h2 class="title">Hubungi Sekolah</h2>
+                                <h3 class="title">Hubungi Sekolah</h3>
 
                                     <h3 class="category"><b>Alamat Sekolah</b></h3>
                                     {{ $school->address or 'Belum di isi' }}
@@ -142,7 +142,8 @@
 
                             </div>
                             <div class="card-content">
-                                <h2 class="title">Kedudukan Sekolah</h2>
+                                <h3 class="title">Kedudukan Sekolah</h3>
+                                @if($school->typeSchool->id == 8 || $school->typeSchool->id == 12)
                                 <div class="card-content table-responsive">
                                     <table class="table">
                                         <thead>
@@ -158,13 +159,14 @@
                                             <td style="text-align: center;">{{ $school->rank or 'Belum di isi' }}</td>
                                         </tr>
                                     </table>
+                                @endif
                                 </div>
                                 <div class="card-content table-responsive">
                                     <table class="table">
                                         <thead class="text-danger">
                                         <tr>
-                                            <th>School Name</th>
-                                            <th>Ranking</th>
+                                            <th>Nama Sekolah</th>
+                                            <th>Kedudukan</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -191,7 +193,7 @@
 
                             </div>
                             <div class="card-content">
-                                <h2 class="title">Aliran Sekolah</h2>
+                                <h3 class="title">Aliran Sekolah</h3>
                                 <h3 class="category text-center">
                                     <img src="/img/icon/pencil.png" style="height: 15%; width: 15%"/>
                                     <h3 class="text-center"><b>{{ $school->stream->stream or 'Belum di isi' }}</b></h3>
@@ -201,16 +203,13 @@
                         </div>
 
                     </div>
-                    {{-- Syarat Masuk Sekolah --}}
-
                     <div class="col-md-12 col-lg-6">
                         <div class="card" style="min-height: 200px;">
                             <div class="card-header card-header-icon" data-background-color="purple">
                                 <i class="material-icons">subject</i>
-
                             </div>
                             <div class="card-content">
-                                <h2 class="title">Syarat Kemasukan</h2>
+                                <h3 class="title">Syarat Kemasukan</h3>
                                 <h3 class="category text-center">
                                     <img src="/img/icon/stationery.png" style="height: 15%; width: 15%"/>
                                     <h3 class="text-center"><b>{{ $school->typeSchool->requirements or 'Sila hubungi sekolah itu' }}</b></h3>
@@ -243,7 +242,7 @@
         </div>
     </div>
     <script async defer
-            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgdkEKOxECZPSbpr7MvPZMLH7sBGeIbV8&libraries=places&callback=initMap">
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyChsUkNrNkS74PBi73WuMHZyAjQhQWt-sg&libraries=places&callback=initMap">
     </script>
     <script>
         var map;
