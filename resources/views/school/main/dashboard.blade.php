@@ -101,7 +101,7 @@
                     </div>
                 </div>
                 </div>
-                <div class="row">
+
                     {{-- Hubungi Sekolah --}}
                     <div class="row">
                     <div class="col-md-12 col-lg-6">
@@ -210,7 +210,7 @@
 
                             </div>
                             <div class="card-content">
-                                <h2 class="title">Syarat Masuk</h2>
+                                <h2 class="title">Syarat Kemasukan</h2>
                                 <h3 class="category text-center">
                                     <img src="/img/icon/stationery.png" style="height: 15%; width: 15%"/>
                                     <h3 class="text-center"><b>{{ $school->typeSchool->requirements or 'Sila hubungi sekolah itu' }}</b></h3>
@@ -222,7 +222,7 @@
                     </div>
 
                 </div>
-                </div>
+
                 <div class="row">
                     {{-- Peta Sekolah--}}
 
@@ -291,5 +291,6 @@
                 schoolInfo.open(map, schoolMarker)
             });
         }
+
     </script>
 @endsection

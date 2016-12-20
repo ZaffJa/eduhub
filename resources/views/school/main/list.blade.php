@@ -25,10 +25,10 @@
                     <h3><strong>Tapis Sekolah</strong></h3>
                     <form action="{{ action('School\SchoolController@postSearch') }}" method="post">
                     <div class="row">
-                            <div class="col-md-9 col-lg-9 col-sm-12">
+                            <div class="col-md-8 col-lg-8 col-sm-10">
                                     {{Form::text('name',null,['class'=>'form-control input-box','placeholder'=>'Cari sekolah','id'=>'cariSekolah'])}}
                             </div>
-                            <div class="col-md-2 col-sm-12">
+                            <div class="col-lg-2 col-md-2 col-sm-2">
                                 <button type="submit" class="btn btn-info btn-sm" style="top:25px;left:0px;"><i class="fa fa-search" aria-hidden="true"></i></button>
                             </div>
                         </div>
@@ -59,21 +59,23 @@
                 </div>
             </div>
             <div class="row">
-            <div class="col-md-10 col-md-offset-1 ">
-                <div class="alert alert-default" style="min-height: 200px;">
+            <div class="col-md-10 col-md-offset-1  alert alert-default alert-dismissible">
 
                     <div class="text-center">
                         <h2 class="title">Ujian Personaliti</h2>
                         <div class=" text-center">
-                            Ambil ujian personaliti sekarang untuk mengetahui jenis personality anda.
-                            <br>
-                            <img src="/img/icon/notepad.svg" style="height: 15%; width: 15%"/>
-                            <br>
+                            <div class="col-lg-12">
+                            <img src="/img/icon/personality.png" style="height: 60%; width: 60%"/>
+                            </div>
+                            <div class="col-lg-12">
+                                <br>
+<p>Ambil ujian personaliti anda.</p>
                             <a href="{{action('School\PublicPersonalityController@view')}}" class="btn btn-info btn-round text-wrap" >Ambil Ujian</a>
-                        </div>
+
+                            </div>                        </div>
 
                     </div>
-                </div>
+
             </div>
 
             </div>
@@ -84,11 +86,10 @@
                 <div class="row">
                     @foreach($schools as $school)
 
-                        <div class="alert alert-default alert-dismissible col-md-4 col-sm-12 col-xs-12 col-lg-3"
-                             style="margin-left: 3px; min-height: 250px">
-                            <div class="box">
+                        <div class="alert alert-default alert-dismissible col-md-4 col-sm-12 col-xs-12 col-lg-3 card-size" id="cardSchool">
+
                             <strong>
-                                <a href="{{ action('School\SchoolController@viewSchool',$school->slug) }}">
+                                <a href="{{ action('School\SchoolController@viewSchool',$school->slug) }}"  style="word-wrap: break-word; text-justify: auto">
                                     {{ $school->name }} <br>
                                     {{ $school->ppd }} <br>
                                     {{ $school->address }} <br>
@@ -96,13 +97,14 @@
                                     {{ $school->city }} <br>
                                     {{ $school->telephone }} <br>
                                 </a>
-                                @if(auth()->user() !== null && auth()->user()->hasRole('school'))
-                                <button type="button" class="btn btn-danger btnDelete" data-href="{{ $school->id }}"
-                                        style=" width: 100%">Delete
-                                </button>
-                                @endif
+
                             </strong>
-                        </div>
+                                @if(auth()->user() !== null && auth()->user()->hasRole('school'))
+                                    <button type="button" class="btn btn-danger btnDelete" data-href="{{ $school->id }}"
+                                            style=" width: 100%">Delete
+                                    </button>
+                                @endif
+
                         </div>
 
                     @endforeach
@@ -172,6 +174,36 @@
         $('#cariSekolah').autocomplete({
             source: '{{ action('School\SchoolController@search') }}'
         });
+        $(window).on('load', function() {
+            if($(window).width() > 1000) {
+
+
+                $('.card-size-xs').each(function(){            //iterates all elements having stick class
+                    $(this).addClass('card-size');
+                    $(this).removeClass('card-size-xs');//inside the callback the 'this' is the current html element. etc ...
+                });
+            }else{
+                $('.card-size').each(function(){            //iterates all elements having stick class
+                    $(this).addClass('card-size-xs');
+                    $(this).removeClass('card-size');//inside the callback the 'this' is the current html element. etc ...
+                });
+            }
+        });
+        $(window).on('resize', function() {
+            if($(window).width() > 1000) {
+
+
+                $('.card-size-xs').each(function(){            //iterates all elements having stick class
+                    $(this).addClass('card-size');
+                    $(this).removeClass('card-size-xs');//inside the callback the 'this' is the current html element. etc ...
+                });
+            }else{
+                $('.card-size').each(function(){            //iterates all elements having stick class
+                    $(this).addClass('card-size-xs');
+                    $(this).removeClass('card-size');//inside the callback the 'this' is the current html element. etc ...
+                });
+            }
+        })
 
 
     </script>

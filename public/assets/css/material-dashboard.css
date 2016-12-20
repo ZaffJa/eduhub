@@ -318,24 +318,29 @@
 h1, .h1 {
   font-size: 3.8em;
   line-height: 1.15em;
+  word-wrap: break-word;
 }
 
 h2, .h2 {
   font-size: 2.6em;
+  word-wrap: break-word;
 }
 
 h3, .h3 {
+  word-wrap: break-word;
   font-size: 1.825em;
   line-height: 1.4em;
   margin: 20px 0 10px;
 }
 
 h4, .h4 {
+  word-wrap: break-word;
   font-size: 1.3em;
   line-height: 1.4em;
 }
 
 h5, .h5 {
+  word-wrap: break-word;
   font-size: 1.25em;
   line-height: 1.4em;
   margin-bottom: 15px;
@@ -343,6 +348,7 @@ h5, .h5 {
 
 h6, .h6 {
   font-size: 1em;
+  word-wrap: break-word;
   text-transform: uppercase;
   font-weight: 500;
 }
@@ -3706,6 +3712,7 @@ footer .btn {
 .card .card-header.card-chart + .content h4 {
   margin-top: 0;
 }
+
 .card .card-header .ct-label {
   color: rgba(255, 255, 255, 0.7);
 }
@@ -3892,8 +3899,17 @@ footer .btn {
   border: 0;
   box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.42), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2);
 }
+.center {
+  padding: 20px 0;
 
 
+}
+.card-size{
+  margin-left: 3px; min-height: 250px; max-height: 250px;
+}
+.card-size-xs{
+  margin-left: 3px;
+}
 .card-profile,
 .card-testimonial {
   margin-top: 30px;
