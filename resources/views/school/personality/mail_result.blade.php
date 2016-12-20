@@ -119,9 +119,9 @@ These styles are meant for clients that recognize CSS in the <head>; the email W
                                             <b>Keputusan :</b> Anda adalah seorang yang {{$res[0][0]}}
                                         </p>
                                         @foreach($personalityType as $pt)
-                                            @if($res[0][0] == $pt->type)
+                                            @if($res[0][0] == $pt->jenis)
                                                 <p style="color:#222222; font-family:Arial, Helvetica, sans-serif; font-size:15px; line-height:19px; margin-top:0; margin-bottom:20px; padding:0; font-weight:normal;">
-                                                    {{$pt->description}}
+                                                    {{$pt->deskripsi}}
                                                 </p>
                                                 <script type="text/javascript">
                                                     $('#{{$pt}}').attr("true", 'aria-expanded');
@@ -140,7 +140,8 @@ These styles are meant for clients that recognize CSS in the <head>; the email W
                                                 @break
                                             @endif
                                             <td width="100%" bgcolor="#ffffff" style="text-align:center;">
-                                                <a style="font-weight:bold; text-decoration:none;" href="https://eduhub.my/institutions/v/{{ $c->institution->institution->slug or '#'}}/courses/">
+                                                <a style="font-weight:bold; text-decoration:none;"
+                                                   href="https://eduhub.my/institutions/v/{{ $c->institution->institution->slug or '#'}}/courses/">
                                                     <div style="display:block; max-width:100% !important; width:93% !important; height:auto !important;background-color:#da2d2d;padding-top:15px;padding-right:15px;padding-bottom:15px;padding-left:15px;border-radius:8px;color:#ffffff;font-size:24px;font-family:Arial, Helvetica, sans-serif;">
                                                         {{$c->name_en}} at {{$c->institution->institution->name}}
                                                     </div>
@@ -160,7 +161,7 @@ These styles are meant for clients that recognize CSS in the <head>; the email W
                                 <tr>
                                     <td width="100%" bgcolor="#ffffff" style="text-align:left;">
                                         <p style="color:#222222; font-family:Arial, Helvetica, sans-serif; font-size:11px; line-height:14px; margin-top:0; margin-bottom:15px; padding:0; font-weight:normal;">
-                                            <b>Copyright 2016 Eduhub Sdn Bhd. All Rights Reserved.</b>
+                                            <b>Copyright 2016 Eduhub Sdn Bhd. Hak Cipta Terpelihara.</b>
                                         </p>
                                     </td>
                                 </tr>

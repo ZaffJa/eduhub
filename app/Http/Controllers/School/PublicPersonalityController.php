@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\School;
 
 use App\Mail\PublicPersonalityTestResult;
+use App\Models\School\PublicPersonality;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\PersonalityType;
@@ -325,12 +326,12 @@ class PublicPersonalityController extends Controller
         //Storing result into array to sort using algorithm
         $res = array
         (
-            array('Realistic',session('r')),
-            array('Artistic',session('a')),
-            array('Investigative',session('i')),
-            array('Enterprising',session('e')),
-            array('Social',session('s')),
-            array('Conventional',session('c'))
+            array('Realistik',session('r')),
+            array('Artistik',session('a')),
+            array('Investigatif',session('i')),
+            array('Berdaya usaha',session('e')),
+            array('Sosial',session('s')),
+            array('Konvensional',session('c'))
         );
         //Sorting result
         $chart = $res;
@@ -338,27 +339,27 @@ class PublicPersonalityController extends Controller
 
         switch ($res[0][0])
         {
-            case 'Realistic':
+            case 'Realistik':
                 $id = 1;
                 break;
 
-            case 'Artistic':
+            case 'Artistik':
                 $id = 2;
                 break;
 
-            case 'Investigative':
+            case 'Investigatif':
                 $id = 3;
                 break;
 
-            case 'Enterprising':
+            case 'Berdaya usaha':
                 $id = 4;
                 break;
 
-            case 'Social':
+            case 'Sosial':
                 $id = 5;
                 break;
 
-            case 'Conventional':
+            case 'Konvensional':
                 $id = 6;
                 break;
         }
@@ -368,9 +369,20 @@ class PublicPersonalityController extends Controller
         $careerImage = File::wherePersonalityTypeId($id)->get();
 
 
-        return $r->email;
-        Mail::to('zafri@example.com')->send(new PublicPersonalityTestResult($res,$chart,$personalityType,$course,$careerImage));
-        return View::make('school.personality.result',compact('res','chart','personalityType','course','careerImage'));
+        if($r->email != null) {
+
+            PublicPersonality::create([
+               'email' => $r->email,
+                'personality_type_id' => $id
+            ]);
+
+
+            Mail::to($r->email)->send(new PublicPersonalityTestResult($res,$chart,$personalityType,$course,$careerImage));
+
+            return View::make('school.personality.result',compact('res','chart','personalityType','course','careerImage'))->with('status','Keputusan anda telah di emelkan ke '.$r->email);
+        }
+
+        return View::make('school.personality.result',compact('res','chart','personalityType','course','careerImage'))->with('status','Keputusan anda telah di emelkan ke '.$r->email);;
     }
 
     public function sort($res)

@@ -70,7 +70,7 @@
                             <div class="col-lg-12">
                                 <br>
 <p>Ambil ujian personaliti anda.</p>
-                            <a href="{{action('School\PublicPersonalityController@view')}}" class="btn btn-info btn-round text-wrap" >Ambil Ujian</a>
+                            <a href="{{action('School\PublicPersonalityController@set1')}}" class="btn btn-info btn-round text-wrap" >Ambil Ujian</a>
 
                             </div>                        </div>
 
