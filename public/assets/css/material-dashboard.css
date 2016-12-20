@@ -1240,7 +1240,7 @@ h2.title {
 }
 .btn.btn-instagram,
 .navbar .navbar-nav > li > a.btn.btn-instagram {
-  background-color: #125688;
+  background-color: #e00000;
   color: #fff;
   box-shadow: 0 2px 2px 0 rgba(18, 86, 136, 0.14), 0 3px 1px -2px rgba(18, 86, 136, 0.2), 0 1px 5px 0 rgba(18, 86, 136, 0.12);
 }
@@ -1477,6 +1477,22 @@ body {
 }
 body.inverse {
   background: #333333;
+}
+.school-title{
+  text-transform: capitalize;
+  text-align: center;
+  color: #da2d2d;
+  margin: 20px 0 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px dotted #f1afaf;
+
+}
+.navbar-school{
+
+
+  -webkit-box-shadow: 0px 10px 5px -6px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 10px 5px -6px rgba(0,0,0,0.75);
+  box-shadow: 0px 10px 5px -6px rgba(0,0,0,0.75);
 }
 body.inverse, body.inverse .form-control {
   color: #ffffff;
@@ -3297,6 +3313,18 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
 .navbar.navbar-info .dropdown-menu {
   border-radius: 3px !important;
 }
+.input-box{
+
+  border: 2px solid #dadada;
+  border-radius: 7px;
+}
+
+.input-box:focus {
+  outline: 1px;
+  border-color: #9ecaed;
+  box-shadow: 0 0 10px #9ecaed;
+}
+
 .modal-header, .close {
   background-color: #5cb85c;
   color:white !important;
@@ -3905,7 +3933,8 @@ footer .btn {
 
 }
 .card-size{
-  margin-left: 3px; min-height: 250px; max-height: 250px;
+  margin-left: 5px; min-height: 210px; max-height: 250px;
+  width: 25vh;
 }
 .card-size-xs{
   margin-left: 3px;

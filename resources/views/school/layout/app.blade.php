@@ -66,45 +66,36 @@
 <body>
 {{--@include('school.partials._modal')--}}
 <div class="wrapper">
-    <div class="sidebar hidden-lg hidden-md" data-color="purple" data-image="../assets/img/sidebar-1.jpg">
-        <div class="logo text-center">
-            <a class="text-center" href="#">
-                <img src="/img/logo/logo/student.png" width="90" height="90" class="d-inline-block align-top" alt="">
-            </a>
-        </div>
 
-        <div class="sidebar-wrapper">
-            <form class="navbar-form navbar-right" role="search">
-                <div class="form-group  is-empty">
-                    <input type="text" class="form-control" placeholder="Search School">
-                    <span class="material-input"></span>
-                    <span class="material-input"></span></div>
-                <button type="submit" class="btn btn-white btn-round btn-just-icon">
-                    <i class="material-icons">search</i>
-                    <span class="ripple-container"></span>
-                </button>
-            </form>
-        </div>
-    </div>
     <div class="main-panel main-panel-sub">
-        <nav class="navbar navbar-danger navbar-absolute">
+        <nav class="navbar navbar-default navbar-absolute navbar-school" style=" border-top: 4px solid #DA2D2D ;">
             <div class="container-fluid">
                 <div class="navbar-header">
+                    @if(auth()->user())
+                    <button type="button" class=" navbar-toggle hidden-md-up" >
 
-                    <a class="navbar-brand" href="/school">
-                        <img src="/img/logo/logo/student.png" width="30" height="30" class="d-inline-block align-top"
-                             alt="">
-                    </a>
-                </div>
-
-                @if(auth()->user())
-                <ul class="nav navbar-nav navbar-right">
-                    <li><a href="{{ action('School\SchoolController@register') }}">
+                        <a href="{{ action('School\SchoolController@register') }}" style="color: black; float: right;">
                             <i class="fa fa-pencil fa-fw" aria-hidden="true"></i>
                         </a>
-                    </li>
-                </ul>
+
+                    </button>
+                    @endif
+                    <a class="navbar-brand" href="/school">
+                        <img src="/img/logo/logonav.png"  style="display: inline-block; max-width: 150px; background-color: white;">
+
+                    </a>
+                </div>
+                @if(auth()->user())
+                    <ul class="nav navbar-nav navbar-right hidden-sm hidden-xs">
+                        <li><a href="{{ action('School\SchoolController@register') }}">
+                                <i class="fa fa-pencil fa-fw" aria-hidden="true" style="color: black"></i>
+                            </a>
+                        </li>
+                    </ul>
                 @endif
+
+
+
 
             </div>
         </nav>

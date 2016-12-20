@@ -3,7 +3,7 @@
     <style>
 
         #cariSekolah {
-            border-bottom: 1px solid black;
+            border: 1px solid black;
         }
 
         #school_type {
@@ -19,10 +19,10 @@
     </style>
 
     <div class="row">
-        <div class="col-lg-3  col-lg-offset-1 ">
+        <div class="col-lg-3 col-lg-offset-1   ">
             <div class="row">
                 <div class="col-md-10 col-md-offset-1 alert alert-default">
-                    <h3><strong>Tapis Sekolah</strong></h3>
+                    <h3><strong>Carian Sekolah</strong></h3>
                     <form action="{{ action('School\SchoolController@postSearch') }}" method="post">
                     <div class="row">
                             <div class="col-md-8 col-lg-8 col-sm-10">
@@ -62,17 +62,20 @@
             <div class="col-md-10 col-md-offset-1  alert alert-default alert-dismissible">
 
                     <div class="text-center">
-                        <h2 class="title">Ujian Personaliti</h2>
+
                         <div class=" text-center">
                             <div class="col-lg-12">
-                            <img src="/img/icon/personality.png" style="height: 60%; width: 60%"/>
+                                <h2 class="title">Ujian</h2>
+                            <img src="/img/icon/personality.png" style="height: 70%; width: 70%"/>
+                                <h2 class="title">Personaliti</h2>
                             </div>
                             <div class="col-lg-12">
-                                <br>
-<p>Ambil ujian personaliti anda.</p>
+
+                            <p>Ambil ujian personaliti anda.</p>
                             <a href="{{action('School\PublicPersonalityController@view')}}" class="btn btn-info btn-round text-wrap" >Ambil Ujian</a>
 
-                            </div>                        </div>
+                            </div>
+                        </div>
 
                     </div>
 
@@ -81,43 +84,58 @@
             </div>
 
         </div>
-        <div class="col-lg-7 col-lg-offset-1">
+        <div class="col-lg-7 ">
+
+
+                    <div class="col-lg-12"  >
+
+                        <h4 class=" text-center school-title">Semua Sekolah</h4>
+
+                    </div>
+
             @if(count($schools) > 0)
-                <div class="row">
+
+<div class="row">
                     @foreach($schools as $school)
 
-                        <div class="alert alert-default alert-dismissible col-md-4 col-sm-12 col-xs-12 col-lg-3 card-size" id="cardSchool">
+                        <div class="alert alert-default alert-dismissible col-md-4 col-sm-12 col-xs-12 col-lg-4 card-size text-center" id="cardSchool" >
 
                             <strong>
                                 <a href="{{ action('School\SchoolController@viewSchool',$school->slug) }}"  style="word-wrap: break-word; text-justify: auto">
                                     {{ $school->name }} <br>
-                                    {{ $school->ppd }} <br>
-                                    {{ $school->address }} <br>
                                     {{ $school->state }} <br>
-                                    {{ $school->city }} <br>
-                                    {{ $school->telephone }} <br>
+                                    +60{{ $school->telephone }} <br>
+                                    {{ $school->typeSchool->name }}
                                 </a>
 
                             </strong>
                                 @if(auth()->user() !== null && auth()->user()->hasRole('school'))
+                                    <hr>
+                                <div class="card-footer">
                                     <button type="button" class="btn btn-danger btnDelete" data-href="{{ $school->id }}"
-                                            style=" width: 100%">Delete
+                                            style="margin: -10px; width: 100%; position: relative;  ">Delete
                                     </button>
+                                </div>
                                 @endif
 
                         </div>
 
                     @endforeach
-                </div>
-                <div class="row">
-                    <div class="col-lg-12">
+</div>
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-3">
                     {{ $schools->render()}}
-                    </div>
                 </div>
+            </div>
+
+        </div>
+
+
             @else
                 <h3> Tiada sekolah untuk carian ini</h3>
             @endif
-        </div>
+
+
     </div>
 
     <script>
