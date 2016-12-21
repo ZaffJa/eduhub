@@ -52,12 +52,7 @@
                         </div>
                     </form>
 
-                    {{--<form action="{{ action('School\SchoolController@filterStream') }}" method="post">--}}
-                        {{--<div class="form-group">--}}
-                            {{--{{ csrf_field() }}--}}
-                            {{--{{ Form::select('school_stream',$streams, !empty($streams) ? $streams: null,['class'=>'form-control','id'=>'school_streams','placeholder'=>'Aliran    ']) }}--}}
-                        {{--</div>--}}
-                    {{--</form>--}}
+
                 </div>
             </div>
             <div class="row">
@@ -95,8 +90,7 @@
                 <div class="row">
                     @foreach($schools as $school)
 
-                        <div class="alert alert-default alert-dismissible col-md-4 col-sm-12 col-xs-12 col-lg-4 card-size text-center"
-                             id="cardSchool">
+                        <div class="alert alert-default alert-dismissible col-md-4 col-sm-12 col-xs-12 col-lg-4 card-size text-center"   id="cardSchool">
 
 
                             <a href="{{ action('School\SchoolController@viewSchool',$school->slug) }}">

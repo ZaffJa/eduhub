@@ -1009,13 +1009,13 @@ input[type="button"]:focus {
 }
 .nav-pills > li.active > a:after {
   content: '';
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
+  width: 65px;
+  height: 29px;
+  border-radius: 0;
   display: inline-block;
-  position: absolute;
-  right: 5px;
-  top: -2px;
+  position: relative;
+  right: 0;
+  top: -1px;
   -webkit-transform: scale(1);
   -moz-transform: scale(1);
   -o-transition: scale(1);
@@ -1204,13 +1204,12 @@ input[type="button"]:focus {
 }
 .wizard-card .icon-circle {
   font-size: 20px;
-  border: 3px solid #F3F2EE;
+
   text-align: center;
   border-radius: 50%;
   color: rgba(0, 0, 0, 0.2);
   font-weight: 600;
-  width: 70px;
-  height: 70px;
+
   background-color: #FFFFFF;
   margin: 0 auto;
   position: relative;
