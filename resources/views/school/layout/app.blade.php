@@ -81,7 +81,7 @@
                     </button>
                     @endif
                     <a class="navbar-brand" href="/school">
-                        <img src="/img/logo/logonav.png"  style="display: inline-block; max-width: 150px; background-color: white;">
+                        <img src="/img/logo/logonav.png"  style="display: inline-block; max-width: 130px; background-color: white;">
 
                     </a>
                 </div>

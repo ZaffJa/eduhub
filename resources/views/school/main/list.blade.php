@@ -95,20 +95,20 @@
 
             @if(count($schools) > 0)
 
-<div class="row">
+<div class="row" >
                     @foreach($schools as $school)
 
                         <div class="alert alert-default alert-dismissible col-md-4 col-sm-12 col-xs-12 col-lg-4 card-size text-center" id="cardSchool" >
 
-                            <strong>
-                                <a href="{{ action('School\SchoolController@viewSchool',$school->slug) }}"  style="word-wrap: break-word; text-justify: auto">
-                                    {{ $school->name }} <br>
-                                    {{ $school->state }} <br>
-                                    +60{{ $school->telephone }} <br>
+
+                                <a href="{{ action('School\SchoolController@viewSchool',$school->slug) }}"  >
+                                    <strong ><span class="truncate" style="max-width: 100%;">{{ $school->name }}</span></strong> <br>
+                                    <i class="fa fa-map-marker " aria-hidden="true"></i> {{ $school->state }} <br>
+                                    <i class="fa fa-phone fa-fw" aria-hidden="true"></i> +60{{ $school->telephone }} <hr>
                                     {{ $school->typeSchool->name }}
                                 </a>
 
-                            </strong>
+
                                 @if(auth()->user() !== null && auth()->user()->hasRole('school'))
                                     <hr>
                                 <div class="card-footer">
