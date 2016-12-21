@@ -122,7 +122,7 @@ Route::group(['prefix'=>'admin'],function(){
 
     Route::group(['middleware'=>['role.auth','auth','empty.null']],function(){
         Route::get('/all-institution','InstitutionController@viewAllInstitution')->name('admin.view.all.institution');
-        Route::get('/edit-institution/{id}','InstitutionController@editInstitution')->name('admin.edit.institution');
+        Route::get('/view-institution/{id}','InstitutionController@editInstitution')->name('admin.edit.institution');
         Route::get('/view-institution-request','InstitutionController@viewInstitutionRequest')->name('admin.view.institution.request');
         Route::get('/approve-institution/{id}','InstitutionController@approveInstitutionRequest')->name('admin.approve.institution.request');
         Route::get('/reject-institution/{id}','InstitutionController@rejectInstitutionRequest')->name('admin.reject.institution.request');
@@ -133,6 +133,7 @@ Route::group(['prefix'=>'admin'],function(){
         Route::get('/notifications', 'NotificationController@getAdminNotifications');
         Route::post('/notifications', 'NotificationController@postAdminNotifications');
         Route::post('/reset-notifications', 'NotificationController@reset');
+        Route::post('/institution/{id}/edit', 'InstitutionController@update')->name('admin.institution.update');
     });
 });
 
