@@ -1,8 +1,9 @@
 @if (session('status'))
-    <div class="alert alert-success alert-dismissible">
-        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-        <h4><i class="icon fa fa-check"></i> Success!</h4>
-        {{ session('status') }}
-
-    </div>
+    <script>
+        $.notify({
+            message: "<strong>{{ session('status') }}</strong>"
+        }, {
+            type: 'warning'
+        });
+    </script>
 @endif

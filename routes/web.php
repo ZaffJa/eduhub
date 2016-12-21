@@ -1,26 +1,64 @@
 <?php
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| This file is where you may define all of the routes that are handled
-| by your application. Just tell Laravel the URIs it should respond
-| to using a Closure or controller method. Build something great!
-|
-*/
+
+
+Route::get('excel','ExcelController@index');
+Route::post('excel','ExcelController@store');
 
 Auth::routes();
 
-Route::group(['prefix'=>'school','namespace'=>'School'],function() {
 
-    Route::get('/', 'SchoolController@view');
-    Route::get('map', 'SchoolController@map');
-    Route::get('register', 'SchoolController@register');
-    Route::post('register', 'SchoolController@store');
-    Route::get('edit/{id}', 'SchoolController@edit');
-    Route::post('edit', 'SchoolController@update');
-  });
+Route::get('school/login','School\LoginController@login');
+Route::post('school/login','School\LoginController@postLogin');
+
+Route::group(['prefix'=>'sekolah','namespace'=>'School'],function() {
+
+    Route::get('/', 'SchoolController@lists');
+    Route::get('tapis', 'SchoolController@filter');
+    Route::post('tapis', 'SchoolController@filterState');
+    Route::get('permohonan', 'SchoolController@application');
+    Route::get('cari', 'SchoolController@search');
+    Route::post('cari', 'SchoolController@postSearch');
+    Route::get('/senarai/tapis', 'SchoolController@filter');
+    Route::post('/senarai/tapis', 'SchoolController@filterState');
+    Route::get('peta', 'SchoolController@map');
+
+    Route::get('personaliti','PublicPersonalityController@view');
+
+    Route::group(['prefix'=>'personaliti'],function(){
+        Route::get('set1','PublicPersonalityController@set1');
+        Route::get('set2','PublicPersonalityController@set2');
+        Route::get('set3','PublicPersonalityController@set3');
+        Route::get('set4','PublicPersonalityController@set4');
+        Route::get('set5','PublicPersonalityController@set5');
+        Route::get('set6','PublicPersonalityController@set6');
+        Route::get('keputusan','PublicPersonalityController@result');
+    });
+
+    Route::post('/lists/filter/stream', 'SchoolController@filterStream');
+
+
+    Route::group(['middleware'=>['role.type:school']],function() {
+
+        Route::get('daftar', 'SchoolController@register');
+        Route::post('daftar', 'SchoolController@store');
+        Route::get('ubah/{id}', 'SchoolController@edit');
+        Route::post('ubah/{id}', 'SchoolController@update');
+
+        Route::get('jenis-sekolah', 'SchoolController@index');
+        Route::get('buang/{id}', 'SchoolController@delete');
+        Route::get('/ranking','SchoolController@getRanking');
+        Route::post('/ranking','SchoolController@postRanking');
+        Route::get('/register', 'SchoolController@register');
+        Route::post('register', 'SchoolController@store');
+        Route::get('edit/{id}', 'SchoolController@edit');
+        Route::post('edit/{id}', 'SchoolController@update');
+        Route::get('delete/{id}', 'SchoolController@delete');
+
+    });
+
+    Route::get('/{id}', 'SchoolController@viewSchool');
+
+});
 
 Route::group(['prefix'=>'student','namespace'=>'Student'],function(){
 
