@@ -24,7 +24,6 @@
     <link rel="stylesheet" href="/css/mdb.min.css">
 
     <!-- Live reload plugin for local pc (will be removed when production starts) -->
-    <script src="http://localhost:8000/livereload.js" charset="utf-8"></script>
     <!-- <link rel="stylesheet" href="/css/material.min.css"> -->
 
     <!-- jQuery 2.2.3 -->
@@ -32,21 +31,18 @@
     <!-- Bootstrap 3.3.6 -->
     <script src="/client/bootstrap/js/bootstrap.min.js"></script>
     <!-- Jquery User Interface plugin -->
-    <script src="/js/jquery-ui.js"></script>
+    <script src="/assets/js/jquery-ui.js"></script>
     <!-- Slim scroll plugin-->
     <script type="text/javascript" src="/client/plugins/slimScroll/jquery.slimscroll.min.js"></script>
     <!-- Plugin for confirmation to leave before saving -->
-    <script src="/js/jquery.are-you-sure.js"></script>
+    <script src="/assets/js/jquery.are-you-sure.js"></script>
 
     <script src="/client/dist/js/app.min.js"></script>
+    <script src="/assets/js/bootstrap-notify.js"></script>
+
+
     @yield('header-css')
 </head>
-<style media="screen">
-    select {
-        width: 100%;
-    }
-</style>
-
 <body class=" skin-red sidebar-toggle">
     <div class="wrapper">
         <!-- Main Header -->
@@ -70,7 +66,7 @@
                     <ul class="nav navbar-nav">
                         <!-- User Account: style can be found in dropdown.less -->
                         <li class="dropdown notifications-menu" id="notifications_dropdown">
-                            <a href="_#" class="dropdown-toggle" data-toggle="dropdown">
+                            <a href="" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="fa fa-bell-o"></i>
                                 <span class="label label-warning" id="label_notification_counts">{{$admin_notifications->count() > 0 ? $admin_notifications->count() : ''}}</span>
                             </a>
@@ -109,7 +105,7 @@
                                     <div class="pull-right">
                                         <a href="#" class="btn btn-default btn-flat" onclick="event.preventDefault();
                                                  document.getElementById('logout-form').submit();">
-                                            <font color="black"><i class="fa fa-sign-out"></i> Sign out</font>
+                                            <i class="fa fa-sign-out"></i>  Logout
                                         </a>
                                         <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
                                             {{ csrf_field() }}
@@ -118,36 +114,22 @@
                                 </li>
                             </ul>
                         </li>
-                        <!-- Control Sidebar Toggle Button -->
-
                     </ul>
                 </div>
             </nav>
-            <!-- Logo -->
 
-            <!-- Header Navbar -->
 
         </header>
-        <!-- Left side column. contains the logo and sidebar -->
         <aside class="main-sidebar">
-
-            <!-- sidebar: style can be found in sidebar.less -->
             <section class="sidebar">
-
-                <!-- Sidebar user panel (optional) -->
                 <div class="user-panel">
                     <div class="pull-left image">
                         <img src="/img/logo/LOGO-U.svg" class="img-circle" alt="User Image">
                     </div>
                     <div class="pull-left info">
-
-
-                        <p style="-webkit-transform">{{ Auth::user() != null ? Auth::user()->name : ''}}</p>
+                        <p>{{ Auth::user() != null ? Auth::user()->name : ''}}</p>
                     </div>
                 </div>
-                <!-- search form (Optional) -->
-                <!-- /.search form -->
-                <!-- Sidebar Menu -->
                 <ul class="sidebar-menu">
                     <!-- Dashboard -->
                     <li class="header">Dashboard</li>
@@ -188,11 +170,8 @@
                         </form>
                     </li>
                 </ul>
-                <!-- /.sidebar-menu -->
             </section>
-            <!-- /.sidebar -->
         </aside>
-        <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper" style="min-height: 864px;">
             <section class="content-header">
                 <section class="content">
@@ -200,64 +179,73 @@
                         <div class="mdl-grid">
                             <div class='row'>
                                 @if (count($errors) > 0)
-                                <div class="alert alert-danger alert-dismissible">
-                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                                    <h4><i class="icon fa fa-ban"></i> Alert!</h4>
-                                    <ul>
-                                        @foreach ($errors->all() as $error)
-                                            <li>{{ $error }}</li>
-                                        @endforeach
-                                    </ul>
-                                </div>
+                                    @foreach ($errors->all() as $error)
+                                        {{--<li>{{ $error }}</li>--}}
+                                        <script>
+                                            $.notify({
+                                                // options
+                                                message: "{{ $error }}"
+                                            }, {
+                                                // settings
+                                                type: 'danger'
+                                            });
+                                        </script>
+                                    @endforeach
                                 @endif
                                 @if (session('status') != null)
-                                <div class="alert alert-success alert-dismissible">
-                                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-                                    <h4><i class="icon fa fa-check"></i> Success!</h4> {{ session('status') }}
-                                </div>
+                                {{--<div class="alert alert-success alert-dismissible">--}}
+                                    {{--<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>--}}
+                                    {{--<h4><i class="icon fa fa-check"></i> Success!</h4> {{ session('status') }}--}}
+                                {{--</div>--}}
+                                <script>
+                                    $.notify({
+                                        // options
+                                        message: "{{ session('status') }}"
+                                    }, {
+                                        // settings
+                                        type: 'success',
+                                    });
+                                </script>
                                 @endif
                             </div>
                             @yield('content')
                         </div>
                     </main>
-                    <!-- Your Page Content Here -->
                 </section>
             </section>
         </div>
-        <!-- /.content-wrapper -->
-        <!-- Main Footer -->
         <footer class="main-footer">
-            <!-- To the right -->
             <div class="pull-right hidden-xs">
                 Malaysia's #1 education guide
             </div>
-            <!-- Default to the left -->
             <strong>Copyright © 2016 <a href="#">eduhub.my</a>™.</strong>
         </footer>
     </div>
-    <!-- ./wrapper -->
 </body>
+
+<script src="//cdn.ckeditor.com/4.6.1/basic/ckeditor.js"></script>
+
 <!-- REQUIRED JS SCRIPTS -->
-<script type="text/javascript">
-$(function(){
-    $('#notifications_dropdown').on('click',function(){
+{{--<script type="text/javascript">--}}
+{{--$(function(){--}}
+    {{--$('#notifications_dropdown').on('click',function(){--}}
 
-        $('#label_notification_counts').text('');
+        {{--$('#label_notification_counts').text('');--}}
 
-        $.ajax({
-            type: "POST",
-            url: "{{action('NotificationController@reset')}}",
-            data: {},
-            success: function(data, textStatus, jqXHR){
-                console.log(data);
-            },
-            error: function (jqXHR, textStatus, errorThrown){
+        {{--$.ajax({--}}
+            {{--type: "POST",--}}
+            {{--url: "{{action('NotificationController@reset')}}",--}}
+            {{--data: {},--}}
+            {{--success: function(data, textStatus, jqXHR){--}}
+                {{--console.log(data);--}}
+            {{--},--}}
+            {{--error: function (jqXHR, textStatus, errorThrown){--}}
 
-            }
-        });
-    });
-});
+            {{--}--}}
+        {{--});--}}
+    {{--});--}}
+{{--});--}}
 
-</script>
+{{--</script>--}}
 
 </html>

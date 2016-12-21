@@ -24,9 +24,9 @@ class AdminController extends Controller
                         ->back()
                         ->withErrors('These credentials do not match our database');
             }
-            return redirect()
-                    ->back()
-                    ->withErrors('These credentials do not match our database');
         }
+        return redirect()
+            ->back()
+            ->withErrors('These credentials do not match our database');
     }
 }

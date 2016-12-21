@@ -15,7 +15,7 @@ class S3Composer
      */
     public function __construct()
     {
-        $this->s3 = "https://s3-ap-southeast-1.amazonaws.com/amr-eduhub-upoads/";
+        $this->s3 = "https://s3-ap-southeast-1.amazonaws.com/eduhubmy-media/";
     }
 
     /**

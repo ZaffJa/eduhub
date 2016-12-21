@@ -56,4 +56,9 @@ class Course extends Model
     {
         return $this->belongsTo('App\Models\InstitutionCourse','id','course_id');
     }
+
+    public function spm()
+    {
+        return $this->hasMany('App\Models\Student\SpmRequirementCourse');
+    }
 }

@@ -20,10 +20,6 @@ class SpmRequirementCourse extends Model
 
     public function course($id)
     {
-
-        $course = SpmSubject::find($id);
-
-        return $course;
-
+        return SpmSubject::find($id);
     }
 }

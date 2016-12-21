@@ -12,7 +12,7 @@ return [
     | any other location as required by the application or its packages.
     */
 
-    'name' => 'Eduhub - Malaysia\'s #1 education guide',
+    'name' => 'Eduhub - Malaysia\'s #1 education search',
 
     /*
     |--------------------------------------------------------------------------
@@ -166,10 +166,11 @@ return [
         /*
          * Package Service Providers...
          */
-         Yajra\Datatables\DatatablesServiceProvider::class,
-         Collective\Html\HtmlServiceProvider::class,
-         OwenIt\Auditing\AuditingServiceProvider::class,
-         Laravel\Socialite\SocialiteServiceProvider::class,
+        Yajra\Datatables\DatatablesServiceProvider::class,
+        Collective\Html\HtmlServiceProvider::class,
+        OwenIt\Auditing\AuditingServiceProvider::class,
+        Laravel\Socialite\SocialiteServiceProvider::class,
+        Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider::class,
 
         //
 
@@ -236,7 +237,6 @@ return [
         'Html' => Collective\Html\HtmlFacade::class,
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'Excel' => Maatwebsite\Excel\Facades\Excel::class,
-
 
 
     ],
