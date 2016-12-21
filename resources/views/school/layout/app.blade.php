@@ -15,7 +15,6 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
 
-
     <!-- Bootstrap core CSS     -->
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
@@ -26,7 +25,7 @@
     <link href="/assets/css/demo.css" rel="stylesheet"/>
 
     <!--     Fonts and icons     -->
-    <link href="../../../assets/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/assets/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href='http://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet'
           type='text/css'>
 
@@ -72,16 +71,18 @@
             <div class="container-fluid">
                 <div class="navbar-header">
                     @if(auth()->user())
-                    <button type="button" class=" navbar-toggle hidden-md-up" >
+                        <button type="button" class=" navbar-toggle hidden-md-up">
 
-                        <a href="{{ action('School\SchoolController@register') }}" style="color: black; float: right;">
-                            <i class="fa fa-pencil fa-fw" aria-hidden="true"></i>
-                        </a>
+                            <a href="{{ action('School\SchoolController@register') }}"
+                               style="color: black; float: right;">
+                                <i class="fa fa-pencil fa-fw" aria-hidden="true"></i>
+                            </a>
 
-                    </button>
+                        </button>
                     @endif
-                    <a class="navbar-brand" href="/school">
-                        <img src="/img/logo/logonav.png"  style="display: inline-block; max-width: 130px; background-color: white;">
+                    <a class="navbar-brand" href="{{ action('School\SchoolController@lists') }}">
+                        <img src="/img/logo/logonav.png"
+                             style="display: inline-block; max-width: 130px; background-color: white;">
 
                     </a>
                 </div>
@@ -91,12 +92,16 @@
                                 <i class="fa fa-pencil fa-fw" aria-hidden="true" style="color: black"></i>
                             </a>
                         </li>
+                        <li>
+                            <a onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                                <i class="fa fa-sign-out"></i>
+                            </a>
+                            <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+                                {{ csrf_field() }}
+                            </form>
+                        </li>
                     </ul>
                 @endif
-
-
-
-
             </div>
         </nav>
         <div class="content">
@@ -115,7 +120,7 @@
                     <script>
                         document.write(new Date().getFullYear())
                     </script>
-                    <a href="http://www.eduhub.my">eduhub.my</a>, made with love for a better future
+                    <a href="http://www.eduhub.my">eduhub.my</a>
                 </p>
             </div>
         </footer>

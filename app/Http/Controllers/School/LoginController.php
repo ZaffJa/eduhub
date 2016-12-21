@@ -17,7 +17,7 @@ class LoginController extends Controller
     {
         if(Auth::attempt($request->only('email','password'))) {
 
-            return redirect('school/')->with('status','Welcome eduhub!');
+            return redirect('sekolah/')->with('status','Welcome eduhub!');
 
         } else {
 

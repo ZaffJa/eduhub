@@ -90,7 +90,7 @@
                             <h2 class="card-title">
                                 {{ $school-> name or null }}
                             </h2>
-                            <a class="btn btn-round btn-info" href="/school/application">Cara Memohon</a>
+                            <a class="btn btn-round btn-info" href="{{ action('School\SchoolController@application') }}">Cara Memohon</a>
 
                             @if(auth()->user())
                                 <a class="btn btn-round btn-success"
@@ -212,7 +212,11 @@
                                 <h3 class="title">Syarat Kemasukan</h3>
                                 <h3 class="category text-center">
                                     <img src="/img/icon/stationery.png" style="height: 15%; width: 15%"/>
-                                    <h3 class="text-center"><b>{{ $school->typeSchool->requirements or 'Sila hubungi sekolah itu' }}</b></h3>
+                                    @if(isset($school->typeSchool->requirements))
+                                        <p>{!! $school->typeSchool->requirements !!}</p>
+                                    @else
+                                        <h3 class="text-center"><b>Sila hubungi sekolah itu</b></h3>
+                                    @endif
                                 </h3>
 
                             </div>

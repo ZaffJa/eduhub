@@ -7,46 +7,47 @@ Route::post('excel','ExcelController@store');
 Auth::routes();
 
 
+Route::get('school/login','School\LoginController@login');
+Route::post('school/login','School\LoginController@postLogin');
 
-Route::group(['prefix'=>'school','namespace'=>'School'],function() {
+Route::group(['prefix'=>'sekolah','namespace'=>'School'],function() {
 
-    Route::get('login','LoginController@login');
-    Route::post('login','LoginController@postLogin');
     Route::get('/', 'SchoolController@lists');
-    Route::get('filter', 'SchoolController@filter');
-    Route::post('filter', 'SchoolController@filterState');
-    Route::get('/application', 'SchoolController@application');
-    Route::get('search', 'SchoolController@search');
-    Route::post('search', 'SchoolController@postSearch');
-    Route::get('/lists/filter', 'SchoolController@filter');
-    Route::post('/lists/filter', 'SchoolController@filterState');
-    Route::get('map', 'SchoolController@map');
-    Route::get('register', 'SchoolController@register');
-    Route::post('register', 'SchoolController@store');
-    Route::get('edit/{id}', 'SchoolController@edit');
-    Route::post('edit/{id}', 'SchoolController@update');
+    Route::get('tapis', 'SchoolController@filter');
+    Route::post('tapis', 'SchoolController@filterState');
+    Route::get('permohonan', 'SchoolController@application');
+    Route::get('cari', 'SchoolController@search');
+    Route::post('cari', 'SchoolController@postSearch');
+    Route::get('/senarai/tapis', 'SchoolController@filter');
+    Route::post('/senarai/tapis', 'SchoolController@filterState');
+    Route::get('peta', 'SchoolController@map');
 
-    Route::get('school-types', 'SchoolController@index');
-    Route::get('delete/{id}', 'SchoolController@delete');
-    
-    Route::get('/application','SchoolController@application');
-    Route::get('search','SchoolController@search');
-    Route::post('search','SchoolController@postSearch');
+    Route::get('personaliti','PublicPersonalityController@view');
 
-    Route::get('personality','PublicPersonalityController@view');
-    Route::group(['prefix'=>'personality'],function(){
-        Route::get('/set1','PublicPersonalityController@set1');
-        Route::get('/set2','PublicPersonalityController@set2');
-        Route::get('/set3','PublicPersonalityController@set3');
-        Route::get('/set4','PublicPersonalityController@set4');
-        Route::get('/set5','PublicPersonalityController@set5');
-        Route::get('/set6','PublicPersonalityController@set6');
-        Route::get('/result','PublicPersonalityController@result');
+    Route::group(['prefix'=>'personaliti'],function(){
+        Route::get('set1','PublicPersonalityController@set1');
+        Route::get('set2','PublicPersonalityController@set2');
+        Route::get('set3','PublicPersonalityController@set3');
+        Route::get('set4','PublicPersonalityController@set4');
+        Route::get('set5','PublicPersonalityController@set5');
+        Route::get('set6','PublicPersonalityController@set6');
+        Route::get('keputusan','PublicPersonalityController@result');
     });
+
     Route::post('/lists/filter/stream', 'SchoolController@filterStream');
+
 
     Route::group(['middleware'=>['role.type:school']],function() {
 
+        Route::get('daftar', 'SchoolController@register');
+        Route::post('daftar', 'SchoolController@store');
+        Route::get('ubah/{id}', 'SchoolController@edit');
+        Route::post('ubah/{id}', 'SchoolController@update');
+
+        Route::get('jenis-sekolah', 'SchoolController@index');
+        Route::get('buang/{id}', 'SchoolController@delete');
+        Route::get('/ranking','SchoolController@getRanking');
+        Route::post('/ranking','SchoolController@postRanking');
         Route::get('/register', 'SchoolController@register');
         Route::post('register', 'SchoolController@store');
         Route::get('edit/{id}', 'SchoolController@edit');

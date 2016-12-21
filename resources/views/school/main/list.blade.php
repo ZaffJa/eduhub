@@ -148,7 +148,7 @@
 
                 if (result === true) {
 
-                    var jqxhr = $.get("/school/delete/" + close.data('href'), function () {
+                    var jqxhr = $.get("/sekolah/delete/" + close.data('href'), function () {
                         console.log("Sent");
                     })
                         .done(function (result) {
@@ -159,7 +159,7 @@
                                 type: 'success'
                             });
 
-                            close.closest('div').hide();
+                            close.closest('.alert').hide();
                         })
                         .fail(function () {
                             $.notify({
