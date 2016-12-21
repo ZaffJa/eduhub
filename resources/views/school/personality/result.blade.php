@@ -7,7 +7,7 @@
         type.push('{{$r[0]}}'.charAt(0));
         @endforeach
     </script>
-    @if ($status)
+    @if (isset($status))
         <script>
             $.notify({
                 message: "<strong>{{ $status }}</strong>"

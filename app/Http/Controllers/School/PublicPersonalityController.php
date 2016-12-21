@@ -382,7 +382,7 @@ class PublicPersonalityController extends Controller
             return View::make('school.personality.result',compact('res','chart','personalityType','course','careerImage'))->with('status','Keputusan anda telah di emelkan ke '.$r->email);
         }
 
-        return View::make('school.personality.result',compact('res','chart','personalityType','course','careerImage'))->with('status','Keputusan anda telah di emelkan ke '.$r->email);;
+        return View::make('school.personality.result',compact('res','chart','personalityType','course','careerImage'));
     }
 
     public function sort($res)

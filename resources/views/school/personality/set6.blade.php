@@ -36,13 +36,19 @@
             </div>
         </div>
     </div>
+    <style>
+        h4 {
+            font-size: large;
+            font-weight: bold;
+        }
+    </style>
     <script>
         $(function () {
             $("input[type=submit]").on("click", function (e) {
                 e.preventDefault();
                 var _this = this;
                 bootbox.prompt({
-                    title: "This is a prompt with an email input!",
+                    title: "Sila masukkan email anda untuk mendapatkan keputusan ujian personaliti!",
                     inputType: 'email',
                     callback: function (result) {
                         $('#email').val($('.bootbox-input-email').val())
