@@ -213,13 +213,17 @@ class SchoolController extends Controller
 //        $request['code'] = (integer) $request->code;
 
 
-        $school = School::create($request->except(['_token', 'lat', 'lng']));
+        $school = School::create($request->except(['_token', 'lat', 'lng','rank']));
 
-        SchoolLocation::create([
-            'school_id' => $school->id,
-            'latitude' => $request->lat,
-            'longtitude' => $request->lng
-        ]);
+
+        if($request->has('latitude') && $request->has('longtitude')) {
+
+            SchoolLocation::create([
+                'school_id' => $school->id,
+                'latitude' => $request->lat,
+                'longtitude' => $request->lng
+            ]);
+        }
 
         return redirect()->back()->with('status', 'Successfully added new school');
     }
@@ -291,6 +295,32 @@ class SchoolController extends Controller
         }
 
         return redirect()->action('School\SchoolController@viewSchool', $school->slug);
+    }
+
+
+    public function getRanking()
+    {
+        $school = School::whereBetween('rank',[1,10])->get();
+
+
+        return view('school.main.ranking')->with(compact('school'));
+    }
+
+    public function postRanking(Request $request)
+    {
+        foreach ($request->name as $index => $name){
+            $school = School::whereName($name)->first();
+
+            if(!empty($school)) {
+
+                $school->rank = $request->rank[$index];
+
+                $school->save();
+            }
+        }
+
+        return redirect()->action('School\SchoolController@lists');
+
     }
 
     public function slugify($text)

@@ -3943,7 +3943,7 @@ footer .btn {
 }
 .truncate {
   
-  min-width: 230px;
+  max-width: 23vh;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;

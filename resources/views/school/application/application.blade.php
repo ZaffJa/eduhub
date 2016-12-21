@@ -13,7 +13,7 @@
                 <div class="card-footer"></div>
                 <div class="col-lg-10 col-lg-offset-1 ">
                     <div class="card-header-pills card-background " data-background-color="red">
-                        <h4 class=" title"><b>Sekolah Berasrama Penuh</b><span data-toggle="collapse" data-target="#demo" style="float: right"> More <i class="fa fa-angle-down"></i></span></h4>
+                        <h4 class=" title"><b>Sekolah Berasrama Penuh</b><span data-toggle="collapse" data-target="#demo" style="float: right"> Tambahan <i class="fa fa-angle-down"></i></span></h4>
                     </div>
                     <div id="demo" class="collapse">
                         <div class="card-content " >
@@ -32,7 +32,7 @@
 
                     <div class="card-footer"></div>
                     <div class="card-header-pills card-background " data-background-color="red">
-                        <h4 class="title"><b>Kolej Vokasional & Sekolah Menengah Teknik</b><span data-toggle="collapse" data-target="#demo1" style="float: right"> More <i class="fa fa-angle-down"></i></span></h4>
+                        <h4 class="title"><b>Kolej Vokasional & Sekolah Menengah Teknik</b><span data-toggle="collapse" data-target="#demo1" style="float: right"> Tambahan <i class="fa fa-angle-down"></i></span></h4>
 
                     </div>
 
@@ -48,7 +48,7 @@
                     </div>
                     <div class="card-footer"></div>
                     <div class="card-header-pills card-background " data-background-color="red">
-                        <h4 class="title"><b>Sekolah Kawalan</b><span data-toggle="collapse" data-target="#demo2" style="float: right"> More <i class="fa fa-angle-down"></i></span></h4>
+                        <h4 class="title"><b>Sekolah Kawalan</b><span data-toggle="collapse" data-target="#demo2" style="float: right"> Tambahan <i class="fa fa-angle-down"></i></span></h4>
 
                     </div>
 
@@ -74,7 +74,7 @@
                     <div class="card-footer"></div>
 
                     <div class="card-header-pills card-background " data-background-color="red">
-                        <h4 class="title"><b>Maktab Rendah Sains MARA(MRSM)</b><span data-toggle="collapse" data-target="#demo3" style="float: right"> More <i class="fa fa-angle-down"></i></span></h4>
+                        <h4 class="title"><b>Maktab Rendah Sains MARA(MRSM)</b><span data-toggle="collapse" data-target="#demo3" style="float: right"> Tambahan <i class="fa fa-angle-down"></i></span></h4>
 
                     </div>
                     <div id="demo3" class="collapse">
@@ -92,7 +92,7 @@
                     <div class="card-footer"></div>
 
                     <div class="card-header-pills card-background" data-background-color="red">
-                        <h4 class="title"><b>Sekolah Seni</b><span data-toggle="collapse" data-target="#demo4" style="float: right"> More <i class="fa fa-angle-down"></i></span></h4>
+                        <h4 class="title"><b>Sekolah Seni</b><span data-toggle="collapse" data-target="#demo4" style="float: right"> Tambahan <i class="fa fa-angle-down"></i></span></h4>
                     </div>
 
                     <div id="demo4" class="collapse">
@@ -103,7 +103,7 @@
                     <div class="card-footer"></div>
 
                     <div class="card-header-pills card-background" data-background-color="red">
-                        <h4 class="title"><b>Sekolah Sukan</b><span data-toggle="collapse" data-target="#demo5" style="float: right"> More <i class="fa fa-angle-down"></i></span></h4>
+                        <h4 class="title"><b>Sekolah Sukan</b><span data-toggle="collapse" data-target="#demo5" style="float: right"> Tambahan <i class="fa fa-angle-down"></i></span></h4>
                     </div>
                     <div id="demo5" class="collapse">
                     <div class="card-content " >
@@ -140,7 +140,7 @@
                     <div class="card-footer"></div>
 
                     <div class="card-header-pills card-background " data-background-color="red">
-                        <h4 class="title"><b>Sekolah Harian</b><span data-toggle="collapse" data-target="#demo6" style="float: right"> More <i class="fa fa-angle-down"></i></span></h4>
+                        <h4 class="title"><b>Sekolah Harian</b><span data-toggle="collapse" data-target="#demo6" style="float: right"> Tambahan <i class="fa fa-angle-down"></i></span></h4>
                     </div>
                     <div id="demo6" class="collapse">
                     <div class="card-content " >

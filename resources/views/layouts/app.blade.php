@@ -10,7 +10,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>eduhub.my</title>
-    <link rel="icon" sizes="192x192" href="/img/logo/LOGO-U.png">
+    <link rel="icon" sizes="192x192" href="/img/logo/LOGO-U-01.png">
     <!-- Styles -->
     <!-- Bootstrap 3.3.6 -->
     <link rel="stylesheet" href="/client/bootstrap/css/bootstrap.min.css">
@@ -27,7 +27,7 @@
     <!-- Scripts -->
     <script>
         window.Laravel = <?php echo json_encode([
-                'csrfToken' => csrf_token(),
+            'csrfToken' => csrf_token(),
         ]); ?>
     </script>
 </head>
@@ -65,25 +65,15 @@
                     <li><a href="{{ url('/login') }}" type="button" class="btn btn-outline">Login</a></li>
                     <li><a href="{{ url('/register') }}" type="button" class="btn btn-outline">Register</a></li>
                 @else
-                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle btn btn-outline" data-toggle="dropdown" role="button"
-                           aria-expanded="false" type="button">
-                            {{ Auth::user()->name }} <span class="caret"></span>
+                    <li>
+                        <a href="{{ url('/logout') }}" onclick="event.preventDefault();
+                                                 document.getElementById('logout-form').submit();" role="button" class="btn">
+                            Logout
                         </a>
-
-                        <ul class="dropdown-menu" role="menu">
-                            <li>
-                                <a href="{{ url('/logout') }}" onclick="event.preventDefault();
-                                                 document.getElementById('logout-form').submit();">
-                                    Logout
-                                </a>
-
-                                <form id="logout-form" action="{{ url('/logout') }}" method="POST"
-                                      style="display: none;">
-                                    {{ csrf_field() }}
-                                </form>
-                            </li>
-                        </ul>
+                        <form id="logout-form" action="{{ url('/logout') }}" method="POST"
+                              style="display: none;">
+                            {{ csrf_field() }}
+                        </form>
                     </li>
                 @endif
             </ul>
