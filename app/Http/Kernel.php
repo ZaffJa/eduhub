@@ -54,5 +54,6 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'empty.null' => \App\Http\Middleware\EmptyToNull::class,
         'role.auth' => \App\Http\Middleware\RoleAuth::class,
+        'role.type' => \App\Http\Middleware\AuthType::class,
     ];
 }
