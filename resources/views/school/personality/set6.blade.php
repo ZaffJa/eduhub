@@ -10,7 +10,8 @@
                         anda suka. </p>
                 </div>
                 <div class="card-content">
-                    <form method="get" action="{{ action('School\PublicPersonalityController@result') }}" id="form_data">
+                    <form method="get" action="{{ action('School\PublicPersonalityController@result') }}"
+                          id="form_data">
                         <div class="checkbox">
                             <label>
                                 <input type="checkbox" name="c6" value="1">Menjual barang</label>
@@ -29,37 +30,33 @@
                         </div>
 
                         <input type="hidden" name="email" id="email">
-                        <button class="btn btn-success" id="submit" type="submit"> Hantar </button>
+                        <input class="btn btn-success" type="submit" value="Hantar"/>
                     </form>
                 </div>
             </div>
         </div>
     </div>
+    <style>
+        h4 {
+            font-size: large;
+            font-weight: bold;
+        }
+    </style>
     <script>
-        $(document).ready(function () {
-//            $('form').submit(function (e) {
-//
-//                e.preventDefault();
-//
-//                bootbox.prompt({
-//                    title: "This is a prompt with an email input!",
-//                    inputType: 'email',
-//                    callback: function (result) {
-//
-//                            $('#email').val($('.bootbox-input-email').val())
-//                            console.log($('#email').val());
-//
-//                        $(this).unbind(e);
-//
-//                        $('#form_data').trigger('submit');
-//                    }
-//                });
-//
-//
-//
-//
-//            });
+        $(function () {
+            $("input[type=submit]").on("click", function (e) {
+                e.preventDefault();
+                var _this = this;
+                bootbox.prompt({
+                    title: "Sila masukkan email anda untuk mendapatkan keputusan ujian personaliti!",
+                    inputType: 'email',
+                    callback: function (result) {
+                        $('#email').val($('.bootbox-input-email').val())
+                        $(_this).parent().submit();
+
+                    }
+                });
+            });
         });
     </script>
-
 @endsection
