@@ -3942,6 +3942,7 @@ footer .btn {
   margin-left: 3px;
 }
 .truncate {
+  
   min-width: 230px;
   white-space: nowrap;
   overflow: hidden;
