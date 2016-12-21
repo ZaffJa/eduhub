@@ -15,10 +15,16 @@ class DatabaseSeeder extends Seeder
         // $this->call(AdminRoleSeeder::class);
         // $this->call(BankTypesTableSeeder::class);
         // $this->call(CareerImageFileCatergorySeeder::class);
-        $this->call(PersonalityTypeSeeder::class);
-        $this->call(CareerImageFileSeeder::class);
+//        $this->call(PersonalityTypeSeeder::class);
+//        $this->call(CareerImageFileSeeder::class);
         // $this->call(FileCategoryTableSeeder::class);
         // $this->call(ShortFieldsTableSeeder::class);
         // $this->call(SpmSubjectSeeder::class);
+
+        $this->call(SchoolAdminSeeder::class);
+        $this->call(SchoolTypeSeeder::class);
+        $this->call(SchoolStreamSeeder::class);
+        $this->call(SchoolTypeRequirements::class);
+        $this->call(DeskripsiSeeder::class);
     }
 }
