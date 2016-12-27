@@ -79,6 +79,7 @@
             </div>
         </div>
         <div class="col-md-4 col-lg-4 col-sm-12">
+            <div class="col-lg-12">
             <div class="card">
                 <div class="card-header" data-background-color="purple">
                     <div id="container" style="min-width: 100px; max-width: 600px; height: auto; margin: auto;"></div>
@@ -86,6 +87,17 @@
                 <div class="card-footer">
                     <h5>R = Realistik, A = Artistik, I = Investigatif, E = Berdaya Usaha, S = Sosial, C =
                         Konvensional</h5>
+                </div>
+            </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-content text-center" >
+                        <h3 class="card-title">Ambil Semula Ujian Personality.</h3>
+                        <a class="btn btn-info btn-round" href="/sekolah/personaliti/set1">Semula</a>
+                        <h3 class="card-title">Kembali ke Semua Sekolah</h3>
+                        <a class="btn btn-success btn-round" href="/sekolah">Kembali</a>
+                    </div>
                 </div>
             </div>
         </div>

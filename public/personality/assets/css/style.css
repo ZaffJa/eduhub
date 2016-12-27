@@ -25,7 +25,7 @@ input[type=checkbox].css-checkbox {
 
 input[type=checkbox].css-checkbox + label.css-label {
 	padding-left:20px;
-	height:15px; 
+	height:15px;
 	display:inline-block;
 	line-height:15px;
 	background-repeat:no-repeat;

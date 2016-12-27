@@ -6,7 +6,7 @@
     <link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png" />
     <link rel="icon" type="image/png" href="assets/img/favicon.png" />
     <link rel="stylesheet" href="/personality/assets/css/style.css"/>
-    <title>Paper Bootstrap Wizard by Creative Tim</title>
+    <title>Ujian Personality</title>
 
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
@@ -58,7 +58,7 @@
 
     <!--  Made With Paper Kit  -->
     <a href="/sekolah" class="made-with-pk">
-        <div class="brand">EH</div>
+        <div class="brand">   <i class="ti-home"></i></div>
         <div class="made-with"> <strong>Kembali Ke Sekolah</strong></div>
     </a>
 
@@ -90,6 +90,8 @@
 <script src="/personality/assets/js/jquery-2.2.4.min.js" type="text/javascript"></script>
 <script src="/personality/assets/js/bootstrap.min.js" type="text/javascript"></script>
 <script src="/personality/assets/js/jquery.bootstrap.wizard.js" type="text/javascript"></script>
+
+<script src="/assets/js/bootbox.js"></script>
 
 <!--  Plugin for the Wizard -->
 <script src="/personality/assets/js/paper-bootstrap-wizard.js" type="text/javascript"></script>

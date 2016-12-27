@@ -14,22 +14,22 @@
 				<form method="get" action="{{ action('School\PublicPersonalityController@set3') }}">
 					<div class="checkbox">
 						<label>
-				<input type="checkbox" name="a2" value="1">Pertukangan kayu </br>
+				<input type="checkbox" name="a2" value="1"></br>
 			</label>
 					</div>
 					<div class="checkbox">
 						<label>
-				<input type="checkbox" name="b3" value="1">Menghias rumah atau pejabat</br>
+				<input type="checkbox" name="b3" value="1"></br>
 			</label>
 					</div>
 					<div class="checkbox">
 						<label>
-				<input type="checkbox" name="c4" value="1">Memulakan kelab </br>
+				<input type="checkbox" name="c4" value="1"></br>
 			</label>
 					</div>
 					<div class="checkbox">
 						<label>
-				<input type="checkbox" name="d5" value="1">Mencari penyelesaian kepada masalah alam sekitar </br>
+				<input type="checkbox" name="d5" value="1"></br>
 			</label>
 					</div>
 					<div class="checkbox">
