@@ -148,7 +148,8 @@ body {
 
 .content-wrapper {
     background-color: #ecf0f5;
-    background-image: url(/img/logo/opa.svg);
+
+
     background-position: center;
     background-size: 10% 10%;
     background-repeat: repeat;
@@ -203,7 +204,7 @@ body.hold-transition .content-wrapper, body.hold-transition .right-side, body.ho
 
 .content::after {
     content: "";
-    background: url(/img/logo/opa.svg);
+
     background-repeat: repeat;
     background-size: 10% 10%;
     

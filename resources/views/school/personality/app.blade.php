@@ -35,21 +35,21 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a href="/sekolah" class="navbar-brand">
-                <div class="logo-container">
-                    <div class="logo">
-                        <img src="/img/logo/logocvr.png" style="max-width: 100px;">
-                    </div>
 
-                </div>
-            </a>
+            <div class="container-fluid">
+                <ul class="list-inline">
+                    <li><a href="/sekolah" class="navbar-brand"><img src="/img/logo/logocvr.png" style="max-width: 150px; padding: 6px 1px;"></a></li>
+
+                    <li> <small style="color: black; margin-bottom: 20px; font-size: 14px; " class="text-muted" >Carian Pendidikan #1 Di Malaysia</small></li>
+                </ul>
+            </div>
         </div>
 
 
     </div><!-- /.container-->
 </nav>
 
-<div class="image-container set-full-height" style="background-image: url('/personality/assets/img/paper-3.jpeg')">
+<div class="image-container set-full-height" style="background-image: url('/img/default/bg.jpeg')">
     <!--   Creative Tim Branding   -->
 
     <br>

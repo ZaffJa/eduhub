@@ -61,17 +61,28 @@
                                 {{$c->name_en}} at {{$c->institution->institution->name}}
                             </h5>
                         @endforeach
-                        <h3>Cadangan karier untuk anda</h3>
+                        <h3>Cadangan pekerjaan untuk anda</h3>
                         <div id="myCarousel" class="carousel slide" data-ride="carousel">
                             <!-- Indicators -->
                             <!-- Wrapper for slides -->
                             <div>
                                 @foreach($careerImage as $ci)
                                     <div class="col-md-4">
-                                        <img src="/img/{{$ci->path}}" class="thumbnail" alt="Chania" width="460"
-                                             height="345">
+                                        <div class="mycard" >
+
+                                                <img class="activator" src="/img/{{$ci->path}}" style="max-height: 120px; ">
+
+                                            <div class="mycontainer">
+                                                <h3 class="card-title activator grey-text text-darken-4">{{$ci->filename}}</h3>
+
+                                            </div>
+
+                                        </div>
+
                                     </div>
                                 @endforeach
+
+
                             </div>
                         </div>
                     </div>

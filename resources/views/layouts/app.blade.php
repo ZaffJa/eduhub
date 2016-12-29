@@ -39,8 +39,10 @@
     </script>
 </head>
 
-<body class="hold-transition skin-red sidebar-mini">
-<nav class="navbar navbar-inverse navbar-static-top">
+<body class="hold-transition skin-red sidebar-mini" style="background-color: rgba(220,220,220,0.14)">
+
+<nav class="navbar navbar-static-top" style="background-color: white; border-top: 3px solid red; border-bottom: 1px solid black">
+    <div class="container">
     <div class="container-fluid">
         <div class="navbar-header">
 
@@ -54,9 +56,15 @@
             </button>
 
             <!-- Branding Image -->
-            <a class="navbar-brand " href="{{ url('/') }}" type="button">
-                <img alt="Brand" src="/img/logo/LOGO-U.svg" height="150%" weight="150%">
-            </a>
+
+            <ul class="list-inline" style="margin-bottom: auto ">
+                <li>
+                    <a class= " href="{{url('/')}}" ><img alt="Brand" class="" src="/img/logo/logocvr.png" style="max-width: 140px; padding: 17px 1px; "></a>
+                </li>
+
+                <li> <small style="color: black; margin-bottom: 20px; font-size: 14px; " class="text-muted" >Carian Pendidikan #1 Di Malaysia</small></li>
+            </ul>
+
         </div>
 
         <div class="collapse navbar-collapse" id="app-navbar-collapse">
@@ -69,8 +77,8 @@
             <ul class="nav navbar-nav navbar-right">
                 <!-- Authentication Links -->
                 @if (Auth::guest())
-                    <li><a href="{{ url('/login') }}" type="button" class="btn btn-outline">Login</a></li>
-                    <li><a href="{{ url('/register') }}" type="button" class="btn btn-outline">Register</a></li>
+                    <li><a href="{{ url('/login') }}" type="button" class=" " >Login</a></li>
+                    <li><a href="{{ url('/register') }}" type="button" class="btn btn-default btn-round">Register</a></li>
                 @else
                     <li>
                         <a href="{{ url('/logout') }}" onclick="event.preventDefault();
@@ -86,7 +94,9 @@
             </ul>
         </div>
     </div>
+</div>
 </nav>
+
 <div class="content">
     <div class="row">
         <div class="col-lg-12">
@@ -133,6 +143,10 @@
 </div>
 
 <script src="//cdn.ckeditor.com/4.5.11/standard/ckeditor.js"></script>
-
+<footer class="footer">
+    <div class="container text-center">
+        <span class="text-muted">Hak cipta © 2016 eduhub.my™</span>
+    </div>
+</footer>
 </body>
 </html>

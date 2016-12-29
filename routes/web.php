@@ -3,7 +3,9 @@
 
 Route::get('excel','ExcelController@index');
 Route::post('excel','ExcelController@store');
-
+Route::get('/',function(){
+    return view('welcome');
+});
 Auth::routes();
 
 
@@ -61,7 +63,7 @@ Route::group(['prefix'=>'sekolah','namespace'=>'School'],function() {
 });
 
 Route::group(['prefix'=>'student','namespace'=>'Student'],function(){
-
+    Route::get('/enroll', 'EnrollController@view');
     Route::get('/login', 'LoginController@view');
     Route::post('/login', 'LoginController@login');
 
@@ -110,9 +112,7 @@ Route::get('/permission-error',function(){
     return view('errors.403');
 });
 
-Route::get('/',function(){
-    return view('welcome');
-});
+
 
 
 Route::group(['prefix'=>'admin'],function(){
