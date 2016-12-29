@@ -11,7 +11,6 @@ class SchoolStreamSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('school_streams')->delete();
 
         $streams = [
             ['stream'=>'Akademik(Sains/Sastera)'],
