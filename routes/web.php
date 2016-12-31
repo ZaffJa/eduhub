@@ -121,6 +121,7 @@ Route::group(['prefix'=>'admin'],function(){
     Route::post('/login','AdminController@postLogin');
 
     Route::group(['middleware'=>['role.auth','auth','empty.null']],function(){
+        Route::get('/','InstitutionController@viewAllInstitution')->name('admin.view.all.institution');
         Route::get('/all-institution','InstitutionController@viewAllInstitution')->name('admin.view.all.institution');
         Route::get('/view-institution/{id}','InstitutionController@editInstitution')->name('admin.edit.institution');
         Route::get('/view-institution-request','InstitutionController@viewInstitutionRequest')->name('admin.view.institution.request');
