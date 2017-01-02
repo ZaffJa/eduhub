@@ -58,7 +58,7 @@
 
     <!--  Made With Paper Kit  -->
     <a href="/sekolah" class="made-with-pk">
-        <div class="brand">   <i class="ti-home"></i></div>
+        <div class="brand">EH</div>
         <div class="made-with"> <strong>Kembali Ke Sekolah</strong></div>
     </a>
 

@@ -13,7 +13,7 @@
                         <div class="card-header card-header-icon" data-background-color="green">
                             <i class="material-icons">assignment</i>
                         </div>
-                        <h4 class="card-title">Enrollment Status</h4>
+                        <h4 class="card-title" style="padding-left: 10vh;">Enrollment Status</h4>
 
                         <div class="card-content table-responsive">
                             <table class="table table-hover">
@@ -23,6 +23,7 @@
                                     <th>Course</th>
                                     <th>Address</th>
                                     <th>Status</th>
+                                    <th>Verify</th>
                                 </tr></thead>
                                 <tbody>
                                 <tr>
@@ -31,6 +32,7 @@
                                     <td>Electrical Engineering</td>
                                     <td>Bangi</td>
                                     <td><span class="label label-info">Pending</span></td>
+                                    <td><a type="button" class="btn btn-round btn-sm" disabled>verify</a></td>
                                 </tr>
                                 <tr>
                                     <td>2</td>
@@ -38,6 +40,7 @@
                                     <td>Architecture</td>
                                     <td>Bandar Sunway</td>
                                     <td><span class="label label-warning">Enrolled</span></td>
+                                    <td><a type="button" class="btn btn-round btn-sm">verify</a></td>
                                 </tr>
                                 <tr>
                                     <td>3</td>
@@ -45,6 +48,7 @@
                                     <td>Multimedia and design</td>
                                     <td>Kuala Lumpur</td>
                                     <td><span class="label label-danger">Rejected</span></td>
+                                    <td><a type="button" class="btn btn-round btn-sm" disabled>verify</a></td>
                                 </tr>
                                 <tr>
                                     <td>4</td>
@@ -52,6 +56,7 @@
                                     <td>Civil Engineering</td>
                                     <td>Kuala Lumpur</td>
                                     <td><span class="label label-success">Accepted</span></td>
+                                    <td><a type="button" class="btn btn-round btn-sm" disabled>verify</a></td>
                                 </tr>
 
 
@@ -67,10 +72,10 @@
                         <div class="card-header card-header-icon" data-background-color="blue">
                             <i class="material-icons">list</i>
                         </div>
-                        <h4 class="card-title">Enroll To Uni Razak</h4>
+                        <h4 class="card-title" style="padding-left: 10vh;">New Enroll To Uni Razak</h4>
                         <div class="row">
                             <div class="col-sm-12">
-                                <h5 class="info-text"> Let's start with the basic details</h5>
+                                <h5 class="info-text" style="padding-left: 10vh;"> Let's start with the basic details</h5>
                             </div>
                             <div class="col-sm-5 col-sm-offset-1">
                                 <div class="form-group">
@@ -107,16 +112,19 @@
                                 </div>
                             </div>
 
-                            <div class="col-xs-8 col-xs-offset-2 col-sm-4 col-sm-offset-4 col-md-4 col-md-offset-4 download-area">
-                                <label>Enrollment Form</label>
+                            <div class="col-lg-10 col-lg-offset-1  text-center">
+                                <label>Enrollment Form</label> <br>
                                 <a href="https://www.sitepoint.com/premium/books/build-mobile-websites-and-apps-for-smart-devices/download/pdf" class="btn btn-danger btn-fill btn-round btn-lg">Download</a>
-                                <label>Upload Enrollment Form</label>
-                                <input type="file" name="..." class="btn btn-info btn-fill btn-round btn-lg">
+                                <br><label>Upload Enrollment Form</label>
+                                <input type="file" id="files" class="btn btn-info btn-fill btn-round custom-file-input hidden">
+                                <br>
+                                <label for="files" class="btn btn-info btn-fill btn-round btn-lg">Upload</label>
+
                             </div>
 
                         </div>
                         <div class="card-footer">
-                            <a href="" class="btn btn-success btn-fill btn-block btn-lg">Submit</a>
+                            <a href="" class="btn btn-success btn-fill btn-round btn-lg" style="float: right">Submit</a>
                         </div>
 
                     </div>
