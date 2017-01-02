@@ -78,11 +78,11 @@
                 <!-- Authentication Links -->
                 @if (Auth::guest())
                     <li><a href="{{ url('/login') }}" type="button" class=" " >Login</a></li>
-                    <li><a href="{{ url('/register') }}" type="button" class="btn btn-default btn-round">Register</a></li>
+                    <li><a href="{{ url('/register') }}" type="button" class="">Register</a></li>
                 @else
                     <li>
                         <a href="{{ url('/logout') }}" onclick="event.preventDefault();
-                                                 document.getElementById('logout-form').submit();" role="button" class="btn">
+                                                 document.getElementById('logout-form').submit();" role="button" class="">
                             Logout
                         </a>
                         <form id="logout-form" action="{{ url('/logout') }}" method="POST"

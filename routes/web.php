@@ -8,7 +8,6 @@ Route::get('/',function(){
 });
 Auth::routes();
 
-
 Route::get('school/login','School\LoginController@login');
 Route::post('school/login','School\LoginController@postLogin');
 
@@ -169,6 +168,9 @@ Route::group(['prefix'=>'client-dashboard','middleware'=>['auth','empty.null']],
     Route::post('/request-institution','InstitutionController@requestAddInstitution')->name('client.request.add.institution');
 
     Route::group(['middleware'=>['role.auth']],function(){
+
+        Route::get('/enroll', 'EnrollController@view');
+
         Route::get('/notifications', 'EnquiryController@getNotifications');
         Route::get('/notifications/view', 'EnquiryController@view');
         Route::post('/notifications/reset', 'EnquiryController@reset');

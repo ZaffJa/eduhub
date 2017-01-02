@@ -306,8 +306,8 @@
 
                             <div class="col-lg-12 ">
                                 <div class="form-group has-success">
-                                    <h3>Emel :</h3>
-                                    <input type="email" name="email" id="email" placeholder="Sila isi Email untuk keputusan" class="form-control">
+                                    <h3>Sila isi Emel untuk keputusan :</h3>
+                                    <input type="email" name="email" id="email" placeholder="Emel" class="form-control">
                                 </div>
                             </div>
                         </div>
