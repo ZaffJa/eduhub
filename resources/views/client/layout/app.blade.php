@@ -225,6 +225,13 @@
                           </span>
                             </a>
                         </li>
+                        <li class="treeview">
+                            <a href="{{ action('EnrollmentController@index') }}"><i class="fa fa-child"></i>
+                                <span>Enrollment</span>
+                                <span class="pull-right-container">
+                          </span>
+                            </a>
+                        </li>
                     @endif
                 <!-- Short Course -->
                     <li class="header">Other</li>

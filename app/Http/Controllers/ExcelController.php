@@ -25,46 +25,51 @@ class ExcelController extends Controller
 
     }
 
-    public function store(Request $request)
+    public function store()
     {
 
 
         $csv = array_map('str_getcsv', file('SEKOLAH_MENENGAH.csv'));
 
+        // Turn the csv data into objects which can be saved directly
+        // into model.
         array_walk($csv, function (&$a) use ($csv) {
             $a = array_combine($csv[0], $a);
         });
-
         array_shift($csv);
 
-        ini_set('max_execution_time', 300); //300 seconds = 5 minutes
+        //900 seconds = 15 minutes
+        // This process will need some time to complete.
+        // So we need to set the timeout longer if not it will
+        // display execution time reached error.
+        ini_set('max_execution_time', 900);
 
         foreach ($csv as $data) {
+            if(!School::where('name',$data['name'])->first()) {
+                $school = School::create([
+                    'type'=>'menengah',
+                    'ppd'=>$data['PPD'],
+                    'code'=>$data['Kod_Sekolah'],
+                    'school_type_id'=>$this->schoolId($data['Nama_Sekolah']),
+                    'name'=>$data['Nama_Sekolah'],
+                    'slug'=> str_slug($data['Nama_Sekolah']),
+                    'address'=>$data['Alamat'],
+                    'postcode'=>$data['Poskod'],
+                    'city'=>$data['Bandar'],
+                    'state'=>$data['Negeri'],
+                    'telephone'=>$data['Telefon'],
+                    'fax'=>$data['Fax'],
+                ]);
 
-            $school = School::create([
-                'type'=>'menengah',
-                'ppd'=>$data['PPD'],
-                'code'=>$data['Kod_Sekolah'],
-                'school_type_id'=>$this->schoolId($data['Nama_Sekolah']),
-                'name'=>$data['Nama_Sekolah'],
-                'slug'=>$this->slugify($data['Nama_Sekolah']),
-                'address'=>$data['Alamat'],
-                'postcode'=>$data['Poskod'],
-                'city'=>$data['Bandar'],
-                'state'=>$data['Negeri'],
-                'telephone'=>$data['Telefon'],
-                'fax'=>$data['Fax'],
-            ]);
+//                SchoolLocation::create([
+//                    'school_id' => $school->id,
+//                    'latitude' => 1.530007,
+//                    'longtitude' => 103.765869
+//                ]);
+            }
 
-            SchoolLocation::create([
-                'school_id' => $school->id,
-                'latitude' => 1.530007,
-                'longtitude' => 103.765869
-            ]);
 
         }
-
-
         return 'ok';
     }
 
@@ -116,7 +121,7 @@ class ExcelController extends Controller
 
             $type = 3;
         }
-        else if (strpos($name, strtoupper('samt')) !== false) {
+        else if (strpos($name, strtoupper('sekolah menengah kebangsaan agama')) !== false) {
 
             $type = 11;
         }

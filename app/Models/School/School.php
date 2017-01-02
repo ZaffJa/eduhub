@@ -4,11 +4,11 @@ namespace App\Models\School;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use OwenIt\Auditing\AuditingTrait;
 
 class School extends Model
 {
-
-    use softDeletes;
+    use AuditingTrait, SoftDeletes;
 
     protected $casts = [
         'stream' => 'array'

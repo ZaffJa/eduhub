@@ -211,5 +211,7 @@ Route::group(['prefix'=>'client-dashboard','middleware'=>['auth','empty.null']],
         Route::get('/institution/{id}/institution-view', 'InstitutionController@viewInstitution')->name('client.institution.view.institution');
         Route::get('/institution/{id}/edit', 'InstitutionController@edit')->name('client.institution.edit');
         Route::post('/institution/{id}/edit', 'InstitutionController@update')->name('client.institution.update');
+        Route::get('enrollment','EnrollmentController@index');
+        Route::post('enrollment','EnrollmentController@upload');
     });
 });
