@@ -226,7 +226,7 @@
                             </a>
                         </li>
                         <li class="treeview">
-                            <a href="#"><i
+                            <a href="/client-dashboard/enrollment"><i
                                         class="fa fa-thumb-tack"></i> <span>Enrollments</span>
                                 <span class="pull-right-container">
                           </span>

@@ -62,7 +62,8 @@ Route::group(['prefix'=>'sekolah','namespace'=>'School'],function() {
 });
 
 Route::group(['prefix'=>'student','namespace'=>'Student'],function(){
-    Route::get('/enroll', 'EnrollController@view');
+    Route::get('/enroll/{slug}', 'EnrollmentController@view');
+    Route::post('/enroll', 'EnrollmentController@store');
     Route::get('/login', 'LoginController@view');
     Route::post('/login', 'LoginController@login');
 
@@ -169,8 +170,6 @@ Route::group(['prefix'=>'client-dashboard','middleware'=>['auth','empty.null']],
 
     Route::group(['middleware'=>['role.auth']],function(){
 
-        Route::get('/enroll', 'EnrollController@view');
-
         Route::get('/notifications', 'EnquiryController@getNotifications');
         Route::get('/notifications/view', 'EnquiryController@view');
         Route::post('/notifications/reset', 'EnquiryController@reset');
@@ -215,5 +214,9 @@ Route::group(['prefix'=>'client-dashboard','middleware'=>['auth','empty.null']],
         Route::post('/institution/{id}/edit', 'InstitutionController@update')->name('client.institution.update');
         Route::get('enrollment','EnrollmentController@index');
         Route::post('enrollment','EnrollmentController@upload');
+        Route::post('enrollment/toggle','EnrollmentController@toggleStatus');
+        Route::get('enrollment/enroll/{studentEnrollment}','EnrollmentController@enroll');
+        Route::get('enrollment/accept/{studentEnrollment}','EnrollmentController@accept');
+        Route::get('enrollment/reject/{studentEnrollment}','EnrollmentController@reject');
     });
 });

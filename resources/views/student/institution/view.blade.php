@@ -1,71 +1,52 @@
 @extends('student.layout.app') @section('title', 'Dashboard') @section('content')
-
     <style>
-        .truncate {
-            /*white-space: nowrap;*/
-            overflow: hidden;
-            text-overflow: ellipsis;
-            max-height: 155px;
+        a {
+            color: black;
         }
     </style>
-
-<div class="row ">
-
-    <div class="col-md-12">
-        <div class="card">
-            <div class="card-header"  data-background-color="orange">
-                <h2 class="title">Recommended Courses based on your SPM results</h2>
-            </div>
-
-            @if(count($courses) > 0)
-                @foreach($courses as $index => $course)
+    <div class="card">
+        <div class="card-header" data-background-color="orange">
+            <h2 class="title">Institutions accepting enrollment</h2>
+        </div>
+        @if(count($institutions) > 0)
+            @foreach($institutions as $institution)
+                @if(!empty($institution->status == 1))
                     <div class="col-md-4">
                         <div class="card">
-                            <div class="card-content">
-                                <h4><b><a href="{{ $course->website }}">{{ $course->name_en }}</a></b></h4>
-                                <p><a href="https://eduhub.my/institutions/v/{{ $course->institution->institution->slug }}/courses/">{{ $course->institution->institution->name or "Error" }}</a></p>
+                            <div class="card-content " style="min-height: 140px;text-align: center">
+                                <h2 class="title">
+                                    <a href="http://{{ $institution->website or null }}"
+                                       target="_blank">
+                                        {{ $institution->name or "Error" }}
+                                    </a>
+                                </h2>
+                            </div>
+                            <div class="card-footer text-muted" style="text-align: center">
+                                <a class="btn btn-danger btn-sm" style="width: 100%"
+                                   href="{{ action('Student\EnrollmentController@view',[$institution->slug]) }}">
+                                    <i class="fa fa-keyboard-o"></i> Enroll
+                                </a>
                             </div>
                         </div>
                     </div>
-                @endforeach
-            @else
-                <div class="col-md-12">
-                    <h4> We're sorry. It looks like there is no course suggestions available at the moment.</h4>
-                </div>
-            @endif
-        </div>
-    </div>
-
-<div class="col-md-12">
-
-    <div class="card" >
-        <div class="card-header" data-background-color="red">
-            <h2 class="title">Offered Courses by Institutions</h2>
-        </div>
-        <div class="card-content">
-            @foreach($allCourses as $index => $course)
-                <div class="col-md-4">
-                    <div class="card">
-                        <div class="card-content " style="min-height: 110px">
-                            <h4 class="title"><a href="{{ $course->institution->institution->website }}" target="_blank">{{ $course->institution->institution->name or "Error" }}</a></h4>
-                            <p class="category"><b><a href="https://eduhub.my/institutions/v/{{ $course->institution->institution->slug }}/courses/" target="_blank">{{ $course->name_en }}</a></b></p>
-                        </div>
-
-                    </div>
-                </div>
+                @endif
             @endforeach
-            <br>
-        </div>
-        <div class="card-footer">
-          <div class=" col-sm-8 col-sm-offset-3">
-          {{ $allCourses->render() }}
-          </div>
-        </div>
-
+        @else
+            <div class="col-md-12">
+                <h4> We're sorry. It looks like there is no course suggestions available at the moment.</h4>
+            </div>
+        @endif
     </div>
-</div>
-
-</div>
+    <div class="card">
+        <div class="col-md-6">
+            <a class="btn btn-primary btn-lg" style="width: 100%" href="https://eduhub.my/institutions/list" target="_blank">View
+                all Institution</a>
+        </div>
+        <div class="col-md-6">
+            <a class="btn btn-info btn-lg" style="width: 100%" href="https://eduhub.my/full-courses/" target="_blank">View
+                course categories</a>
+        </div>
+    </div>
 
 
 

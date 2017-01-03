@@ -14,19 +14,14 @@ class InstitutionController extends Controller
     public function index()
     {
 
-        $spmCourseRequirement = SpmRequirementCourse::all('course_id','requirement');
+//        $spmCourseRequirement = SpmRequirementCourse::all('course_id','requirement');
+//        $userSpmSubject = SpmResult::whereUserId(Auth::user()->id)->get(['spm_subject_id','grade']);
+//        $courses =  $this->recommendedCourse($spmCourseRequirement,$userSpmSubject);
 
-        $userSpmSubject = SpmResult::whereUserId(Auth::user()->id)->get(['spm_subject_id','grade']);
-
-
-        $courses =  $this->recommendedCourse($spmCourseRequirement,$userSpmSubject);
-
-        $allCourses = Course::paginate(16);
+        $institutions = Institution::all();
 
 
-        return view('student.institution.view')->with(compact(
-            'courses','allCourses'
-        ));
+        return view('student.institution.view')->with(compact('institutions'));
     }
 
 
