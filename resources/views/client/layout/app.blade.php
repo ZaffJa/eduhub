@@ -227,6 +227,20 @@
                           </span>
                             </a>
                         </li>
+                        <li class="treeview">
+                            <a href="/client-dashboard/enrollment"><i
+                                        class="fa fa-thumb-tack"></i> <span>Enrollments</span>
+                                <span class="pull-right-container">
+                          </span>
+                            </a>
+                        </li>
+                        <li class="treeview">
+                            <a href="#"><i
+                                        class="fa fa-info-circle "></i> <span>Help</span>
+                                <span class="pull-right-container">
+                          </span>
+                            </a>
+                        </li>
                     @endif
                 <!-- Short Course -->
                     <li class="header">Other</li>

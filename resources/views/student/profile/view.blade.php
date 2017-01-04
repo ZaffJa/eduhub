@@ -19,7 +19,10 @@
 
         <div class="card">
           <div class="card-header" data-background-color="green" >
-            <h4 class="title" >Profile Info</h4></div>
+
+            <h4 class="title" >Profile Info</h4>
+
+          </div>
 
             <div class="card-content">
                 <div class="form-group">
@@ -58,6 +61,9 @@
                     {{isset($student->birthday) ? $student->birthday : null}}
                 </div>
             </div>
+            <div class="card-footer">
+                <a href="{{ action('Student\ProfileController@edit') }}"><button class="btn btn-info" style="float:right">Edit</button></a>
+            </div>
         </div>
 
 
@@ -65,7 +71,7 @@
         <div id="map"></div>
 
 
-        <a href="{{ action('Student\ProfileController@edit') }}"><button class="btn btn-info">Edit</button></a>
+
 
 </div>
 <script>

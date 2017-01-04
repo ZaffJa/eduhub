@@ -61,17 +61,28 @@
                                 {{$c->name_en}} at {{$c->institution->institution->name}}
                             </h5>
                         @endforeach
-                        <h3>Cadangan karier untuk anda</h3>
+                        <h3>Cadangan pekerjaan untuk anda</h3>
                         <div id="myCarousel" class="carousel slide" data-ride="carousel">
                             <!-- Indicators -->
                             <!-- Wrapper for slides -->
                             <div>
                                 @foreach($careerImage as $ci)
                                     <div class="col-md-4">
-                                        <img src="/img/{{$ci->path}}" class="thumbnail" alt="Chania" width="460"
-                                             height="345">
+                                        <div class="mycard" >
+
+                                                <img class="activator" src="/img/{{$ci->path}}" style="max-height: 120px; ">
+
+                                            <div class="mycontainer">
+                                                <h3 class="card-title activator grey-text text-darken-4">{{$ci->filename}}</h3>
+
+                                            </div>
+
+                                        </div>
+
                                     </div>
                                 @endforeach
+
+
                             </div>
                         </div>
                     </div>
@@ -79,6 +90,7 @@
             </div>
         </div>
         <div class="col-md-4 col-lg-4 col-sm-12">
+            <div class="col-lg-12">
             <div class="card">
                 <div class="card-header" data-background-color="purple">
                     <div id="container" style="min-width: 100px; max-width: 600px; height: auto; margin: auto;"></div>
@@ -86,6 +98,17 @@
                 <div class="card-footer">
                     <h5>R = Realistik, A = Artistik, I = Investigatif, E = Berdaya Usaha, S = Sosial, C =
                         Konvensional</h5>
+                </div>
+            </div>
+            </div>
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-content text-center" >
+                        <h3 class="card-title">Ambil Semula Ujian Personality.</h3>
+                        <a class="btn btn-info btn-round" href="/sekolah/personaliti/set1">Semula</a>
+                        <h3 class="card-title">Kembali ke Semua Sekolah</h3>
+                        <a class="btn btn-success btn-round" href="/sekolah">Kembali</a>
+                    </div>
                 </div>
             </div>
         </div>

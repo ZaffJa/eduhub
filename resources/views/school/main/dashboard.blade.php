@@ -75,7 +75,7 @@
                 <div class="col-md-12">
                     <div class="card card-profile" >
                         <div class="card-header card-background card-background-main">
-                            <img src="/img/logo/logocvr.png" style="max-height:100px; width:100%; max-width:400px; "
+                            <img src="/img/logo/logocvr.png" style="max-height:100px; width:100%; max-width:400px; margin-bottom: -135px; "
                                  alt="Norway">
                         </div>
                         {{--<div class="card-avatar">--}}

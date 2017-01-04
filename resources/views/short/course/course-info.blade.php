@@ -51,23 +51,18 @@
                 <i class="fa fa-book"></i>
                 <h1 class="box-title"> Course name</h1>
             </br>
-                <h3 class="box-title"> {{ $course->name_en != null ? $course->name_en : '' }} </h2>
+                <h2 class="box-title"> {{ $course->name_en or '' }} </h2>
              </br>
-                <h3 class="box-title"> {{ $course->name_ms != null ? $course->name_en : '' }} </h2>
+                <h3 class="box-title"> {{ $course->name_ms or '' }} </h3>
             </div>
             
             <!-- /.box-header -->
             <div class="box-body" style="margin-left:2%; font-size:125%">
                 <dl class="dl-horizontal">
-                    <div class="box-header">
-                        Course Description
-                    </div>
+                    <dt>Course Description</dt>
                     <dd>{{ isset($course->description) ? $course->description : "No description added" }}  </dd>
                     <hr>
-                    <div class="box-header">
-                        Course Length, Date, Attendance & Size
-                    </div>
-                    <dt>Course Period (min - max)</dt>
+                    <dt>Course duration</dt>
                     <dd>{{ $course->period_value_min }} - {{ $course->period_value_max }} {{ $course->periodType != null ? $course->periodType->name : 'No course period' }}</dd>
                     <hr>
                     <dt>Course Length Per Session</dt>
