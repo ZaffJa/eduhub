@@ -1,4 +1,6 @@
-@extends('client.layout.app') @section('content')
+@extends('client.layout.app')
+
+@section('content')
     <div class="row">
         <!-- <div class="col-lg-1">
         <a href="#" style="color:black;font-size: 200%"><i class="fa fa-arrow-left"></i> <span>Back</span></a>
@@ -44,5 +46,5 @@
         </script>
     </div>
     <!--</div>-->
-
+    @yield('content2')
 @endsection

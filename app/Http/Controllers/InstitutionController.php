@@ -233,7 +233,6 @@ class InstitutionController extends Controller
         if ($i == null) {
             $all_ri = RegisterInstitution::whereUserId(Auth::user()->id)->get();
             $i = Institution::all()->pluck('name', 'id');
-
             return view('client.request-institution')
                 ->with(compact('i', 'all_ri'));
 
