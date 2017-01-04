@@ -60,7 +60,6 @@
 </head>
 
 <body>
-{{--@include('school.partials._modal')--}}
 
     <div class="main-panel main-panel-sub">
 
@@ -116,6 +115,67 @@
         </div>
         <footer class="footer">
             <div class="container-fluid">
+      		        Tip 2: you can also add an image using data-image tag
+      		    -->
+
+      			<div class="logo text-center">
+              <a class="text-center" href="#">
+                  <img src="/img/logo/logo/student.png" width="90" height="90" class="d-inline-block align-top" alt="">
+              </a>
+      			</div>
+
+      	    	<div class="sidebar-wrapper">
+      	            <form class="navbar-form navbar-right" role="search">
+      							<div class="form-group  is-empty">
+      								<input type="text" class="form-control" placeholder="Search School">
+      								<span class="material-input"></span>
+      							<span class="material-input"></span></div>
+      							<button type="submit" class="btn btn-white btn-round btn-just-icon">
+      								<i class="material-icons">search</i><div class="ripple-container"></div>
+      							</button>
+      						</form>
+      	    	</div>
+      	    </div>
+        <div class="main-panel main-panel-sub">
+          <nav class="navbar navbar-danger navbar-absolute">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle toggled" data-toggle="collapse">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+            <a class="navbar-brand" href="#">
+                <img src="/img/logo/logo/student.png" width="30" height="30" class="d-inline-block align-top" alt="">
+            </a>
+					</div>
+					<div class="collapse navbar-collapse">
+
+						<form class="navbar-form navbar-right" role="search">
+							<div class="form-group  is-empty">
+								<input type="text" class="form-control" placeholder="Search">
+								<span class="material-input"></span>
+							<span class="material-input"></span></div>
+							<button type="submit" class="btn btn-white btn-round btn-just-icon">
+								<i class="material-icons">search</i><div class="ripple-container"></div>
+							</button>
+						</form>
+					</div>
+				</div>
+			</nav>
+
+            <div class="content">
+
+                @include('errors.form')
+                @include(('success.status'))
+                <div class="container-fluid">
+                    @yield('content')
+                </div>
+            </div>
+
+            <footer class="footer">
+                <div class="container-fluid">
 
                 <p class="copyright pull-right">
                     &copy;
@@ -127,9 +187,5 @@
             </div>
         </footer>
     </div>
-
-
-
 </body>
-
 </html>
