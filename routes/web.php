@@ -64,6 +64,7 @@ Route::group(['prefix'=>'sekolah','namespace'=>'School'],function() {
 Route::group(['prefix'=>'student','namespace'=>'Student'],function(){
     Route::get('/enroll/{slug}', 'EnrollmentController@view');
     Route::post('/enroll', 'EnrollmentController@store');
+    Route::post('/enroll-proof', 'EnrollmentController@storeProof');
     Route::get('/login', 'LoginController@view');
     Route::post('/login', 'LoginController@login');
 
@@ -121,6 +122,7 @@ Route::group(['prefix'=>'admin'],function(){
     Route::post('/login','AdminController@postLogin');
 
     Route::group(['middleware'=>['role.auth','auth','empty.null']],function(){
+        Route::get('/','InstitutionController@viewAllInstitution')->name('admin.view.all.institution');
         Route::get('/all-institution','InstitutionController@viewAllInstitution')->name('admin.view.all.institution');
         Route::get('/view-institution/{id}','InstitutionController@editInstitution')->name('admin.edit.institution');
         Route::get('/view-institution-request','InstitutionController@viewInstitutionRequest')->name('admin.view.institution.request');

@@ -53,6 +53,8 @@
 </style>
 
 <body class=" skin-red sidebar-toggle">
+@include('errors.form')
+@include(('success.status'))
 <div class="wrapper">
     <!-- Main Header -->
     <header class="main-header">

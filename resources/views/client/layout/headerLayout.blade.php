@@ -1,4 +1,6 @@
-@extends('client.layout.app') @section('content')
+@extends('client.layout.app')
+
+@section('content')
     <div class="row">
         <!-- <div class="col-lg-1">
         <a href="#" style="color:black;font-size: 200%"><i class="fa fa-arrow-left"></i> <span>Back</span></a>
@@ -13,38 +15,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-12">
-                <div class='row'>
-                    @if (count($errors) > 0)
-                        @foreach ($errors->all() as $error)
-                            <script>
-                                $.notify({
-                                    // options
-                                    message: "{{ $error }}"
-                                }, {
-                                    // settings
-                                    type: 'warning'
-                                });
-                            </script>
-                        @endforeach
-                    @endif
-                    @if (session('status'))
-                        <script>
-                            $.notify({
-                                // options
-                                message: "{{ session('status') }}"
-                            }, {
-                                // settings
-                                type: 'success'
-                            });
-                        </script>
-
-                    @endif
-                </div>
-                @yield('content2')
             </div>
         </div>
         <div class="modal fade" tabindex="-1" role="dialog" id="confirmDelete">
@@ -76,5 +46,5 @@
         </script>
     </div>
     <!--</div>-->
-
+    @yield('content2')
 @endsection

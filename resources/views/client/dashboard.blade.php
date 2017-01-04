@@ -102,7 +102,7 @@
         </div>
 
         <div class="col-lg-3 col-md-6 col-sm-3 col-xs-12">
-            <a href="#">
+            <a href="/client-dashboard/enrollment">
                 <div class="box-body">
                     <div class="demo-card-image mdl-card  "
                          style="background-image: url('/img/default/faculty-04.png'); background-size: 30%; background-color:white;">
