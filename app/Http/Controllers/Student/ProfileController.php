@@ -102,17 +102,12 @@ class ProfileController extends Controller
             $path = 'student/profile/'.Auth::user()->id.'/'.$image->getClientOriginalName();
 
             if($file != null){
-
                 $this->updateProfilePicture($file,$image,$path);
-
             }else{
-
                 $fileCategory  = FileCategory::whereName('Student Profile Pic')->first();
-
                 if(!isset($fileCategory)){
                     $fileCategory = FileCategory::create(['name'=>'Student Profile Pic']);
                 }
-
                 StudentFile::create([
                     'file_type_id'=>1,  // 1 corresponce to image
                     'file_category_id'=>$fileCategory->id, //corresponce to student profile picture
@@ -123,11 +118,8 @@ class ProfileController extends Controller
                     'size'=>$image->getClientSize(),
                     'description'=>'No description',
                 ]);
-
             }
-
             Storage::disk('s3')->put($path,file_get_contents($image),'public');
-            
         }
 
 

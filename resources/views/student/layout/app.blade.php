@@ -40,6 +40,12 @@
     <script src="/assets/js/jquery.sharrre.js"></script>
     <script src="/assets/js/demo.js"></script>
     @yield('header-css')
+
+    <style>
+        .img-circle {
+            border-radius: 50%;
+        }
+    </style>
 </head>
 <body>
 <div class="wrapper">
@@ -52,7 +58,11 @@
         <div class="sidebar-wrapper">
             <div class="user">
                 <div class="photo text-center">
-                    <img src="/img/logo/logo/student.png">
+                    @if(isset(auth()->user()->student_profile_picture))
+                        <img src="{{ $s3.auth()->user()->student_profile_picture->path }}" height="130px" width="130px" class="img-circle">
+                    @else
+                        <img src="/img/logo/logo/student.png">
+                    @endif
                 </div>
             </div>
             <ul class="nav">

@@ -64,6 +64,7 @@ Route::group(['prefix'=>'sekolah','namespace'=>'School'],function() {
 Route::group(['prefix'=>'student','namespace'=>'Student'],function(){
     Route::get('/enroll/{slug}', 'EnrollmentController@view');
     Route::post('/enroll', 'EnrollmentController@store');
+    Route::post('/enroll-proof', 'EnrollmentController@storeProof');
     Route::get('/login', 'LoginController@view');
     Route::post('/login', 'LoginController@login');
 
