@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
 
 //        $this->call(SchoolAdminSeeder::class);
 //        $this->call(SchoolTypeSeeder::class);
-        $this->call(SchoolStreamSeeder::class);
+        // $this->call(SchoolStreamSeeder::class);
         $this->call(SchoolTypeRequirements::class);
         $this->call(DeskripsiSeeder::class);
     }
