@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Notifications\CustomerEnquiry;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
@@ -27,26 +28,28 @@ class EnquiryController extends Controller
 
         $enquiry = Enquiry::create($request->all());
 
-        $institution_user->user->notify(new \App\Notifications\CustomerEnquiry(
+        $institution_user->user->notify(new CustomerEnquiry(
             $institution_user->user->name,
             $enquiry->name,
             $enquiry->email,
             $course
         ));
 
-        return 'dok';
+        return response()->json('Success',200);
     }
 
     public function getNotifications()
     {
         $institution = Auth::user()->client->institution;
-        $count = Enquiry::whereInstitutionCourseIdAndNotificationStatus($institution->id,0)->count();
-        $enquiry = Enquiry::whereInstitutionCourseId($institution->id)->get();
+        $count = Enquiry::where('institution_course_id',$institution->id)
+                        ->where('notification_status',0)
+                        ->count();
+        $enquiry = Enquiry::where('institution_course_id',$institution->id)->get();
 
         return response()->json([
             'count' => $count,
             'notifications' => $enquiry->sortByDesc('id')
-        ]); ;
+        ],200);
     }
 
     public function view(Request $request)
@@ -68,7 +71,7 @@ class EnquiryController extends Controller
             $e->save();
         }
 
-        return 'ok';
+        return response()->json('Success',200);
     }
 
 }
