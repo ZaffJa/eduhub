@@ -3,9 +3,10 @@
 
 Route::get('excel','ExcelController@index');
 Route::post('excel','ExcelController@store');
-
+Route::get('/',function(){
+    return view('welcome');
+});
 Auth::routes();
-
 
 Route::get('school/login','School\LoginController@login');
 Route::post('school/login','School\LoginController@postLogin');
@@ -61,7 +62,9 @@ Route::group(['prefix'=>'sekolah','namespace'=>'School'],function() {
 });
 
 Route::group(['prefix'=>'student','namespace'=>'Student'],function(){
-
+    Route::get('/enroll/{slug}', 'EnrollmentController@view');
+    Route::post('/enroll', 'EnrollmentController@store');
+    Route::post('/enroll-proof', 'EnrollmentController@storeProof');
     Route::get('/login', 'LoginController@view');
     Route::post('/login', 'LoginController@login');
 
@@ -110,9 +113,7 @@ Route::get('/permission-error',function(){
     return view('errors.403');
 });
 
-Route::get('/',function(){
-    return view('welcome');
-});
+
 
 
 Route::group(['prefix'=>'admin'],function(){
@@ -170,6 +171,7 @@ Route::group(['prefix'=>'client-dashboard','middleware'=>['auth','empty.null']],
     Route::post('/request-institution','InstitutionController@requestAddInstitution')->name('client.request.add.institution');
 
     Route::group(['middleware'=>['role.auth']],function(){
+
         Route::get('/notifications', 'EnquiryController@getNotifications');
         Route::get('/notifications/view', 'EnquiryController@view');
         Route::post('/notifications/reset', 'EnquiryController@reset');
@@ -212,5 +214,11 @@ Route::group(['prefix'=>'client-dashboard','middleware'=>['auth','empty.null']],
         Route::get('/institution/{id}/institution-view', 'InstitutionController@viewInstitution')->name('client.institution.view.institution');
         Route::get('/institution/{id}/edit', 'InstitutionController@edit')->name('client.institution.edit');
         Route::post('/institution/{id}/edit', 'InstitutionController@update')->name('client.institution.update');
+        Route::get('enrollment','EnrollmentController@index');
+        Route::post('enrollment','EnrollmentController@upload');
+        Route::post('enrollment/toggle','EnrollmentController@toggleStatus');
+        Route::get('enrollment/enroll/{studentEnrollment}','EnrollmentController@enroll');
+        Route::get('enrollment/accept/{studentEnrollment}','EnrollmentController@accept');
+        Route::get('enrollment/reject/{studentEnrollment}','EnrollmentController@reject');
     });
 });

@@ -55,19 +55,17 @@
     <!-- Material Dashboard javascript methods -->
     <script src="/assets/js/material-dashboard.js"></script>
 
-    <!--   Sharrre Library    -->
-    {{--<script src="/assets/js/jquery.sharrre.js"></script>--}}
 
-    {{--<script src="/assets/js/demo.js"></script>--}}
     @yield('header-css')
 </head>
 
 <body>
 {{--@include('school.partials._modal')--}}
-<div class="wrapper">
 
     <div class="main-panel main-panel-sub">
-        <nav class="navbar navbar-default navbar-absolute navbar-school" style=" border-top: 4px solid #DA2D2D ;">
+
+        <nav class="navbar navbar-default navbar-absolute navbar-school" style="margin-bottom: 0px; border-top: 4px solid #DA2D2D ;">
+            <div class="container">
             <div class="container-fluid">
                 <div class="navbar-header">
                     @if(auth()->user())
@@ -80,11 +78,15 @@
 
                         </button>
                     @endif
-                    <a class="navbar-brand" href="{{ action('School\SchoolController@lists') }}">
-                        <img src="/img/logo/logonav.png"
-                             style="display: inline-block; max-width: 130px; background-color: white;">
 
-                    </a>
+                        <div class="container-fluid">
+                            <ul class="list-inline" style="margin-bottom: auto ">
+                                <li><a href="/sekolah" class="navbar-brand"><img src="/img/logo/logocvr.png" style="max-width: 150px; padding: 6px 1px;"></a></li>
+
+                                <li> <small style="color: black; margin-bottom: 20px; font-size: 14px; " class="text-muted" >Carian Pendidikan #1 Di Malaysia</small></li>
+                            </ul>
+                        </div>
+
                 </div>
                 @if(auth()->user())
                     <ul class="nav navbar-nav navbar-right hidden-sm hidden-xs">
@@ -103,6 +105,7 @@
                     </ul>
                 @endif
             </div>
+            </div>
         </nav>
         <div class="content">
             @include('errors.form')
@@ -111,7 +114,6 @@
                 @yield('content')
             </div>
         </div>
-
         <footer class="footer">
             <div class="container-fluid">
 
@@ -124,12 +126,10 @@
                 </p>
             </div>
         </footer>
-
     </div>
-</div>
+
 
 
 </body>
-<!-- Mirrored from demos.creative-tim.com/material-dashboard/examples/dashboard.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 27 Oct 2016 07:41:19 GMT -->
 
 </html>

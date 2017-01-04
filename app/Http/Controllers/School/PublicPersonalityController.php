@@ -38,10 +38,10 @@ class PublicPersonalityController extends Controller
         return View::make('school.personality.set1');
     }
 
-    public function set2(Request $r)
+
+    public function result(Request $r)
     {
-        //Checking if set1 data is already processed
-        //If user hit refresh, the data wont be processed the second time
+
         if(!session()->exists('set1'))
         {
             if($r->a1){
@@ -84,20 +84,6 @@ class PublicPersonalityController extends Controller
                 $rea = session('i');
                 session(['i' => $rea += 1]);
             }
-        }
-        //Set session set1 to mark that set1 data is already process
-        session(['set1' => 1]);
-        //Set1 that is used for checking if set1 data is processed
-        //If user pressed back, delete session set1
-        session()->forget('set2');
-
-        return View::make('school.personality.set2');
-    }
-
-    public function set3 (Request $r)
-    {
-        if(!session()->exists('set2'))
-        {
             if($r->a2){
                 $rea = session('r');
                 session(['r' => $rea += 1]);
@@ -138,17 +124,6 @@ class PublicPersonalityController extends Controller
                 $rea = session('i');
                 session(['i' => $rea += 1]);
             }
-        }
-        session(['set2' => 1]);
-        session()->forget('set3');
-
-        return View::make('school.personality.set3');
-    }
-
-    public function set4 (Request $r)
-    {
-        if(!session()->exists('set3'))
-        {
             if($r->b1){
                 $rea = session('a');
                 session(['a' => $rea += 1]);
@@ -189,17 +164,6 @@ class PublicPersonalityController extends Controller
                 $rea = session('s');
                 session(['s' => $rea += 1]);
             }
-        }
-        session(['set3' => 1]);
-        session()->forget('set4');
-
-        return View::make('school.personality.set4');
-    }
-
-    public function set5 (Request $r)
-    {
-        if(!session()->exists('set4'))
-        {
             if($r->a6){
                 $rea = session('r');
                 session(['r' => $rea += 1]);
@@ -240,17 +204,6 @@ class PublicPersonalityController extends Controller
                 $rea = session('c');
                 session(['c' => $rea += 1]);
             }
-        }
-        session(['set4' => 1]);
-        session()->forget('set5');
-
-        return View::make('school.personality.set5');
-    }
-
-    public function set6 (Request $r)
-    {
-        if(!session()->exists('set5'))
-        {
             if($r->b5){
                 $rea = session('a');
                 session(['a' => $rea += 1]);
@@ -291,18 +244,6 @@ class PublicPersonalityController extends Controller
                 $rea = session('e');
                 session(['e' => $rea += 1]);
             }
-        }
-        session(['set5' => 1]);
-        session()->forget('set6');
-
-        return View::make('school.personality.set6');
-    }
-
-    public function result(Request $r)
-    {
-
-        if(!session()->exists('set6'))
-        {
             if($r->c6){
                 $rea = session('e');
                 session(['e' => $rea += 1]);
@@ -321,7 +262,7 @@ class PublicPersonalityController extends Controller
             }
         }
 
-        session(['set6' => 1]);
+        session(['set1' => 1]);
 
         //Storing result into array to sort using algorithm
         $res = array
