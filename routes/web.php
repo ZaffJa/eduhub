@@ -129,6 +129,8 @@ Route::group(['prefix'=>'admin'],function(){
         Route::get('/approve-institution/{id}','InstitutionController@approveInstitutionRequest')->name('admin.approve.institution.request');
         Route::get('/reject-institution/{id}','InstitutionController@rejectInstitutionRequest')->name('admin.reject.institution.request');
         Route::get('/new-institution', 'InstitutionController@index');
+        Route::get('/enrollment', 'AdminController@viewEnrollment');
+        Route::post('/enrollment/confirm', 'EnrollmentController@confirm');
         Route::post('/new-institution', 'InstitutionController@create')->name('client.post.institution');
         Route::get('/delete-institution/{id}', 'InstitutionController@delete');
         Route::get('/request-history', 'InstitutionController@requestHistory');

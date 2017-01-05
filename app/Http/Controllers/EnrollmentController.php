@@ -90,4 +90,22 @@ class EnrollmentController extends Controller
         return redirect()->back()->with('status', 'Updated status of application form');
     }
 
+    public function confirm(Request $request)
+    {
+        $studentEnrollment = StudentEnrollment::find($request->id);
+        // Confirm the payment
+        if($studentEnrollment->status == 3) {
+            $studentEnrollment->status = 4;
+            $studentEnrollment->payment_details = $request->payment_details or null;
+
+        }
+        // Cancel the payment
+        else if($studentEnrollment->status == 4) $studentEnrollment->status = 3;
+        else $studentEnrollment->status = 3;
+
+        $studentEnrollment->save();
+
+        return redirect()->back()->with('status','Update status for the record');
+    }
+
 }
