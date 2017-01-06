@@ -4,58 +4,61 @@
 @section('title', 'Short Course')
 @section('headbar', 'Add Course')
 @section('content2')
-<style type="text/css">
-    .thumbnail {
-        max-width: 15vw;
-    }
+    <style type="text/css">
+        .thumbnail {
 
-    .italic {
-        font-style: italic;
-    }
+            height: 130px;
+            width: 130px;
+            border-radius: 50%;
+        }
 
-    .small {
-        font-size: 0.8em;
-    }
+        .italic {
+            font-style: italic;
+        }
 
-    .lightbox {
-        /** Default lightbox to hidden */
-        display: none;
-        /** Position and style */
-        position: fixed;
-        z-index: 999;
-        width: 100%;
-        height: 100%;
-        text-align: center;
-        top: 0;
-        left: 0;
-        background: rgba(0, 0, 0, 0.8);
-    }
+        .small {
+            font-size: 0.8em;
+        }
 
-    .lightbox img {
-        /** Pad the lightbox image */
-        max-width: 90%;
-        max-height: 80%;
-        margin-top: 10%;
-    }
+        .lightbox {
+            /** Default lightbox to hidden */
+            display: none;
+            /** Position and style */
+            position: fixed;
+            z-index: 999;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            top: 0;
+            left: 0;
+            background: rgba(0, 0, 0, 0.8);
+        }
 
-    .lightbox:target {
-        /** Remove default browser outline */
-        outline: none;
-        /** Unhide lightbox **/
-        display: block;
-    }
-</style>
+        .lightbox img {
+            /** Pad the lightbox image */
+            max-width: 90%;
+            max-height: 80%;
+            margin-top: 10%;
+        }
+
+        .lightbox:target {
+            /** Remove default browser outline */
+            outline: none;
+            /** Unhide lightbox **/
+            display: block;
+        }
+    </style>
     <div class="col-lg-12">
         <div class="box box-solid">
             <div class="box-header with-border" style="margin-left:2%">
                 <i class="fa fa-book"></i>
                 <h1 class="box-title"> Course name</h1>
-            </br>
+                </br>
                 <h2 class="box-title"> {{ $course->name_en or '' }} </h2>
-             </br>
+                </br>
                 <h3 class="box-title"> {{ $course->name_ms or '' }} </h3>
             </div>
-            
+
             <!-- /.box-header -->
             <div class="box-body" style="margin-left:2%; font-size:125%">
                 <dl class="dl-horizontal">
@@ -63,7 +66,8 @@
                     <dd>{{ isset($course->description) ? $course->description : "No description added" }}  </dd>
                     <hr>
                     <dt>Course duration</dt>
-                    <dd>{{ $course->period_value_min }} - {{ $course->period_value_max }} {{ $course->periodType != null ? $course->periodType->name : 'No course period' }}</dd>
+                    <dd>{{ $course->period_value_min }}
+                        - {{ $course->period_value_max }} {{ $course->periodType != null ? $course->periodType->name : 'No course period' }}</dd>
                     <hr>
                     <dt>Course Length Per Session</dt>
                     <dd>{{ $course->length != null ? $course->length : "No course length"}}  </dd>
@@ -84,7 +88,7 @@
                     <dt>Course Location</dt>
                     <dd>{{ $course->location != null ? $course->location : "No course location"}}  </dd>
                     <hr>
-                    <dt>Course Level </dt>
+                    <dt>Course Level</dt>
                     <dd> {{ $course->level != null ? $course->level->name : 'No course level' }} </dd>
                     <hr>
                     <dt>Course Field</dt>
@@ -113,7 +117,7 @@
                     <dd>{{ $course->early_birds != null ? $course->early_birds : "No early birds promotion"}}</dd>
                     <hr>
 
-                    
+
                     <div class="box-header">
                         Course Additional Information
                     </div>
@@ -136,45 +140,51 @@
                     <div class="box-header">
                         Course Pictures (5 max)
                     </div>
-                    <dt>Short Course Picture</dt>
-                    <dd>@if($picture)
-                        @foreach($picture as $pic)
-                        <div class="col-md-3">
-                            <a class="profile-link" href="#">
-                                <img src="{{isset($pic) ? env('AWS_S3').$pic->path : ''}}" class="thumbnail" onerror="this.onerror=null;this.src='/img/avatar/picture.png'" >
-                            </a>
+                    <div class="row">
+                        <div class="col-md-12" style="text-align: center">
+                            @if($picture)
+                                @foreach($picture as $pic)
+                                    <div class="col-md-3">
+                                        <a class="profile-link" href="#">
+                                            <img src="{{isset($pic) ? env('AWS_S3').$pic->path : ''}}" class="thumbnail"
+                                                 onerror="this.onerror=null;this.src='/img/avatar/picture.png'">
+                                        </a>
+                                    </div>
+                                @endforeach @else
+                                No picture added
+                            @endif
                         </div>
-                        @endforeach @else
-                        No picture added
-                        @endif
+                    </div>
+                    <dt></dt>
+                    <dd>
                     </dd>
                     <hr>
                 </dl>
             </div>
             <div class="box-footer">
                 <div class="col-md-offset-10">
-                	<a href="{!! route('short.course.view') !!}" class="btn btn-warning">Cancel</a>
-                	<a href="{!! route('short.course.edit', $course->id) !!}" class="btn btn-primary">Edit</a>
+                    <a href="{!! route('short.course.view') !!}" class="btn btn-warning">Cancel</a>
+                    <a href="{!! route('short.course.edit', $course->id) !!}" class="btn btn-primary">Edit</a>
                 </div>
             </div>
         </div>
-         <!-- /.box-body -->
-	</div>
+        <!-- /.box-body -->
+    </div>
 
-<a href="#_" class="lightbox" id="imgBox">
-    <img class="imgSrc" src="#">
-</a>
+    <a href="#_" class="lightbox" id="imgBox">
+        <img class="imgSrc" src="#">
+    </a>
 
-<script type="text/javascript">
-    $('.thumbnail').on('click', function() {
-        var $src = $(this).prop('src');
+    <script type="text/javascript">
+        $('.thumbnail').on('click', function () {
+            var $src = $(this).prop('src');
 
-        $('.imgSrc').prop('src',$src);
-        $('.lightbox').show();
-    });
+            $('.imgSrc').prop('src', $src);
+            $('.lightbox').show();
+        });
 
-    $('.imgSrc').on('click',function(){
-        $('#imgBox').hide();
-    });
-</script>
+        $('.imgSrc').on('click', function () {
+            $('#imgBox').hide();
+        });
+    </script>
 @endsection

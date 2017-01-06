@@ -282,20 +282,15 @@ class InstitutionController extends Controller
                 'user_id' => $ri->user_id,
                 'institution_id' => $ri->institution_id
             ]);
-
             $ri->save();
-
-            Role::create([
-                'user_id' => $ri->user_id,
-                'role_id' => 2
-            ]);
-
+//            Role::create([
+//                'user_id' => $ri->user_id,
+//                'role_id' => 2
+//            ]);
             return redirect()
                 ->back()
-                ->with('status', 'Succesfully approve client request');
-
+                ->with('status', 'Successfully approve client request');
         } catch (QueryException $ex) {
-
             return redirect()
                 ->back()
                 ->withErrors($ex->errorInfo[2]);

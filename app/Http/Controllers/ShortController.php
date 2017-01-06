@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AdminNotification;
+use App\Notifications\RegisterConsultant;
+use App\Notifications\ShortCreateOther;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\DB;
@@ -118,11 +122,11 @@ class ShortController extends Controller
                 'role_id'=>3
             ]);
 
-            $user->notify(new \App\Notifications\RegisterConsultant($user->name,$activate->token));
+            $user->notify(new RegisterConsultant($user->name,$activate->token));
 
             return view('short.auth.login')->with('status','Your account has been created. Please verify your email before login.');
 
-        }catch(\Illuminate\Database\QueryException $ex){
+        }catch(QueryException $ex){
 
             return redirect()->back()->withErrors($ex->errorInfo);
 
@@ -216,7 +220,7 @@ class ShortController extends Controller
             $provider->save();
 
 
-        }catch(\Illuminate\Database\QueryException $ex){
+        }catch(QueryException $ex){
             return redirect()
                 ->back()
                 ->withErrors($ex->errorInfo[2])
@@ -251,7 +255,7 @@ class ShortController extends Controller
 
             $provider_pic->save();
 
-            }catch(\Illuminate\Database\QueryException $ex){
+            }catch(QueryException $ex){
                 return redirect()
                     ->back()
                     ->withErrors($ex->errorInfo[2])
@@ -269,7 +273,7 @@ class ShortController extends Controller
     {
         $activate = ActivateShortProvider::whereToken($token)->first();
         $user = User::whereEmail($activate->email)->first();
-        $user->notify(new \App\Notifications\RegisterConsultant($user->name,$activate->token));
+        $user->notify(new RegisterConsultant($user->name,$activate->token));
 
         return redirect()
             ->back()
@@ -304,7 +308,7 @@ class ShortController extends Controller
 
             return view('short.dashboard');
 
-        }catch(\Illuminate\Database\QueryException $ex){
+        }catch(QueryException $ex){
 
             return redirect()->back()->withErrors('Something went wrong. We cannot register you to short courses');
         }
@@ -328,7 +332,7 @@ class ShortController extends Controller
     {
         $periodType = PeriodType::pluck('name','id');
         $levelType = Level::pluck('name','id');
-        $fieldType = Field::orderBy('name')->pluck('name','id')->toArray();
+        $fieldType = Field::distinct('name')->pluck('name','id')->toArray();
 
         return View::make('short.course.add', compact('periodType','levelType','fieldType'));
     }
@@ -375,7 +379,7 @@ class ShortController extends Controller
                 $roles = Role::all();
 
 
-                $an = new \App\Models\AdminNotification;
+                $an = new AdminNotification;
                 $an->message = 'A user named '.Auth::user()->short_provider->name.' with id '.Auth::user()->short_provider->id.' has created a new field name called '. $r->others.'.';
                 $an->action = 1;
                 $an->user_id = Auth::user()->id;
@@ -388,7 +392,7 @@ class ShortController extends Controller
                     {
                         $admin = User::find($role->user_id);
 
-                        $admin->notify(new \App\Notifications\ShortCreateOther(
+                        $admin->notify(new ShortCreateOther(
                                         Auth::user()->short_provider->name,
                                         $r->others,
                                         Auth::user()->id));
@@ -490,7 +494,7 @@ class ShortController extends Controller
                 $short_pic5->save();
             }
 
-        }catch(\Illuminate\Database\QueryException $e){
+        }catch(QueryException $e){
             return $e->errorInfo;
         }
 
@@ -526,7 +530,7 @@ class ShortController extends Controller
 
     public function updateCourse(Request $r,$id)
     {
-        $validator = Validator::make($r->all(), [
+        $this->validate($r, [
             'name_en' => 'required|min:15|max:255',
             'name_ms' => 'required|max:255',
             'location' => 'required',
@@ -540,7 +544,7 @@ class ShortController extends Controller
 
         try{
 
-            $course = Course::whereId($id)->firstOrFail();
+            $course = Course::find($id);
 
             $course->name_en = $r->name_en;
             $course->name_ms = $r->name_ms;
@@ -741,7 +745,7 @@ class ShortController extends Controller
             }
 
 
-        }catch(\Illuminate\Database\QueryException $e){
+        }catch(QueryException $e){
             return redirect()
                     ->back()
                     ->withErrors([$e->errorInfo[2]]);
@@ -767,7 +771,7 @@ class ShortController extends Controller
                 ->action('ShortController@viewCourse')
                 ->with('status','Successfully delete the record');
 
-        }catch(\Illuminate\Database\QueryException $ex){
+        }catch(QueryException $ex){
 
             return redirect()
                 ->action('ShortController@viewCourse')

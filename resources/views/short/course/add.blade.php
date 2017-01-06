@@ -253,7 +253,7 @@
                             </label>
                         </div>
                         <div class="col-md-10 col-sm-12 col-xs-12">
-                            <input type="number" name="hrdf_scheme" placeholder="HRDF Scheme" value="{{ old('hrdf_scheme') }}">
+                            <input type="text" name="hrdf_scheme" placeholder="HRDF Scheme" value="{{ old('hrdf_scheme') }}">
                         </div>
                     </div>
 
