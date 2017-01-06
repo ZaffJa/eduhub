@@ -70,9 +70,9 @@
                         </label>
                         {{--<input type="text" class="form-control" readonly>--}}
                     </div>
-                    <a href="#" id="geolocateBtn" class="btn btn-primary">Detect your location</a>
+                    {{--<a href="#" id="geolocateBtn" class="btn btn-primary">Detect your location</a>--}}
 
-                    <div id="map"></div>
+                    {{--<div id="map"></div>--}}
 
                     {{csrf_field()}}
 

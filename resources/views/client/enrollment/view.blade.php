@@ -7,19 +7,22 @@
                 <form action="{{ action('EnrollmentController@upload') }}" enctype="multipart/form-data" method="post">
                     {{ csrf_field() }}
                     <label style="font-size: 40px; ">Application Form</label>
-                    @if(isset(auth()->user()->client->institution->enrollment_file_path))
-                        <a href="{{ $s3.auth()->user()->client->institution->enrollment_file_path }}"
-                           download class="btn btn-primary btn-lg">
-                            Download Application Form
-                        </a>
-                    @else
-                        <h3>
-                            You have not uploaded an application form yet.
-                        </h3>
-                    @endif
-                    <label for="files" class="btn btn-success btn-lg">Upload Application Form</label>
-                    <input type="file" id="files" class="custom-file-input hidden"
-                           name="application_form">
+                    <div class="row">
+                        @if(isset(auth()->user()->client->institution->enrollment_file_path))
+                            <a href="{{ $s3.auth()->user()->client->institution->enrollment_file_path }}"
+                               download class="btn btn-primary btn-lg">
+                                Download Application Form
+                            </a>
+
+                        @else
+                            <h3>
+                                You have not uploaded an application form yet.
+                            </h3>
+                        @endif
+                        <label for="files" class="btn btn-success btn-lg">Upload Application Form</label>
+                        <input type="file" id="files" class="custom-file-input hidden"
+                               name="application_form">
+                    </div>
                 </form>
             </div>
             <div class="col-md-2">
@@ -85,7 +88,7 @@
         $(function () {
             $("#files").on("change", function () {
                 var file = $("#files");
-                bootbox.confirm('By clicking OK you agree.', function (result) {
+                bootbox.confirm('By clicking OK you agree that the form you upload is verified and eduhub will not be responsible for any losses that may occur.', function (result) {
                     if (result) {
                         file.closest("form").submit();
                     }

@@ -4,13 +4,11 @@
 @section('headbar', 'Institution Info')
 @section('content2')
 
-    <div>
-
+    <div class="row">
         <div class="col-lg-12">
             <div class="box box-solid">
                 <div class="box-header with-border" style="margin-left:2%">
                     <i class="fa fa-book"></i>
-
                     <h1 class="box-title"> {{ $institution->name }} </h1>
                 </div>
                 <!-- /.box-header -->
@@ -64,7 +62,6 @@
                         <dd>{!! $institution->student_enrollment_department_email !!}</dd>
                         <hr>
                     </dl>
-
                 </div>
                 <div class="box-footer">
                     <div class="col-md-10">
@@ -76,14 +73,10 @@
                     </div>
                 </div>
             </div>
-
             <!-- /.box-body -->
         </div>
         <!-- /.box -->
     </div>
-
-    </div>
-
 
 
 

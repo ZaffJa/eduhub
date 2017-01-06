@@ -61,10 +61,11 @@
 
 <body>
 
-    <div class="main-panel main-panel-sub">
+<div class="main-panel main-panel-sub">
 
-        <nav class="navbar navbar-default navbar-absolute navbar-school" style="margin-bottom: 0px; border-top: 4px solid #DA2D2D ;">
-            <div class="container">
+    <nav class="navbar navbar-default navbar-absolute navbar-school"
+         style="margin-bottom: 0px; border-top: 4px solid #DA2D2D ;">
+        <div class="container">
             <div class="container-fluid">
                 <div class="navbar-header">
                     @if(auth()->user())
@@ -78,114 +79,48 @@
                         </button>
                     @endif
 
-                        <div class="container-fluid">
-                            <ul class="list-inline" style="margin-bottom: auto ">
-                                <li><a href="/sekolah" class="navbar-brand"><img src="/img/logo/logocvr.png" style="max-width: 150px; padding: 6px 1px;"></a></li>
+                    <div class="container-fluid">
+                        <ul class="list-inline" style="margin-bottom: auto ">
+                            <li><a href="/sekolah" class="navbar-brand"><img src="/img/logo/logocvr.png"
+                                                                             style="max-width: 150px; padding: 6px 1px;"></a>
+                            </li>
 
-                                <li> <small style="color: black; margin-bottom: 20px; font-size: 14px; " class="text-muted" >Carian Pendidikan #1 Di Malaysia</small></li>
-                            </ul>
-                        </div>
+                            <li>
+                                <small style="color: black; margin-bottom: 20px; font-size: 14px; " class="text-muted">
+                                    Carian Pendidikan #1 Di Malaysia
+                                </small>
+                            </li>
+                        </ul>
+                    </div>
 
                 </div>
-                @if(auth()->user())
-                    <ul class="nav navbar-nav navbar-right hidden-sm hidden-xs">
-                        <li><a href="{{ action('School\SchoolController@register') }}">
-                                <i class="fa fa-pencil fa-fw" aria-hidden="true" style="color: black"></i>
-                            </a>
-                        </li>
-                        <li>
-                            <a onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-                                <i class="fa fa-sign-out"></i>
-                            </a>
-                            <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
-                                {{ csrf_field() }}
-                            </form>
-                        </li>
-                    </ul>
-                @endif
-            </div>
-            </div>
-        </nav>
-        <div class="content">
-            @include('errors.form')
-            @include(('success.status'))
-            <div class="container-fluid">
-                @yield('content')
+                {{--@if(auth()->user())--}}
+                    {{--<ul class="nav navbar-nav navbar-right hidden-sm hidden-xs">--}}
+                        {{--<li><a href="{{ action('School\SchoolController@register') }}">--}}
+                                {{--<i class="fa fa-pencil fa-fw" aria-hidden="true" style="color: black"></i>--}}
+                            {{--</a>--}}
+                        {{--</li>--}}
+                        {{--<li>--}}
+                            {{--<a onclick="event.preventDefault();document.getElementById('logout-form').submit();">--}}
+                                {{--<i class="fa fa-sign-out"></i>--}}
+                            {{--</a>--}}
+                            {{--<form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">--}}
+                                {{--{{ csrf_field() }}--}}
+                            {{--</form>--}}
+                        {{--</li>--}}
+                    {{--</ul>--}}
+                {{--@endif--}}
             </div>
         </div>
-        <footer class="footer">
-            <div class="container-fluid">
-      		        Tip 2: you can also add an image using data-image tag
-      		    -->
-
-      			<div class="logo text-center">
-              <a class="text-center" href="#">
-                  <img src="/img/logo/logo/student.png" width="90" height="90" class="d-inline-block align-top" alt="">
-              </a>
-      			</div>
-
-      	    	<div class="sidebar-wrapper">
-      	            <form class="navbar-form navbar-right" role="search">
-      							<div class="form-group  is-empty">
-      								<input type="text" class="form-control" placeholder="Search School">
-      								<span class="material-input"></span>
-      							<span class="material-input"></span></div>
-      							<button type="submit" class="btn btn-white btn-round btn-just-icon">
-      								<i class="material-icons">search</i><div class="ripple-container"></div>
-      							</button>
-      						</form>
-      	    	</div>
-      	    </div>
-        <div class="main-panel main-panel-sub">
-          <nav class="navbar navbar-danger navbar-absolute">
-				<div class="container-fluid">
-					<div class="navbar-header">
-						<button type="button" class="navbar-toggle toggled" data-toggle="collapse">
-							<span class="sr-only">Toggle navigation</span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-						</button>
-            <a class="navbar-brand" href="#">
-                <img src="/img/logo/logo/student.png" width="30" height="30" class="d-inline-block align-top" alt="">
-            </a>
-					</div>
-					<div class="collapse navbar-collapse">
-
-						<form class="navbar-form navbar-right" role="search">
-							<div class="form-group  is-empty">
-								<input type="text" class="form-control" placeholder="Search">
-								<span class="material-input"></span>
-							<span class="material-input"></span></div>
-							<button type="submit" class="btn btn-white btn-round btn-just-icon">
-								<i class="material-icons">search</i><div class="ripple-container"></div>
-							</button>
-						</form>
-					</div>
-				</div>
-			</nav>
-
-            <div class="content">
-
-                @include('errors.form')
-                @include(('success.status'))
-                <div class="container-fluid">
-                    @yield('content')
-                </div>
-            </div>
-
-            <footer class="footer">
-                <div class="container-fluid">
-
-                <p class="copyright pull-right">
-                    &copy;
-                    <script>
-                        document.write(new Date().getFullYear())
-                    </script>
-                    <a href="http://www.eduhub.my">eduhub.my</a>
-                </p>
-            </div>
-        </footer>
+    </nav>
+    <div class="content">
+        @include('errors.form')
+        @include(('success.status'))
+        <div class="container-fluid">
+            @yield('content')
+        </div>
     </div>
+    <footer class="footer" style="text-align: right">eduhub.my 2017</footer>
+</div>
 </body>
 </html>
