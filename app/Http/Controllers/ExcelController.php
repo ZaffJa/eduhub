@@ -45,7 +45,7 @@ class ExcelController extends Controller
         ini_set('max_execution_time', 900);
 
         foreach ($csv as $data) {
-            if(!School::where('name',$data['name'])->first()) {
+            if(!School::where('name',$data['Nama_Sekolah'])->first()) {
                 $school = School::create([
                     'type'=>'menengah',
                     'ppd'=>$data['PPD'],
