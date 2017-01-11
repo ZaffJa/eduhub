@@ -15,7 +15,9 @@ class ShortCreateOther extends Notification
     /**
      * Create a new notification instance.
      *
-     * @return void
+     * @param $name
+     * @param $field
+     * @param $id
      */
     public function __construct($name,$field,$id)
     {
@@ -32,7 +34,7 @@ class ShortCreateOther extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['mail','database'];
     }
 
     /**
@@ -48,16 +50,10 @@ class ShortCreateOther extends Notification
                     ->line('If the field name '.$this->field.' is acceptable you may ignore this message');
     }
 
-    /**
-     * Get the array representation of the notification.
-     *
-     * @param  mixed  $notifiable
-     * @return array
-     */
-    public function toArray($notifiable)
+    public function toDatabase($notifiable)
     {
         return [
-            //
+            'message' => 'A user named '.$this->name.' with id '.$this->id.' has created a new field name '.$this->field.'.',
         ];
     }
 }

@@ -118,10 +118,10 @@
 
 
                                 <h3 class="category"><b>No Telefon Sekolah</b></h3>
-                                {{ $school->telephone or 'Belum di isi' }}
+                                +0{{ $school->telephone or 'Belum di isi' }}
 
                                 <h3 class="category"><b>Faks Sekolah</b></h3>
-                                {{ $school->fax or 'Belum di isi' }}
+                                +0{{ $school->fax or 'Belum di isi' }}
 
                                 <h3 class="category"><b>Media Sosial Sekolah</b></h3>
                                 <a href="{{ $school->facebook or '#' }}" class="btn btn-social btn-facebook btn-round sharrre"><i class="fa fa-facebook"></i> Facebook<div class="ripple-container"></div></a>

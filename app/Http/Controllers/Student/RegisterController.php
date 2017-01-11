@@ -31,7 +31,7 @@ class RegisterController extends Controller
         $user = User::create($request->except(['password_confirmation','_token']));
 
         Role::create([
-           'user_id'=>$user->id,
+           'user_id'=>$user->id ,
             'role_id'=>4
         ]);
 

@@ -17,7 +17,7 @@ use Auth;
 
 class EnquiryController extends Controller
 {
-    public function store($slug,$course,Request $request)
+    public function store($slug, $course, Request $request)
     {
         $institution = Institution::whereSlug($slug)->first();
         $institution_user = InstitutionUser::whereInstitutionId($institution->id)->first();
@@ -35,21 +35,21 @@ class EnquiryController extends Controller
             $course
         ));
 
-        return response()->json('Success',200);
+        return response()->json('Success', 200);
     }
 
     public function getNotifications()
     {
         $institution = Auth::user()->client->institution;
-        $count = Enquiry::where('institution_course_id',$institution->id)
-                        ->where('notification_status',0)
-                        ->count();
-        $enquiry = Enquiry::where('institution_course_id',$institution->id)->get();
+        $count = Enquiry::where('institution_course_id', $institution->id)
+            ->where('notification_status', 0)
+            ->count();
+        $enquiry = Enquiry::where('institution_course_id', $institution->id)->get();
 
         return response()->json([
             'count' => $count,
             'notifications' => $enquiry->sortByDesc('id')
-        ],200);
+        ], 200);
     }
 
     public function view(Request $request)
@@ -62,16 +62,18 @@ class EnquiryController extends Controller
         return view('client.enquiries')->with(compact('enquiry'));
     }
 
-    public function reset(Request $request)
+    public function reset()
     {
-        $enquiry = Enquiry::whereInstitutionIdAndNotificationStatus(Auth::user()->client->institution->id,0)->get();
+        $enquiry = Enquiry::where('institution_id', Auth::user()->client->institution->id)
+            ->where('notification_status', 0)
+            ->get();
 
         foreach ($enquiry as $e) {
             $e->notification_status = 1;
             $e->save();
         }
 
-        return response()->json('Success',200);
+        return response()->json('Success', 200);
     }
 
 }

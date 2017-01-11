@@ -54,7 +54,7 @@ class EnrollmentController extends Controller
                 'uploaded_file_path' => $filePath,
                 'institution_id' => $institution->id
             ]);
-//                Storage::disk('s3')->put($filePath, file_get_contents($file), 'public');
+
             DB::commit();
         } catch (QueryException $e) {
             DB::rollBack();
@@ -100,6 +100,6 @@ class EnrollmentController extends Controller
         } catch (Exception $e) {
             return redirect()->back()->withErrors($e->getMessage());
         }
-        return redirect()->back()->with('status', 'Uploaded the proof.');
+        return redirect()->back()->with('status', 'Uploaded the proof files.');
     }
 }

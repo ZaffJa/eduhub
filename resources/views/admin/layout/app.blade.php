@@ -69,74 +69,43 @@
                         <a href="" class="dropdown-toggle" data-toggle="dropdown">
                             <i class="fa fa-bell-o"></i>
                             <span class="label label-warning"
-                                  id="label_notification_counts">{{$admin_notifications->count() > 0 ? $admin_notifications->count() : ''}}</span>
+                                  id="label_notification_counts">{{ count(auth()->user()->unreadNotifications) }}</span>
                         </a>
                         <ul class="dropdown-menu">
                             <li class="header"><span id="notification_message"></span></li>
                             <li>
                                 <!-- inner menu: contains the actual data -->
                                 <ul class="menu" id="notifications_menu">
-                                    @foreach($admin_notifications as $notification)
+                                    @foreach(auth()->user()->unreadNotifications  as $notification)
                                         <li>
                                             <a href="#">
-                                                <i class="fa fa-users text-aqua"></i>{{ $notification->message}}
+                                                <i class="fa fa-users text-aqua"></i>{{ $notification['data']['message'] ?? 'An error has occurred.'}}
                                             </a>
                                         </li>
                                     @endforeach
                                 </ul>
                             </li>
-                            <li class="footer"><a href="{{action('NotificationController@getAdminNotifications')}}">View
+                            <li class="footer"><a href="{{action('AdminController@viewEnrollment')}}">View
                                     all</a></li>
-                        </ul>
-                    </li>
-                    <li class="dropdown user user-menu">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                            <!-- <img src="../../dist/img/user2-160x160.jpg" class="user-image" alt="User Image"> -->
-                            <i class="fa fa-cog"></i><span class=""><b>Hello,</b> {{Auth::user()->name}}</span>
-                        </a>
-                        <ul class="dropdown-menu">
-                            <!-- User image -->
-                            <li class="user-header">
-                                <!-- <img src="http://www.iiwas.org/conferences/iiwas2011/img/logos/UTM.jpg" class="img-circle" alt="User Image"> -->
-                                <p>
-                                    <small>Member
-                                        since {{Auth::user() != null? Auth::user()->created_at->diffForHumans() : ''}}</small>
-                                </p>
-                            </li>
-
-                            <li class="user-footer">
-                                <div class="pull-right">
-                                    <a href="#" class="btn btn-default btn-flat" onclick="event.preventDefault();
-                                                 document.getElementById('logout-form').submit();">
-                                        <i class="fa fa-sign-out"></i> Logout
-                                    </a>
-                                    <form id="logout-form" action="{{ url('/logout') }}" method="POST"
-                                          style="display: none;">
-                                        {{ csrf_field() }}
-                                    </form>
-                                </div>
-                            </li>
                         </ul>
                     </li>
                 </ul>
             </div>
         </nav>
-
-
     </header>
     <aside class="main-sidebar">
         <section class="sidebar">
-            <div class="user-panel">
-                <div class="pull-left image">
-                    <img src="/img/logo/LOGO-U.svg" class="img-circle" alt="User Image">
-                </div>
-                <div class="pull-left info">
-                    <p>{{ Auth::user() != null ? Auth::user()->name : ''}}</p>
-                </div>
-            </div>
+            {{--<div class="user-panel">--}}
+                {{--<div class="pull-left image">--}}
+                    {{--<img src="/img/logo/LOGO-U.svg" class="img-circle" alt="User Image">--}}
+                {{--</div>--}}
+                {{--<div class="pull-left info">--}}
+                    {{--<p>{{ Auth::user() != null ? Auth::user()->name : ''}}</p>--}}
+                {{--</div>--}}
+            {{--</div>--}}
             <ul class="sidebar-menu">
                 <!-- Dashboard -->
-                <li class="header">Dashboard</li>
+                {{--<li class="header">Dashboard</li>--}}
                 @if(Auth::user()->hasRole('admin'))
                     <li class="treeview">
                         <a href="{{action('InstitutionController@viewAllInstitution')}}"><i
@@ -191,37 +160,8 @@
             <section class="content">
                 <main class="mdl-layout__content mdl-color--grey-100">
                     <div class="mdl-grid">
-                        <div class='row'>
-                            @if (count($errors) > 0)
-                                @foreach ($errors->all() as $error)
-                                    {{--<li>{{ $error }}</li>--}}
-                                    <script>
-                                        $.notify({
-                                            // options
-                                            message: "{{ $error }}"
-                                        }, {
-                                            // settings
-                                            type: 'danger'
-                                        });
-                                    </script>
-                                @endforeach
-                            @endif
-                            @if (session('status') != null)
-                                {{--<div class="alert alert-success alert-dismissible">--}}
-                                {{--<button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>--}}
-                                {{--<h4><i class="icon fa fa-check"></i> Success!</h4> {{ session('status') }}--}}
-                                {{--</div>--}}
-                                <script>
-                                    $.notify({
-                                        // options
-                                        message: "{{ session('status') }}"
-                                    }, {
-                                        // settings
-                                        type: 'success',
-                                    });
-                                </script>
-                            @endif
-                        </div>
+                        @include('success.status')
+                        @include('errors.form')
                         @yield('content')
                     </div>
                 </main>
@@ -241,27 +181,25 @@
 <script src="/assets/js/bootbox.js"></script>
 
 <!-- REQUIRED JS SCRIPTS -->
-{{--<script type="text/javascript">--}}
-{{--$(function(){--}}
-{{--$('#notifications_dropdown').on('click',function(){--}}
+<script type="text/javascript">
+    $(function () {
+        $('#notifications_dropdown').on('click', function () {
+            $('#label_notification_counts').text('');
+            $.ajax({
+                type: "POST",
+                url: "{{action('NotificationController@reset')}}",
+                data: {},
+                success: function (data, textStatus, jqXHR) {
+                    console.log(data);
+                },
+                error: function (jqXHR, textStatus, errorThrown) {
+                    console.log(errorThrown);
+                }
+            });
+        });
+    });
 
-{{--$('#label_notification_counts').text('');--}}
-
-{{--$.ajax({--}}
-{{--type: "POST",--}}
-{{--url: "{{action('NotificationController@reset')}}",--}}
-{{--data: {},--}}
-{{--success: function(data, textStatus, jqXHR){--}}
-{{--console.log(data);--}}
-{{--},--}}
-{{--error: function (jqXHR, textStatus, errorThrown){--}}
-
-{{--}--}}
-{{--});--}}
-{{--});--}}
-{{--});--}}
-
-{{--</script>--}}
+</script>
 
 @yield('scripts')
 

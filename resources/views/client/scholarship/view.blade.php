@@ -75,9 +75,11 @@
                                     <td>
                                         <a href="{{action('ScholarshipController@edit',$is->id)}}"
                                            class='btn btn-default'>View</a>
-                                        <button value="{{route('client.delete.scholarship',$is->id)}}"
-                                                class='btn btn-danger confirmDeleteBtn'>Delete
-                                        </button>
+                                        <a href="{{route('client.delete.scholarship',$is->id)}}"
+                                                class='btn btn-danger'
+                                                onclick="return confirm('Are you sure you want to delete this record?')">
+                                            Delete
+                                        </a>
                                         </a>
                                     </td>
                                 </tr>

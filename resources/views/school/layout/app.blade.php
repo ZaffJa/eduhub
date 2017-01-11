@@ -81,34 +81,31 @@
 
                     <div class="container-fluid">
                         <ul class="list-inline" style="margin-bottom: auto ">
-                            <li><a href="/sekolah" class="navbar-brand"><img src="/img/logo/logocvr.png"
-                                                                             style="max-width: 150px; padding: 6px 1px;"></a>
-                            </li>
-
-                            <li>
-                                <small style="color: black; margin-bottom: 20px; font-size: 14px; " class="text-muted">
+                            <li><a href="/sekolah"><img src="/img/logo/logocvr.png"
+                                                        style="max-width: 150px; padding: 6px 1px;"></a>
+                                <span style="font-size: 10px;">
                                     Carian Pendidikan #1 Di Malaysia
-                                </small>
-                            </li>
+                                </span>
+                            <li>
                         </ul>
                     </div>
 
                 </div>
                 {{--@if(auth()->user())--}}
-                    {{--<ul class="nav navbar-nav navbar-right hidden-sm hidden-xs">--}}
-                        {{--<li><a href="{{ action('School\SchoolController@register') }}">--}}
-                                {{--<i class="fa fa-pencil fa-fw" aria-hidden="true" style="color: black"></i>--}}
-                            {{--</a>--}}
-                        {{--</li>--}}
-                        {{--<li>--}}
-                            {{--<a onclick="event.preventDefault();document.getElementById('logout-form').submit();">--}}
-                                {{--<i class="fa fa-sign-out"></i>--}}
-                            {{--</a>--}}
-                            {{--<form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">--}}
-                                {{--{{ csrf_field() }}--}}
-                            {{--</form>--}}
-                        {{--</li>--}}
-                    {{--</ul>--}}
+                {{--<ul class="nav navbar-nav navbar-right hidden-sm hidden-xs">--}}
+                {{--<li><a href="{{ action('School\SchoolController@register') }}">--}}
+                {{--<i class="fa fa-pencil fa-fw" aria-hidden="true" style="color: black"></i>--}}
+                {{--</a>--}}
+                {{--</li>--}}
+                {{--<li>--}}
+                {{--<a onclick="event.preventDefault();document.getElementById('logout-form').submit();">--}}
+                {{--<i class="fa fa-sign-out"></i>--}}
+                {{--</a>--}}
+                {{--<form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">--}}
+                {{--{{ csrf_field() }}--}}
+                {{--</form>--}}
+                {{--</li>--}}
+                {{--</ul>--}}
                 {{--@endif--}}
             </div>
         </div>

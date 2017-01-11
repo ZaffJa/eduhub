@@ -62,10 +62,13 @@
                                             <span class="label label-danger">Rejected</span>
                                         @elseif($enrollment->status == 3)
                                             <button data-target="{{ $enrollment->id }}"
-                                                  class="btn btn-default-outline confirm">Confirm Payment</button>
+                                                    class="btn btn-default-outline confirm">Confirm Payment
+                                            </button>
                                         @elseif($enrollment->status == 4)
                                             <button class="btn btn-success-outline view_payment"
-                                                    data-target="{{ $enrollment->payment_details }}">View Payment Description</button>
+                                                    data-target="{{ $enrollment->payment_details }}">View Payment
+                                                Description
+                                            </button>
                                         @endif
                                     </td>
                                 </tr>
@@ -94,7 +97,9 @@
                 bootbox.prompt("Payment status detail!", function (result) {
                     $("#id").val(_this.data("target"));
                     $("#payment_details").val(result);
-                    $("#form").submit();
+                    if (result) {
+                        $("#form").submit();
+                    }
                 });
             });
 

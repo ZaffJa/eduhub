@@ -85,9 +85,10 @@
                     <div class="col-md-3">
                         <a href="{!! route('client.course.view') !!}" class="btn btn-warning">Cancel</a>
 
-                        <button value="{!! route('client.course.delete', $course->id) !!}"
-                                class="btn btn-danger confirmDeleteBtn">Delete
-                        </button>
+                        <a href="{!! route('client.course.delete', $course->id) !!}"
+                                class="btn btn-danger"
+                           onclick="return confirm('Are you sure you want to delete this record?')">Delete
+                        </a>
 
                         <a href="{!! route('client.course.edit',$course->id) !!}" class="btn btn-info">Edit</a>
                     </div>

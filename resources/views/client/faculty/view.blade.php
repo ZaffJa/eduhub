@@ -40,9 +40,10 @@
                                         <td>
                                             <a href="{!! action('FacultyController@edit', $faculty->id) !!}"
                                                class='btn btn-md btn-primary'>Edit</a>
-                                            <button value="{!! action('FacultyController@delete', $faculty->id) !!}"
-                                                    class='btn btn-md btn-danger confirmDeleteBtn'>Delete
-                                            </button>
+                                            <a href="{!! action('FacultyController@delete', $faculty->id) !!}"
+                                                    class='btn btn-md btn-danger'
+                                               onclick="return confirm('Are you sure you want to delete this record?')">Delete
+                                            </a>
                                         </td>
                                     </tr>
                                 @endforeach

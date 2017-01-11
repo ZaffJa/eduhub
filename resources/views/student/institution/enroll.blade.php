@@ -108,11 +108,6 @@
             @endif
         </div>
     </div>
-
-
-
-
-
     <script>
         $("#upload_file").on("change", function () {
             var file = $(this);

@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Institution;
 use App\Models\StudentEnrollment;
+use App\Notifications\ConfirmPayment;
+use App\Notifications\StudentEnrolled;
+use App\User;
 use Auth;
 use Aws\Exception\AwsException;
 use DB;
@@ -48,10 +51,10 @@ class EnrollmentController extends Controller
         } catch (QueryException $e) {
             DB::rollBack();
             return redirect()->back()->withErrors($e->getMessage());
-        } catch (Exception $e) {
+        } catch (AwsException $e) {
             DB::rollBack();
             return redirect()->back()->withErrors($e->getMessage());
-        } catch (AwsException $e) {
+        } catch (Exception $e) {
             DB::rollBack();
             return redirect()->back()->withErrors($e->getMessage());
         }
@@ -62,6 +65,9 @@ class EnrollmentController extends Controller
     {
         $studentEnrollment->status = 3;
         $studentEnrollment->save();
+
+        $admin =  $this->getAdmin();
+        $admin->notify(new StudentEnrolled($studentEnrollment->user,auth()->user()->client->institution));
 
         return redirect()->back()->with('status', 'This student has been confirmed enrolled in your institution');
     }
@@ -92,11 +98,16 @@ class EnrollmentController extends Controller
 
     public function confirm(Request $request)
     {
+        $this->validate($request,[
+            'payment_details' => 'required'
+        ]);
         $studentEnrollment = StudentEnrollment::find($request->id);
         // Confirm the payment
         if($studentEnrollment->status == 3) {
             $studentEnrollment->status = 4;
             $studentEnrollment->payment_details = $request->payment_details or null;
+
+            $studentEnrollment->user->notify(new ConfirmPayment($studentEnrollment->user));
 
         }
         // Cancel the payment
@@ -106,6 +117,17 @@ class EnrollmentController extends Controller
         $studentEnrollment->save();
 
         return redirect()->back()->with('status','Update status for the record');
+    }
+
+
+    public function getAdmin()
+    {
+        foreach (User::all() as $user)
+        {
+            if($user->hasRole('admin'))
+                return $user;
+        }
+        return null;
     }
 
 }

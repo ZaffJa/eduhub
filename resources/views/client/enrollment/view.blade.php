@@ -74,6 +74,8 @@
                                         <span class="label label-danger">REJECTED</span>
                                     @elseif($enrollment->status == 3)
                                         <span class="label label-primary">ENROLLED</span>
+                                    @elseif($enrollment->status == 4)
+                                        <span class="label label-default">PAYED</span>
                                     @endif
                                 </a>
                         </td>
