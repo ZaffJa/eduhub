@@ -40,9 +40,6 @@
     <script src="/client/dist/js/app.min.js"></script>
     <script src="/assets/js/bootbox.min.js"></script>
     <script src="/assets/js/bootstrap-notify.js"></script>
-
-
-
     @yield('header-css')
 </head>
 <style media="screen">
@@ -324,6 +321,7 @@
 <!-- REQUIRED JS SCRIPTS -->
 <script src="//cdn.ckeditor.com/4.6.1/basic/ckeditor.js"></script>
 
+@yield('header-scripts')
 <script>
     $(function () {
 

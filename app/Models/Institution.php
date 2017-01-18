@@ -10,7 +10,11 @@ class Institution extends Model
 {
     use AuditingTrait, SoftDeletes;
 
-    protected $guarded = [];
+    protected $fillable = [
+        'type_id', 'parent_id', 'name', 'slug', 'abbreviation', 'description', 'established', 'location', 'address', 'website', 'featured',
+        'public_relations_department_email', 'student_enrollment_department_email', 'corporate_communications_department_email', 'marketing_department_email',
+        'email','remarks','examination_board','fax_no','file_id','enrollment_file_path','enrollment_status','contact_no'
+    ];
 
     public function faculties()
     {
@@ -59,12 +63,12 @@ class Institution extends Model
 
     public function scholarship()
     {
-        return $this->hasMany('App\Models\InstitutionScholarship','fileable_id');
+        return $this->hasMany('App\Models\InstitutionScholarship', 'fileable_id');
     }
 
     public function contacts()
     {
-        return $this->belongsTo('App\Models\InstitutionContact','id','institution_id');
+        return $this->belongsTo('App\Models\InstitutionContact', 'id', 'institution_id');
     }
 
 }

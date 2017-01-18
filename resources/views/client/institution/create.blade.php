@@ -53,7 +53,7 @@
                         </div>
                         <div class="form-group">
                             <label>Institution
-                                Type</label><br>{{ Form::select('type_id', $i,old('type_id'),['class'=>'form-control']) }}
+                                Type</label><br>{{ Form::select('type_id', $institutionTypes,old('type_id'),['class'=>'form-control']) }}
                         </div>
                         <div class="form-group">
                             <label>Contact No</label>

@@ -26,35 +26,29 @@ use App\User;
 
 class ShortController extends Controller
 {
-
     public function postLogin(Request $request)
     {
-        if($user = Auth::attempt($request->only('email','password'))){
-
+        if ($user = Auth::attempt($request->only('email', 'password'))) {
             $user = User::whereEmail($request->email)->first();
 
-            if($user->short_provider != null){
-
-                if($user->short_provider->status != null){   //  User exist and has verify email
+            if ($user->short_provider != null) {
+                if ($user->short_provider->status != null) {   //  User exist and has verify email
 
                     return redirect()->action('ShortController@dashboard')->with(compact('ShortCoursesCount'));
-
-                }else{  // User has not verify email yet
+                } else {  // User has not verify email yet
 
                     $activate = ActivateShortProvider::whereEmail(Auth::user()->email)->first();
                     Auth::logout(); //must logout because Auth::attempt will automatically logged user when true
 
-                    if($activate == null){    // User has data in users table but did not register for short course
+                    if ($activate == null) {    // User has data in users table but did not register for short course
 
-                        $provider_types = \App\Models\ShortCourse\ProviderType::pluck('name','id');
+                        $provider_types = \App\Models\ShortCourse\ProviderType::pluck('name', 'id');
                         return view('short.auth.register')
                             ->with(compact('provider_types'))
                             ->withErrors([
                                 'status'=>'You have not registered yet. Please register first.'
                             ]);
-
-                    }else {
-
+                    } else {
                         return redirect()->action('ShortController@getLogin')
                           ->withErrors([
                             'password'=>'Your account has not been activated. Please  verify your email.',
@@ -77,7 +71,7 @@ class ShortController extends Controller
 
     public function getRegister()
     {
-        $provider_types = \App\Models\ShortCourse\ProviderType::pluck('name','id');
+        $provider_types = \App\Models\ShortCourse\ProviderType::pluck('name', 'id');
         return view('short.auth.register')->with(compact('provider_types'));
     }
 
@@ -96,8 +90,7 @@ class ShortController extends Controller
             'password_confirmation' => 'required|same:password',
         ]);
 
-        try{
-
+        try {
             $input['password'] = bcrypt($input['password']);    //encrypt the password
             $user = User::create($input);   //mass assign input
 
@@ -122,16 +115,12 @@ class ShortController extends Controller
                 'role_id'=>3
             ]);
 
-            $user->notify(new RegisterConsultant($user->name,$activate->token));
+            $user->notify(new RegisterConsultant($user->name, $activate->token));
 
-            return view('short.auth.login')->with('status','Your account has been created. Please verify your email before login.');
-
-        }catch(QueryException $ex){
-
+            return view('short.auth.login')->with('status', 'Your account has been created. Please verify your email before login.');
+        } catch (QueryException $ex) {
             return redirect()->back()->withErrors($ex->errorInfo);
-
         }
-
     }
 
     public function dashboard()
@@ -139,23 +128,22 @@ class ShortController extends Controller
         $profilePic = File::whereFileableId(Auth::user()->short_provider->id)->first();
         $status = 'hello';
         $ShortCoursesCount =  Course::whereProviderId(Auth::user()->short_provider->id)->count();
-        
-        return View::make('short.dashboard',compact('profilePic','status','ShortCoursesCount'));
+
+        return View::make('short.dashboard', compact('profilePic', 'status', 'ShortCoursesCount'));
     }
 
     public function viewCourse()
     {
         $course = Course::whereProviderId(Auth::user()->short_provider->id)->get();
 
-        return View::make('short.course.view',compact('course'));
+        return View::make('short.course.view', compact('course'));
     }
 
     public function activateAccount($token)
     {
-        $activateUser = ActivateShortProvider::whereTokenAndStatus($token,0)->first();
+        $activateUser = ActivateShortProvider::whereTokenAndStatus($token, 0)->first();
 
-        if($activateUser)
-        {
+        if ($activateUser) {
             $user = User::whereEmail($activateUser->email)->first();
             $sp = Provider::whereParentId($user->id)->first();
 
@@ -172,24 +160,21 @@ class ShortController extends Controller
 
             Auth::login($user);
 
-            return redirect()->action('ShortController@dashboard')->with('status','Welcome '.Auth::user()->name.'!');
-
-        }else{
-
+            return redirect()->action('ShortController@dashboard')->with('status', 'Welcome '.Auth::user()->name.'!');
+        } else {
             return view('errors.token-verified');
-
         }
     }
 
 
     public function editprofile()
     {
-        $providerType = ProviderType::pluck('name','id');
-        $bankType = BankType::pluck('name','id');
+        $providerType = ProviderType::pluck('name', 'id');
+        $bankType = BankType::pluck('name', 'id');
         $provider = Auth::user()->short_provider;
         $profilePic = File::whereFileableId(Auth::user()->short_provider->id)->first();
 
-        return View::make('short.profile.edit',compact('providerType','bankType','provider','profilePic'));
+        return View::make('short.profile.edit', compact('providerType', 'bankType', 'provider', 'profilePic'));
     }
 
     public function updateProfile(Request $r)
@@ -201,7 +186,7 @@ class ShortController extends Controller
             'location' => 'required',
         ]);
 
-        try{
+        try {
             $provider =  Provider::whereId(Auth::user()->short_provider->id)->firstOrFail();
 
             $provider->name =  $r->name;
@@ -218,73 +203,65 @@ class ShortController extends Controller
             $provider->bank_type_id = $r->bank_type;
             $provider->bank_account = $r->bank_account;
             $provider->save();
-
-
-        }catch(QueryException $ex){
+        } catch (QueryException $ex) {
             return redirect()
                 ->back()
                 ->withErrors($ex->errorInfo[2])
                 ->withInput();
         }
 
-        if($r->provider_pic)
-        {
-            try{
+        if ($r->provider_pic) {
+            try {
+                if (!$provider_pic = File::whereFileableId(Auth::user()->short_provider->id)->first()) {
+                    $provider_pic = new File;
+                } else {
+                    $provider_pic = File::whereFileableId(Auth::user()->short_provider->id)->first();
+                }
 
-            if(!$provider_pic = File::whereFileableId(Auth::user()->short_provider->id)->first())
-            {
-                $provider_pic = new File;
-            }else{
-             $provider_pic = File::whereFileableId(Auth::user()->short_provider->id)->first();
-            }
-
-            $provider_pic->fileable_id = $provider->id;
-            $provider_pic->type_id = 1;
-            $provider_pic->category_id = 3;
-            $provider_pic->filename = $r->provider_pic->getClientOriginalName();
-            $provider_pic->path = 'shortProvider/'.$r->provider_pic->getClientOriginalName();
-            $provider_pic->mime = $r->provider_pic->extension();
-            $provider_pic->size = $r->provider_pic->getSize();
-            $file =  $r->file('provider_pic');
+                $provider_pic->fileable_id = $provider->id;
+                $provider_pic->type_id = 1;
+                $provider_pic->category_id = 3;
+                $provider_pic->filename = $r->provider_pic->getClientOriginalName();
+                $provider_pic->path = 'shortProvider/'.$r->provider_pic->getClientOriginalName();
+                $provider_pic->mime = $r->provider_pic->extension();
+                $provider_pic->size = $r->provider_pic->getSize();
+                $file =  $r->file('provider_pic');
 
             // Save to public path
             // $r->provider_pic->move(public_path()."/img/provider",$r->provider_pic->getClientOriginalName());
 
-            Storage::disk('s3')->put('shortProvider/'.$r->provider_pic->getClientOriginalName(),file_get_contents($file),'public');
+            Storage::disk('s3')->put('shortProvider/'.$r->provider_pic->getClientOriginalName(), file_get_contents($file), 'public');
 
 
-            $provider_pic->save();
-
-            }catch(QueryException $ex){
+                $provider_pic->save();
+            } catch (QueryException $ex) {
                 return redirect()
                     ->back()
                     ->withErrors($ex->errorInfo[2])
                     ->withInput();
             }
-
         }
-    	return  redirect()
+        return  redirect()
                 ->back()
                 ->with(['status'=>'The provider name '.$provider->name.' has been updated.']);
-
     }
 
     public function resendActivateAccount($token)
     {
         $activate = ActivateShortProvider::whereToken($token)->first();
         $user = User::whereEmail($activate->email)->first();
-        $user->notify(new RegisterConsultant($user->name,$activate->token));
+        $user->notify(new RegisterConsultant($user->name, $activate->token));
 
         return redirect()
             ->back()
-            ->with('status','We have sent you an email. Please verify your email address to login.');
+            ->with('status', 'We have sent you an email. Please verify your email address to login.');
     }
 
     public function activateInstitutionUser($user_id)
     {
         $user = User::find($user_id);
 
-        try{
+        try {
             $institution = $user->client->institution;
             $sp = new Provider;
             $sp->type_id = 1;
@@ -307,9 +284,7 @@ class ShortController extends Controller
             ]);
 
             return view('short.dashboard');
-
-        }catch(QueryException $ex){
-
+        } catch (QueryException $ex) {
             return redirect()->back()->withErrors('Something went wrong. We cannot register you to short courses');
         }
     }
@@ -321,20 +296,20 @@ class ShortController extends Controller
 
     public function viewProfile()
     {
-    	$provider = Auth::user()->short_provider;
-    	$providerType = Auth::user()->short_provider->type;
+        $provider = Auth::user()->short_provider;
+        $providerType = Auth::user()->short_provider->type;
         $profilePic = File::whereFileableId(Auth::user()->short_provider->id)->first();
 
-    	return View::make('short.profile.view', compact('provider','providerType','profilePic'));
+        return View::make('short.profile.view', compact('provider', 'providerType', 'profilePic'));
     }
 
     public function addCourse()
     {
-        $periodType = PeriodType::pluck('name','id');
-        $levelType = Level::pluck('name','id');
-        $fieldType = Field::distinct('name')->pluck('name','id')->toArray();
+        $periodType = PeriodType::pluck('name', 'id');
+        $levelType = Level::pluck('name', 'id');
+        $fieldType = Field::distinct('name')->pluck('name', 'id')->toArray();
 
-        return View::make('short.course.add', compact('periodType','levelType','fieldType'));
+        return View::make('short.course.add', compact('periodType', 'levelType', 'fieldType'));
     }
 
     public function storeCourse(Request $r)
@@ -358,15 +333,12 @@ class ShortController extends Controller
         //                ->withInput();
         // }
 
-        try{
-
+        try {
             $r['provider_id'] = Auth::user()->short_provider->id;
             $r['mode_id'] = 2;
             $r['slug'] = $this->slugify($r->name_en);
 
-            if($r->field_id == 0)
-            {
-
+            if ($r->field_id == 0) {
                 $field = new Field;
 
                 $field->name = $r->others;
@@ -388,8 +360,7 @@ class ShortController extends Controller
 
                 //Send email to admin
                 foreach ($roles as $role) {
-                    if($role->user_role->name == "admin")
-                    {
+                    if ($role->user_role->name == "admin") {
                         $admin = User::find($role->user_id);
 
                         $admin->notify(new ShortCreateOther(
@@ -400,12 +371,11 @@ class ShortController extends Controller
                 }
 
                 $r['field_id'] = $field->id;
-
             }
 
             $course = Course::create($r->all());
 
-            if($r->short_pic1){
+            if ($r->short_pic1) {
                 $short_pic1 = new File;
                 $file = $r->file('short_pic1');
                 $short_pic1->fileable_id = Auth::user()->short_provider->id;
@@ -416,13 +386,13 @@ class ShortController extends Controller
                 $short_pic1->mime = $r->short_pic1->extension();
                 $short_pic1->size = $r->short_pic1->getSize();
 
-                Storage::disk('s3')->put('shortCourse/'.$course->id.'short_pic1',file_get_contents($file),'public');
+                Storage::disk('s3')->put('shortCourse/'.$course->id.'short_pic1', file_get_contents($file), 'public');
 
 
                 $short_pic1->save();
             }
 
-            if($r->short_pic2){
+            if ($r->short_pic2) {
                 $short_pic2= new File;
                 $file = $r->file('short_pic2');
                 $short_pic2->fileable_id = Auth::user()->short_provider->id;
@@ -434,13 +404,13 @@ class ShortController extends Controller
                 $short_pic2->size = $r->short_pic2->getSize();
 
                 // $r->short_pic2->move(public_path()."/img/shortCourse",$course->id."short_pic2");
-                Storage::disk('s3')->put('shortCourse/'.$course->id.'short_pic2',file_get_contents($file),'public');
+                Storage::disk('s3')->put('shortCourse/'.$course->id.'short_pic2', file_get_contents($file), 'public');
 
 
                 $short_pic2->save();
             }
 
-            if($r->short_pic3){
+            if ($r->short_pic3) {
                 $short_pic3 = new File;
                 $file = $r->file('short_pic3');
                 $short_pic3->fileable_id = Auth::user()->short_provider->id;
@@ -452,13 +422,13 @@ class ShortController extends Controller
                 $short_pic3->size = $r->short_pic3->getSize();
 
                 // $r->short_pic3->move(public_path()."/img/shortCourse",$course->id."short_pic3");
-                Storage::disk('s3')->put('shortCourse/'.$course->id.'short_pic3',file_get_contents($file),'public');
+                Storage::disk('s3')->put('shortCourse/'.$course->id.'short_pic3', file_get_contents($file), 'public');
 
 
                 $short_pic3->save();
             }
 
-            if($r->short_pic4){
+            if ($r->short_pic4) {
                 $short_pic4 = new File;
                 $file = $r->file('short_pic4');
                 $short_pic4->fileable_id = Auth::user()->short_provider->id;
@@ -470,13 +440,13 @@ class ShortController extends Controller
                 $short_pic4->size = $r->short_pic4->getSize();
 
                 // $r->short_pic4->move(public_path()."/img/shortCourse",$course->id."short_pic4");
-                Storage::disk('s3')->put('shortCourse/'.$course->id.'short_pic4',file_get_contents($file),'public');
+                Storage::disk('s3')->put('shortCourse/'.$course->id.'short_pic4', file_get_contents($file), 'public');
 
 
                 $short_pic4->save();
             }
 
-            if($r->short_pic5){
+            if ($r->short_pic5) {
                 $short_pic5 = new File;
                 $file = $r->file('short_pic5');
                 $short_pic5->fileable_id = Auth::user()->short_provider->id;
@@ -488,13 +458,12 @@ class ShortController extends Controller
                 $short_pic5->size = $r->short_pic5->getSize();
 
                 // $r->short_pic5->move(public_path()."/img/shortCourse",$course->id."short_pic5");
-                Storage::disk('s3')->put('shortCourse/'.$course->id.'short_pic5',file_get_contents($file),'public');
+                Storage::disk('s3')->put('shortCourse/'.$course->id.'short_pic5', file_get_contents($file), 'public');
 
 
                 $short_pic5->save();
             }
-
-        }catch(QueryException $e){
+        } catch (QueryException $e) {
             return $e->errorInfo;
         }
 
@@ -507,28 +476,28 @@ class ShortController extends Controller
     {
         $course = Course::whereId($id)->firstOrFail();
         $picture  = DB::table('short_files')
-                        ->where('category_id',4)
-                        ->where('filename','like',$id.'%')
+                        ->where('category_id', 4)
+                        ->where('filename', 'like', $id.'%')
                         ->get();
 
-        return View::make('short.course.course-info',compact('course','picture'));
+        return View::make('short.course.course-info', compact('course', 'picture'));
     }
 
     public function editCourse($id)
     {
         $course = Course::whereId($id)->firstOrFail();
-        $periodType = PeriodType::pluck('name','id');
-        $levelType = Level::pluck('name','id');
-        $fieldType = Field::orderBy('name')->pluck('name','id')->toArray();
+        $periodType = PeriodType::pluck('name', 'id');
+        $levelType = Level::pluck('name', 'id');
+        $fieldType = Field::orderBy('name')->pluck('name', 'id')->toArray();
         $picture = DB::table('short_files')
-                        ->where('category_id',4)
-                        ->where('filename','like',$id.'%')
+                        ->where('category_id', 4)
+                        ->where('filename', 'like', $id.'%')
                         ->get();
 
-        return View::make('short.course.edit',compact('picture','course','periodType','levelType','fieldType'));
+        return View::make('short.course.edit', compact('picture', 'course', 'periodType', 'levelType', 'fieldType'));
     }
 
-    public function updateCourse(Request $r,$id)
+    public function updateCourse(Request $r, $id)
     {
         $this->validate($r, [
             'name_en' => 'required|min:15|max:255',
@@ -542,8 +511,7 @@ class ShortController extends Controller
             'short_pic5' => 'image|mimes:jpeg,png,jpg,gif,svg|max:20048',
         ]);
 
-        try{
-
+        try {
             $course = Course::find($id);
 
             $course->name_en = $r->name_en;
@@ -559,23 +527,21 @@ class ShortController extends Controller
             $course->class_size = $r->class_size;
             $course->price = $r->price;
 
-            if($r->exam_fee)
-            {
-            $course->exam_fee = $r->exam_fee;
+            if ($r->exam_fee) {
+                $course->exam_fee = $r->exam_fee;
             }
 
             $course->note = $r->note;
             $course->language = $r->language;
             $course->inclusive = $r->inclusive;
 
-            if($r->hrdf_scheme){
-            $course->hrdf_scheme = $r->hrdf_scheme;
+            if ($r->hrdf_scheme) {
+                $course->hrdf_scheme = $r->hrdf_scheme;
             }
 
             $course->learning_outcome = $r->learning_outcome;
 
-            if($r->field_id == 0)
-            {
+            if ($r->field_id == 0) {
                 $field = new Field;
 
                 $field->name = $r->others;
@@ -584,178 +550,161 @@ class ShortController extends Controller
                 $field->save();
 
                 $course->field_id = $field->id;
-
-            }else {
-
+            } else {
                 $course->field_id = $r->field_id;
             }
 
             $course->save();
 
-            if($r->short_pic1){
-
+            if ($r->short_pic1) {
                 $short_pic1 = DB::table('short_files')
-                                ->where('category_id',4)
-                                ->where('filename',$id.'short_pic1')
+                                ->where('category_id', 4)
+                                ->where('filename', $id.'short_pic1')
                                 ->first();
 
-                if($short_pic1 == null)
-                {
-                $short_pic1 = new File;
-                $short_pic1->fileable_id = Auth::user()->short_provider->id;
-                $short_pic1->filename = $id."short_pic1";
-                $short_pic1->path = "shortCourse/".$id."short_pic1";
-                $short_pic1->category_id = 4;
-                $short_pic1->type_id = 2;
-                $short_pic1->mime = $r->short_pic1->getClientOriginalExtension();
-                $short_pic1->size = $r->short_pic1->getSize();
-                $short_pic1->save();
+                if ($short_pic1 == null) {
+                    $short_pic1 = new File;
+                    $short_pic1->fileable_id = Auth::user()->short_provider->id;
+                    $short_pic1->filename = $id."short_pic1";
+                    $short_pic1->path = "shortCourse/".$id."short_pic1";
+                    $short_pic1->category_id = 4;
+                    $short_pic1->type_id = 2;
+                    $short_pic1->mime = $r->short_pic1->getClientOriginalExtension();
+                    $short_pic1->size = $r->short_pic1->getSize();
+                    $short_pic1->save();
                 }
                 $file = $r->file('short_pic1');
 
                 // $r->short_pic1->move(public_path()."/img/shortCourse",$id."short_pic1");
-                Storage::disk('s3')->put('shortCourse/'.$id.'short_pic1',file_get_contents($file),'public');
+                Storage::disk('s3')->put('shortCourse/'.$id.'short_pic1', file_get_contents($file), 'public');
 
 
                 DB::table('short_files')
-                    ->where('category_id',4)
-                    ->where('filename',$id.'short_pic1')
+                    ->where('category_id', 4)
+                    ->where('filename', $id.'short_pic1')
                     ->update(['size' => $r->short_pic1->getSize(), 'mime' => $r->short_pic1->getClientOriginalExtension() ]);
-
             }
-            if($r->short_pic2){
-
+            if ($r->short_pic2) {
                 $short_pic2 = DB::table('short_files')
-                                ->where('category_id',4)
-                                ->where('filename',$id.'short_pic2')
+                                ->where('category_id', 4)
+                                ->where('filename', $id.'short_pic2')
                                 ->first();
 
-                if($short_pic2 == null)
-                {
-                $short_pic2 = new File;
-                $short_pic2->fileable_id = Auth::user()->short_provider->id;
-                $short_pic2->filename = $id."short_pic2";
-                $short_pic2->path = "shortCourse/".$id."short_pic2";
-                $short_pic2->category_id = 4;
-                $short_pic2->type_id = 2;
-                $short_pic2->mime = $r->short_pic2->getClientOriginalExtension();
-                $short_pic2->size = $r->short_pic2->getSize();
-                $short_pic2->save();
+                if ($short_pic2 == null) {
+                    $short_pic2 = new File;
+                    $short_pic2->fileable_id = Auth::user()->short_provider->id;
+                    $short_pic2->filename = $id."short_pic2";
+                    $short_pic2->path = "shortCourse/".$id."short_pic2";
+                    $short_pic2->category_id = 4;
+                    $short_pic2->type_id = 2;
+                    $short_pic2->mime = $r->short_pic2->getClientOriginalExtension();
+                    $short_pic2->size = $r->short_pic2->getSize();
+                    $short_pic2->save();
                 }
                 $file = $r->file('short_pic2');
 
                 // $r->short_pic2->move(public_path()."/img/shortCourse",$id."short_pic2");
-                Storage::disk('s3')->put('shortCourse/'.$id.'short_pic2',file_get_contents($file),'public');
+                Storage::disk('s3')->put('shortCourse/'.$id.'short_pic2', file_get_contents($file), 'public');
 
 
                 DB::table('short_files')
-                    ->where('category_id',4)
-                    ->where('filename',$id.'short_pic2')
+                    ->where('category_id', 4)
+                    ->where('filename', $id.'short_pic2')
                     ->update(['size' => $r->short_pic2->getSize(), 'mime' => $r->short_pic2->getClientOriginalExtension() ]);
             }
-            if($r->short_pic4){
-
+            if ($r->short_pic4) {
                 $short_pic4 = DB::table('short_files')
-                                ->where('category_id',4)
-                                ->where('filename',$id.'short_pic4')
+                                ->where('category_id', 4)
+                                ->where('filename', $id.'short_pic4')
                                 ->first();
 
-                if($short_pic4 == null)
-                {
-                $short_pic4 = new File;
-                $short_pic4->fileable_id = Auth::user()->short_provider->id;
-                $short_pic4->filename = $id."short_pic4";
-                $short_pic4->path = "shortCourse/".$id."short_pic4";
-                $short_pic4->category_id = 4;
-                $short_pic4->type_id = 2;
-                $short_pic4->mime = $r->short_pic4->getClientOriginalExtension();
-                $short_pic4->size = $r->short_pic4->getSize();
-                $short_pic4->save();
+                if ($short_pic4 == null) {
+                    $short_pic4 = new File;
+                    $short_pic4->fileable_id = Auth::user()->short_provider->id;
+                    $short_pic4->filename = $id."short_pic4";
+                    $short_pic4->path = "shortCourse/".$id."short_pic4";
+                    $short_pic4->category_id = 4;
+                    $short_pic4->type_id = 2;
+                    $short_pic4->mime = $r->short_pic4->getClientOriginalExtension();
+                    $short_pic4->size = $r->short_pic4->getSize();
+                    $short_pic4->save();
                 }
                 $file = $r->file('short_pic4');
-                Storage::disk('s3')->put('shortCourse/'.$id.'short_pic4',file_get_contents($file),'public');
+                Storage::disk('s3')->put('shortCourse/'.$id.'short_pic4', file_get_contents($file), 'public');
 
                 // $r->short_pic4->move(public_path()."/img/shortCourse",$id."short_pic4");
 
                 DB::table('short_files')
-                    ->where('category_id',4)
-                    ->where('filename',$id.'short_pic4')
+                    ->where('category_id', 4)
+                    ->where('filename', $id.'short_pic4')
                     ->update(['size' => $r->short_pic4->getSize(), 'mime' => $r->short_pic4->getClientOriginalExtension() ]);
             }
-            if($r->short_pic3){
-
+            if ($r->short_pic3) {
                 $short_pic3 = DB::table('short_files')
-                                ->where('category_id',4)
-                                ->where('filename',$id.'short_pic3')
+                                ->where('category_id', 4)
+                                ->where('filename', $id.'short_pic3')
                                 ->first();
 
-                if($short_pic3 == null)
-                {
-                $short_pic3 = new File;
-                $short_pic3->fileable_id = Auth::user()->short_provider->id;
-                $short_pic3->filename = $id."short_pic3";
-                $short_pic3->path = "shortCourse/".$id."short_pic3";
-                $short_pic3->category_id = 4;
-                $short_pic3->type_id = 2;
-                $short_pic3->mime = $r->short_pic3->getClientOriginalExtension();
-                $short_pic3->size = $r->short_pic3->getSize();
-                $short_pic3->save();
+                if ($short_pic3 == null) {
+                    $short_pic3 = new File;
+                    $short_pic3->fileable_id = Auth::user()->short_provider->id;
+                    $short_pic3->filename = $id."short_pic3";
+                    $short_pic3->path = "shortCourse/".$id."short_pic3";
+                    $short_pic3->category_id = 4;
+                    $short_pic3->type_id = 2;
+                    $short_pic3->mime = $r->short_pic3->getClientOriginalExtension();
+                    $short_pic3->size = $r->short_pic3->getSize();
+                    $short_pic3->save();
                 }
 
                 $file = $r->file('short_pic3');
                 // $r->short_pic3->move(public_path()."/img/shortCourse",$id."short_pic3");
-                Storage::disk('s3')->put('shortCourse/'.$id.'short_pic3',file_get_contents($file),'public');
+                Storage::disk('s3')->put('shortCourse/'.$id.'short_pic3', file_get_contents($file), 'public');
 
 
                 DB::table('short_files')
-                    ->where('category_id',4)
-                    ->where('filename',$id.'short_pic3')
+                    ->where('category_id', 4)
+                    ->where('filename', $id.'short_pic3')
                     ->update(['size' => $r->short_pic3->getSize(), 'mime' => $r->short_pic3->getClientOriginalExtension() ]);
             }
-            if($r->short_pic5){
-
+            if ($r->short_pic5) {
                 $file = $r->file('short_pic5');
                 $short_pic5 = DB::table('short_files')
-                                ->where('category_id',4)
-                                ->where('filename',$id.'short_pic5')
+                                ->where('category_id', 4)
+                                ->where('filename', $id.'short_pic5')
                                 ->first();
 
-                if($short_pic5 == null)
-                {
-                $short_pic5 = new File;
-                $short_pic5->fileable_id = Auth::user()->short_provider->id;
-                $short_pic5->filename = $id."short_pic5";
-                $short_pic5->path = "shortCourse/".$id."short_pic5";
-                $short_pic5->category_id = 4;
-                $short_pic5->type_id = 2;
-                $short_pic5->mime = $r->short_pic5->getClientOriginalExtension();
-                $short_pic5->size = $r->short_pic5->getSize();
-                $short_pic5->save();
+                if ($short_pic5 == null) {
+                    $short_pic5 = new File;
+                    $short_pic5->fileable_id = Auth::user()->short_provider->id;
+                    $short_pic5->filename = $id."short_pic5";
+                    $short_pic5->path = "shortCourse/".$id."short_pic5";
+                    $short_pic5->category_id = 4;
+                    $short_pic5->type_id = 2;
+                    $short_pic5->mime = $r->short_pic5->getClientOriginalExtension();
+                    $short_pic5->size = $r->short_pic5->getSize();
+                    $short_pic5->save();
                 }
 
 
                 // $r->short_pic5->move(public_path()."/img/shortCourse",$id."short_pic5");
-                Storage::disk('s3')->put('shortCourse/'.$id.'short_pic5',file_get_contents($file),'public');
+                Storage::disk('s3')->put('shortCourse/'.$id.'short_pic5', file_get_contents($file), 'public');
 
 
                 DB::table('short_files')
-                    ->where('category_id',4)
-                    ->where('filename',$id.'short_pic5')
+                    ->where('category_id', 4)
+                    ->where('filename', $id.'short_pic5')
                     ->update(['size' => $r->short_pic5->getSize(), 'mime' => $r->short_pic5->getClientOriginalExtension() ]);
             }
-
-
-        }catch(QueryException $e){
+        } catch (QueryException $e) {
             return redirect()
                     ->back()
                     ->withErrors([$e->errorInfo[2]]);
         }
 
-                return redirect()
+        return redirect()
                 ->back()
                 ->with(['status'=>'The course '.$course->name_en.' has been updated']);
-
-
     }
 
 
@@ -764,15 +713,12 @@ class ShortController extends Controller
         $shortcourse = Course::find($id);
 
         try {
-
             $shortcourse->delete();
 
             return redirect()
                 ->action('ShortController@viewCourse')
-                ->with('status','Successfully delete the record');
-
-        }catch(QueryException $ex){
-
+                ->with('status', 'Successfully delete the record');
+        } catch (QueryException $ex) {
             return redirect()
                 ->action('ShortController@viewCourse')
                 ->withErrors($ex->errorInfo[2])
@@ -800,11 +746,9 @@ class ShortController extends Controller
         $text = strtolower($text);
 
         if (empty($text)) {
-        return 'n-a';
+            return 'n-a';
         }
 
         return $text;
     }
-
-
 }

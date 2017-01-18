@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Notifications\SendTutorialVideoLink;
 use App\User;
 use App\Models\Role;
 use Validator;
@@ -69,10 +70,14 @@ class RegisterController extends Controller
             'password' => bcrypt($data['password']),
         ]);
 
+
         Role::create([
             'user_id'=>$user->id,
             'role_id'=>2
         ]);
+
+        // Send link to tutorial videos
+        $user->notify(new SendTutorialVideoLink());
 
         return $user;
     }

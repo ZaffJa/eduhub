@@ -122,6 +122,13 @@
                         </a>
                     </li>
                     <li class="treeview">
+                        <a href="{{action('InstitutionController@newInstitutionRequest')}}"><i
+                                    class="fa fa-university"></i> <span>New Institution Request</span>
+                            <span class="pull-right-container">
+                          </span>
+                        </a>
+                    </li>
+                    <li class="treeview">
                         <a href="{{action('AdminController@viewEnrollment')}}"><i
                                     class="fa fa-university"></i> <span>View Enrollments</span>
                             <span class="pull-right-container">

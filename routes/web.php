@@ -129,6 +129,9 @@ Route::group(['prefix'=>'admin'],function(){
         Route::get('/approve-institution/{id}','InstitutionController@approveInstitutionRequest')->name('admin.approve.institution.request');
         Route::get('/reject-institution/{id}','InstitutionController@rejectInstitutionRequest')->name('admin.reject.institution.request');
         Route::get('/new-institution', 'InstitutionController@index');
+        Route::get('/new-institution-request', 'InstitutionController@newInstitutionRequest');
+        Route::get('/new-institution-request/action/{newInstitution}/{action}', 'InstitutionController@newInstitutionRequestAction');
+        Route::get('/new-institution-request/{newInstitution}', 'InstitutionController@viewNewInstitutionRequest');
         Route::get('/enrollment', 'AdminController@viewEnrollment');
         Route::post('/enrollment/confirm', 'EnrollmentController@confirm');
         Route::post('/new-institution', 'InstitutionController@create')->name('client.post.institution');
@@ -215,6 +218,8 @@ Route::group(['prefix'=>'client-dashboard','middleware'=>['auth','empty.null']],
         Route::get('/institution','InstitutionController@view')->name('client.institution.view');
         Route::get('/institution/{id}/institution-view', 'InstitutionController@viewInstitution')->name('client.institution.view.institution');
         Route::get('/institution/{id}/edit', 'InstitutionController@edit')->name('client.institution.edit');
+        Route::get('/new-institution', 'InstitutionController@getNewInstitution');
+        Route::post('/new-institution', 'InstitutionController@postNewInstitution');
         Route::post('/institution/{id}/edit', 'InstitutionController@update')->name('client.institution.update');
         Route::get('enrollment','EnrollmentController@index');
         Route::post('enrollment','EnrollmentController@upload');

@@ -10,7 +10,9 @@ use Illuminate\Notifications\Messages\MailMessage;
 class ShortCreateOther extends Notification
 {
     use Queueable;
-    public $name,$field,$id;
+    public $name;
+    public $field;
+    public $id;
 
     /**
      * Create a new notification instance.
@@ -19,7 +21,7 @@ class ShortCreateOther extends Notification
      * @param $field
      * @param $id
      */
-    public function __construct($name,$field,$id)
+    public function __construct($name, $field, $id)
     {
         $this->name = $name;
         $this->field = $field;

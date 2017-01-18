@@ -8,6 +8,16 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use OwenIt\Auditing\AuditingTrait;
 use App\Models\ShortCourse\Provider;
 
+/**
+ * An Eloquent Model: 'User'
+ *
+ * @property integer $id
+ * @property string $name
+ * @property string $email
+ * @property string $password
+ * @property \Carbon\Carbon $created_at
+ * @property \Carbon\Carbon $updated_at
+ */
 class User extends Authenticatable
 {
     use AuditingTrait, Notifiable, SoftDeletes;
