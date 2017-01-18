@@ -8,6 +8,7 @@ use App\Models\AdminNotification;
 class S3Composer
 {
     public $s3 = "";
+
     /**
      * Create a movie composer.
      *
@@ -15,14 +16,19 @@ class S3Composer
      */
     public function __construct()
     {
-//        $this->s3 = "https://s3-ap-southeast-1.amazonaws.com/eduhubmy-media/";  production aws
-        $this->s3 = "https://s3-ap-southeast-1.amazonaws.com/amr-eduhub-upoads/";
+
+        if (app()->environment('local')) {
+            $this->s3 = "https://s3-ap-southeast-1.amazonaws.com/amr-eduhub-upoads/";
+        } else {
+            $this->s3 = "https://s3-ap-southeast-1.amazonaws.com/eduhubmy-media/";
+        }
+
     }
 
     /**
      * Bind data to the view.
      *
-     * @param  View  $view
+     * @param  View $view
      * @return void
      */
     public function compose(View $view)
