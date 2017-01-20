@@ -185,7 +185,7 @@
             </a>
         </div>
         <div class="col-lg-3 col-md-6 col-sm-3 col-xs-12">
-            <a href="http://bit.ly/eduhub-tutorial">
+            <a href="https://www.youtube.com/playlist?list=PLdnQwUWhiW6ALF2rvfYMaY_Q2X4EdKO4J">
                 <div class="box-body">
                     <div class="demo-card-image mdl-card  "
                          style="background-image: url('/img/default/scholar-02.png'); background-size: 30%; background-color:white;">

@@ -43,7 +43,7 @@ class SendTutorialVideoLink extends Notification
         return (new MailMessage)
             ->greeting('Hello! Welcome to eduhub dashboard!')
             ->line('Thank you for registering with eduhub. Click the button below to get tutorials on how to use our dashboard.')
-            ->action('GO TO TUTORIAL', 'http://bit.ly/eduhub-tutorial')
+            ->action('GO TO TUTORIAL', 'https://www.youtube.com/playlist?list=PLdnQwUWhiW6ALF2rvfYMaY_Q2X4EdKO4J')
             ->line('Thank you for using our application!');
     }
 

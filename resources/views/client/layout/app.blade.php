@@ -232,7 +232,7 @@
                             </a>
                         </li>
                         <li class="treeview">
-                            <a href="#"><i
+                            <a href="https://www.youtube.com/playlist?list=PLdnQwUWhiW6ALF2rvfYMaY_Q2X4EdKO4J"><i
                                         class="fa fa-info-circle "></i> <span>Help</span>
                                 <span class="pull-right-container">
                           </span>
