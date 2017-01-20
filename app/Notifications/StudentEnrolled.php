@@ -51,7 +51,7 @@ class StudentEnrolled extends Notification
                     ->line('Please proceed with the payment as soon as possible. Below is the detail of the student.')
                     ->line('Name  : '.$this->user->name)
                     ->line('Email : '.$this->user->email)
-                    ->line('Phone : '.$this->user->student->phone or null);
+                    ->line('Phone : '. isset($this->user->student) ? $this->user->student->phone : null);
     }
 
     public function toDatabase($notifiable)
