@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width"/>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Canonical SEO -->
-    <link rel="canonical" href="https://www.creative-tim.com/product/material-dashboard"/>
+    <link rel="canonical" href="//www.creative-tim.com/product/material-dashboard"/>
     <!-- Bootstrap core CSS     -->
     <link href="/assets/css/bootstrap.min.css" rel="stylesheet"/>
     <!--  Material Dashboard CSS    -->
@@ -18,18 +18,18 @@
     <link href="/assets/css/demo.css" rel="stylesheet"/>
     <!--     Fonts and icons     -->
     <link href="/assets/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
-    <link href='https://fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet'
+    <link href='//fonts.googleapis.com/css?family=Roboto:400,700,300|Material+Icons' rel='stylesheet'
           type='text/css'>
     <!--   Core JS Files   -->
     <script src="/assets/js/jquery-3.1.0.min.js" type="text/javascript"></script>
     <script src="/assets/js/jquery-ui.js" type="text/javascript"></script>
-    <script src="https://www.atlasestateagents.co.uk/javascript/tether.min.js"></script><!-- Tether for Bootstrap -->
+    <script src="//www.atlasestateagents.co.uk/javascript/tether.min.js"></script><!-- Tether for Bootstrap -->
     <script src="/assets/js/bootstrap.min.js" type="text/javascript"></script>
     <script src="/assets/js/material.min.js" type="text/javascript"></script>
     <!--  Charts Plugin -->
-    <script src="https://code.highcharts.com/highcharts.js"></script>
-    <script src="https://code.highcharts.com/highcharts-more.js"></script>
-    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="//code.highcharts.com/highcharts.js"></script>
+    <script src="//code.highcharts.com/highcharts-more.js"></script>
+    <script src="//code.highcharts.com/modules/exporting.js"></script>
     <!--  Notifications Plugin    -->
     <script src="/assets/js/bootstrap-notify.js"></script>
     <!-- Bootbox Plugin -->
@@ -167,7 +167,7 @@
                     <script>
                         document.write(new Date().getFullYear())
                     </script>
-                    <a href="https://www.eduhub.my">eduhub.my</a>, made with love for a better future
+                    <a href="//www.eduhub.my">eduhub.my</a>, made with love for a better future
                 </p>
             </div>
         </footer>
